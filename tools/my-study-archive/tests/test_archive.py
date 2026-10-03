@@ -153,5 +153,31 @@ class ArchiveTests(unittest.TestCase):
         path=self.draft(content=old)
         with self.assertRaises(a.ArchiveError):self.publish()
         self.assertTrue(path.exists());self.assertEqual(self.remote.posted_commits,0)
+    def test_concept_note_without_code_publishes_and_is_idempotent(self):
+        start=NOTE.index('## Java 예제')
+        end=NOTE.index('## 꼬리질문')
+        concept=NOTE[:start]+NOTE[end:]
+        self.draft(content=concept)
+        preview=self.publish(dry=True)
+        self.assertEqual(preview['notes'],1);self.assertEqual(self.remote.posted_commits,0)
+        result=self.publish();self.assertEqual(result['status'],'published')
+        self.assertEqual(self.remote.files[PATH],concept)
+        count=self.remote.posted_commits
+        self.draft(content=concept,base=a.blob_sha(concept))
+        self.assertEqual(self.publish()['status'],'unchanged')
+        self.assertEqual(self.remote.posted_commits,count)
+    def test_native_language_example_does_not_require_java(self):
+        start=NOTE.index('## Java 예제')
+        end=NOTE.index('## 꼬리질문')
+        native=NOTE[:start]+'''## JavaScript 예제
+
+```javascript
+console.log(1 + 2);
+```
+
+'''+NOTE[end:]
+        self.draft(content=native)
+        self.assertEqual(self.publish()['status'],'published')
+        self.assertEqual(self.remote.files[PATH],native)
 
 if __name__=='__main__':unittest.main()

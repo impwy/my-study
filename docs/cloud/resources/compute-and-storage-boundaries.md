@@ -7,29 +7,13 @@
 - 인스턴스 종료와 데이터 삭제의 관계는 서비스 설정으로 확인한다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 컴퓨팅은 코드를 실행하는 CPU·메모리 자원이고 스토리지는 데이터를 보관하는 자원이다. 블록 스토리지는 디스크처럼 제공되어 보통 파일시스템을 얹는다. 파일 스토리지는 경로·디렉터리로 접근하며 여러 클라이언트가 공유하는 용도로 쓰인다. 객체 스토리지는 버킷과 키로 객체를 읽고 쓰며 일반적인 디스크의 임의 위치 갱신과 계약이 다르다.
 
 데이터베이스 디스크, 공유 파일, 이미지 업로드를 같은 저장 방식으로 취급하지 않는다. AWS에서는 EBS·EFS·S3가 각각의 대표 예다. 계산 자원을 늘려도 느린 디스크나 잘못된 접근 패턴이 자동으로 해결되지는 않는다.
-
-## Java 예제
-
-버킷·키로 객체를 찾는 메모리 모델이다. 실제 클라우드 저장이나 내구성을 구현하지 않는다.
-
-```java
-record ObjectKey(String bucket, String key) {}
-
-static void demo() {
-    var objects = new java.util.HashMap<ObjectKey, byte[]>();
-    var key = new ObjectKey("images", "users/42/profile.png");
-    objects.put(key, new byte[] {1, 2, 3});
-    System.out.println(objects.get(key).length); // 3
-    System.out.println(objects.containsKey(new ObjectKey("images", "users/42"))); // false
-}
-```
 
 ## 주의점
 

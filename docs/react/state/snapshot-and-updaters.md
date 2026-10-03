@@ -13,20 +13,7 @@
 
 이벤트 핸들러는 자신이 만들어진 렌더의 count를 읽는다. count가 0인 핸들러에서 setCount(count+1)을 여러 번 호출하면 같은 1을 여러 번 요청할 수 있다. updater는 큐의 이전 결과를 받아 다음 상태를 계산하므로 세 번 증가를 순서대로 표현할 수 있다. 객체·배열 state도 직접 바꾸기보다 새 값을 만들어 다음 렌더의 입력으로 전달한다.
 
-## Java 예제
-
-```java
-record Counter(int value) {}
-
-static Counter apply(Counter start) {
-    java.util.function.UnaryOperator<Counter> increment = s -> new Counter(s.value() + 1);
-    Counter next = start;
-    for (int i = 0; i < 3; i++) next = increment.apply(next);
-    return next;
-} // start는 0 유지, 결과는 3
-```
-
-### React로 확인
+## React 예제
 
 ```jsx
 import { useState } from 'react';
@@ -43,7 +30,7 @@ export default function Counter() {
 
 ## 주의점
 
-Java 예제에는 React의 상태 큐·배칭이 없고 불변 입력과 다음 상태 계산만 비교한다. updater에 외부 API 호출 등 부수 효과를 넣지 않는다. 비동기 콜백은 이전 렌더의 값을 계속 참조할 수 있다.
+updater에 외부 API 호출 등 부수 효과를 넣지 않는다. 비동기 콜백은 이전 렌더의 값을 계속 참조할 수 있다.
 
 ## 꼬리질문
 

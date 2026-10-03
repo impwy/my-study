@@ -13,21 +13,16 @@
 
 스키마는 테이블·컬럼·타입·제약 등을 정의한다. 기본 키는 행 식별, 외래 키는 참조 관계, UNIQUE는 중복 제한, NOT NULL은 값 존재 조건을 표현한다. 애플리케이션 검증만으로 동시 요청의 중복을 막기 어려우므로 DB 제약을 최종 방어로 사용한다. 일반 뷰는 질의 표현이며 제품별 materialized view와 같은 물리 저장을 가정하지 않는다.
 
-## Java 예제
+## SQL 예제
 
-빈 실습 DB에서만 실행할 DDL 예제다. DDL 트랜잭션 동작은 DB마다 확인한다.
+실습용 members 테이블과 그 이메일 목록 뷰를 정의한다.
 
-```java
-import java.sql.*;
-
-static void create(Connection c) throws SQLException {
-    try (Statement s = c.createStatement()) {
-        s.executeUpdate(
-                "CREATE TABLE members (id BIGINT PRIMARY KEY, email VARCHAR(200) NOT NULL"
-                    + " UNIQUE)");
-        s.executeUpdate("CREATE VIEW member_emails AS SELECT id, email FROM members");
-    }
-}
+```sql
+CREATE TABLE members (
+    id BIGINT PRIMARY KEY,
+    email VARCHAR(200) NOT NULL UNIQUE
+);
+CREATE VIEW member_emails AS SELECT id, email FROM members;
 ```
 
 ## 주의점

@@ -7,34 +7,11 @@
 - 체크포인트는 복구 범위를 줄인다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 메모리 버퍼의 데이터와 디스크 데이터는 시점이 다를 수 있다. 장애 뒤 완료된 변경을 다시 적용하거나 미완료 변경을 제거하려면 로그가 필요하다. 구체적인 로그 형식과 알고리즘은 제품에 따라 다르다. 체크포인트는 어느 지점부터 복구를 시작해야 하는지에 관한 정보를 남긴다.
-
-## Java 예제
-
-로그 선행 영속화 순서의 예제다. force의 보장은 저장 장치·파일 시스템 조건까지 확인한다.
-
-```java
-import java.nio.*;
-import java.nio.channels.*;
-import java.nio.file.*;
-
-static void appendAndForce(Path wal, byte[] record) throws java.io.IOException {
-    try (FileChannel channel =
-            FileChannel.open(
-                    wal,
-                    StandardOpenOption.CREATE,
-                    StandardOpenOption.WRITE,
-                    StandardOpenOption.APPEND)) {
-        ByteBuffer buffer = ByteBuffer.wrap(record);
-        while (buffer.hasRemaining()) channel.write(buffer);
-        channel.force(true); // 데이터 페이지 쓰기보다 먼저 로그의 영속화 요청
-    }
-}
-```
 
 ## 주의점
 
@@ -44,7 +21,7 @@ static void appendAndForce(Path wal, byte[] record) throws java.io.IOException {
 
 1. 메모리의 데이터만 믿고 커밋 성공을 알리면 어떤 장애에 취약할까?
 2. 로그보다 데이터 페이지를 먼저 영속화하면 장애 복구에 어떤 기록이 빠질 수 있을까?
-3. 이 예제가 실제 WAL이 되려면 레코드 경계·체크섬·LSN·복구 절차 중 무엇이 더 필요할까?
+3. 실제 WAL은 레코드 경계·체크섬·LSN·복구 절차를 왜 함께 정의해야 할까?
 
 </details>
 

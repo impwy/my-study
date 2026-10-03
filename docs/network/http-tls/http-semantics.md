@@ -7,30 +7,11 @@
 - HTTP 의미와 업무 결과를 함께 표현한다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 GET은 안전한 조회 의미를 갖고 PUT·DELETE는 멱등 메서드다. 멱등성은 같은 요청을 여러 번 수행했을 때 의도된 서버 효과가 한 번과 같다는 뜻이며 응답 코드가 매번 같아야 한다는 뜻은 아니다. 400은 잘못된 요청, 401은 인증이 필요하거나 유효하지 않은 경우, 403은 접근 거부, 404는 찾을 수 없음, 409는 현재 상태와 충돌하는 경우에 고려한다.
-
-## Java 예제
-
-Java 21 이상. 전달한 HTTP(S) 주소로 요청을 보낸다.
-
-```java
-import java.net.URI;
-import java.net.http.*;
-import java.time.Duration;
-
-static int getStatus(URI resource) throws Exception {
-    try (HttpClient client =
-            HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(2)).build()) {
-        var request =
-                HttpRequest.newBuilder(resource).timeout(Duration.ofSeconds(3)).GET().build();
-        return client.send(request, HttpResponse.BodyHandlers.discarding()).statusCode();
-    }
-}
-```
 
 ## 주의점
 

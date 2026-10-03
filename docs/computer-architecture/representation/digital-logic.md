@@ -7,24 +7,11 @@
 - 진리표와 부울식으로 같은 동작을 표현한다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 AND·OR·NOT 같은 연산을 결합해 덧셈·선택·비교를 구현한다. 멀티플렉서는 여러 입력 중 하나를 고르고 디코더는 코드에 맞는 출력을 선택한다. 플립플롭과 레지스터는 상태를 저장해 다음 단계의 입력으로 제공한다. CPU도 계산과 상태 전이가 결합된 회로로 볼 수 있다.
-
-## Java 예제
-
-논리 회로의 입출력을 Java boolean으로 표현한 모형이다.
-
-```java
-record Sum(boolean bit, boolean carry) {}
-
-static Sum halfAdder(boolean a, boolean b) {
-    return new Sum(a ^ b, a && b);
-}
-// halfAdder(true, true) → bit=false, carry=true (1+1=10₂)
-```
 
 ## 주의점
 
@@ -34,7 +21,7 @@ static Sum halfAdder(boolean a, boolean b) {
 
 1. 메모리 없는 조합 회로만으로 이전 입력을 기억할 수 있을까?
 2. 입력이 1과 1이면 XOR 출력과 AND 출력은 각각 무엇을 나타낼까?
-3. 이 회로에 이전 carry를 더하려면 어떤 입력과 논리를 추가해야 할까?
+3. 두 비트 덧셈에 이전 자리의 carry도 더하려면 어떤 입력과 논리가 추가로 필요할까?
 
 </details>
 

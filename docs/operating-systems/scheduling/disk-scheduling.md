@@ -7,35 +7,11 @@
 - 정책의 기아·응답 편차를 본다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 FCFS는 요청 순서를 지키지만 헤드 이동이 길어질 수 있다. SSTF는 현재 가까운 요청부터 처리해 먼 요청이 기다릴 수 있다. SCAN은 한 방향으로 이동하며 처리하고 되돌아온다. SSD는 기계적 헤드 이동이 없으므로 같은 물리 비용 모델을 그대로 적용하지 않는다.
-
-## Java 예제
-
-기계식 디스크의 트랙 이동 비용 모형이며 실제 장치 큐를 제어하지 않는다.
-
-```java
-import java.util.*;
-
-static long sstf(int head, List<Integer> requests) {
-    var pending = new ArrayList<>(requests);
-    long movement = 0;
-    while (!pending.isEmpty()) {
-        final int current = head;
-        int next =
-                pending.stream()
-                        .min(Comparator.comparingLong(x -> Math.abs((long) x - current)))
-                        .orElseThrow();
-        movement += Math.abs((long) next - head);
-        head = next;
-        pending.remove(Integer.valueOf(next));
-    }
-    return movement;
-}
-```
 
 ## 주의점
 

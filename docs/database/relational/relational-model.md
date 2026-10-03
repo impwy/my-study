@@ -7,28 +7,11 @@
 - 제약은 코드 검증과 함께 DB에서도 지킨다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 개념 모델의 개체·관계를 DB의 테이블·키로 옮긴다. 기본키는 후보키 중 선택한 식별자이고 외래키는 다른 행의 키를 참조한다. 릴레이션 이론의 집합과 SQL의 중복 행·NULL 규칙을 구분한다. 업무상 유일한 값은 별도 UNIQUE 제약으로 표현할 수 있다.
-
-## Java 예제
-
-키의 유일성과 업무 속성의 유일성을 비교하는 메모리 모형이다.
-
-```java
-import java.util.*;
-
-record User(long id, String email) {}
-
-static void demo() {
-    List<User> users = List.of(new User(1, "a@example.org"), new User(2, "a@example.org"));
-    long distinctIds = users.stream().map(User::id).distinct().count();
-    long distinctEmails = users.stream().map(User::email).distinct().count();
-    System.out.println(distinctIds + "," + distinctEmails); // 2,1
-}
-```
 
 ## 주의점
 

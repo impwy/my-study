@@ -13,29 +13,16 @@
 
 원자성은 작업 전체가 반영되거나 되돌아가는 범위를 제공한다. 지속성은 완료한 결과를 장애 뒤에도 유지하는 성질이다. 격리성은 동시 실행의 관찰 규칙을 정한다. 일관성은 DB가 모든 업무 규칙을 자동 이해한다는 뜻이 아니라 올바른 변경과 제약으로 유효한 상태를 유지한다는 관점이다.
 
-## Java 예제
+## SQL 예제
 
-이 메서드가 전용 연결의 트랜잭션을 소유한다고 가정한다. 잔액 검증·락 순서는 별도 업무 규칙이다.
+accounts의 두 기존 계좌에서 100을 이체하는 실습이다. 두 UPDATE가 각각 한 행을 변경했는지 확인한 뒤 모두 성공한 경우에만 COMMIT한다. 실패하거나 대상이 없으면 ROLLBACK한다.
 
-```java
-import java.sql.*;
-
-static void transfer(Connection c, long from, long to, int amount) throws SQLException {
-    c.setAutoCommit(false);
-    try (PreparedStatement p =
-            c.prepareStatement("UPDATE accounts SET balance=balance+? WHERE id=?")) {
-        p.setInt(1, -amount);
-        p.setLong(2, from);
-        if (p.executeUpdate() != 1) throw new SQLException("missing source");
-        p.setInt(1, amount);
-        p.setLong(2, to);
-        if (p.executeUpdate() != 1) throw new SQLException("missing target");
-        c.commit();
-    } catch (SQLException e) {
-        c.rollback();
-        throw e;
-    }
-}
+```sql
+BEGIN;
+UPDATE accounts SET balance = balance - 100 WHERE id = 1;
+UPDATE accounts SET balance = balance + 100 WHERE id = 2;
+-- 변경 행 수와 업무 조건을 확인한 성공 경로
+COMMIT;
 ```
 
 ## 주의점

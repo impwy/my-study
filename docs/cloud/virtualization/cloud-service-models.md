@@ -7,32 +7,11 @@
 - 관리형 서비스도 사용자 책임을 없애지 않는다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 클라우드의 특성에는 필요 시 셀프 서비스, 넓은 네트워크 접근, 자원 풀링, 빠른 탄력성, 사용량 측정이 있다. IaaS는 인프라 자원을 제공하며 사용자가 OS·응용 운영을 맡는 범위가 크다. PaaS는 응용 실행 환경을, SaaS는 완성된 응용 사용을 제공한다. 같은 제공자 안에서도 서비스에 따라 보안·설정·데이터 책임이 달라진다.
-
-## Java 예제
-
-운영체제 책임만 비교하는 단순 모형이다. 전체 책임은 서비스 계약별로 확인한다.
-
-```java
-enum Model {
-    IAAS,
-    PAAS,
-    SAAS
-}
-
-static boolean customerPatchesGuestOS(Model model) {
-    return model == Model.IAAS;
-}
-
-static void demo() {
-    System.out.println(customerPatchesGuestOS(Model.IAAS)); // true
-    System.out.println(customerPatchesGuestOS(Model.SAAS)); // false
-}
-```
 
 ## 주의점
 

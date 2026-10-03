@@ -13,21 +13,7 @@
 
 Composition API는 관련 상태·계산·생명주기 처리를 같은 함수에 모을 수 있다. useTicks처럼 ref와 타이머를 묶은 함수를 setup에서 호출하면 컴포넌트의 수명과 정리가 연결된다. 함수 안에서 ref를 만들면 호출마다 별도 상태가 생기며 모듈 최상위에 만들면 공유 범위가 달라진다. 생명주기 훅 등록은 컴포넌트의 활성 setup 실행과 연결되어야 한다.
 
-## Java 예제
-
-자원의 시작·종료 책임을 비교하는 Java 코드다.
-
-```java
-static AutoCloseable ticker() {
-    var pool = java.util.concurrent.Executors.newSingleThreadScheduledExecutor();
-    var ticks = new java.util.concurrent.atomic.AtomicInteger();
-    pool.scheduleAtFixedRate(
-            ticks::incrementAndGet, 0, 1, java.util.concurrent.TimeUnit.SECONDS);
-    return pool::shutdownNow;
-} // 소유자가 close를 호출해 타이머 자원을 정리
-```
-
-### Vue 3로 확인
+## Vue 예제
 
 ```javascript
 // useTicks.js: 컴포넌트의 <script setup>에서 호출

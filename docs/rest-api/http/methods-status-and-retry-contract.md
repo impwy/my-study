@@ -7,7 +7,7 @@
 - 201·202·204는 생성·접수·본문 없는 성공을 구별한다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
@@ -15,22 +15,9 @@ GET 같은 안전한 메서드는 사용자가 요청한 변경 작업을 수행
 
 생성 완료는 201과 생성된 리소스의 위치로 설명할 수 있다. 202는 요청을 접수했지만 처리가 아직 끝나지 않았음을 뜻하며 진행 상태를 확인할 방법을 제공한다. 204에는 응답 본문이 없으므로 항상 JSON을 파싱하는 클라이언트와 계약이 맞지 않는다.
 
-## Java 예제
-
-```java
-static String interpret(java.net.http.HttpResponse<String> response) {
-    return switch (response.statusCode()) {
-        case 201 -> "생성됨: " + response.headers().firstValue("Location").orElse("위치 미제공");
-        case 202 -> "접수됨: 완료 여부는 별도로 조회";
-        case 204 -> "성공: JSON 본문 파싱 생략";
-        default -> "상태 " + response.statusCode() + ": " + response.body();
-    };
-}
-```
-
 ## 주의점
 
-이 코드는 일부 성공 상태를 구별하는 예제이며 완전한 오류 처리기가 아니다. 타임아웃은 서버의 미처리를 보장하지 않는다. 멱등 요청이어도 재시도 횟수·간격·기한을 제한하고 업무 부수 효과까지 점검한다.
+타임아웃은 서버의 미처리를 보장하지 않는다. 멱등 요청이어도 재시도 횟수·간격·기한을 제한하고 업무 부수 효과까지 점검한다.
 
 ## 꼬리질문
 

@@ -13,19 +13,7 @@
 
 orders/:id는 여러 주문 URL을 하나의 화면 정의로 연결한다. RouterLink는 탐색 링크, RouterView는 일치한 컴포넌트 표시를 맡는다. 같은 경로 패턴에서 id만 바뀌면 컴포넌트가 재사용될 수 있으므로 파라미터 변화에 따라 조회를 다시 수행한다. URL에는 공유·새로고침에 필요한 화면 식별 상태를 두고 임시 입력·모달 상태와 구별한다.
 
-## Java 예제
-
-경로에서 파라미터를 추출하는 비교 예제다. Vue Router의 탐색·히스토리를 구현하지 않는다.
-
-```java
-static String orderId(String path) {
-    var match = java.util.regex.Pattern.compile("^/orders/([0-9]+)$").matcher(path);
-    if (!match.matches()) throw new IllegalArgumentException("not found");
-    return match.group(1);
-} // /orders/42 → 42
-```
-
-### Vue 3로 확인
+## Vue 예제
 
 ```javascript
 // router.js: 앱 초기화에서 app.use(router), 루트에 <RouterView /> 필요

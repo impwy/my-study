@@ -7,22 +7,11 @@
 - stall·forwarding·분기 예측으로 대응한다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 명령어를 인출·해석·실행 같은 단계로 나누면 첫 명령이 실행될 때 다음 명령을 해석할 수 있다. 이상적으로는 파이프라인이 찬 뒤 매 클록 결과를 내지만 단계 불균형과 의존성 때문에 그대로 달성되지 않는다. 다른 명령의 결과가 아직 없거나 분기 방향을 모르면 기다리거나 잘못된 작업을 취소한다.
-
-## Java 예제
-
-각 단계가 한 사이클인 이상적인 파이프라인 비용 모형이다.
-
-```java
-static long cycles(int instructions, int stages, int stalls) {
-    if (instructions < 1 || stages < 1 || stalls < 0) throw new IllegalArgumentException();
-    return (long) stages + instructions - 1 + stalls;
-} // 5단계, 10명령, stall 0 → 14사이클 (순차 실행은 50)
-```
 
 ## 주의점
 

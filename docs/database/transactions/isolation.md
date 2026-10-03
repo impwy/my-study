@@ -13,32 +13,17 @@
 
 격리 수준은 읽기 현상과 직렬 실행에 가까운 정도를 조절한다. 낮은 수준은 더 많은 중간·최신 변경을 볼 수 있고 높은 수준은 락·검증·중단 비용이 생길 수 있다. 같은 데이터를 읽은 뒤 각자 판단하는 업무는 읽기 일관성만으로 충분하지 않을 수 있다. 엔진의 스냅샷·락 규칙을 확인한다.
 
-## Java 예제
+## SQL 예제
 
-전용 실습 연결을 가정한다. REPEATABLE READ의 구체적 동작은 DB별로 다르다.
+MySQL InnoDB의 accounts 실습 테이블에서 실행한다. 두 SELECT 사이에 별도 연결의 UPDATE·COMMIT을 실행해 관찰 값을 비교한다.
 
-```java
-import java.sql.*;
-
-static int readTwice(Connection c) throws SQLException {
-    c.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
-    c.setAutoCommit(false);
-    try (Statement s = c.createStatement()) {
-        try (ResultSet r = s.executeQuery("SELECT balance FROM accounts WHERE id=1")) {
-            r.next();
-            System.out.println(r.getInt(1));
-        }
-        try (ResultSet r = s.executeQuery("SELECT balance FROM accounts WHERE id=1")) {
-            r.next();
-            int value = r.getInt(1);
-            c.commit();
-            return value;
-        }
-    } catch (SQLException e) {
-        c.rollback();
-        throw e;
-    }
-}
+```sql
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+START TRANSACTION;
+SELECT balance FROM accounts WHERE id = 1;
+-- 이 사이에 다른 연결이 해당 행을 변경하고 COMMIT
+SELECT balance FROM accounts WHERE id = 1;
+COMMIT;
 ```
 
 ## 주의점

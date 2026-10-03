@@ -4,7 +4,7 @@
 
 - DECIMAL의 정밀도와 소수 자릿수를 구별한다.
 - NOT NULL·UNIQUE·DEFAULT는 서로 다른 제약이다.
-- Java 입력 검증과 데이터베이스 제약을 함께 둔다.
+- 입력 검증과 데이터베이스 제약을 함께 둔다.
 
 <details>
 <summary>설명과 예제 펼치기</summary>
@@ -15,26 +15,24 @@ DECIMAL(10,2)는 전체 자릿수 10개 중 소수부에 2개를 배정한다. �
 
 예제 테이블은 payments(id BIGINT PRIMARY KEY, amount DECIMAL(10,2) NOT NULL, status VARCHAR(16) NOT NULL DEFAULT 'PENDING')을 가정한다. 상태를 생략한 INSERT와 NULL을 전달한 INSERT의 계약을 비교해 본다.
 
-## Java 예제
+## SQL 예제
 
-```java
-static int insert(java.sql.Connection connection, long id, String input)
-        throws java.sql.SQLException {
-    var amount =
-            new java.math.BigDecimal(input).setScale(2, java.math.RoundingMode.UNNECESSARY);
-    if (amount.precision() > 10) throw new IllegalArgumentException("금액 범위 초과");
-    try (var statement =
-            connection.prepareStatement("INSERT INTO payments (id, amount) VALUES (?, ?)")) {
-        statement.setLong(1, id);
-        statement.setBigDecimal(2, amount);
-        return statement.executeUpdate();
-    }
-}
+MySQL의 새 실습 테이블에서 기본값 생략과 명시적인 NULL을 비교한다. 마지막 INSERT는 strict mode에서 오류를 확인하는 입력이다.
+
+```sql
+CREATE TABLE payments (
+    id BIGINT PRIMARY KEY,
+    amount DECIMAL(10,2) NOT NULL,
+    status VARCHAR(16) NOT NULL DEFAULT 'PENDING'
+);
+INSERT INTO payments (id, amount) VALUES (1, 42.00);
+SELECT id, amount, status FROM payments;
+INSERT INTO payments (id, amount, status) VALUES (2, 42.00, NULL);
 ```
 
 ## 주의점
 
-문자열로 BigDecimal을 만들면 double의 이진 표현 오차를 먼저 거치지 않는다. 소수부 초과 처리는 업무 규칙으로 정하고 서버 SQL mode도 확인한다. 트랜잭션의 커밋·롤백은 호출자가 관리한다.
+소수부 초과·범위 초과·명시적인 NULL의 처리 규칙을 정하고 서버 SQL mode도 확인한다. 기본값이 애플리케이션의 모든 업무 규칙을 대신하지는 않는다.
 
 ## 꼬리질문
 

@@ -7,25 +7,11 @@
 - 복구 명령의 작업 트리 영향을 확인한다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 충돌은 같은 구간의 변경을 자동으로 결정하지 못한 상태다. 한쪽을 기계적으로 선택하기보다 최신 요구와 양쪽 의도를 읽고 결과를 작성한다. 해결 뒤 실행·문서 링크·목록을 확인하고 다음 단계를 진행한다. abort·restore·reset 등은 서로 다른 상태를 바꾸므로 미커밋 변경의 손실 가능성을 확인한다. 필요하면 먼저 파일 복사·커밋·stash로 보존한다.
-
-## Java 예제
-
-미해결 충돌과 로컬 참조 이동을 조회한다. 복구·삭제 명령은 실행하지 않는다.
-
-```java
-static void inspect() throws Exception {
-    new ProcessBuilder("git", "diff", "--name-only", "--diff-filter=U")
-            .inheritIO()
-            .start()
-            .waitFor();
-    new ProcessBuilder("git", "reflog", "-5", "--oneline").inheritIO().start().waitFor();
-}
-```
 
 ## 주의점
 

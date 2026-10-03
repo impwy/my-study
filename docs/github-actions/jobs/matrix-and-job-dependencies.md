@@ -15,23 +15,7 @@ workflow_dispatch는 수동 실행 이벤트이며 push·pull_request 등은 조
 
 os 2개와 Java 버전 2개의 matrix는 제외 조건이 없다면 4개 조합을 만든다. needs: check를 둔 잡은 선행 잡의 완료를 기다리며 기본적으로 선행 잡이 성공해야 실행된다. 산출물 전달은 artifacts, 작은 결과 값 전달은 outputs 같은 명시적인 방법을 사용한다.
 
-## Java 예제
-
-설정 조합을 생성하는 모델이다. 워크플로는 아래 YAML로 작성한다.
-
-```java
-record Job(String os, int javaVersion) {}
-
-static java.util.List<Job> matrix() {
-    var jobs = new java.util.ArrayList<Job>();
-    for (String os : java.util.List.of("ubuntu-latest", "windows-latest")) {
-        for (int version : new int[] {17, 21}) jobs.add(new Job(os, version));
-    }
-    return java.util.List.copyOf(jobs); // 4개 조합
-}
-```
-
-### 워크플로로 확인
+## YAML 예제
 
 별도 연습 저장소의 `.github/workflows/java-matrix.yml`에 저장한다.
 
@@ -60,7 +44,7 @@ jobs:
 
 ## 주의점
 
-행렬 확대는 실행 시간과 사용량을 늘린다. 선행 실패 시 report가 기본적으로 건너뛰어진다는 점을 확인한다. 아래 예제는 Java 환경만 확인하며 프로젝트 빌드·테스트를 수행하지 않는다.
+행렬 확대는 실행 시간과 사용량을 늘린다. 선행 실패 시 report가 기본적으로 건너뛰어진다는 점을 확인한다. 워크플로 예제는 Java 환경만 확인하며 프로젝트 빌드·테스트를 수행하지 않는다.
 
 ## 꼬리질문
 

@@ -13,23 +13,7 @@
 
 JavaScript의 기본 값은 string·number·boolean·bigint·symbol·undefined·null로 나뉜다. 객체는 속성을 가진 참조 값이다. let 변수에는 다른 타입의 값을 다시 넣을 수 있다. +는 문자열 연결로 바뀔 수 있고 ==는 비교 전 변환을 수행할 수 있으므로 API 입력은 기대 타입을 명시적으로 검사한다.
 
-Java의 Object 변수에 여러 객체를 넣는 예제와 비교하되, Java 변수의 정적 타입은 Object로 유지된다는 차이를 기억한다.
-
-## Java 예제
-
-값 표현을 비교하는 Java 코드다. JavaScript의 자동 형 변환을 구현하지 않는다.
-
-```java
-static void demo() {
-    Object value = 3;
-    System.out.println(value.getClass().getSimpleName()); // Integer
-    value = "3";
-    System.out.println(value.getClass().getSimpleName()); // String
-    System.out.println(Integer.parseInt((String) value) + 2); // 명시적 변환: 5
-}
-```
-
-### JavaScript로 확인
+## JavaScript 예제
 
 브라우저 콘솔 또는 Node.js에서 실행한다.
 
@@ -45,7 +29,7 @@ console.log(state.count);     // 1
 
 ## 주의점
 
-typeof null은 "object"이며 NaN은 number 타입이다. JSON의 큰 정수 ID가 안전한 number 범위를 넘으면 문자열 등의 계약이 필요하다. Java의 ==와 JavaScript의 ==를 같은 계약으로 읽지 않는다.
+typeof null은 "object"이며 NaN은 number 타입이다. JSON의 큰 정수 ID가 안전한 number 범위를 넘으면 문자열 등의 계약이 필요하다.
 
 ## 꼬리질문
 

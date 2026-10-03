@@ -13,29 +13,7 @@
 
 Pinia store의 state는 현재 값, getter는 파생 값, action은 변경이나 비동기 작업을 담는다. 모든 입력을 전역 store에 넣기보다 화면 밖에서도 필요한 상태인지 먼저 판단한다. store에서 상태 값을 일반 구조 분해하면 연결이 끊길 수 있어 storeToRefs로 ref를 얻고 action은 직접 사용할 수 있다. router는 URL 상태, store는 그 외 공유 상태라는 책임을 구별한다.
 
-## Java 예제
-
-공유 상태·파생 값·변경 메서드를 비교하는 Java 모형이다.
-
-```java
-static class CartStore {
-    private int count;
-
-    void add() {
-        count++;
-    }
-
-    int count() {
-        return count;
-    }
-
-    int doubled() {
-        return count * 2;
-    }
-}
-```
-
-### Vue 3·Pinia로 확인
+## Pinia 예제
 
 앱 초기화에서 app.use(createPinia())로 등록한 뒤 사용한다.
 
@@ -61,7 +39,7 @@ const { count, doubled } = storeToRefs(cart)
 
 ## 주의점
 
-Java 객체에는 자동 반응성이나 컴포넌트 갱신이 없다. 인증 토큰과 민감 데이터를 무조건 브라우저 저장소에 영속화하지 않는다. SSR은 요청마다 Pinia 인스턴스·상태를 분리해야 한다.
+인증 토큰과 민감 데이터를 무조건 브라우저 저장소에 영속화하지 않는다. SSR은 요청마다 Pinia 인스턴스·상태를 분리해야 한다.
 
 ## 꼬리질문
 

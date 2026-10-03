@@ -67,9 +67,6 @@ def note_meta(path,content):
         raise ArchiveError(f'{path}: 접기 영역과 참고 자료가 필요합니다.')
     if content.count('<details>')!=1 or content.count('</details>')!=1 or content.index('</details>')<content.index('<details>'):
         raise ArchiveError(f'{path}: 접기 영역은 한 개여야 합니다.')
-    details=content.split('<details>',1)[1].split('</details>',1)[0]
-    if not re.search(r'(?ms)^```java\s*\n\S.*?^```\s*$',details):
-        raise ArchiveError(f'{path}: 접기 영역에 Java 코드 예제가 필요합니다.')
     questions=re.search(r'(?ms)^## 꼬리질문\s*\n(.*?)(?=^## |</details>|\Z)',outside_code)
     if not questions or re.findall(r'^(\d+)\. .+',questions.group(1),re.M)!=['1','2','3']:
         raise ArchiveError(f'{path}: 꼬리질문은 1·2·3번으로 세 개 작성합니다.')

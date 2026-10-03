@@ -7,27 +7,11 @@
 - 삽입·삭제 때 분할·병합 비용이 있다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 메모리의 이진 탐색 트리와 달리 DB 페이지에 여러 키를 담으면 적은 페이지 접근으로 큰 데이터를 찾을 수 있다. 내부 노드는 갈 방향을 고르고 리프에서 실제 키를 찾는다. 인덱스는 읽기를 빠르게 하지만 모든 변경에서 유지 비용과 추가 공간을 요구한다.
-
-## Java 예제
-
-정렬된 키의 범위 조회를 보여 준다. TreeMap은 B+ tree가 아니며 리프 페이지 연결을 구현하지 않는다.
-
-```java
-import java.util.*;
-
-static void rangeModel() {
-    NavigableMap<Integer, String> ordered = new TreeMap<>();
-    ordered.put(10, "A");
-    ordered.put(20, "B");
-    ordered.put(30, "C");
-    System.out.println(ordered.subMap(10, true, 30, false)); // 10·20 조회
-}
-```
 
 ## 주의점
 

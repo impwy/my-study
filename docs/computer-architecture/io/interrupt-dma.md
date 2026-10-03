@@ -7,25 +7,11 @@
 - DMA는 데이터 이동의 CPU 관여를 줄인다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 프로그램 입출력은 CPU가 장치와 직접 상호작용한다. 인터럽트 방식은 완료·요청을 신호로 알려 CPU가 다른 일을 할 수 있게 한다. DMA는 제어기가 메모리와 장치 사이의 블록 이동을 맡는다. CPU는 초기 설정과 완료 처리에 참여하며 버스·메모리 대역폭은 여전히 공유된다.
-
-## Java 예제
-
-설정 → 다른 작업 → 완료 통지 순서의 모형이다. CompletableFuture가 DMA나 하드웨어 인터럽트를 구현한다는 뜻은 아니다.
-
-```java
-import java.util.concurrent.CompletableFuture;
-
-static void model() {
-    var transfer = CompletableFuture.supplyAsync(() -> new byte[] {1, 2, 3});
-    System.out.println("CPU: 다른 작업");
-    transfer.thenAccept(data -> System.out.println("완료 통지: " + data.length)).join();
-}
-```
 
 ## 주의점
 

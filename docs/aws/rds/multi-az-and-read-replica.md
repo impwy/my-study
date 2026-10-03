@@ -7,34 +7,11 @@
 - 복제 지연과 복구 시간을 고려한다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 RDS는 엔진 운영 일부를 관리하지만 스키마·쿼리·접근·복구 설계는 사용자 책임으로 남는다. Multi-AZ와 읽기 복제본은 목적이 다르며, 전통적인 Multi-AZ DB 인스턴스의 standby를 일반 읽기 확장 서버로 가정하면 안 된다. 다른 Multi-AZ 클러스터·Aurora 배포는 구성과 읽기 방식이 다르므로 제품별로 확인한다.
-
-## Java 예제
-
-AWS SDK for Java 2.x rds 모듈. Multi-AZ DB 인스턴스 예제이며 읽기 가능한 standby를 가진 Multi-AZ DB 클러스터와 구분한다.
-
-```java
-import software.amazon.awssdk.services.rds.RdsClient;
-import software.amazon.awssdk.services.rds.model.DescribeDbInstancesRequest;
-
-static void inspect(RdsClient rds, String id) {
-    var response =
-            rds.describeDBInstances(
-                    DescribeDbInstancesRequest.builder().dbInstanceIdentifier(id).build());
-    response.dbInstances()
-            .forEach(
-                    db ->
-                            System.out.println(
-                                    "multiAZ="
-                                            + db.multiAZ()
-                                            + ", replicas="
-                                            + db.readReplicaDBInstanceIdentifiers()));
-}
-```
 
 ## 주의점
 
@@ -51,4 +28,3 @@ static void inspect(RdsClient rds, String id) {
 ## 참고 자료
 
 - [AWS · RDS User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html) — 관리형 DB·Multi-AZ·읽기 복제본의 목적을 확인한다.
-- [Java API 사용 안내](https://docs.aws.amazon.com/java/api/latest/software/amazon/awssdk/services/rds/RdsClient.html) — DB 인스턴스 설정 조회에 쓰는 Java API를 확인한다.

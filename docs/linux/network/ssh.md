@@ -7,33 +7,11 @@
 - 연결·인증·셸 실행 단계를 나누어 진단한다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 클라이언트는 서버의 호스트 키를 확인하고 사용자 인증을 수행한다. 공개키 인증에서는 서버에 공개키를 등록하고 클라이언트가 개인키 소유를 증명한다. 접속 설정은 별칭·호스트·사용자·포트·키 위치로 나눌 수 있다. 연결 실패는 네트워크·sshd·방화벽, 인증 실패는 계정·키·권한, 로그인 후 실패는 셸·환경을 구분해 확인한다.
-
-## Java 예제
-
-SSH 클라이언트와 사전에 검증한 known_hosts·사용자 인증이 필요하다.
-
-```java
-static int remoteVersion(String destination) throws Exception {
-    if (!destination.matches("[A-Za-z0-9_.]+@[A-Za-z0-9.-]+"))
-        throw new IllegalArgumentException();
-    Process p =
-            new ProcessBuilder(
-                            "ssh",
-                            "-o",
-                            "StrictHostKeyChecking=yes",
-                            destination,
-                            "uname",
-                            "-a")
-                    .inheritIO()
-                    .start();
-    return p.waitFor();
-}
-```
 
 ## 주의점
 

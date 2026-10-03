@@ -7,7 +7,7 @@
 - YAGNI는 현재 필요한 단순성과 유지보수성을 포기하라는 말이 아니다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
@@ -15,29 +15,9 @@
 
 적용 이유를 “확장성” 한 단어로 끝내지 않고 어떤 변경이 어디에 국한되는지 적는다. 반대로 아직 쓰지 않는 확장 지점은 구현 시간뿐 아니라 읽기·수정·디버깅 비용을 만든다. 현재 코드의 이름·작은 함수·검증 가능한 경계를 정리하는 리팩터링은 미래 기능을 미리 만드는 일과 구별한다.
 
-## Java 예제
-
-```java
-enum Shipping {
-    STANDARD,
-    EXPRESS
-}
-
-static int fee(Shipping shipping) {
-    return switch (shipping) {
-        case STANDARD -> 3000;
-        case EXPRESS -> 5000;
-    };
-}
-
-static void demo() {
-    System.out.println(fee(Shipping.STANDARD)); // 현재의 작은 요구
-}
-```
-
 ## 주의점
 
-예제 요금은 임의의 값이다. 작은 switch가 항상 옳거나 Strategy가 항상 과하다는 결론은 아니다. 실제 변경 빈도·외부 의존·테스트 난이도가 달라지면 선택을 다시 평가한다.
+작은 switch가 항상 옳거나 Strategy가 항상 과하다는 결론은 아니다. 실제 변경 빈도·외부 의존·테스트 난이도가 달라지면 선택을 다시 평가한다.
 
 ## 꼬리질문
 

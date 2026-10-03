@@ -13,22 +13,7 @@
 
 브라우저에서는 이벤트·타이머가 태스크를 만들고 Promise의 후속 콜백은 마이크로태스크로 이어진다. 지금 실행 중인 동기 코드가 끝나야 다음 작업을 처리할 수 있다. 마이크로태스크 체크포인트에서는 새로 생긴 마이크로태스크까지 큐를 비우므로 setTimeout 0도 그보다 뒤에 실행될 수 있다. 네트워크 처리 자체는 브라우저 플랫폼에 맡길 수 있지만 콜백이 긴 CPU 작업을 대신 병렬 실행해 주지는 않는다.
 
-## Java 예제
-
-```java
-static void model() {
-    java.util.Queue<Runnable> micro = new java.util.ArrayDeque<>();
-    java.util.Queue<Runnable> tasks = new java.util.ArrayDeque<>();
-    System.out.println("start");
-    tasks.add(() -> System.out.println("timer"));
-    micro.add(() -> System.out.println("promise"));
-    System.out.println("end");
-    while (!micro.isEmpty()) micro.remove().run();
-    tasks.remove().run();
-} // start → end → promise → timer
-```
-
-### JavaScript로 확인
+## JavaScript 예제
 
 ```javascript
 console.log("start");
@@ -40,7 +25,7 @@ console.log("end");
 
 ## 주의점
 
-이 Java 큐는 순서만 보이는 모형이다. 브라우저의 태스크 소스·렌더링·워커나 Node.js의 모든 실행 단계를 구현하지 않는다. 비동기 함수 안에서도 긴 동기 계산은 해당 실행 흐름을 막을 수 있다.
+짧은 출력 순서 예제를 브라우저의 렌더링이나 Node.js의 모든 실행 단계에 그대로 일반화하지 않는다. 비동기 함수 안에서도 긴 동기 계산은 해당 실행 흐름을 막을 수 있다.
 
 ## 꼬리질문
 

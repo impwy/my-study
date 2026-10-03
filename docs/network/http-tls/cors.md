@@ -7,28 +7,11 @@
 - 허용 메서드 설정은 엔드포인트를 만들지 않는다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 브라우저는 웹 페이지가 다른 출처로 보내는 요청의 응답 접근을 CORS 규칙으로 제한한다. 필요한 요청은 먼저 허용 출처·메서드·헤더를 확인하는 프리플라이트를 한다. 서버의 Controller 요청 매핑과 CORS 정책, 보안 인가는 서로 다른 판단이다. 쿠키 등 자격 증명을 포함하는 경우에는 허용 출처·credentials 조합과 보안 필터 연동을 확인한다.
-
-## Java 예제
-
-```java
-import java.util.Map;
-
-static Map<String, String> headers(String origin) {
-    if (!"https://app.example.org".equals(origin)) return Map.of();
-    return Map.of(
-            "Access-Control-Allow-Origin",
-            origin,
-            "Access-Control-Allow-Methods",
-            "GET, POST",
-            "Vary",
-            "Origin");
-} // 서버 응답 헤더 모형; 실제 라우터의 OPTIONS 처리에 연결
-```
 
 ## 주의점
 

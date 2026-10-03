@@ -13,20 +13,14 @@
 
 MVCC는 읽는 트랜잭션에 보이는 버전을 고르는 방식으로 읽기와 쓰기의 경합을 줄인다. InnoDB의 일반 일관 읽기와 잠금 읽기·DML은 같은 방식으로 동작하지 않는다. 격리 수준과 조건에 따라 record·gap·next-key 락이 적용될 수 있다. 업무의 “없으면 생성”이나 “재고가 있으면 차감”을 사전 SELECT만으로 안전하다고 판단하지 않는다.
 
-## Java 예제
+## SQL 예제
 
-MySQL InnoDB 연결과 inventory 스키마를 가정한다. 기존 스냅샷 값만으로 차감하지 않는다.
+InnoDB의 inventory 실습 테이블에서 실행한다. 변경 행 수 1은 차감 성공, 0은 대상이 없거나 현재 재고가 조건을 만족하지 않음을 뜻한다.
 
-```java
-import java.sql.*;
-
-static int conditionalUpdate(Connection c, long id) throws SQLException {
-    try (PreparedStatement p =
-            c.prepareStatement("UPDATE inventory SET stock=stock-1 WHERE id=? AND stock>0")) {
-        p.setLong(1, id);
-        return p.executeUpdate();
-    }
-} // 반환 1: 차감됨, 0: 대상 없음 또는 현재 재고가 조건을 만족하지 않음
+```sql
+UPDATE inventory
+SET stock = stock - 1
+WHERE id = 1 AND stock > 0;
 ```
 
 ## 주의점

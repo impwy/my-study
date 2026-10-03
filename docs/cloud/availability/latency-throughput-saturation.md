@@ -7,26 +7,11 @@
 - 포화 뒤에는 대기와 실패가 늘 수 있다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 처리량은 단위 시간에 완료한 작업 수이고 지연은 한 작업에 걸린 시간이다. p95는 관측값의 약 95%가 그 이하인 경계를 나타낸다. 한 자원이 포화되면 요청을 더 넣어도 완료량이 비례해서 늘지 않고 큐·지연·오류가 증가할 수 있다. CPU·DB 연결·락·외부 API 같은 후보의 사용률과 대기 시간을 함께 관찰한다.
-
-## Java 예제
-
-작은 표본의 nearest-rank 계산이다. 운영 메트릭의 집계·히스토그램 오차와 표본 수를 따로 확인한다.
-
-```java
-import java.util.Arrays;
-
-static long nearestRankP99(long[] millis) {
-    if (millis.length == 0) throw new IllegalArgumentException();
-    long[] sorted = millis.clone();
-    Arrays.sort(sorted);
-    return sorted[(int) Math.ceil(sorted.length * 0.99) - 1];
-}
-```
 
 ## 주의점
 
@@ -45,4 +30,3 @@ static long nearestRankP99(long[] millis) {
 ## 참고 자료
 
 - [AWS · Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html) — 가용성·보안·성능·운영의 설계 기준을 확인한다.
-- [Java SE 21 · ExecutorService](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ExecutorService.html) — 작업 제출·종료·Future와 메모리 가시성 계약을 확인한다.

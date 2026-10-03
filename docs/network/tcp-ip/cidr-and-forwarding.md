@@ -7,32 +7,11 @@
 - 주소 변환과 라우팅을 구분한다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 IPv4 주소는 접두어 길이와 함께 네트워크 범위를 나타낸다. 라우터·호스트는 목적지 주소와 일치하는 후보 중 더 구체적인 접두어를 선택한다. 기본 경로는 더 구체적인 일치가 없을 때 사용한다. 서브넷 경계·게이트웨이·반환 경로까지 맞아야 양방향 연결이 된다. 고전적인 클래스 구분과 현재의 CIDR 표기를 혼동하지 않는다.
-
-## Java 예제
-
-prefix가 0–32인 유효한 IPv4 경로를 가정한다.
-
-```java
-record Route(int network, int prefix, String hop) {}
-
-static boolean matches(int address, Route r) {
-    int mask = r.prefix() == 0 ? 0 : -1 << (32 - r.prefix());
-    return (address & mask) == (r.network() & mask);
-}
-
-static String lookup(int address, java.util.List<Route> routes) {
-    return routes.stream()
-            .filter(r -> matches(address, r))
-            .max(java.util.Comparator.comparingInt(Route::prefix))
-            .orElseThrow()
-            .hop();
-}
-```
 
 ## 주의점
 
@@ -42,7 +21,7 @@ static String lookup(int address, java.util.List<Route> routes) {
 
 1. 기본 경로가 있는데 더 구체적인 잘못된 경로 때문에 연결이 실패할 수 있는 이유는?
 2. 같은 주소가 /16과 /24 경로에 모두 일치하면 어떤 경로를 선택할까?
-3. /0 마스크를 따로 처리하지 않으면 Java의 32비트 shift 규칙 때문에 어떤 값이 될까?
+3. 기본 경로 /0이 존재해도 더 구체적인 잘못된 경로가 선택되면 어떤 반환 경로 문제를 조사해야 할까?
 
 </details>
 

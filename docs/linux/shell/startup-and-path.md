@@ -13,14 +13,13 @@
 
 대화형 셸·로그인 셸·스크립트 실행은 서로 다른 초기화 경로를 사용할 수 있다. macOS에서 zshrc에 둔 설정이 비대화형 배포 스크립트에 그대로 적용된다고 가정하지 않는다. PATH는 명령 이름을 찾는 순서를 정하므로 앞에 다른 실행 파일이 있으면 같은 명령도 다른 버전이 실행된다. 기존 PATH를 보존하고 추가 경로를 신뢰할 수 있는 위치로 제한한다.
 
-## Java 예제
+## 셸 예제
 
-```java
-static void demo() throws Exception {
-    System.out.println(System.getenv("PATH"));
-    Process child = new ProcessBuilder("/bin/sh", "-c", "command -v java").inheritIO().start();
-    System.out.println(child.waitFor());
-} // 고정된 명령만 사용; /bin/sh -c에 외부 입력을 문자열로 연결하지 않음
+현재 셸의 검색 경로와 그 경로에서 선택되는 실행 파일을 확인한다.
+
+```bash
+printf '%s\n' "$PATH"
+command -v java
 ```
 
 ## 주의점

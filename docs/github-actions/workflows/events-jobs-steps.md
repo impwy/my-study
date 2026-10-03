@@ -7,23 +7,11 @@
 - 스텝의 실패와 실행 조건을 확인한다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 push·pull_request·수동 실행 등 이벤트와 필터로 실행 조건을 정한다. 각 잡은 지정한 runner에서 실행되고 잡 안의 스텝은 순차 실행된다. 잡들은 needs 등 의존이 없으면 병렬 실행될 수 있으며 파일 시스템을 당연히 공유하지 않는다. 코드 checkout·런타임 준비·테스트·산출물 전달을 필요한 범위로 구성한다.
-
-## Java 예제
-
-Actions의 Java 스텝에서 실행하는 코드다. 이벤트·잡 선언 자체는 워크플로 YAML에서 설정한다.
-
-```java
-static void context() {
-    for (String key :
-            new String[] {"GITHUB_EVENT_NAME", "GITHUB_JOB", "GITHUB_SHA", "GITHUB_WORKSPACE"})
-        System.out.println(key + "=" + System.getenv(key));
-}
-```
 
 ## 주의점
 

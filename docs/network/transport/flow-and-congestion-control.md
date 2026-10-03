@@ -7,21 +7,11 @@
 - 재전송은 중복 확인과 타이머 조건을 따른다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 흐름 제어는 느린 수신자의 버퍼가 넘치지 않도록 전송 가능량을 알린다. 혼잡 제어는 경로의 용량·혼잡에 맞춰 전송량을 조정한다. TCP가 지금 보낼 수 있는 양은 두 경계와 이미 전송 중인 데이터의 영향을 받는다. 손실 뒤 재전송으로 신뢰성을 유지하지만 네트워크 혼잡을 무시한 무한 재시도는 문제를 키울 수 있다.
-
-## Java 예제
-
-송신 가능량을 단순화한 모형이다. 실제 TCP는 ACK·윈도 스케일·혼잡 제어 알고리즘을 함께 사용한다.
-
-```java
-static long sendAllowance(long receiverWindow, long congestionWindow, long inFlight) {
-    return Math.max(0, Math.min(receiverWindow, congestionWindow) - inFlight);
-} // rwnd=8000, cwnd=4000, inFlight=3000 → 추가 1000바이트
-```
 
 ## 주의점
 

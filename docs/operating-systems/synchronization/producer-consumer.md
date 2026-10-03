@@ -7,33 +7,11 @@
 - 조건은 깨어난 뒤 다시 확인한다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 빈 칸·채워진 칸을 나타내는 세마포어와 버퍼 구조를 보호하는 mutex를 조합할 수 있다. 생산자는 빈 칸을 확보하고 넣은 뒤 항목 수를 알린다. 소비자는 반대로 처리한다. 대기 중 다른 실행이 상태를 바꿀 수 있으므로 조건 대기는 보통 while 검사로 감싼다.
-
-## Java 예제
-
-```java
-import java.util.concurrent.*;
-
-static void demo() throws InterruptedException {
-    BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(1);
-    Thread producer =
-            new Thread(
-                    () -> {
-                        try {
-                            queue.put(42);
-                        } catch (InterruptedException e) {
-                            Thread.currentThread().interrupt();
-                        }
-                    });
-    producer.start();
-    System.out.println(queue.take());
-    producer.join();
-}
-```
 
 ## 주의점
 

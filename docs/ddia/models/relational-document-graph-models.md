@@ -7,7 +7,7 @@
 - 그래프는 노드·관계·경로 탐색을 직접 표현한다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
@@ -15,34 +15,9 @@
 
 한 모델이 모든 문제에서 우월하지는 않다. 자주 실행하는 조회, 갱신 경계, 데이터 증가 방식, 일관성 요구를 적고 후보 모델로 같은 질문을 표현해 본다. 저장소 이름만으로 중복·조인·트랜잭션 가능 여부를 단정하지 않는다.
 
-## Java 예제
-
-```java
-record OrderRow(long id) {}
-
-record LineRow(long orderId, String product, int quantity) {}
-
-record Line(String product, int quantity) {}
-
-record OrderDocument(long id, java.util.List<Line> lines) {
-    OrderDocument {
-        lines = java.util.List.copyOf(lines);
-    }
-}
-
-record Edge(long fromUser, long toUser, String relation) {}
-
-static void demo() {
-    var row = new LineRow(42, "book", 2);
-    var document = new OrderDocument(42, java.util.List.of(new Line("book", 2)));
-    var edge = new Edge(1, 2, "FOLLOWS");
-    System.out.println(row.orderId() + ": " + document.lines().size() + ", " + edge.relation());
-}
-```
-
 ## 주의점
 
-Java record는 모델의 모양만 표현하며 데이터베이스의 저장·조회·트랜잭션을 구현하지 않는다. 문서에 포함하면 항상 더 빠르다는 결론도 피한다. 실제 접근 패턴과 성장한 데이터로 확인한다.
+문서에 포함하면 항상 더 빠르다는 결론도 피한다. 실제 접근 패턴과 성장한 데이터로 확인한다.
 
 ## 꼬리질문
 

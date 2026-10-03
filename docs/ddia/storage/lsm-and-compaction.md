@@ -7,7 +7,7 @@
 - 컴팩션은 파일을 병합하며 읽기·쓰기·공간 비용을 바꾼다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
@@ -15,44 +15,9 @@
 
 컴팩션은 파일을 병합하고 조건이 허용하는 오래된 버전·삭제 표시를 정리한다. 이 과정은 추가 디스크 쓰기를 만들지만 파일 중첩과 조회 비용을 줄일 수 있다. 쓰기 증폭·읽기 증폭·공간 증폭과 정책을 함께 비교하며 “순차 쓰기라서 언제나 빠르다”로 단순화하지 않는다.
 
-## Java 예제
-
-```java
-static class Store {
-    final java.util.TreeMap<String, String> memory = new java.util.TreeMap<>();
-    final java.util.List<java.util.NavigableMap<String, String>> runs =
-            new java.util.ArrayList<>();
-
-    void put(String key, String value) {
-        memory.put(
-                java.util.Objects.requireNonNull(key), java.util.Objects.requireNonNull(value));
-    }
-
-    void flush() {
-        runs.add(0, new java.util.TreeMap<>(memory));
-        memory.clear();
-    }
-
-    String get(String key) {
-        if (memory.containsKey(key)) return memory.get(key);
-        for (var run : runs) if (run.containsKey(key)) return run.get(key);
-        return null;
-    }
-}
-
-static void demo() {
-    var store = new Store();
-    store.put("a", "old");
-    store.flush();
-    store.put("a", "new");
-    store.flush();
-    System.out.println(store.get("a")); // new: 최신 run부터 조회
-}
-```
-
 ## 주의점
 
-예제는 계층별 최신 값 찾기만 보이는 메모리 모델이다. WAL·디스크 저장·동시성·삭제·컴팩션은 구현하지 않았다. 실제 엔진의 파일 선택·스냅샷·Bloom filter·컴팩션 정책은 구현별로 확인한다.
+실제 엔진의 파일 선택·스냅샷·Bloom filter·컴팩션 정책은 구현별로 확인한다.
 
 ## 꼬리질문
 

@@ -7,33 +7,11 @@
 - 비트맵은 조건 집합을 비트 연산으로 결합한다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 해시는 키를 버킷에 배치하며 충돌·버킷 확장 정책이 필요하다. 키 순서가 없으므로 범위 조회에 일반적인 순서 인덱스와 같은 이점을 기대하지 않는다. 비트맵은 값별 행 집합을 비트로 표현해 조건을 합칠 수 있지만 갱신 패턴과 카디널리티·제품 구현을 고려한다. 제품이 지원하는 실제 인덱스 종류와 일반 이론을 구분한다.
-
-## Java 예제
-
-bitmap 조건 결합의 모형이다. 실제 DB 인덱스 저장 형식과 락 구현을 대신하지 않는다.
-
-```java
-import java.util.*;
-
-static BitSet both(BitSet active, BitSet paid) {
-    BitSet result = (BitSet) active.clone();
-    result.and(paid);
-    return result;
-}
-
-static void demo() {
-    BitSet active = new BitSet(), paid = new BitSet();
-    active.set(1);
-    active.set(3);
-    paid.set(3);
-    System.out.println(both(active, paid)); // {3}
-}
-```
 
 ## 주의점
 

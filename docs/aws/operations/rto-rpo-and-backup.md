@@ -7,24 +7,11 @@
 - 복제·백업·복구 훈련은 역할이 다르다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 서비스가 어느 정도 오래 중단되어도 되는지와 어느 시점 이후 변경을 잃어도 되는지를 각각 정한다. 이 기준으로 백업 주기·복제·장애 전환·복구 절차를 설계한다. 백업이 존재해도 암호화 키·권한·의존 서비스·복구 순서를 갖추지 못하면 목표 시간에 복구할 수 없다. 정기적인 복원 훈련으로 목표와 실제 시간을 비교한다.
-
-## Java 예제
-
-시간을 비교하는 Java 예제다. RPO·RTO는 목표이며 출력은 사고 또는 복구 훈련의 실제 측정치다.
-
-```java
-import java.time.*;
-
-static void measure(Instant lastRecoveredWrite, Instant incident, Instant restored) {
-    System.out.println("실제 데이터 손실 구간=" + Duration.between(lastRecoveredWrite, incident));
-    System.out.println("실제 복구 소요=" + Duration.between(incident, restored));
-}
-```
 
 ## 주의점
 

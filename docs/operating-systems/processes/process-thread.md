@@ -7,24 +7,11 @@
 - 공유에는 동기화 책임이 따른다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 프로그램 파일은 정적인 명령·데이터이고 프로세스는 실행 중인 인스턴스다. 운영체제는 실행 위치·레지스터·자원 정보를 관리한다. 여러 스레드는 같은 프로세스의 데이터를 쉽게 공유할 수 있지만 경합과 한 스레드의 오류가 영향을 줄 수 있다. 프로세스 사이에서는 IPC 같은 명시적 통신을 사용한다.
-
-## Java 예제
-
-```java
-static void demo() throws InterruptedException {
-    int[] shared = {0};
-    Thread worker = new Thread(() -> shared[0] = 42);
-    worker.start();
-    worker.join();
-    System.out.println(shared[0]); // 42: join으로 완료·가시성을 확인
-    System.out.println(ProcessHandle.current().pid());
-}
-```
 
 ## 주의점
 
@@ -33,8 +20,8 @@ static void demo() throws InterruptedException {
 ## 꼬리질문
 
 1. 스레드마다 스택이 있어도 힙 객체를 함께 수정하면 왜 문제가 생길까?
-2. worker의 지역 변수와 shared 배열의 저장 공간은 어떻게 다를까?
-3. join 없이 다른 스레드가 shared[0]을 읽으면 완료 시점과 가시성을 어떻게 보장해야 할까?
+2. 두 스레드의 지역 변수 저장 공간과 함께 참조하는 힙 배열의 공유 범위는 어떻게 다를까?
+3. 한 스레드의 작업 결과를 다른 스레드가 읽으려면 완료 시점과 가시성을 어떻게 동기화해야 할까?
 
 </details>
 

@@ -13,23 +13,7 @@
 
 props의 delay로 동작하는 타이머는 delay가 달라지면 이전 타이머를 지우고 새 타이머를 시작해야 한다. useEffect의 cleanup은 다음 setup 전에, 그리고 컴포넌트 제거 때 실행된다. 화면 값을 다른 화면 값에서 계산할 수 있다면 우선 렌더 안의 파생 계산을 검토하며 불필요한 Effect state를 늘리지 않는다. useState·useEffect 같은 훅은 함수 컴포넌트나 custom hook의 최상위에서 일정한 호출 순서를 유지한다.
 
-## Java 예제
-
-외부 자원의 수명을 비교하는 Java 코드이며 React 훅을 구현하지 않는다.
-
-```java
-static AutoCloseable timer(int delayMillis) {
-    var pool = java.util.concurrent.Executors.newSingleThreadScheduledExecutor();
-    pool.scheduleAtFixedRate(
-            () -> System.out.println("tick"),
-            delayMillis,
-            delayMillis,
-            java.util.concurrent.TimeUnit.MILLISECONDS);
-    return pool::shutdownNow;
-} // 이전 timer를 close한 다음 새 delay의 timer를 생성
-```
-
-### React로 확인
+## React 예제
 
 ```jsx
 import { useEffect, useState } from 'react';

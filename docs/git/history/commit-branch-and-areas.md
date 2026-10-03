@@ -13,22 +13,13 @@
 
 파일을 수정하면 작업 트리가 바뀌고 add로 변경을 인덱스에 준비한다. 이후 commit은 그 인덱스의 내용을 기록한다. add 뒤 같은 파일을 더 수정하면 준비된 내용과 현재 파일이 다를 수 있다. 브랜치는 파일 복제본 폴더가 아니라 커밋을 가리키는 참조이며 새 커밋으로 이동한다. HEAD는 현재 체크아웃의 위치를 나타낸다.
 
-## Java 예제
+## 셸 예제
 
-Git 저장소에서 실행하는 Java ProcessBuilder 예제이며 조회 명령만 사용한다.
+두 명령은 파일을 변경하지 않고 작업 트리·인덱스·HEAD의 차이를 각각 보여준다.
 
-```java
-static void inspect() throws Exception {
-    for (String[] args :
-            new String[][] {
-                {"diff", "--stat"}, {"diff", "--cached", "--stat"}, {"log", "-1", "--oneline"}
-            }) {
-        var command = new java.util.ArrayList<String>();
-        command.add("git");
-        command.addAll(java.util.List.of(args));
-        new ProcessBuilder(command).inheritIO().start().waitFor();
-    }
-}
+```bash
+git diff
+git diff --cached
 ```
 
 ## 주의점

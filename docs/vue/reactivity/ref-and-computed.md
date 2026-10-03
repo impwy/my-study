@@ -13,29 +13,7 @@
 
 Vue 3의 ref는 값 접근을 추적할 수 있는 객체다. computed 안에서 읽은 반응형 값이 달라지면 계산 결과가 무효화되고 필요할 때 다시 평가된다. 템플릿의 최상위 ref는 보통 자동으로 풀려 .value 없이 사용한다. 여러 상태 변경은 DOM 갱신 단계에서 묶일 수 있으므로 변경 직후 DOM을 읽어야 하면 nextTick을 기다린다.
 
-## Java 예제
-
-변경 통지와 파생 값을 비교하는 Java 모형이다.
-
-```java
-static class ObservableInt {
-    int value;
-    final java.util.List<Runnable> listeners = new java.util.ArrayList<>();
-
-    void set(int next) {
-        value = next;
-        listeners.forEach(Runnable::run);
-    }
-}
-
-static void demo() {
-    var state = new ObservableInt();
-    state.listeners.add(() -> System.out.println(state.value * 2));
-    state.set(3); // 6
-}
-```
-
-### Vue 3로 확인
+## Vue 예제
 
 아래 내용을 Vue Playground의 App.vue에 넣는다.
 
@@ -53,7 +31,7 @@ const doubled = computed(() => count.value * 2)
 
 ## 주의점
 
-Java 코드는 변경 통지의 모형이며 Vue의 자동 의존성 추적·computed 캐시·DOM 배칭을 구현하지 않는다. reactive 객체의 원시 속성을 일반 변수로 구조 분해하면 연결을 잃을 수 있으며 defineProps의 컴파일러 처리와 구별한다.
+reactive 객체의 원시 속성을 일반 변수로 구조 분해하면 연결을 잃을 수 있으며 defineProps의 컴파일러 처리와 구별한다.
 
 ## 꼬리질문
 

@@ -7,22 +7,11 @@
 - 부동소수점은 많은 실수를 근사한다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 같은 비트도 부호 없는 수와 2의 보수 해석에서 다르게 읽힌다. n비트 2의 보수 정수는 -2^(n-1)부터 2^(n-1)-1까지 나타낸다. 실수는 부호·지수·유효 숫자 등으로 표현해 넓은 범위를 얻지만 유한 비트로 모든 값을 정확하게 저장하지 못한다. 연산에서 넘침·반올림·오차 누적을 따로 고려한다.
-
-## Java 예제
-
-```java
-static void demo() {
-    byte bits = (byte) 0b11111111;
-    System.out.println(bits); // signed: -1
-    System.out.println(Byte.toUnsignedInt(bits)); // unsigned 해석: 255
-    System.out.println(0.1 + 0.2 == 0.3); // false
-}
-```
 
 ## 주의점
 

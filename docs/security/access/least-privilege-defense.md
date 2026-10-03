@@ -7,27 +7,11 @@
 - 보안 로그와 권한 변경을 추적한다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 파일 ACL·서비스 계정·방화벽·애플리케이션 인가를 각 경계에 맞게 설정한다. 방화벽은 트래픽을 제한하지만 허용된 요청의 업무 권한까지 판단하지 않는다. IDS는 이상 징후를 탐지하며 IPS는 차단 기능을 포함할 수 있다. 한 방어가 실패했을 때 피해가 모든 데이터와 계정으로 번지지 않도록 권한과 네트워크·서비스 경계를 나눈다.
-
-## Java 예제
-
-애플리케이션의 기본 거부 모형이다. 실제 IAM·DB 권한 판정 전체를 구현하지 않는다.
-
-```java
-enum Action {
-    READ_ORDER,
-    DELETE_USER
-}
-
-static void require(java.util.Set<Action> allowed, Action requested) {
-    if (!allowed.contains(requested)) throw new SecurityException("denied");
-}
-// require(Set.of(Action.READ_ORDER), Action.DELETE_USER) → 거부
-```
 
 ## 주의점
 

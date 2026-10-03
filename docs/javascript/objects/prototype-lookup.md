@@ -11,31 +11,9 @@
 
 ## 설명
 
-Object.create(parent)로 만든 객체의 속성 조회는 자기 객체를 확인한 뒤 parent 쪽으로 이어진다. 객체가 같은 이름의 자기 속성을 추가하면 부모 값은 남은 채 가려진다. JavaScript의 class도 이 프로토타입 기반 메커니즘 위에 있으며 class 문법이 Java의 클래스 체계와 같다는 뜻은 아니다.
+Object.create(parent)로 만든 객체의 속성 조회는 자기 객체를 확인한 뒤 parent 쪽으로 이어진다. 객체가 같은 이름의 자기 속성을 추가하면 부모 값은 남은 채 가려진다. JavaScript의 class 문법도 이 프로토타입 기반 메커니즘 위에 있다.
 
-## Java 예제
-
-속성 탐색을 비교하는 모형이며 Java 객체의 실제 상속 구현은 아니다.
-
-```java
-record ObjectModel(java.util.Map<String, Object> own, ObjectModel parent) {
-    Object get(String key) {
-        if (own.containsKey(key)) return own.get(key);
-        return parent == null ? null : parent.get(key);
-    }
-}
-
-static void demo() {
-    var parent = new ObjectModel(java.util.Map.of("role", "reader"), null);
-    var own = new java.util.HashMap<String, Object>();
-    var child = new ObjectModel(own, parent);
-    own.put("role", "writer");
-    own.remove("role");
-    System.out.println(child.get("role")); // reader
-}
-```
-
-### JavaScript로 확인
+## JavaScript 예제
 
 ```javascript
 const parent = { role: "reader" };
@@ -49,7 +27,7 @@ console.log(child.role, Object.hasOwn(child, "role")); // reader false
 
 ## 주의점
 
-Java 모형의 null은 JavaScript의 undefined와 같지 않다. 외부 입력으로 프로토타입을 임의 변경하거나 신뢰하지 않는 객체 속성을 무검증 병합하지 않는다. Object.hasOwn은 부모 속성까지 찾는 in 연산과 다르다.
+외부 입력으로 프로토타입을 임의 변경하거나 신뢰하지 않는 객체 속성을 무검증 병합하지 않는다. Object.hasOwn은 부모 속성까지 찾는 in 연산과 다르다.
 
 ## 꼬리질문
 

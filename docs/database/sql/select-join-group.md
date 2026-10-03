@@ -13,24 +13,16 @@
 
 FROM과 JOIN으로 대상 관계를 만들고 WHERE로 행을 제한한 뒤 GROUP BY로 묶는다. LEFT JOIN은 오른쪽 매칭이 없어도 왼쪽 행을 남긴다. 오른쪽 조건을 WHERE에 두면 NULL 행을 제거해 외부 조인의 의도와 달라질 수 있다. ORDER BY가 없으면 반환 순서를 보장하지 않는다.
 
-## Java 예제
+## SQL 예제
 
-users·orders 스키마가 있는 JDBC 연결을 받는다.
+users·orders 테이블에서 결제 완료 주문 수를 사용자별로 센다. 주문이 없는 사용자도 남긴다.
 
-```java
-import java.sql.*;
-
-static void totals(Connection c, String status) throws SQLException {
-    String sql =
-            "SELECT u.id, COUNT(o.id) FROM users u LEFT JOIN orders o "
-                    + "ON o.user_id=u.id AND o.status=? GROUP BY u.id";
-    try (PreparedStatement p = c.prepareStatement(sql)) {
-        p.setString(1, status);
-        try (ResultSet r = p.executeQuery()) {
-            while (r.next()) System.out.println(r.getLong(1) + ":" + r.getLong(2));
-        }
-    }
-}
+```sql
+SELECT u.id, COUNT(o.id) AS paid_orders
+FROM users u
+LEFT JOIN orders o ON o.user_id = u.id AND o.status = 'PAID'
+GROUP BY u.id
+ORDER BY u.id;
 ```
 
 ## 주의점

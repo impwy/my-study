@@ -7,22 +7,11 @@
 - A·AAAA·CNAME 등 레코드의 역할이 다르다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 클라이언트는 보통 재귀 리졸버에 이름 해석을 요청한다. 리졸버는 캐시가 없으면 루트·최상위 도메인·권한 서버 정보를 따라 필요한 레코드를 찾는다. 권한 서버는 자신의 영역에 대한 답을 제공하며, 리졸버는 TTL을 기준으로 결과를 재사용한다. DNS 변경이 모든 클라이언트에 동시에 보이지 않는 이유에는 이 캐시 수명이 있다.
-
-## Java 예제
-
-```java
-import java.net.*;
-
-static void resolve(String hostname) throws UnknownHostException {
-    for (InetAddress address : InetAddress.getAllByName(hostname))
-        System.out.println(address.getHostAddress());
-}
-```
 
 ## 주의점
 
@@ -31,7 +20,7 @@ DNS가 성공해도 서비스 포트·TLS·HTTP가 정상이라는 뜻은 아니
 ## 꼬리질문
 
 1. 권한 서버의 레코드를 바꾸었는데 기존 주소로 접속하는 사용자가 남는 이유는?
-2. getAllByName이 여러 주소를 돌려주면 호출자가 어떤 연결 선택을 해야 할까?
+2. 이름 해석 결과에 여러 IP 주소가 있으면 클라이언트가 어떤 연결 선택과 실패 처리를 해야 할까?
 3. DNS TTL 외에도 JVM·OS·리졸버 캐시가 주소 변경 반영 시간에 어떤 영향을 줄까?
 
 </details>

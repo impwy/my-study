@@ -7,24 +7,11 @@
 - 개인 키와 공개키를 구분한다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 파일의 읽기·쓰기·실행 권한과 디렉터리의 목록·항목 변경·탐색 권한을 나누어 본다. 접근하려면 중간 경로 디렉터리의 탐색 권한도 필요하다. 운영 서비스 계정과 사람의 로그인 계정은 구분하고 필요한 경로만 열어 준다. SSH 개인 키는 공유 대상이 아니며 공개키는 서버의 authorized_keys에 등록한다.
-
-## Java 예제
-
-POSIX 권한을 지원하는 파일 시스템에서 지정한 파일의 권한을 변경한다.
-
-```java
-import java.nio.file.*;
-import java.nio.file.attribute.PosixFilePermissions;
-
-static void ownerOnly(Path file) throws java.io.IOException {
-    Files.setPosixFilePermissions(file, PosixFilePermissions.fromString("rw-------")); // 600
-}
-```
 
 ## 주의점
 

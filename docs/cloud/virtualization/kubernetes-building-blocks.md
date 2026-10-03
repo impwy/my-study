@@ -7,28 +7,11 @@
 - Service는 대상에 대한 네트워크 추상화다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 Image는 실행 파일과 의존성의 패키지이고 Container는 그것으로 실행하는 격리 환경이다. Node 위에 Pod가 실행되며 Pod 안의 컨테이너는 네트워크 등을 공유한다. Deployment는 ReplicaSet 등을 통해 선언한 상태로 맞추고 Service는 selector·레이블 등을 통해 대상 Pod 접근을 제공한다. Pod가 교체되는 것과 안정적인 접근 경로의 유지는 서로 다른 책임이다.
-
-## Java 예제
-
-Service의 라벨 선택과 준비 상태를 보여 주는 모형이다. 실제 EndpointSlice·네트워크 프록시를 구현하지 않는다.
-
-```java
-import java.util.*;
-
-record Pod(String ip, Map<String, String> labels, boolean ready) {}
-
-static List<String> endpoints(List<Pod> pods, String app) {
-    return pods.stream()
-            .filter(p -> p.ready() && app.equals(p.labels().get("app")))
-            .map(Pod::ip)
-            .toList();
-}
-```
 
 ## 주의점
 

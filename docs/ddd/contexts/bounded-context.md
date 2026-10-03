@@ -7,25 +7,11 @@
 - 컨텍스트와 배포 서비스는 일대일이 아니다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 결제의 고객은 결제 수단·청구 정보가 중요하고 커뮤니티의 회원은 프로필·활동 상태가 중요하다. 두 모델을 강제로 하나로 만들면 서로 다른 변경 이유가 엮인다. 경계 사이에는 공개 계약과 변환 규칙을 두고 상대의 모델이 자신의 내부 모델로 그대로 번지는 것을 제한한다. 작은 앱에서도 모듈 경계로 먼저 구현할 수 있다.
-
-## Java 예제
-
-```java
-record BillingCustomer(long id, String invoiceAddress) {}
-
-record SupportCustomer(long id, String preferredChannel) {}
-
-record CustomerRegistered(long id, String channel) {}
-
-static SupportCustomer translate(CustomerRegistered event) {
-    return new SupportCustomer(event.id(), event.channel());
-}
-```
 
 ## 주의점
 

@@ -13,20 +13,13 @@
 
 행을 저장하는 클러스터드 인덱스와 별도로 보조 인덱스를 둔다. 보조 인덱스의 레코드는 클러스터드 키를 포함하므로 필요한 컬럼이 보조 인덱스에 없으면 클러스터드 인덱스로 추가 접근할 수 있다. 커버링 인덱스는 해당 조회에 필요한 값을 인덱스에서 얻는 경우다. 기본 키가 없을 때의 키 선택은 InnoDB 규칙에 따른다.
 
-## Java 예제
+## SQL 예제
 
-```java
-import java.sql.*;
+users에 PK(id)와 보조 인덱스(email)가 있고 name은 해당 인덱스에 포함되지 않는다고 가정한다. 두 조회의 계획과 Extra를 비교한다.
 
-static void plan(Connection c, String email) throws SQLException {
-    try (PreparedStatement p =
-            c.prepareStatement("EXPLAIN SELECT id FROM users WHERE email=?")) {
-        p.setString(1, email);
-        try (ResultSet r = p.executeQuery()) {
-            while (r.next()) System.out.println(r.getString("Extra"));
-        }
-    }
-} // InnoDB: PK(id), 보조 인덱스(email)를 가정; id는 보조 인덱스에 포함
+```sql
+EXPLAIN SELECT id FROM users WHERE email = 'learner@example.org';
+EXPLAIN SELECT id, name FROM users WHERE email = 'learner@example.org';
 ```
 
 ## 주의점

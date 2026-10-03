@@ -7,27 +7,11 @@
 - 유효 주소는 계산 결과다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 즉시 방식은 명령어에 값이 있고 직접 방식은 저장 위치가 있다. 간접 방식은 먼저 읽은 내용이 실제 주소다. 베이스·인덱스·변위 등을 더해 배열이나 상대 위치를 접근할 수도 있다. 명령어 형식의 비트 수와 메모리 접근 횟수 사이에 선택 비용이 생긴다.
-
-## Java 예제
-
-주소 지정 방식을 배열 접근으로 비교한 모형이며 실제 CPU 명령어 코드는 아니다.
-
-```java
-static void demo() {
-    int[] memory = new int[16];
-    memory[3] = 8;
-    memory[8] = 42;
-    int immediate = 3;
-    int direct = memory[3];
-    int indirect = memory[memory[3]];
-    System.out.println(immediate + "," + direct + "," + indirect); // 3,8,42
-}
-```
 
 ## 주의점
 

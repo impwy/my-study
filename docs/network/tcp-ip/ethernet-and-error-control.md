@@ -7,29 +7,11 @@
 - CRC 검출은 오류 복구와 다르다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 링크 계층은 매체에 프레임을 보내고 주소·매체 접근·검출 정보를 다룬다. CRC는 전송 중 비트 오류를 검출하는 도구지만 검출만으로 원래 데이터가 복원되지는 않는다. 스위치는 링크 주소를 기준으로 프레임을 전달하고 라우터는 네트워크 간 IP 경로를 결정한다. 물리 매체·다중화·옛 매체 접근 방식은 현재 링크 조건과 구분해서 이해한다.
-
-## Java 예제
-
-CRC 오류 검출 원리의 예제다. Ethernet 프레임 구성·FCS 바이트 순서까지 구현하지 않는다.
-
-```java
-import java.util.zip.CRC32;
-
-static long checksum(byte[] payload) {
-    CRC32 crc = new CRC32();
-    crc.update(payload);
-    return crc.getValue();
-}
-
-static boolean detectsChange(byte[] original, byte[] received) {
-    return checksum(original) != checksum(received);
-}
-```
 
 ## 주의점
 

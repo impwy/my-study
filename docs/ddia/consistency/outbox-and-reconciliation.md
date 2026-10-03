@@ -13,34 +13,16 @@
 
 주문 DB를 커밋한 뒤 이벤트를 발행하기 전에 종료되면 주문만 남을 수 있다. outbox는 같은 DB 트랜잭션에 업무 변경과 보낼 이벤트를 기록하고 별도 전달기가 읽어 발행하게 한다. 발행 뒤 완료 표시 전에 장애가 나면 중복 발행이 가능하므로 소비자도 멱등성을 가진다. 대사는 저장소 간 현재 상태를 비교하지만 처리 중인 이벤트를 즉시 실패라고 판단해서는 안 된다.
 
-## Java 예제
+## SQL 예제
 
-전용 JDBC 연결과 outbox 스키마를 가정한다. outbox는 전송 의도를 저장하며 실제 발행·대사 작업은 별도로 필요하다.
+orders·outbox 실습 테이블을 가정한다. 같은 DB 트랜잭션에 주문과 전송 의도를 함께 넣는다. 두 INSERT가 성공해야 커밋하며 실패하면 롤백한다. 실제 발행기는 별도로 필요하다.
 
-```java
-import java.sql.*;
-
-static void create(Connection c, long orderId, String eventId) throws SQLException {
-    c.setAutoCommit(false);
-    try {
-        try (PreparedStatement p = c.prepareStatement("INSERT INTO orders(id) VALUES (?)")) {
-            p.setLong(1, orderId);
-            p.executeUpdate();
-        }
-        try (PreparedStatement p =
-                c.prepareStatement(
-                        "INSERT INTO outbox(event_id,aggregate_id,status) VALUES"
-                            + " (?,?,'NEW')")) {
-            p.setString(1, eventId);
-            p.setLong(2, orderId);
-            p.executeUpdate();
-        }
-        c.commit();
-    } catch (SQLException e) {
-        c.rollback();
-        throw e;
-    }
-}
+```sql
+BEGIN;
+INSERT INTO orders (id) VALUES (42);
+INSERT INTO outbox (event_id, aggregate_id, status)
+VALUES ('order-42-confirmed', 42, 'NEW');
+COMMIT;
 ```
 
 ## 주의점

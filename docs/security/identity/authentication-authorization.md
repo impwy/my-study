@@ -7,27 +7,11 @@
 - 서버가 매 요청의 권한을 검사한다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 인증 후 얻은 사용자 식별자를 바탕으로 역할과 자원 소유권·상태를 검사한다. 클라이언트가 보내는 userId만 믿으면 다른 사용자의 주문을 조회·수정하는 문제가 생길 수 있다. 역할 기반 검사로 관리자 기능을 제한하더라도 개별 객체의 소유권 검사는 따로 필요하다. 세션과 토큰은 탈취·유출·수명 관리의 대상이며 HTTPS만으로 이 문제를 해결하지 않는다.
-
-## Java 예제
-
-Principal은 서버가 검증한 인증 정보에서 생성한다고 가정한다. 요청 본문의 사용자 ID를 그대로 신뢰하지 않는다.
-
-```java
-record Principal(long userId) {}
-
-record Order(long id, long ownerId) {}
-
-static Order authorize(Principal user, Order order) {
-    if (user == null) throw new SecurityException("authentication required");
-    if (order.ownerId() != user.userId()) throw new SecurityException("forbidden");
-    return order;
-}
-```
 
 ## 주의점
 

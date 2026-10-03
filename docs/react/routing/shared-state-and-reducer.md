@@ -13,25 +13,7 @@
 
 형제 컴포넌트가 같은 선택 값을 보여야 하면 각각 복사본을 만들기보다 가장 가까운 공통 부모에 상태를 둔다. 변경이 여러 규칙으로 나뉘면 reducer가 action별 다음 상태를 계산하고 자식은 의도를 전달한다. context는 먼 자식으로 값을 전달하는 도구이며 모든 상태를 전역으로 둘 이유는 아니다. 서버에서 온 데이터의 캐시·재조회 정책은 UI 상태의 소유권과 별도로 판단한다.
 
-## Java 예제
-
-```java
-record Counter(int value) {}
-
-enum Action {
-    INCREMENT,
-    RESET
-}
-
-static Counter reduce(Counter current, Action action) {
-    return switch (action) {
-        case INCREMENT -> new Counter(current.value() + 1);
-        case RESET -> new Counter(0);
-    };
-}
-```
-
-### React로 확인
+## React 예제
 
 ```jsx
 import { useReducer } from 'react';

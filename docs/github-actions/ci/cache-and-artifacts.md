@@ -7,28 +7,11 @@
 - 캐시가 없어도 빌드가 재현되어야 한다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 캐시는 lockfile·OS·도구 버전 등으로 키를 정해 의존성 다운로드를 줄일 수 있다. 아티팩트는 테스트 보고서·패키지·이미지 관련 결과를 잡·실행 사이에 전달하거나 보관한다. 캐시 적중 여부가 테스트 성공의 근거가 되어서는 안 되고 오래된 산출물이 검증을 우회하지 않아야 한다. 빌드는 명시된 의존성과 코드로 결과를 만들 수 있어야 한다.
-
-## Java 예제
-
-캐시 키 입력을 계산한다. 복원 실패 시에도 정상 빌드되어야 하며 캐시는 완성된 산출물을 대신하지 않는다.
-
-```java
-import java.nio.file.*;
-import java.security.MessageDigest;
-import java.util.HexFormat;
-
-static String cacheInputHash(Path dependencyFile) throws Exception {
-    return HexFormat.of()
-            .formatHex(
-                    MessageDigest.getInstance("SHA-256")
-                            .digest(Files.readAllBytes(dependencyFile)));
-} // 의존성 정의 파일의 변경을 캐시 키에 반영할 때 사용
-```
 
 ## 주의점
 

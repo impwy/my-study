@@ -13,30 +13,16 @@
 
 복합 인덱스 `(user_id, created_at)`는 먼저 user_id로 묶고 그 안에서 created_at 순서를 갖는다. 선두 조건과 범위 조건이 어떤 부분을 좁히는지 생각한다. 조건에 인덱스가 있어도 선택도가 낮거나 함수를 적용하거나 비용이 더 크면 계획은 달라질 수 있다. 실행 계획의 추정과 실제 소요 시간·행 수를 함께 관찰한다.
 
-## Java 예제
+## SQL 예제
 
-MySQL JDBC 연결과 orders 스키마가 필요하다. key·rows는 계획의 추정 정보다.
+orders 테이블과 (tenant_id, created_at, id) 인덱스를 가정한다. key·rows·Extra를 읽고 실제 실행 측정과 비교한다.
 
-```java
-import java.sql.*;
-
-static void explain(Connection c, long tenant) throws SQLException {
-    try (PreparedStatement p =
-            c.prepareStatement(
-                    "EXPLAIN SELECT id FROM orders WHERE tenant_id=? ORDER BY created_at,id"
-                        + " LIMIT 20")) {
-        p.setLong(1, tenant);
-        try (ResultSet r = p.executeQuery()) {
-            while (r.next())
-                System.out.println(
-                        r.getString("key")
-                                + ":"
-                                + r.getLong("rows")
-                                + ":"
-                                + r.getString("Extra"));
-        }
-    }
-}
+```sql
+EXPLAIN
+SELECT id FROM orders
+WHERE tenant_id = 42
+ORDER BY created_at, id
+LIMIT 20;
 ```
 
 ## 주의점

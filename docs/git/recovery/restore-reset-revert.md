@@ -7,7 +7,7 @@
 - revert는 기존 변경을 취소하는 새 커밋을 만든다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
@@ -15,24 +15,9 @@
 
 공유한 커밋의 효과를 취소할 때는 git revert 커밋처럼 새 취소 커밋을 만드는 방법을 먼저 검토한다. 이전 커밋을 찾아야 한다면 git log와 git reflog로 참조 이동 기록을 확인한다.
 
-## Java 예제
-
-```java
-static java.util.List<String> revertCommand(String commit) {
-    if (!commit.matches("[0-9a-fA-F]{7,64}")) {
-        throw new IllegalArgumentException("커밋 ID를 확인하세요");
-    }
-    return java.util.List.of("git", "revert", commit);
-}
-
-static void demo() {
-    System.out.println(revertCommand("a1b2c3d")); // 명령 인자만 출력
-}
-```
-
 ## 주의점
 
-예제는 명령을 실행하지 않으며 ID가 실제로 존재하는지도 확인하지 않는다. 먼저 git status·diff를 확인하고 필요한 변경을 보존한다. reflog는 모든 미커밋 파일 내용을 보관하는 백업이 아니며 revert에도 충돌이 날 수 있다.
+먼저 git status·diff를 확인하고 필요한 변경을 보존한다. reflog는 모든 미커밋 파일 내용을 보관하는 백업이 아니며 revert에도 충돌이 날 수 있다.
 
 ## 꼬리질문
 

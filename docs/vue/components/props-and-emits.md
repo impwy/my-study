@@ -13,24 +13,7 @@
 
 자식 컴포넌트가 전달받은 count를 직접 바꾸면 부모 상태와 변경 책임이 흐려진다. 대신 increment 이벤트를 발행하고 부모가 자신의 count를 갱신한다. defineProps와 defineEmits는 script setup에서 사용하는 선언 매크로다. 이 흐름은 입력 값과 사용자 동작을 분리하며 같은 자식을 다른 부모에서도 재사용하기 쉽게 한다.
 
-## Java 예제
-
-```java
-record Child(int count, Runnable incrementRequest) {
-    void click() {
-        incrementRequest.run();
-    }
-}
-
-static void demo() {
-    int[] parentCount = {0};
-    var child = new Child(parentCount[0], () -> parentCount[0]++);
-    child.click();
-    System.out.println(parentCount[0]); // 1
-}
-```
-
-### Vue 3로 확인
+## Vue 예제
 
 CountButton.vue와 부모 App.vue를 같은 실습 프로젝트에 둔다.
 
@@ -59,7 +42,7 @@ const count = ref(0)
 
 ## 주의점
 
-Java 모형의 child.count는 자동 갱신되지 않는다. Vue의 갱신은 부모 반응형 상태와 prop 전달이 연결한다. 부모가 원시 값이 아닌 객체를 전달하면 중첩 객체를 공유하므로 단방향 데이터 흐름을 의도적으로 지켜야 한다.
+부모가 원시 값이 아닌 객체를 전달하면 중첩 객체를 공유하므로 단방향 데이터 흐름을 의도적으로 지켜야 한다.
 
 ## 꼬리질문
 

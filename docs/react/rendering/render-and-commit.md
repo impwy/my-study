@@ -13,24 +13,7 @@
 
 React 함수 컴포넌트는 props와 state를 받아 JSX 표현을 계산한다. 렌더가 일어났다고 DOM 전체를 새로 만드는 것은 아니며 커밋에서 필요한 변경을 적용한다. 렌더 도중 외부 상태를 수정하면 다시 계산하거나 중단된 렌더에서도 효과가 남을 수 있다. 같은 데이터라도 항목 key가 달라지면 기존 컴포넌트의 상태가 유지되지 않을 수 있다.
 
-## Java 예제
-
-동일 입력의 UI 계산을 비교하는 순수 함수 모형이다.
-
-```java
-record ViewInput(String name) {}
-
-static String render(ViewInput input) {
-    return "안녕, " + input.name();
-}
-
-static void demo() {
-    var input = new ViewInput("Kim");
-    System.out.println(render(input).equals(render(input))); // true
-}
-```
-
-### React로 확인
+## React 예제
 
 React 실습 앱에서 Greeting을 렌더한다.
 
@@ -42,7 +25,7 @@ export default function Greeting({ name = 'Kim' }) {
 
 ## 주의점
 
-Java 문자열 계산은 React reconciliation·DOM 커밋을 구현하지 않는다. 렌더 중 API 호출·저장·타이머 등록을 하지 않는다. 개발 Strict Mode에서 추가 호출이 보이는 것은 순수성·정리 문제를 찾기 위한 검사일 수 있다.
+렌더 중 API 호출·저장·타이머 등록을 하지 않는다. 개발 Strict Mode에서 추가 호출이 보이는 것은 순수성·정리 문제를 찾기 위한 검사일 수 있다.
 
 ## 꼬리질문
 

@@ -180,42 +180,42 @@
     "title": "셸 정렬"
   },
   "docs/aws/ec2/instance-ami-storage.md": {
-    "content_sha": "d069fc8d73bfd8f9467524566ec0651b294ca344",
+    "content_sha": "e95bb0135d748eb28a90df98d3a2f813ad2a5b82",
     "summary": "EC2는 가상 서버를 실행하고 AMI는 시작 이미지, 볼륨은 별도의 저장 수명을 가진다.",
     "title": "EC2·AMI·블록 스토리지"
   },
   "docs/aws/iam/roles-and-policies.md": {
-    "content_sha": "2d9245573d41bda7e1bb84dff3f802edf0737565",
+    "content_sha": "a4e07b9c61420637cfe9550b853eb944578de19d",
     "summary": "AWS 자원 접근은 주체·정책·조건으로 판단하고 장기 키 대신 적절한 임시 자격 증명을 사용한다.",
     "title": "IAM 역할과 정책"
   },
   "docs/aws/operations/load-balancing-and-autoscaling.md": {
-    "content_sha": "0640520773e1621beb864de21a0036ba1667f5c6",
+    "content_sha": "cdc30ef6b3561df4f914e4de08b5a6539d23b44b",
     "summary": "트래픽 분산과 인스턴스 수 조정을 결합하되 상태·용량·준비 시간을 함께 설계한다.",
     "title": "로드밸런싱과 Auto Scaling"
   },
   "docs/aws/operations/monitoring-and-audit.md": {
-    "content_sha": "be8d3026f4724f655ce10ae6d253977a09faaaa6",
+    "content_sha": "413b6deeaae39b037cc89cfe726e5852f4fee067",
     "summary": "운영 지표·로그를 통한 상태 관찰과 AWS API 활동 감사를 구분한다.",
     "title": "CloudWatch와 CloudTrail"
   },
   "docs/aws/operations/rto-rpo-and-backup.md": {
-    "content_sha": "478f45770ef52f75ceec7e53523b90cc8f776319",
+    "content_sha": "a4d38ec5c68dee38c307ad5a0b46120ebe3894ee",
     "summary": "허용 중단 시간과 데이터 손실 범위를 정하고 백업에서 실제 복구되는지 확인한다.",
     "title": "RTO·RPO와 복구 검증"
   },
   "docs/aws/rds/multi-az-and-read-replica.md": {
-    "content_sha": "8918f82f411b92594a85dfc9e98afa573eb32c1c",
+    "content_sha": "bc29558bcd1a8cb7dd96230de791e9c8cd524e7a",
     "summary": "관리형 DB의 장애 대비와 읽기 확장을 구분하고 실제 배포 방식의 동작을 확인한다.",
     "title": "RDS Multi-AZ와 읽기 복제본"
   },
   "docs/aws/s3/object-storage.md": {
-    "content_sha": "23b06c20035af4c0902c5f92ecdb2feff41ae65e",
+    "content_sha": "966715c9c871b387e431a4f6da9a186074f85719",
     "summary": "S3는 객체를 키로 저장하며 블록·공유 파일 저장소와 접근 모델이 다르다.",
     "title": "S3 객체와 저장소 선택"
   },
   "docs/aws/vpc/subnets-routes-security.md": {
-    "content_sha": "5052ae7c9b89a8ee4c4894c259062b8224b6488f",
+    "content_sha": "44e46d651ae10c9820eb881bf8feab8a11b2ba7e",
     "summary": "서브넷의 위치와 경로, 보안 그룹·네트워크 ACL을 구분해 연결 가능성을 판단한다.",
     "title": "VPC 서브넷·라우팅·보안"
   },
@@ -225,72 +225,72 @@
     "title": "백프레셔와 요청 제한"
   },
   "docs/cloud/availability/latency-throughput-saturation.md": {
-    "content_sha": "6c653888e595cbe6823b5cf733e3dff280e046a2",
+    "content_sha": "f8a78b5e8d7582b4789590ef66ed7673927e59fb",
     "summary": "부하가 늘 때 처리량·지연 분포·오류·대기열을 함께 보아 병목을 찾는다.",
     "title": "지연·처리량·포화"
   },
   "docs/cloud/network/network-path-and-egress.md": {
-    "content_sha": "b24f5c5d05c50baa2de6d5ac2759f77b8fb7597a",
+    "content_sha": "7741c72d04b263bb517ad51d0e708b127a03bbba",
     "summary": "연결 문제는 DNS·라우팅·접근 제어·서버 대기 상태를 경로 순서대로 확인한다.",
     "title": "클라우드 연결 경로와 아웃바운드 통신"
   },
   "docs/cloud/resources/compute-and-storage-boundaries.md": {
-    "content_sha": "6a4180a174da23fea56fc8d6859f661a354c6c63",
+    "content_sha": "27a55afc3fec6dc28de1d60bcf0c0da9ddb2779f",
     "summary": "애플리케이션의 실행 자원과 데이터 보관 자원을 나누고 접근 방식에 맞는 스토리지를 선택한다.",
     "title": "컴퓨팅과 블록·파일·객체 스토리지"
   },
   "docs/cloud/virtualization/cloud-service-models.md": {
-    "content_sha": "f82d364397aa8b402e3534612032218cb88a0b55",
+    "content_sha": "9cd34ea7eee3f99c20190d0a7ccf15974218d160",
     "summary": "온디맨드 자원 사용과 IaaS·PaaS·SaaS별 관리 책임의 차이를 설명한다.",
     "title": "클라우드 서비스 모델"
   },
   "docs/cloud/virtualization/kubernetes-building-blocks.md": {
-    "content_sha": "594a8601c83538015da4f982197852b47bc60812",
+    "content_sha": "8172510c95dc30b64b56e7ec2cd5d6e794c39b0f",
     "summary": "컨테이너 실행 단위, 원하는 상태 유지, 접근 경로의 책임을 구분한다.",
     "title": "Kubernetes의 Pod·Deployment·Service"
   },
   "docs/computer-architecture/cpu/addressing-modes.md": {
-    "content_sha": "6303d9b40d4b0433526c9cb551dfd65a5a8ffc67",
+    "content_sha": "eef5fa4d05c0e580406dfa3de06f0cb9e7719266",
     "summary": "명령어가 실제 피연산자의 값이나 위치를 찾는 규칙이다.",
     "title": "주소 지정 방식"
   },
   "docs/computer-architecture/cpu/control-unit.md": {
-    "content_sha": "8362f27929a0fca73098621232c403755d711392",
+    "content_sha": "5e98bbc89c1a87ef2b519a557405cd9b0f6eb475",
     "summary": "제어 신호가 레지스터·ALU·버스의 데이터 흐름을 선택한다.",
     "title": "데이터 경로와 제어 장치"
   },
   "docs/computer-architecture/cpu/instruction-cycle.md": {
-    "content_sha": "07ae72fb79ac9c1457bfc5f192f4afb2e54b6307",
+    "content_sha": "087826466359997d12c23230774e3828ad076040",
     "summary": "명령어를 읽고 해석해 연산·메모리 접근·다음 실행 위치를 결정한다.",
     "title": "CPU와 명령어 사이클"
   },
   "docs/computer-architecture/cpu/parallelism-models.md": {
-    "content_sha": "44945a7423103f547ef898a51736c8744d714c0f",
+    "content_sha": "f345707e3a9cf5a0010239217a4e7c2760d46e47",
     "summary": "명령·데이터·프로세서·메모리의 조직으로 병렬성을 구분하고 통신·동기화 비용을 고려한다.",
     "title": "병렬 처리와 메모리 구조"
   },
   "docs/computer-architecture/cpu/pipeline.md": {
-    "content_sha": "3201e8fa8a1609a3338466975588ac9f5ac404a3",
+    "content_sha": "6c57a3d847fb7277ca2fe6feb9811eefca54b621",
     "summary": "여러 명령어의 서로 다른 처리 단계를 겹쳐 처리량을 높인다.",
     "title": "명령어 파이프라인"
   },
   "docs/computer-architecture/io/interrupt-dma.md": {
-    "content_sha": "7e553933f318e8dc5fd542cf25894e0a00c0e185",
+    "content_sha": "14333c34202bb7969dd7db455db5b105fbab04af",
     "summary": "CPU와 입출력 장치가 상태를 확인하고 데이터를 옮기는 책임을 나눈다.",
     "title": "폴링·인터럽트·DMA"
   },
   "docs/computer-architecture/memory/cache.md": {
-    "content_sha": "485c314258dcb32494785fd5473e0bd006b695f5",
+    "content_sha": "1d072a63c1a95b7c182cc9e96ec2b78d232c14dc",
     "summary": "자주 쓰는 데이터를 가까이 두어 느린 메모리 접근을 줄인다.",
     "title": "메모리 계층과 캐시"
   },
   "docs/computer-architecture/representation/digital-logic.md": {
-    "content_sha": "2da71333e817cb01eb958d13d79e27a7ac4b8a03",
+    "content_sha": "e37a764b40ab05394d0f87aa9b92f68cb7094b34",
     "summary": "논리 게이트로 값을 계산하고 순차 회로로 상태를 기억한다.",
     "title": "디지털 논리와 상태"
   },
   "docs/computer-architecture/representation/number-representation.md": {
-    "content_sha": "c49462717e8c6d178d8dd3af96f3125de1cac9fe",
+    "content_sha": "b324f8e017d11727375c409b971daf3e3f286a3e",
     "summary": "비트 패턴은 표현 규칙에 따라 정수·문자·실수가 되며 범위와 정밀도에 제한이 있다.",
     "title": "진법·보수·부동소수점"
   },
@@ -380,57 +380,57 @@
     "title": "스레드 이진 트리"
   },
   "docs/database/indexes/b-plus-tree.md": {
-    "content_sha": "94b689511e379321a0da7c30fd49befb98ca3889",
+    "content_sha": "9f213d009556be2278c755fd3ec8e09e4e1e8d33",
     "summary": "많은 키를 한 노드에 담아 디스크 접근 깊이를 줄이고 범위 탐색을 연결한다.",
     "title": "B+ 트리 인덱스"
   },
   "docs/database/indexes/hash-and-bitmap-indexes.md": {
-    "content_sha": "4ba2f97e65853c7ccb88496228d8ac36f5df17f7",
+    "content_sha": "fb282cba2f5de25b7e9c73d2505a117814a8c0a9",
     "summary": "동등 비교·범위·집합 조건에 따라 서로 다른 인덱스 표현의 적합성을 판단한다.",
     "title": "해시와 비트맵 인덱스"
   },
   "docs/database/relational/normalization.md": {
-    "content_sha": "4c839d08f53fe127699afa3dc1d39d85c72fb5ca",
+    "content_sha": "e748ff465a9a30d40c18c05e3bfea35fb804bc78",
     "summary": "속성 사이의 종속 관계를 분리해 갱신 이상을 줄인다.",
     "title": "정규화"
   },
   "docs/database/relational/relational-model.md": {
-    "content_sha": "fd612998510f88d8f5e2f473b5a8515462e76f33",
+    "content_sha": "7129edffd05b81007ea780093b8061f1b571554f",
     "summary": "테이블의 행을 구별하고 관계·제약으로 데이터의 의미를 지킨다.",
     "title": "관계형 모델과 키"
   },
   "docs/database/sql/schema-constraints-and-views.md": {
-    "content_sha": "263e49dafa459f30609d5a5769bc4d63ebe7e027",
+    "content_sha": "a06f57233ee0977ee4e1010d39a894d034ad2215",
     "summary": "테이블의 구조와 데이터 규칙을 DB에 선언하고 조회 표현을 뷰로 제공한다.",
     "title": "스키마·제약 조건·뷰"
   },
   "docs/database/sql/select-join-group.md": {
-    "content_sha": "072f76e3d8e07419833d5a33d960d9f6b9c9ec17",
+    "content_sha": "2a1e0078c437df8264f0eb1ee5540b91bcb716b2",
     "summary": "필요한 행을 고르고 관계를 연결한 뒤 집계 조건을 적용한다.",
     "title": "SQL 조회·조인·집계"
   },
   "docs/database/transactions/acid.md": {
-    "content_sha": "16904dc751521159cdc3f35296630f1073693190",
+    "content_sha": "a37de1f68c37324f9404d4ff19c796985ebe9da4",
     "summary": "여러 데이터 변경을 하나의 논리적 작업으로 관리한다.",
     "title": "트랜잭션과 ACID"
   },
   "docs/database/transactions/concurrency-control.md": {
-    "content_sha": "79a696eff7c72e914e368cbc090cc8fc303bd7e8",
+    "content_sha": "9667d5c051a4b16c26490dcf6e5d2396db61bd54",
     "summary": "동시 작업의 순서를 제한해 충돌하는 읽기·쓰기를 조정한다.",
     "title": "락·직렬 가능성·2PL"
   },
   "docs/database/transactions/isolation.md": {
-    "content_sha": "c3ab656e715f9fbd921e8382b05d0148e7f67d8d",
+    "content_sha": "cfc51a836b4c0e58612aec2ea9c9384dc2fc6a5a",
     "summary": "동시에 실행된 트랜잭션에서 어떤 값을 관찰하고 충돌을 어떻게 처리할지 정한다.",
     "title": "격리 수준과 동시성 이상"
   },
   "docs/database/transactions/postgresql-page-and-tuple.md": {
-    "content_sha": "e465c82a19b5734fd8a0e26e1847dc57351b28f1",
+    "content_sha": "e75a3dbd0b26716a60f4a96183a116b3e0975c40",
     "summary": "행 버전을 페이지에 저장하고 트랜잭션 가시성으로 읽을 버전을 고르며 불필요해진 버전을 정리한다.",
     "title": "PostgreSQL 페이지·튜플과 MVCC"
   },
   "docs/database/transactions/write-ahead-log.md": {
-    "content_sha": "ad54f94736518550bdf1aef682f3125b358348b4",
+    "content_sha": "2afa11956a8ee49672a5571e8f6dfd4c3e879e57",
     "summary": "데이터 변경보다 복구 정보를 먼저 기록해 장애 뒤 결과를 재구성한다.",
     "title": "로그와 장애 회복"
   },
@@ -440,7 +440,7 @@
     "title": "애그리거트와 도메인 이벤트"
   },
   "docs/ddd/contexts/bounded-context.md": {
-    "content_sha": "8ccdfc2754f0f5da9b4d4c755d5dce20d68a9b7e",
+    "content_sha": "fa8263f4d4371835d202cc54da30e63f855adad6",
     "summary": "한 모델과 용어가 일관된 의미를 갖는 경계를 정하고 경계 사이의 번역을 설계한다.",
     "title": "바운디드 컨텍스트"
   },
@@ -455,27 +455,27 @@
     "title": "도메인 모델과 유비쿼터스 언어"
   },
   "docs/ddia/consistency/outbox-and-reconciliation.md": {
-    "content_sha": "7d9bf25ebeebe64cf8231dd47ee1bdbe4a810976",
+    "content_sha": "f02063c17538c74a826af108ff91225e5b961df6",
     "summary": "DB 변경과 발송할 이벤트를 함께 기록하고 비동기 전달의 중복·누락을 감지·복구한다.",
     "title": "Outbox와 정합성 대사"
   },
   "docs/ddia/distribution/replication-partitioning.md": {
-    "content_sha": "11b6a987ead7fed6791ee1933818f6a4865ce558",
+    "content_sha": "2cc434a4bc068dcf7760158f296361c0a37dab75",
     "summary": "복제는 사본을 늘리고 파티셔닝은 데이터를 나누며 각각 가용성·용량·운영의 다른 문제를 다룬다.",
     "title": "복제와 파티셔닝"
   },
   "docs/ddia/models/relational-document-graph-models.md": {
-    "content_sha": "029e636d090ea5784fa43c2ccb99f9bf83727859",
+    "content_sha": "22826dc36a3e12a268941ba44c86510bed80ccf3",
     "summary": "모델 선택은 데이터 모양뿐 아니라 함께 읽고 갱신하는 방식과 관계 탐색으로 결정한다.",
     "title": "관계형·문서·그래프 데이터 모델"
   },
   "docs/ddia/processing/batch-and-stream.md": {
-    "content_sha": "19593f629b253ab681006c06533048702f0ffcc2",
+    "content_sha": "58f816229179382f96c86dae4c0b725e16be98fa",
     "summary": "유한한 입력 묶음의 처리와 계속 도착하는 이벤트의 처리를 완료·재시작·지연 기준으로 비교한다.",
     "title": "배치와 스트림 처리"
   },
   "docs/ddia/storage/lsm-and-compaction.md": {
-    "content_sha": "951cea8ceec94c0e612deb9a50426a49bd568617",
+    "content_sha": "131f860a26a9027d644d71ae072b62cbad5b5b26",
     "summary": "LSM은 쓰기를 메모리에 모아 정렬 파일로 내보내고 병합하면서 읽기·쓰기 비용을 조절한다.",
     "title": "LSM 트리와 컴팩션"
   },
@@ -500,47 +500,47 @@
     "title": "포트·어댑터와 의존 방향"
   },
   "docs/design-patterns/tradeoffs/pattern-selection-and-yagni.md": {
-    "content_sha": "bbe6697fd24501ab81411e540b5660ee64c21df4",
+    "content_sha": "e2a894f7fe9691588552c80ba47efe7c02cd7add",
     "summary": "패턴은 실제로 바뀌는 지점을 분리할 때 쓰고 예상만 있는 확장성의 비용을 함께 계산한다.",
     "title": "디자인 패턴의 적용 조건과 YAGNI"
   },
   "docs/git/conflicts/conflict-and-recovery.md": {
-    "content_sha": "211224218f48a090273b6389981ac0b44999abd0",
+    "content_sha": "70109211d046193e6af07216532c9ae982fc8cb3",
     "summary": "충돌한 양쪽의 의도를 읽어 통합하고 되돌리기 전에 현재 변경을 보존한다.",
     "title": "충돌 해결과 변경 보존"
   },
   "docs/git/history/commit-branch-and-areas.md": {
-    "content_sha": "b4e32ba2d08e175a95114345ceca129fdd79d5fe",
+    "content_sha": "ff88e0449c944df5cb12fa08e3661f89524b758f",
     "summary": "작업 트리·인덱스·커밋을 구분하고 브랜치를 커밋을 가리키는 이름으로 이해한다.",
     "title": "커밋·브랜치와 세 작업 영역"
   },
   "docs/git/integration/merge-and-rebase.md": {
-    "content_sha": "7ec3f5230e98a13070b8baa90b79ee2a4f5dbf24",
+    "content_sha": "85e23fb856ca5b51bb99087f1a99a00218f4b314",
     "summary": "merge는 이력을 합치는 커밋을 만들 수 있고 rebase는 커밋을 새 기반에 다시 적용한다.",
     "title": "merge와 rebase"
   },
   "docs/git/recovery/restore-reset-revert.md": {
-    "content_sha": "81886069e07a0d8274505cec03ea1aef7aa29688",
+    "content_sha": "eccd7cc9980c23a5209bf4f203c859fcc8730957",
     "summary": "복구 명령은 파일·스테이징·브랜치 이력 중 무엇을 되돌릴지 먼저 정해 선택한다.",
     "title": "Git restore·reset·revert 선택"
   },
   "docs/github-actions/cd/deployment-oidc-and-rollback.md": {
-    "content_sha": "cea7b392e348b308225dea2d3c86fd5a0aac48e6",
+    "content_sha": "4c636091f7ef086fe7fb00486af584cb11cf6420",
     "summary": "검증한 산출물을 제한된 권한으로 배포하고 실제 상태 확인 뒤 실패를 복구한다.",
     "title": "배포 권한·상태 확인·롤백"
   },
   "docs/github-actions/ci/cache-and-artifacts.md": {
-    "content_sha": "4a0634d547b0a10246a25632cd1325846690bf5b",
+    "content_sha": "c6bb0be0f33816c1e6eac0da4d0cec38cac15240",
     "summary": "재사용 가능한 의존성 캐시와 실행 결과를 전달하는 아티팩트를 목적별로 구분한다.",
     "title": "CI 캐시와 아티팩트"
   },
   "docs/github-actions/jobs/matrix-and-job-dependencies.md": {
-    "content_sha": "4e399bf963418016ef90627fe69643d219818c7f",
+    "content_sha": "a3605c1f1876e24d5daacd2545a953ce5fbc8d6c",
     "summary": "이벤트가 워크플로를 시작하고 matrix와 needs가 잡의 실행 조합과 순서를 정한다.",
     "title": "GitHub Actions 이벤트·잡·행렬"
   },
   "docs/github-actions/workflows/events-jobs-steps.md": {
-    "content_sha": "1a46a1656d085a2d10b4a4e9115312705b13f2d3",
+    "content_sha": "86729f9cd213ee8d5b2315b82c97d36548148ba0",
     "summary": "이벤트가 워크플로를 시작하고 잡이 실행 환경을 가지며 스텝이 순서대로 작업한다.",
     "title": "워크플로·이벤트·잡·스텝"
   },
@@ -625,32 +625,32 @@
     "title": "스트림 파이프라인"
   },
   "docs/javascript/async/event-loop-and-microtasks.md": {
-    "content_sha": "157611d3b5e2c66aac1d785e2cfb6cb4e7f4ffe5",
+    "content_sha": "a1dc6ccf985c91e81a8044fa0a686c35b473dc20",
     "summary": "현재 동기 실행이 끝난 뒤 Promise 등의 마이크로태스크를 처리하고 다음 태스크로 진행한다.",
     "title": "이벤트 루프와 마이크로태스크"
   },
   "docs/javascript/async/promise-and-await.md": {
-    "content_sha": "9bc736f97d7b8cef718b06fdb319269c2f6510a8",
+    "content_sha": "a41e62979a4b0f7d3c2fc67b4e83f072e65bb33c",
     "summary": "Promise는 나중의 완료 결과를 표현하고 await는 해당 함수의 후속 실행을 완료 뒤로 이어 준다.",
     "title": "Promise와 async·await"
   },
   "docs/javascript/closures/captured-environment.md": {
-    "content_sha": "8ac2d8b211191781d51c28efdf324cf10fdb2171",
+    "content_sha": "dac6f1ddec7e3216aa6afd9c3f9033195e30904c",
     "summary": "함수는 자신이 만들어진 렉시컬 환경을 참조해 바깥 함수가 종료된 뒤에도 상태를 사용할 수 있다.",
     "title": "클로저와 상태 보존"
   },
   "docs/javascript/language/lexical-scope-and-tdz.md": {
-    "content_sha": "dc657d2ad9e8ddba069af1946b8dc710d46af2f7",
+    "content_sha": "70dc103fd71ab1ca70d2c589d6ba5f7da30a9376",
     "summary": "이름을 찾는 범위는 코드가 선언된 위치로 결정되며 let·const는 초기화 전 접근을 허용하지 않는다.",
     "title": "렉시컬 스코프와 TDZ"
   },
   "docs/javascript/language/types-and-coercion.md": {
-    "content_sha": "69e0f5543c648e5dc621afa626ae3b7b7ba0f824",
+    "content_sha": "1434f5c3a736db067e9d66e5f58057dc5b99da7a",
     "summary": "변수의 값 타입은 실행 중 달라질 수 있으며 자동 형 변환과 명시적 변환을 구별해야 한다.",
     "title": "JavaScript 타입과 형 변환"
   },
   "docs/javascript/objects/prototype-lookup.md": {
-    "content_sha": "47f8b34f8cf060a972a3c26a88b029d26c330139",
+    "content_sha": "d13c4d89dd076427ed1cbfc3cf0d84bcec792fab",
     "summary": "객체에 없는 속성은 프로토타입 연결을 따라 찾으며 자기 속성은 상속된 속성을 가릴 수 있다.",
     "title": "프로토타입과 속성 탐색"
   },
@@ -725,97 +725,97 @@
     "title": "복제·ISR·High Watermark"
   },
   "docs/linux/files/filesystem-and-buffering.md": {
-    "content_sha": "14c97e42eeb5d4b29293c1d7c1c4b5440739fa5c",
+    "content_sha": "965550d2a0f91c2dcc7d1e396f249c6c52b8a41d",
     "summary": "경로·파일 메타데이터·데이터 블록을 분리하고 메모리 버퍼와 저장 확정의 차이를 이해한다.",
     "title": "파일 시스템과 버퍼링"
   },
   "docs/linux/files/permissions.md": {
-    "content_sha": "7a81004cb9dd93766aa73d172bf40e5a2b8fa600",
+    "content_sha": "2b57c0d69ff694676e565c7c8b62ceaa93954f6d",
     "summary": "파일 소유자·그룹·기타 사용자 권한과 실행 프로세스의 주체를 함께 확인한다.",
     "title": "파일 권한과 실행 주체"
   },
   "docs/linux/network/ssh.md": {
-    "content_sha": "525351964f1b01b27f199d88ccbadbd8d7585c04",
+    "content_sha": "bd1949a50c68f021880c9a5c933d6a7b5523e1ff",
     "summary": "SSH는 서버 신원 확인과 사용자 인증을 통해 원격 연결을 보호한다.",
     "title": "SSH 키와 서버 신원"
   },
   "docs/linux/operations/tmux-and-logs.md": {
-    "content_sha": "cea65610ec769f7b805a8909aeb09c6c59ac671f",
+    "content_sha": "e2a1947de8877511e846fbc1c465084641d9758c",
     "summary": "원격 접속과 작업 세션을 분리하고 로그·프로세스 상태로 실제 실행을 확인한다.",
     "title": "tmux와 원격 작업 관찰"
   },
   "docs/linux/processes/fork-and-exec.md": {
-    "content_sha": "dc8ecabdd65be9ecdc0714fe22e4bb5af9c7c9bb",
+    "content_sha": "bfd861947ce844b86e8abb77fe59eec0e2fa541a",
     "summary": "fork는 자식 프로세스를 만들고 exec는 현재 프로세스의 실행 이미지를 새 프로그램으로 바꾼다.",
     "title": "fork와 exec"
   },
   "docs/linux/shell/startup-and-path.md": {
-    "content_sha": "669668f60428088e0e8f62b57c188b7f2c138623",
+    "content_sha": "12cefec8816fb910af24ccecc37d389ed9b3ccdb",
     "summary": "셸 종류·실행 모드에 맞는 설정 파일과 PATH 검색 순서를 확인한다.",
     "title": "셸 초기화와 PATH"
   },
   "docs/mysql/concurrency/mvcc-and-locks.md": {
-    "content_sha": "03a53f544e6e9881bbd8c69c14177a23dd4ddc9a",
+    "content_sha": "d173612ec19ced303a9e4c85f0fbdee20be1e833",
     "summary": "스냅샷 읽기와 잠금 읽기를 구분하고 격리 수준·인덱스 조건에 따른 동시 동작을 확인한다.",
     "title": "InnoDB MVCC와 락"
   },
   "docs/mysql/innodb/clustered-index.md": {
-    "content_sha": "86122d93c62f9e5b5106ec3b36fbf7a15a78fd5a",
+    "content_sha": "a47c78d2ce0fcf337a390c2f41dbf84886dda378",
     "summary": "InnoDB는 클러스터드 인덱스 리프에 행을 저장하고 보조 인덱스에서 행 식별 키를 이용한다.",
     "title": "InnoDB 클러스터드 인덱스"
   },
   "docs/mysql/plans/explain-and-composite-index.md": {
-    "content_sha": "46c0d69d82ee4a8a4958e22a60ab9a615547c3be",
+    "content_sha": "0ad3f1e60b741292ce54f011cd716d4b982e2d6f",
     "summary": "실제 필터·정렬·조인 조건과 데이터 분포를 기준으로 인덱스의 효과를 검증한다.",
     "title": "실행 계획과 복합 인덱스"
   },
   "docs/mysql/sql/schema-types-and-defaults.md": {
-    "content_sha": "57f4285b3b8a0e04d4a18abb32e9d233c6e1ead9",
+    "content_sha": "dc278bfe8a84addf7b320fad292b655545c0509c",
     "summary": "테이블은 값의 표현뿐 아니라 누락·중복·범위에 대한 계약을 함께 정의한다.",
     "title": "MySQL 스키마의 타입·제약·기본값"
   },
   "docs/network/dns/name-resolution.md": {
-    "content_sha": "995c07927485af53b6d9771d29b137bd5724e825",
+    "content_sha": "4ce966829c90c4b744bc40babb4b2b16d1d5fd56",
     "summary": "리졸버는 캐시와 계층적 권한 서버를 이용해 이름에 해당하는 레코드를 찾는다.",
     "title": "DNS 이름 해석"
   },
   "docs/network/http-tls/cors.md": {
-    "content_sha": "2425c14edc505888993c12aa1e111068cc598cde",
+    "content_sha": "14aa68bc9fc24a2e7012c6abdb8f911bb0d96edf",
     "summary": "CORS는 다른 출처의 응답을 웹 페이지에 공유할 수 있는지 정하며 서버 인증·인가와 별개다.",
     "title": "CORS와 브라우저 출처"
   },
   "docs/network/http-tls/http-semantics.md": {
-    "content_sha": "fa4978379152c4b30347b7048eb574a8f72de87c",
+    "content_sha": "66e0815685aaf1249157f5e79719cff05d2709de",
     "summary": "HTTP의 메서드·상태 코드는 요청 의도와 결과를 전달하는 공통 계약이다.",
     "title": "HTTP 메서드와 상태 코드"
   },
   "docs/network/http-tls/tls-handshake.md": {
-    "content_sha": "00f99207b2d06212a2612a77f1c118aa6090212e",
+    "content_sha": "c6346581ce69cdcb4466b5e495c9baea5d518b6f",
     "summary": "TLS는 상대 인증·키 합의로 만든 보안 채널에 HTTP를 실어 전송 중 데이터를 보호한다.",
     "title": "TLS와 HTTPS"
   },
   "docs/network/tcp-ip/cidr-and-forwarding.md": {
-    "content_sha": "4cd87ca81a1f0d0f3492951cc2edae04be882562",
+    "content_sha": "5ef15ff4612b9c0b36e89451fae85941378531ec",
     "summary": "주소의 네트워크 접두어와 라우팅 테이블의 가장 긴 일치로 다음 홉을 결정한다.",
     "title": "CIDR와 경로 선택"
   },
   "docs/network/tcp-ip/ethernet-and-error-control.md": {
-    "content_sha": "1eafbec768a10697a7f2dea8b70cac9380ca769c",
+    "content_sha": "ce3b56b8ba5673426010e980ff8b29bd982e9c84",
     "summary": "같은 링크의 프레임 전달·매체 접근·오류 검출을 종단 간 전송 보장과 구분한다.",
     "title": "링크 계층과 오류 검출"
   },
   "docs/network/tcp-ip/layers-and-routing.md": {
-    "content_sha": "0e974657e602a747e2019ba26cd3dadc262395de",
+    "content_sha": "d84993177caaaf91db3f3f5cb57cad9b8128b932",
     "summary": "주소·경로·전송·응용 규약의 책임을 나누어 데이터가 상대 애플리케이션까지 가는 흐름을 설명한다.",
     "title": "TCP/IP 계층과 라우팅"
   },
   "docs/network/transport/flow-and-congestion-control.md": {
-    "content_sha": "d26b99ff5fb2f3a7e3dd7481a3b6bd213100d312",
+    "content_sha": "22291a980a3c3cea1626f519ed6fbbad415f0919",
     "summary": "수신자가 받을 수 있는 양과 네트워크가 감당할 수 있는 양을 각각 고려해 전송을 조절한다.",
     "title": "흐름 제어와 혼잡 제어"
   },
   "docs/network/transport/tcp-and-udp.md": {
-    "content_sha": "103bf1b396ad4c9f3dce95523cf12306175bcaec",
+    "content_sha": "e00a3eccf26489deefb60d1dff165f0c3eb6533e",
     "summary": "TCP의 연결·바이트 스트림과 UDP의 데이터그램을 요구하는 지연·신뢰성·경계 조건으로 비교한다.",
     "title": "TCP와 UDP 선택"
   },
@@ -825,72 +825,72 @@
     "title": "TCP 바이트 스트림과 메시지 경계"
   },
   "docs/operating-systems/memory/page-replacement.md": {
-    "content_sha": "993b2f32fae1e0eae68f056bb99efee51d82bcad",
+    "content_sha": "736ca09ca0cfda2deac5d5a4ff3549ad83fe94c1",
     "summary": "빈 프레임이 없을 때 내보낼 페이지를 고르고 메모리 부족의 반복 비용을 관리한다.",
     "title": "페이지 교체와 스래싱"
   },
   "docs/operating-systems/memory/virtual-memory.md": {
-    "content_sha": "b9fb65fcee45d47b313fb8a0321168c830db0ecb",
+    "content_sha": "729f5a4659c2c110ad1ab29ed0fdab69d933751a",
     "summary": "프로세스의 주소를 물리 메모리의 위치로 변환해 격리와 유연한 배치를 제공한다.",
     "title": "가상 메모리와 페이지 변환"
   },
   "docs/operating-systems/processes/context-switch.md": {
-    "content_sha": "5e4c21b0a377e3b4fcb62e48cd5155a8634e596a",
+    "content_sha": "064cf501db89148b853729ba36fda2afdd2b134c",
     "summary": "실행 가능한 작업을 바꿀 때 실행 위치와 상태를 저장하고 복원한다.",
     "title": "프로세스 상태와 문맥 교환"
   },
   "docs/operating-systems/processes/process-thread.md": {
-    "content_sha": "c7ceb363fa9ebcfe3f4e3e92540e129d84ebec45",
+    "content_sha": "f469de48a0a12b78165d58333f8a5a62b77d7253",
     "summary": "프로세스는 실행 자원의 경계를, 스레드는 그 안의 실행 흐름을 제공한다.",
     "title": "프로세스와 스레드"
   },
   "docs/operating-systems/scheduling/cpu-scheduling.md": {
-    "content_sha": "1fa82df120bce9e00f0fe605959c0a27c9e5af6d",
+    "content_sha": "193d0ad3b934081ad058112194f77891a6b4f849",
     "summary": "준비된 작업 중 다음 CPU 사용자를 정책에 따라 선택한다.",
     "title": "CPU 스케줄링"
   },
   "docs/operating-systems/scheduling/disk-scheduling.md": {
-    "content_sha": "c2847d333091a32ecf6e376522170244cfb285d7",
+    "content_sha": "ad814ed3719a5674ac57505a06c2c0ffab01ac55",
     "summary": "저장장치의 접근 요청 순서를 조정해 이동 비용과 공정성을 관리한다.",
     "title": "디스크 스케줄링"
   },
   "docs/operating-systems/synchronization/critical-section.md": {
-    "content_sha": "16ff5c8a01c79c07540794a49328e62bbd02c7df",
+    "content_sha": "1472ff1d52712b8bbb90d467116b83db877afb8b",
     "summary": "공유 상태의 불변식이 깨지지 않도록 동시에 들어오는 실행을 제어한다.",
     "title": "임계 구역과 동기화"
   },
   "docs/operating-systems/synchronization/deadlock.md": {
-    "content_sha": "3a34ec525eace2faf3c3b7e25ede41bbd8ab5a28",
+    "content_sha": "363c61bde54f888561889f3af8a6a3dda12303e2",
     "summary": "서로 가진 자원을 기다리는 실행들이 더 이상 진행하지 못한다.",
     "title": "교착상태"
   },
   "docs/operating-systems/synchronization/producer-consumer.md": {
-    "content_sha": "f752cfd9105f29bb13062a89bea4c4214a3a4302",
+    "content_sha": "f1afc90b77f74cd385826fbf37d2342fe98fe856",
     "summary": "한정된 버퍼에서 비어 있는 칸과 준비된 항목을 조정한다.",
     "title": "생산자–소비자"
   },
   "docs/react/hooks/effects-and-cleanup.md": {
-    "content_sha": "7a7a1efba4c660f4091a383ee5b7f65e07acb860",
+    "content_sha": "6dce8845162fe4a0a5cd419b9adc7476e727801a",
     "summary": "Effect는 커밋된 화면을 외부 시스템과 동기화하고 의존성 변경·종료 때 이전 작업을 정리한다.",
     "title": "useEffect와 cleanup"
   },
   "docs/react/rendering/render-and-commit.md": {
-    "content_sha": "89cc64ce83f96494693f87c400a332ebc864e3c7",
+    "content_sha": "0fb2a062d0173f6fb007b93092ac94952bb409d1",
     "summary": "렌더는 현재 props·state로 다음 UI를 계산하고 커밋은 필요한 DOM 변경을 적용한다.",
     "title": "React의 렌더와 커밋"
   },
   "docs/react/routing/routes-and-url-state.md": {
-    "content_sha": "99a7294e296bc6924268c6862cf2a7a2eb4dd1d2",
+    "content_sha": "39359e3f998f2df23871fc2a0384c826444c70e6",
     "summary": "라우터는 URL을 화면에 연결하고 파라미터·쿼리·중첩 경로를 탐색 가능한 상태로 다룬다.",
     "title": "React Router와 URL 상태"
   },
   "docs/react/routing/shared-state-and-reducer.md": {
-    "content_sha": "6f35036580a419c4e440d89464fa511a92abb6dc",
+    "content_sha": "36c7b2d29e160bcbc51ad80cdff32a610b0f9688",
     "summary": "여러 화면 조각이 같은 값을 필요로 하면 공통 소유자로 상태를 올리고 변경 규칙을 reducer로 모은다.",
     "title": "공유 상태와 reducer"
   },
   "docs/react/state/snapshot-and-updaters.md": {
-    "content_sha": "0106bf4124c55f4e3422820c73e801782bf56e19",
+    "content_sha": "7ea119430e77feaecae1132ea810d57bfb89f3de",
     "summary": "한 렌더의 state 값은 고정된 스냅샷이며 이전 상태 기반 변경은 updater 함수로 이어 붙인다.",
     "title": "React state 스냅샷과 updater"
   },
@@ -920,7 +920,7 @@
     "title": "Redis 자료형과 Sorted Set"
   },
   "docs/rest-api/contracts/pagination.md": {
-    "content_sha": "08c87ed5df8abdd758338d2452912ba424280928",
+    "content_sha": "e4f6d418656c0cb90611f1ea321413011912a622",
     "summary": "목록을 나눠 읽을 때 정렬·경계·변경 중 데이터의 일관성을 명확히 한다.",
     "title": "페이지네이션과 안정적인 정렬"
   },
@@ -930,12 +930,12 @@
     "title": "Problem Details 오류 계약"
   },
   "docs/rest-api/http/methods-status-and-retry-contract.md": {
-    "content_sha": "a6a1843c649e57ce9086c578be0a510bc5de6b82",
+    "content_sha": "93a0b3b14bbee5dbe97c5071393a61893e31b19e",
     "summary": "메서드는 작업의 의미를, 상태 코드는 처리 결과를 표현하며 둘을 함께 설계해야 한다.",
     "title": "HTTP 메서드·상태 코드와 재시도 계약"
   },
   "docs/rest-api/idempotency/idempotency-key.md": {
-    "content_sha": "072fa38c516c7871d5cff31260bd84111a96a1f9",
+    "content_sha": "c08785eb89f0c3e18f90782919bef0c436bca38d",
     "summary": "응답이 유실되어 같은 업무 요청을 재시도해도 결과가 중복 생성되지 않도록 요청의 정체성을 저장한다.",
     "title": "멱등 키와 요청 재시도"
   },
@@ -945,22 +945,22 @@
     "title": "REST의 제약과 리소스"
   },
   "docs/security/access/least-privilege-defense.md": {
-    "content_sha": "7146d5a79ba90f3815b5ce5b05f25e0b6adf7892",
+    "content_sha": "0ae5dc1e07aa88e7e657c041e6746fd4d759eccf",
     "summary": "필요한 주체에게 필요한 범위의 권한만 주고 여러 경계에서 실패를 제한한다.",
     "title": "최소 권한과 방어 계층"
   },
   "docs/security/crypto/encryption-hash-signature.md": {
-    "content_sha": "1962a668a7e17e92db44abc8ca71eec24eb498ac",
+    "content_sha": "31d7fddeea6ea8c53617ded6e3044adaeeff3e46",
     "summary": "암호화는 기밀성, 해시는 요약, 전자서명은 무결성과 서명자 확인을 위한 서로 다른 도구다.",
     "title": "암호화·해시·전자서명"
   },
   "docs/security/crypto/pki-and-email-security.md": {
-    "content_sha": "64411222e8bcd1bbe2f2fb21c29eae82acf19d3d",
+    "content_sha": "09a3fb2809b38a9266e1438f97e2118ee33fea71",
     "summary": "공개키의 소유 관계를 신뢰 사슬로 검증하고 이메일의 서명·암호화를 목적별로 적용한다.",
     "title": "PKI와 이메일 보안"
   },
   "docs/security/identity/authentication-authorization.md": {
-    "content_sha": "07f84aba7456ce8abe844b097a4050c309ed1e54",
+    "content_sha": "ce5c30911d70b45696497160ac94373c209dffcc",
     "summary": "인증은 주체를 확인하고 인가는 그 주체가 이 자원에서 할 수 있는 행동을 결정한다.",
     "title": "인증과 인가"
   },
@@ -970,7 +970,7 @@
     "title": "SQL Injection·XSS·CSRF"
   },
   "docs/security/web/malware-and-incident-response.md": {
-    "content_sha": "cffcfad40fec0f90f5405bc5350220fcbb682f6c",
+    "content_sha": "18910ffbe63505be76041fdf99820a52ad7aa853",
     "summary": "공격의 유입·실행·확산을 제한하고 증거와 복구 절차를 함께 관리한다.",
     "title": "악성코드와 사고 대응"
   },
@@ -1045,27 +1045,27 @@
     "title": "단위·통합·인수 테스트"
   },
   "docs/vue/components/props-and-emits.md": {
-    "content_sha": "6548ca5d235bef25e4e8fce248e0eee1acca78be",
+    "content_sha": "f44edd8e68d246367566e3a8179b0cb77a45238e",
     "summary": "부모는 props로 값을 전달하고 자식은 이벤트로 변경 의도를 올려 상태의 소유자를 유지한다.",
     "title": "Vue 컴포넌트의 props와 emit"
   },
   "docs/vue/composition/composables-and-cleanup.md": {
-    "content_sha": "365aeffd23b13f36c146816b2497672d39d11685",
+    "content_sha": "9ab467183779631f91df43b44ed9edd5eb40d21c",
     "summary": "상태와 생명주기 작업을 함수로 묶어 재사용하고 컴포넌트 종료 때 외부 자원을 정리한다.",
     "title": "Composable과 생명주기 정리"
   },
   "docs/vue/reactivity/ref-and-computed.md": {
-    "content_sha": "eedfdd94763c8cc449772885a952ea55c0642f60",
+    "content_sha": "cdf1b6f60207fba3e4b617571a5c74de1684544b",
     "summary": "반응형 상태를 읽은 계산과 화면을 추적해 상태 변경 시 필요한 결과를 갱신한다.",
     "title": "Vue의 ref와 computed"
   },
   "docs/vue/state/pinia-shared-state.md": {
-    "content_sha": "5113228d8b6f67c585d92ee6511c41c37fbbd73f",
+    "content_sha": "92aba5763faf257fa07572b91ccd8159bb1215c1",
     "summary": "여러 컴포넌트가 필요한 상태를 store에 모으고 상태·파생 값·변경 동작의 역할을 나눈다.",
     "title": "Pinia와 공유 상태"
   },
   "docs/vue/state/router-params-and-navigation.md": {
-    "content_sha": "d6309b76c2833826ec7907f512a0a7319de768ed",
+    "content_sha": "ee649c4f5a0f07c6ec493c72d5884383cd88a549",
     "summary": "URL을 화면 상태와 연결하고 같은 화면의 파라미터 변경도 새로운 탐색으로 처리한다.",
     "title": "Vue Router의 경로와 파라미터"
   }

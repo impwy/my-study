@@ -7,37 +7,11 @@
 - 락 순서를 통일하면 순환 대기를 줄인다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 A가 자원 X를 갖고 Y를, B가 Y를 갖고 X를 기다리면 둘 다 진행할 수 없다. 예방은 필요 조건 하나를 없애고 회피는 안전한 자원 할당인지 검사한다. 은행가 알고리즘의 안전 상태는 모든 작업이 완료될 수 있는 순서가 있다는 뜻이다. 불안전 상태가 즉시 교착이라는 뜻은 아니다.
-
-## Java 예제
-
-서로 다른 고유 ID를 가진 두 계정과 유효한 금액을 가정한다. 락 순서에 초점을 둔 예제다.
-
-```java
-static class Account {
-    final long id;
-    int balance;
-
-    Account(long id, int balance) {
-        this.id = id;
-        this.balance = balance;
-    }
-}
-
-static void transfer(Account a, Account b, int amount) {
-    Account first = a.id < b.id ? a : b, second = a.id < b.id ? b : a;
-    synchronized (first) {
-        synchronized (second) {
-            a.balance -= amount;
-            b.balance += amount;
-        }
-    }
-}
-```
 
 ## 주의점
 

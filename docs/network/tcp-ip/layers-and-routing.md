@@ -7,25 +7,11 @@
 - 계층마다 주소·전달 단위가 다르다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 같은 링크에서 프레임은 링크 계층 주소로 전달된다. 목적지가 다른 네트워크라면 호스트는 라우팅 테이블에 따라 다음 홉으로 보낸다. 라우터는 IP 목적지와 경로 정보를 이용해 패킷을 전달한다. 수신 호스트의 TCP·UDP는 포트와 연결 정보를 사용해 데이터를 응용 프로그램에 전달한다. 계층 분리는 문제를 주소 해석·경로·전송·응용 처리로 나누어 진단하게 한다.
-
-## Java 예제
-
-단일 기본 게이트웨이를 쓰는 IPv4 모형이며 실제 라우팅 테이블은 더 구체적인 경로를 먼저 비교한다.
-
-```java
-static boolean sameSubnet(int source, int destination, int mask) {
-    return (source & mask) == (destination & mask);
-}
-
-static int nextHop(int source, int destination, int mask, int gateway) {
-    return sameSubnet(source, destination, mask) ? destination : gateway;
-} // 동일 서브넷은 목적지, 외부 서브넷은 게이트웨이의 MAC을 찾음
-```
 
 ## 주의점
 

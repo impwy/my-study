@@ -7,26 +7,11 @@
 - ISA는 하드웨어와 프로그램 사이의 계약이다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 명령어는 연산 코드와 필요한 피연산자 정보로 구성된다. CPU는 PC를 이용해 명령어를 가져오고 제어 신호로 레지스터·ALU·메모리 작업을 연결한다. 분기 명령은 다음 실행 위치를 바꾼다. ISA가 같아도 내부 구현과 성능은 다를 수 있다.
-
-## Java 예제
-
-fetch·execute 흐름을 보여 주는 가상 CPU 모형이다.
-
-```java
-static int execute(int[] program) { // 단순한 ADD immediate 명령만 있는 가상 CPU
-    int pc = 0, accumulator = 0;
-    while (pc < program.length) {
-        int operand = program[pc++]; // fetch 및 다음 명령 위치 갱신
-        accumulator += operand; // decode 생략: 모두 ADD / execute
-    }
-    return accumulator;
-} // {2,3,-1} → 4
-```
 
 ## 주의점
 

@@ -7,24 +7,11 @@
 - 공유 이력은 재작성 영향을 고려한다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 갈라진 브랜치를 merge하면 공통 조상과 두 끝의 변경을 합쳐 결과를 만든다. fast-forward가 가능하면 참조만 이동할 수도 있다. rebase는 자신의 커밋을 다른 기반 위에 다시 적용하므로 부모·커밋 ID가 달라질 수 있다. 깔끔한 선형 이력과 기존 공유 참조의 보존은 각각의 비용이 있다. 협업 중 이미 공유한 커밋을 다시 쓰는 정책은 팀 규칙을 따른다.
-
-## Java 예제
-
-현재 저장소의 기록을 읽는다. merge·rebase는 예제에서 실행하지 않는다.
-
-```java
-static int graph() throws Exception {
-    return new ProcessBuilder("git", "log", "--graph", "--oneline", "--decorate", "-10")
-            .inheritIO()
-            .start()
-            .waitFor();
-} // merge의 두 부모와 rebase 후 다시 만들어진 선형 커밋을 비교
-```
 
 ## 주의점
 

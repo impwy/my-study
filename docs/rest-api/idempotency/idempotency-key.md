@@ -7,28 +7,11 @@
 - 같은 키에 다른 내용이 오면 정책이 필요하다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 클라이언트가 결제 요청을 보냈지만 응답을 못 받았을 때 서버는 이미 처리했을 수 있다. 재시도마다 새 결제를 생성하면 중복 효과가 생긴다. 업무 범위 안에서 멱등 키를 식별하고 처리 중·완료 상태와 결과를 저장해 동일 요청에 일관된 결과를 돌려준다. 중복 방지 기록과 실제 DB 변경은 가능한 한 같은 트랜잭션으로 묶는다. 외부 결제에는 외부 시스템의 멱등성·상태 확인도 필요하다.
-
-## Java 예제
-
-Java HTTP 요청 구성이다. Idempotency-Key는 서버와 합의한 API 계약이며 서버의 원자적 상태 저장을 대신하지 않는다.
-
-```java
-import java.net.URI;
-import java.net.http.*;
-
-static HttpRequest payment(URI endpoint, String key, String sameBody) {
-    return HttpRequest.newBuilder(endpoint)
-            .header("Idempotency-Key", key)
-            .header("Content-Type", "application/json")
-            .POST(HttpRequest.BodyPublishers.ofString(sameBody))
-            .build();
-} // 같은 논리 요청의 재시도에는 동일 key와 동일 본문 사용
-```
 
 ## 주의점
 
@@ -37,7 +20,7 @@ static HttpRequest payment(URI endpoint, String key, String sameBody) {
 ## 꼬리질문
 
 1. 서버가 요청을 처리한 직후 응답 연결이 끊기면 클라이언트는 무엇을 확인해야 하는가?
-2. 헤더를 추가하는 것만으로 서버의 중복 업무 효과가 막히지 않는 이유는 무엇일까?
+2. 요청에 멱등 키를 포함하는 것만으로 서버의 중복 업무 효과가 막히지 않는 이유는 무엇일까?
 3. 같은 키에 다른 본문을 보내면 서버는 어떤 검증·충돌 응답·보존 기간 정책이 필요할까?
 
 </details>

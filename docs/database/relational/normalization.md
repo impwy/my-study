@@ -7,25 +7,11 @@
 - 읽기 최적화의 역정규화는 정합성 비용을 갖는다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 한 사실이 여러 행에 반복되면 일부만 바뀌거나 다른 사실을 지울 때 함께 사라질 수 있다. 2NF는 부분 종속, 3NF는 특정 이행 종속을 다루고 BCNF는 모든 비자명한 함수적 종속의 결정자가 슈퍼키인지 확인한다. 손실 없는 분해와 종속성 보존을 검토해야 한다.
-
-## Java 예제
-
-```java
-import java.util.*;
-
-record Department(long id, String name) {}
-
-record Employee(long id, long departmentId) {}
-
-static String departmentName(Employee e, Map<Long, Department> departments) {
-    return departments.get(e.departmentId()).name();
-} // 부서 이름을 직원마다 복제하지 않고 departmentId로 연결
-```
 
 ## 주의점
 

@@ -15,21 +15,7 @@
 
 변수가 가려지는 것과 값이 복사되는 것은 다른 문제다. 콜백이 나중에 실행될 때 어떤 바인딩을 보유하는지는 클로저 문서에서 이어서 확인한다.
 
-## Java 예제
-
-```java
-static java.util.function.Supplier<String> reader(String declaredValue) {
-    return () -> declaredValue;
-}
-
-static void demo() {
-    var read = reader("선언 환경");
-    String callerValue = "호출 환경";
-    System.out.println(read.get()); // 선언 환경
-}
-```
-
-### JavaScript로 확인
+## JavaScript 예제
 
 ```javascript
 const name = "선언 환경";
@@ -49,7 +35,7 @@ try {
 
 ## 주의점
 
-let을 단순히 “호이스팅이 안 된다”로 외우면 TDZ를 설명하기 어렵다. Java는 같은 지역 범위의 재선언이나 초기화 전 사용을 컴파일 단계에서 제한하므로 JavaScript와 오류 시점이 다르다.
+let을 단순히 “호이스팅이 안 된다”로 외우면 TDZ를 설명하기 어렵다.
 
 ## 꼬리질문
 

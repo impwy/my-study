@@ -13,25 +13,15 @@
 
 offset 방식은 몇 행을 건너뛰고 읽는지 나타내며 임의 페이지 접근에 편하다. 깊은 페이지와 동시 삽입·삭제에서는 비용·중복·누락을 고려한다. cursor 방식은 마지막 정렬 키 이후를 읽고 안정적인 순서와 복합 키가 필요하다. 사용자가 다음 페이지를 받는 동안 데이터가 바뀌었을 때 허용할 의미를 API 계약으로 정한다.
 
-## Java 예제
+## SQL 예제
 
-튜플 비교를 지원하는 MySQL·PostgreSQL의 JDBC 예제이며 비어 있지 않은 커서·NULL 아닌 정렬 키를 가정한다.
+튜플 비교를 지원하는 MySQL·PostgreSQL의 orders를 가정한다. created_at·id가 NULL이 아니고 id가 정렬의 유일한 tie-breaker이며, 커서는 직전 페이지의 마지막 값을 사용한다.
 
-```java
-import java.sql.*;
-
-static void next(Connection c, Timestamp time, long id) throws SQLException {
-    try (PreparedStatement p =
-            c.prepareStatement(
-                    "SELECT id,created_at FROM orders WHERE (created_at,id) > (?,?) ORDER BY"
-                        + " created_at,id LIMIT 20")) {
-        p.setTimestamp(1, time);
-        p.setLong(2, id);
-        try (ResultSet r = p.executeQuery()) {
-            while (r.next()) System.out.println(r.getLong(1));
-        }
-    }
-}
+```sql
+SELECT id, created_at FROM orders
+WHERE (created_at, id) > ('2026-01-01 00:00:00', 100)
+ORDER BY created_at, id
+LIMIT 20;
 ```
 
 ## 주의점

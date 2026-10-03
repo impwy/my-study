@@ -13,24 +13,7 @@
 
 카운터 팩토리가 함수를 반환하면 반환된 함수는 count 바인딩에 계속 접근한다. 팩토리를 두 번 호출하면 count가 둘 생기지만 한 번의 호출에서 반환한 여러 함수는 같은 환경을 공유할 수 있다. 이벤트 핸들러와 비동기 콜백에서 이 참조가 유지되므로 불필요한 큰 객체를 오래 붙잡는 경우도 살핀다.
 
-## Java 예제
-
-```java
-static java.util.function.IntSupplier counter() {
-    int[] count = {0}; // 람다는 effectively final인 참조를 캡처
-    return () -> ++count[0];
-}
-
-static void demo() {
-    var a = counter();
-    var b = counter();
-    System.out.println(a.getAsInt()); // 1
-    System.out.println(a.getAsInt()); // 2
-    System.out.println(b.getAsInt()); // 1
-}
-```
-
-### JavaScript로 확인
+## JavaScript 예제
 
 ```javascript
 function counter() {
@@ -44,7 +27,7 @@ console.log(a(), a(), b()); // 1 2 1
 
 ## 주의점
 
-Java 람다의 지역 변수 캡처 제약은 JavaScript와 다르다. 배열로 상태를 담은 Java 예제는 단일 스레드 비교용이며 스레드 안전성을 보장하지 않는다.
+클로저가 값을 복사해 고정한다고 가정하지 않는다. 여러 함수가 같은 바인딩을 공유할 수 있으며 필요 없는 이벤트 핸들러는 해제해 참조가 오래 남지 않게 한다.
 
 ## 꼬리질문
 

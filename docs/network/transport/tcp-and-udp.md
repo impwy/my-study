@@ -7,25 +7,11 @@
 - 응용 계층에서 신뢰성을 추가할 수도 있다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 TCP는 연결 상태를 유지하며 바이트 순서와 손실 복구를 처리한다. UDP는 독립된 데이터그램을 보내고 누락·중복·순서 변경이 가능하다. 손실이 있어도 최신 정보가 중요하거나 별도 전송 제어를 구현하려는 응용에서는 UDP를 선택할 수 있다. QUIC처럼 UDP 위에서 신뢰성 있는 연결을 구현한 프로토콜도 있다. 따라서 UDP를 썼다는 사실만으로 시스템 전체가 신뢰성 없다고 판단하지 않는다.
-
-## Java 예제
-
-```java
-import java.net.*;
-import java.nio.charset.StandardCharsets;
-
-static void send(InetAddress host, int port) throws java.io.IOException {
-    byte[] data = "hello".getBytes(StandardCharsets.UTF_8);
-    try (DatagramSocket socket = new DatagramSocket()) {
-        socket.send(new DatagramPacket(data, data.length, host, port));
-    }
-} // send 성공은 수신·처리 확인이 아니다.
-```
 
 ## 주의점
 

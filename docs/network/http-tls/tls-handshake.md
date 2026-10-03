@@ -7,28 +7,11 @@
 - HTTPS는 애플리케이션 권한 검사를 대신하지 않는다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 TLS 1.3 연결은 지원하는 알고리즘과 키 교환 정보를 협상하고 서버의 인증서·서명 등을 검증하며 공유 키를 만든다. 이후 데이터는 인증된 암호화로 보호된다. 인증서의 신뢰 사슬, 유효 기간, 접속 이름 확인은 다른 서버와 통신하는 실수를 줄인다. HTTP가 이 채널 위에서 전달되는 것이 HTTPS다. 연결 암호화와 사용자 로그인·업무 인가는 서로 다른 층의 책임이다.
-
-## Java 예제
-
-```java
-import javax.net.ssl.*;
-
-static void connect(String host, int port) throws java.io.IOException {
-    try (SSLSocket socket =
-            (SSLSocket) SSLSocketFactory.getDefault().createSocket(host, port)) {
-        SSLParameters p = socket.getSSLParameters();
-        p.setEndpointIdentificationAlgorithm("HTTPS");
-        socket.setSSLParameters(p);
-        socket.startHandshake();
-        System.out.println(socket.getSession().getProtocol());
-    }
-}
-```
 
 ## 주의점
 

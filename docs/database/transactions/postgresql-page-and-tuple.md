@@ -13,23 +13,14 @@
 
 테이블의 heap에는 페이지와 튜플 형태로 행 버전이 저장된다. ctid는 블록 번호와 튜플 위치를 나타내지만 업데이트·이동으로 바뀔 수 있다. MVCC는 각 트랜잭션에서 보이는 버전을 판단한다. 갱신이 항상 같은 페이지 안에서 이루어지거나 commit 직후 이전 버전이 즉시 지워지는 것은 아니다. 아직 다른 트랜잭션이 필요로 하는 버전은 유지해야 한다.
 
-## Java 예제
+## SQL 예제
 
-PostgreSQL과 users 테이블의 JDBC 연결이 필요하다.
+PostgreSQL의 users 실습 테이블에서 논리 ID와 현재 행 버전의 시스템 컬럼을 비교한다.
 
-```java
-import java.sql.*;
-
-static void inspect(Connection c, long id) throws SQLException {
-    try (PreparedStatement p =
-            c.prepareStatement("SELECT id, ctid::text, xmin::text FROM users WHERE id=?")) {
-        p.setLong(1, id);
-        try (ResultSet r = p.executeQuery()) {
-            while (r.next())
-                System.out.println(r.getLong(1) + ":" + r.getString(2) + ":" + r.getString(3));
-        }
-    }
-}
+```sql
+SELECT id, ctid::text, xmin::text
+FROM users
+WHERE id = 1;
 ```
 
 ## 주의점

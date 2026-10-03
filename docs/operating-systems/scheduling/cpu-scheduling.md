@@ -7,30 +7,11 @@
 - 기아를 막는 정책도 필요하다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 FCFS는 도착 순서, SJF는 짧은 CPU burst 우선, Round Robin은 시간 조각을 번갈아 준다. 짧은 작업 우선은 평균 대기를 줄일 수 있지만 길이를 미리 알기 어렵고 긴 작업이 기다릴 수 있다. 너무 짧은 quantum은 교환 비용을, 너무 긴 quantum은 응답 지연을 키운다.
-
-## Java 예제
-
-CPU 버스트가 알려져 있고 문맥 교환 비용이 없는 스케줄링 모형이다.
-
-```java
-import java.util.*;
-
-static double averageWait(int[] bursts) { // 도착 시각 모두 0인 비선점 SJF
-    int[] sorted = bursts.clone();
-    Arrays.sort(sorted);
-    long elapsed = 0, waits = 0;
-    for (int burst : sorted) {
-        waits += elapsed;
-        elapsed += burst;
-    }
-    return sorted.length == 0 ? 0 : (double) waits / sorted.length;
-} // {6,2,4} → 대기 0,2,6 → 평균 8/3
-```
 
 ## 주의점
 

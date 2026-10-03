@@ -7,26 +7,11 @@
 - 서비스 수명은 별도 관리 정책이 필요하다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 tmux는 서버 프로세스가 유지되는 동안 터미널 세션을 보존하며 분리했다가 다시 붙을 수 있게 한다. session 안에 window와 pane을 나누어 작업·로그를 볼 수 있다. SSH 연결이 끊겨도 tmux 안의 작업을 계속 둘 수 있지만 서버 재부팅·프로세스 종료에 대한 영속 실행 관리를 대신하지 않는다. 운영 서비스는 서비스 관리자와 재시작·로그 정책을 검토한다.
-
-## Java 예제
-
-작업 로그를 읽는 Java 예제다. tmux 실행·세션 관리는 별도의 셸 도구가 맡는다.
-
-```java
-import java.nio.file.*;
-import java.util.stream.Stream;
-
-static long errorCount(Path log) throws java.io.IOException {
-    try (Stream<String> lines = Files.lines(log)) {
-        return lines.filter(line -> line.contains("ERROR")).count();
-    }
-}
-```
 
 ## 주의점
 

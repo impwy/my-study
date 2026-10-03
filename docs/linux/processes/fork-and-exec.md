@@ -7,24 +7,11 @@
 - wait로 자식 종료 상태를 회수한다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 fork 이후 부모와 자식은 각자의 실행 흐름으로 돌아간다. 실제 메모리 복사는 copy-on-write 등의 구현으로 최적화될 수 있지만 변수 변경이 보통 서로의 주소 공간을 직접 수정하는 것은 아니다. 열린 파일 기술자는 복사되어 같은 열린 파일 설명을 참조할 수 있다. exec가 성공하면 새 프로그램으로 교체되므로 기존 호출 다음으로 정상 반환하지 않는다.
-
-## Java 예제
-
-Java의 자식 프로세스 API다. 내부 생성 방식은 구현에 따라 다르며 POSIX fork 호출 자체를 직접 노출하지 않는다.
-
-```java
-static void demo() throws Exception {
-    Process child = new ProcessBuilder("/bin/echo", "hello").inheritIO().start();
-    System.out.println("parent=" + ProcessHandle.current().pid() + ", child=" + child.pid());
-    int exit = child.waitFor();
-    System.out.println(exit);
-}
-```
 
 ## 주의점
 

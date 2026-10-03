@@ -7,23 +7,11 @@
 - 유효 기간·폐기·신뢰 기준이 필요하다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
 공개키가 누구의 키인지 확인하지 못하면 서명을 검증해도 원하는 상대의 진위가 확인되지 않는다. PKI는 인증 기관과 신뢰 사슬·유효성 검사를 통해 이 관계를 다룬다. S/MIME 같은 이메일 보안은 서명으로 변경·서명자를 확인하거나 암호화로 내용을 보호할 수 있다. 전달 채널 TLS와 메시지 자체의 보호도 범위가 다르다.
-
-## Java 예제
-
-```java
-import java.security.cert.X509Certificate;
-
-static void inspect(X509Certificate certificate) throws Exception {
-    certificate.checkValidity();
-    System.out.println(certificate.getSubjectX500Principal());
-    System.out.println(certificate.getIssuerX500Principal());
-} // 유효 기간 확인만으로 신뢰 체인 검증이 완료되지는 않는다.
-```
 
 ## 주의점
 
