@@ -22,5 +22,7 @@
 
 ## 복구
 
-아직 정리된 문서가 없습니다.
+| 문서 | 한 줄 요약 |
+| --- | --- |
+| [Git restore·reset·revert 선택](recovery/restore-reset-revert.md) | 복구 명령은 파일·스테이징·브랜치 이력 중 무엇을 되돌릴지 먼저 정해 선택한다. |
 

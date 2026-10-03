@@ -16,7 +16,9 @@
 
 ## 영속성
 
-아직 정리된 문서가 없습니다.
+| 문서 | 한 줄 요약 |
+| --- | --- |
+| [Redis RDB·AOF와 복구](persistence/rdb-aof-and-recovery.md) | RDB는 시점의 스냅샷을, AOF는 쓰기 명령 기록을 사용해 재시작 후 데이터를 복구한다. |
 
 ## 복제
 

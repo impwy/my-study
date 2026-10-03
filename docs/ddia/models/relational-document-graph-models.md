@@ -1,0 +1,58 @@
+# 관계형·문서·그래프 데이터 모델
+
+> 모델 선택은 데이터 모양뿐 아니라 함께 읽고 갱신하는 방식과 관계 탐색으로 결정한다.
+
+- 관계형은 테이블·키·조인으로 관계를 표현한다.
+- 문서는 함께 다루는 데이터를 묶거나 별도 문서를 참조한다.
+- 그래프는 노드·관계·경로 탐색을 직접 표현한다.
+
+<details>
+<summary>설명과 예제 펼치기</summary>
+
+## 설명
+
+주문과 주문 항목을 관계형으로 표현하면 주문 행과 항목 행을 키로 연결할 수 있다. 문서 모델에서는 함께 읽는 항목을 주문 안에 포함할 수 있지만 무한히 커지는 목록이나 독립적으로 바뀌는 데이터는 참조로 나눌 이유가 생긴다. 그래프 모델은 사용자 간 연결처럼 관계를 여러 단계 따라가는 질문을 노드와 관계로 표현한다.
+
+한 모델이 모든 문제에서 우월하지는 않다. 자주 실행하는 조회, 갱신 경계, 데이터 증가 방식, 일관성 요구를 적고 후보 모델로 같은 질문을 표현해 본다. 저장소 이름만으로 중복·조인·트랜잭션 가능 여부를 단정하지 않는다.
+
+## Java 예제
+
+```java
+record OrderRow(long id) {}
+
+record LineRow(long orderId, String product, int quantity) {}
+
+record Line(String product, int quantity) {}
+
+record OrderDocument(long id, java.util.List<Line> lines) {
+    OrderDocument {
+        lines = java.util.List.copyOf(lines);
+    }
+}
+
+record Edge(long fromUser, long toUser, String relation) {}
+
+static void demo() {
+    var row = new LineRow(42, "book", 2);
+    var document = new OrderDocument(42, java.util.List.of(new Line("book", 2)));
+    var edge = new Edge(1, 2, "FOLLOWS");
+    System.out.println(row.orderId() + ": " + document.lines().size() + ", " + edge.relation());
+}
+```
+
+## 주의점
+
+Java record는 모델의 모양만 표현하며 데이터베이스의 저장·조회·트랜잭션을 구현하지 않는다. 문서에 포함하면 항상 더 빠르다는 결론도 피한다. 실제 접근 패턴과 성장한 데이터로 확인한다.
+
+## 꼬리질문
+
+1. 주문을 조회할 때 항목도 항상 필요하다면 포함 모델의 이점은 무엇일까?
+2. 항목이 매우 많아지고 독립적으로 수정된다면 참조 모델을 고려할 이유는 무엇일까?
+3. 친구의 친구를 여러 단계 탐색할 때 그래프 모델은 어떤 관계를 직접 표현할까?
+
+</details>
+
+## 참고 자료
+
+- [MongoDB · 모델링 기준](https://www.mongodb.com/docs/manual/data-modeling/best-practices/) — 함께 조회·갱신하는 데이터와 포함·참조 선택을 비교한다.
+- [Neo4j · 그래프 개념](https://neo4j.com/docs/getting-started/appendix/graphdb-concepts/) — 노드·관계·속성으로 질문을 표현하는 방법을 읽는다.

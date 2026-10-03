@@ -15,22 +15,22 @@
 | [Java](java/README.md) | 11 |
 | [Java 병렬 프로그래밍](java-concurrency/README.md) | 5 |
 | [Linux](linux/README.md) | 6 |
-| [클라우드](cloud/README.md) | 4 |
+| [클라우드](cloud/README.md) | 6 |
 | [컴퓨터 보안](security/README.md) | 6 |
-| [MySQL](mysql/README.md) | 3 |
-| [Redis](redis/README.md) | 4 |
+| [MySQL](mysql/README.md) | 4 |
+| [Redis](redis/README.md) | 5 |
 | [Kafka](kafka/README.md) | 8 |
 | [Spring](spring/README.md) | 6 |
 | [Spring Boot](spring-boot/README.md) | 4 |
 | [JPA](jpa/README.md) | 6 |
-| [REST API](rest-api/README.md) | 4 |
-| [JavaScript](javascript/README.md) | 0 |
-| [Vue.js](vue/README.md) | 0 |
-| [React](react/README.md) | 0 |
+| [REST API](rest-api/README.md) | 5 |
+| [JavaScript](javascript/README.md) | 6 |
+| [Vue.js](vue/README.md) | 5 |
+| [React](react/README.md) | 5 |
 | [AWS](aws/README.md) | 8 |
-| [Git](git/README.md) | 3 |
-| [GitHub Actions](github-actions/README.md) | 3 |
+| [Git](git/README.md) | 4 |
+| [GitHub Actions](github-actions/README.md) | 4 |
 | [DDD](ddd/README.md) | 4 |
 | [TDD](tdd/README.md) | 4 |
-| [데이터 중심 애플리케이션](ddia/README.md) | 3 |
-| [디자인 패턴](design-patterns/README.md) | 4 |
+| [데이터 중심 애플리케이션](ddia/README.md) | 5 |
+| [디자인 패턴](design-patterns/README.md) | 5 |

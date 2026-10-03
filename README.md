@@ -15,25 +15,25 @@
 | [Java](docs/java/README.md) | 11 | 언어·타입 · 객체지향 · 컬렉션·제네릭 · 예외 · 스트림 · JVM·GC |
 | [Java 병렬 프로그래밍](docs/java-concurrency/README.md) | 5 | 스레드 안전성 · 가시성·원자성 · 락 · Executor·Future · 동시성 컬렉션 |
 | [Linux](docs/linux/README.md) | 6 | 파일·권한 · 프로세스 · 셸 · 네트워크 명령어 · 서비스·로그 |
-| [클라우드](docs/cloud/README.md) | 4 | 가상화 · 컴퓨팅·스토리지 · 네트워크 · 확장성·가용성 |
+| [클라우드](docs/cloud/README.md) | 6 | 가상화 · 컴퓨팅·스토리지 · 네트워크 · 확장성·가용성 |
 | [컴퓨터 보안](docs/security/README.md) | 6 | 암호·해시 · 인증·인가 · 웹 취약점 · 접근 제어 |
-| [MySQL](docs/mysql/README.md) | 3 | 스키마·SQL · 실행 계획 · InnoDB·인덱스 · MVCC·락 |
-| [Redis](docs/redis/README.md) | 4 | 자료형 · 캐시·TTL · 영속성 · 복제 · 장애 대응 |
+| [MySQL](docs/mysql/README.md) | 4 | 스키마·SQL · 실행 계획 · InnoDB·인덱스 · MVCC·락 |
+| [Redis](docs/redis/README.md) | 5 | 자료형 · 캐시·TTL · 영속성 · 복제 · 장애 대응 |
 | [Kafka](docs/kafka/README.md) | 8 | 토픽·파티션 · 프로듀서 · 컨슈머·오프셋 · 전달 보장 |
 | [Spring](docs/spring/README.md) | 6 | IoC·DI · 빈 생명주기 · AOP · MVC · 트랜잭션 |
 | [Spring Boot](docs/spring-boot/README.md) | 4 | 자동 설정 · 설정·프로파일 · 웹 애플리케이션 · Actuator |
 | [JPA](docs/jpa/README.md) | 6 | 엔티티 매핑 · 영속성 컨텍스트 · 연관관계 · 조회·N+1 · 락 |
-| [REST API](docs/rest-api/README.md) | 4 | 리소스 설계 · 메서드·상태 코드 · 멱등성 · 페이지네이션·오류 |
-| [JavaScript](docs/javascript/README.md) | 0 | 타입·스코프 · 클로저 · 프로토타입 · 비동기·이벤트 루프 |
-| [Vue.js](docs/vue/README.md) | 0 | 반응성 · 컴포넌트 · Composition API · 라우팅·상태 관리 |
-| [React](docs/react/README.md) | 0 | 렌더링 · props·state · Hooks · 상태 관리·라우팅 |
+| [REST API](docs/rest-api/README.md) | 5 | 리소스 설계 · 메서드·상태 코드 · 멱등성 · 페이지네이션·오류 |
+| [JavaScript](docs/javascript/README.md) | 6 | 타입·스코프 · 클로저 · 프로토타입 · 비동기·이벤트 루프 |
+| [Vue.js](docs/vue/README.md) | 5 | 반응성 · 컴포넌트 · Composition API · 라우팅·상태 관리 |
+| [React](docs/react/README.md) | 5 | 렌더링 · props·state · Hooks · 상태 관리·라우팅 |
 | [AWS](docs/aws/README.md) | 8 | IAM · VPC · EC2 · S3 · RDS · 로드밸런싱·모니터링 |
-| [Git](docs/git/README.md) | 3 | 커밋·브랜치 · merge·rebase · 충돌 해결 · 복구 |
-| [GitHub Actions](docs/github-actions/README.md) | 3 | 워크플로 · 이벤트·잡 · 테스트·빌드 · 배포 |
+| [Git](docs/git/README.md) | 4 | 커밋·브랜치 · merge·rebase · 충돌 해결 · 복구 |
+| [GitHub Actions](docs/github-actions/README.md) | 4 | 워크플로 · 이벤트·잡 · 테스트·빌드 · 배포 |
 | [DDD](docs/ddd/README.md) | 4 | 도메인 모델 · 바운디드 컨텍스트 · 엔티티·값 객체 · 애그리거트·이벤트 |
 | [TDD](docs/tdd/README.md) | 4 | Red–Green–Refactor · 테스트 설계 · 테스트 대역 · 단위·통합 테스트 |
-| [데이터 중심 애플리케이션](docs/ddia/README.md) | 3 | 데이터 모델 · 저장 엔진 · 복제·파티셔닝 · 일관성 · 배치·스트림 처리 |
-| [디자인 패턴](docs/design-patterns/README.md) | 4 | 설계 원칙 · 생성 패턴 · 구조 패턴 · 행동 패턴 · 적용 조건·트레이드오프 |
+| [데이터 중심 애플리케이션](docs/ddia/README.md) | 5 | 데이터 모델 · 저장 엔진 · 복제·파티셔닝 · 일관성 · 배치·스트림 처리 |
+| [디자인 패턴](docs/design-patterns/README.md) | 5 | 설계 원칙 · 생성 패턴 · 구조 패턴 · 행동 패턴 · 적용 조건·트레이드오프 |
 
 ## 문서 목록
 
@@ -224,14 +224,16 @@
 </details>
 
 <details>
-<summary>클라우드 · 4개</summary>
+<summary>클라우드 · 6개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
 | [Kubernetes의 Pod·Deployment·Service](docs/cloud/virtualization/kubernetes-building-blocks.md) | 컨테이너 실행 단위, 원하는 상태 유지, 접근 경로의 책임을 구분한다. |
 | [백프레셔와 요청 제한](docs/cloud/availability/backpressure-and-rate-limit.md) | 처리 가능한 속도에 맞춰 유입·대기·거절을 조정해 과부하가 시스템 전체로 번지는 것을 제한한다. |
 | [지연·처리량·포화](docs/cloud/availability/latency-throughput-saturation.md) | 부하가 늘 때 처리량·지연 분포·오류·대기열을 함께 보아 병목을 찾는다. |
+| [컴퓨팅과 블록·파일·객체 스토리지](docs/cloud/resources/compute-and-storage-boundaries.md) | 애플리케이션의 실행 자원과 데이터 보관 자원을 나누고 접근 방식에 맞는 스토리지를 선택한다. |
 | [클라우드 서비스 모델](docs/cloud/virtualization/cloud-service-models.md) | 온디맨드 자원 사용과 IaaS·PaaS·SaaS별 관리 책임의 차이를 설명한다. |
+| [클라우드 연결 경로와 아웃바운드 통신](docs/cloud/network/network-path-and-egress.md) | 연결 문제는 DNS·라우팅·접근 제어·서버 대기 상태를 경로 순서대로 확인한다. |
 
 </details>
 
@@ -250,22 +252,24 @@
 </details>
 
 <details>
-<summary>MySQL · 3개</summary>
+<summary>MySQL · 4개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
 | [InnoDB MVCC와 락](docs/mysql/concurrency/mvcc-and-locks.md) | 스냅샷 읽기와 잠금 읽기를 구분하고 격리 수준·인덱스 조건에 따른 동시 동작을 확인한다. |
 | [InnoDB 클러스터드 인덱스](docs/mysql/innodb/clustered-index.md) | InnoDB는 클러스터드 인덱스 리프에 행을 저장하고 보조 인덱스에서 행 식별 키를 이용한다. |
+| [MySQL 스키마의 타입·제약·기본값](docs/mysql/sql/schema-types-and-defaults.md) | 테이블은 값의 표현뿐 아니라 누락·중복·범위에 대한 계약을 함께 정의한다. |
 | [실행 계획과 복합 인덱스](docs/mysql/plans/explain-and-composite-index.md) | 실제 필터·정렬·조인 조건과 데이터 분포를 기준으로 인덱스의 효과를 검증한다. |
 
 </details>
 
 <details>
-<summary>Redis · 4개</summary>
+<summary>Redis · 5개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
 | [Cache-aside와 캐시 스탬피드](docs/redis/cache/cache-aside-and-stampede.md) | 캐시 미스 시 원본을 읽고 채우되 만료 순간 요청이 몰리는 경합과 오래된 값을 관리한다. |
+| [Redis RDB·AOF와 복구](docs/redis/persistence/rdb-aof-and-recovery.md) | RDB는 시점의 스냅샷을, AOF는 쓰기 명령 기록을 사용해 재시작 후 데이터를 복구한다. |
 | [Redis 복제와 장애 전환](docs/redis/replication/replication-and-failover.md) | 복제본은 데이터 사본을 유지하지만 비동기 복제와 장애 전환에는 지연·손실 가능성이 있다. |
 | [Redis 원자 연산과 저장소 간 불일치](docs/redis/failures/atomic-script-and-cross-store.md) | Redis 안의 검사·차감을 원자적으로 묶어도 뒤이은 DB 저장·메시지 발행까지 한 번에 확정되지는 않는다. |
 | [Redis 자료형과 Sorted Set](docs/redis/types/types-and-sorted-set.md) | 필요한 조회·갱신 연산에 맞춰 자료형을 고르고 Sorted Set은 점수 순으로 멤버를 관리한다. |
@@ -329,14 +333,55 @@
 </details>
 
 <details>
-<summary>REST API · 4개</summary>
+<summary>REST API · 5개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
+| [HTTP 메서드·상태 코드와 재시도 계약](docs/rest-api/http/methods-status-and-retry-contract.md) | 메서드는 작업의 의미를, 상태 코드는 처리 결과를 표현하며 둘을 함께 설계해야 한다. |
 | [Problem Details 오류 계약](docs/rest-api/contracts/problem-details.md) | 오류 응답을 공통 구조로 표현하고 업무 오류를 기계가 구분할 수 있게 한다. |
 | [REST의 제약과 리소스](docs/rest-api/resources/rest-constraints.md) | REST는 리소스에 대한 통일된 인터페이스와 여러 제약으로 분산 시스템의 상호작용을 설계하는 스타일이다. |
 | [멱등 키와 요청 재시도](docs/rest-api/idempotency/idempotency-key.md) | 응답이 유실되어 같은 업무 요청을 재시도해도 결과가 중복 생성되지 않도록 요청의 정체성을 저장한다. |
 | [페이지네이션과 안정적인 정렬](docs/rest-api/contracts/pagination.md) | 목록을 나눠 읽을 때 정렬·경계·변경 중 데이터의 일관성을 명확히 한다. |
+
+</details>
+
+<details>
+<summary>JavaScript · 6개</summary>
+
+| 문서 | 한 줄 요약 |
+| --- | --- |
+| [JavaScript 타입과 형 변환](docs/javascript/language/types-and-coercion.md) | 변수의 값 타입은 실행 중 달라질 수 있으며 자동 형 변환과 명시적 변환을 구별해야 한다. |
+| [Promise와 async·await](docs/javascript/async/promise-and-await.md) | Promise는 나중의 완료 결과를 표현하고 await는 해당 함수의 후속 실행을 완료 뒤로 이어 준다. |
+| [렉시컬 스코프와 TDZ](docs/javascript/language/lexical-scope-and-tdz.md) | 이름을 찾는 범위는 코드가 선언된 위치로 결정되며 let·const는 초기화 전 접근을 허용하지 않는다. |
+| [이벤트 루프와 마이크로태스크](docs/javascript/async/event-loop-and-microtasks.md) | 현재 동기 실행이 끝난 뒤 Promise 등의 마이크로태스크를 처리하고 다음 태스크로 진행한다. |
+| [클로저와 상태 보존](docs/javascript/closures/captured-environment.md) | 함수는 자신이 만들어진 렉시컬 환경을 참조해 바깥 함수가 종료된 뒤에도 상태를 사용할 수 있다. |
+| [프로토타입과 속성 탐색](docs/javascript/objects/prototype-lookup.md) | 객체에 없는 속성은 프로토타입 연결을 따라 찾으며 자기 속성은 상속된 속성을 가릴 수 있다. |
+
+</details>
+
+<details>
+<summary>Vue.js · 5개</summary>
+
+| 문서 | 한 줄 요약 |
+| --- | --- |
+| [Composable과 생명주기 정리](docs/vue/composition/composables-and-cleanup.md) | 상태와 생명주기 작업을 함수로 묶어 재사용하고 컴포넌트 종료 때 외부 자원을 정리한다. |
+| [Pinia와 공유 상태](docs/vue/state/pinia-shared-state.md) | 여러 컴포넌트가 필요한 상태를 store에 모으고 상태·파생 값·변경 동작의 역할을 나눈다. |
+| [Vue Router의 경로와 파라미터](docs/vue/state/router-params-and-navigation.md) | URL을 화면 상태와 연결하고 같은 화면의 파라미터 변경도 새로운 탐색으로 처리한다. |
+| [Vue 컴포넌트의 props와 emit](docs/vue/components/props-and-emits.md) | 부모는 props로 값을 전달하고 자식은 이벤트로 변경 의도를 올려 상태의 소유자를 유지한다. |
+| [Vue의 ref와 computed](docs/vue/reactivity/ref-and-computed.md) | 반응형 상태를 읽은 계산과 화면을 추적해 상태 변경 시 필요한 결과를 갱신한다. |
+
+</details>
+
+<details>
+<summary>React · 5개</summary>
+
+| 문서 | 한 줄 요약 |
+| --- | --- |
+| [React Router와 URL 상태](docs/react/routing/routes-and-url-state.md) | 라우터는 URL을 화면에 연결하고 파라미터·쿼리·중첩 경로를 탐색 가능한 상태로 다룬다. |
+| [React state 스냅샷과 updater](docs/react/state/snapshot-and-updaters.md) | 한 렌더의 state 값은 고정된 스냅샷이며 이전 상태 기반 변경은 updater 함수로 이어 붙인다. |
+| [React의 렌더와 커밋](docs/react/rendering/render-and-commit.md) | 렌더는 현재 props·state로 다음 UI를 계산하고 커밋은 필요한 DOM 변경을 적용한다. |
+| [useEffect와 cleanup](docs/react/hooks/effects-and-cleanup.md) | Effect는 커밋된 화면을 외부 시스템과 동기화하고 의존성 변경·종료 때 이전 작업을 정리한다. |
+| [공유 상태와 reducer](docs/react/routing/shared-state-and-reducer.md) | 여러 화면 조각이 같은 값을 필요로 하면 공통 소유자로 상태를 올리고 변경 규칙을 reducer로 모은다. |
 
 </details>
 
@@ -357,10 +402,11 @@
 </details>
 
 <details>
-<summary>Git · 3개</summary>
+<summary>Git · 4개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
+| [Git restore·reset·revert 선택](docs/git/recovery/restore-reset-revert.md) | 복구 명령은 파일·스테이징·브랜치 이력 중 무엇을 되돌릴지 먼저 정해 선택한다. |
 | [merge와 rebase](docs/git/integration/merge-and-rebase.md) | merge는 이력을 합치는 커밋을 만들 수 있고 rebase는 커밋을 새 기반에 다시 적용한다. |
 | [충돌 해결과 변경 보존](docs/git/conflicts/conflict-and-recovery.md) | 충돌한 양쪽의 의도를 읽어 통합하고 되돌리기 전에 현재 변경을 보존한다. |
 | [커밋·브랜치와 세 작업 영역](docs/git/history/commit-branch-and-areas.md) | 작업 트리·인덱스·커밋을 구분하고 브랜치를 커밋을 가리키는 이름으로 이해한다. |
@@ -368,11 +414,12 @@
 </details>
 
 <details>
-<summary>GitHub Actions · 3개</summary>
+<summary>GitHub Actions · 4개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
 | [CI 캐시와 아티팩트](docs/github-actions/ci/cache-and-artifacts.md) | 재사용 가능한 의존성 캐시와 실행 결과를 전달하는 아티팩트를 목적별로 구분한다. |
+| [GitHub Actions 이벤트·잡·행렬](docs/github-actions/jobs/matrix-and-job-dependencies.md) | 이벤트가 워크플로를 시작하고 matrix와 needs가 잡의 실행 조합과 순서를 정한다. |
 | [배포 권한·상태 확인·롤백](docs/github-actions/cd/deployment-oidc-and-rollback.md) | 검증한 산출물을 제한된 권한으로 배포하고 실제 상태 확인 뒤 실패를 복구한다. |
 | [워크플로·이벤트·잡·스텝](docs/github-actions/workflows/events-jobs-steps.md) | 이벤트가 워크플로를 시작하고 잡이 실행 환경을 가지며 스텝이 순서대로 작업한다. |
 
@@ -403,24 +450,27 @@
 </details>
 
 <details>
-<summary>데이터 중심 애플리케이션 · 3개</summary>
+<summary>데이터 중심 애플리케이션 · 5개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
+| [LSM 트리와 컴팩션](docs/ddia/storage/lsm-and-compaction.md) | LSM은 쓰기를 메모리에 모아 정렬 파일로 내보내고 병합하면서 읽기·쓰기 비용을 조절한다. |
 | [Outbox와 정합성 대사](docs/ddia/consistency/outbox-and-reconciliation.md) | DB 변경과 발송할 이벤트를 함께 기록하고 비동기 전달의 중복·누락을 감지·복구한다. |
+| [관계형·문서·그래프 데이터 모델](docs/ddia/models/relational-document-graph-models.md) | 모델 선택은 데이터 모양뿐 아니라 함께 읽고 갱신하는 방식과 관계 탐색으로 결정한다. |
 | [배치와 스트림 처리](docs/ddia/processing/batch-and-stream.md) | 유한한 입력 묶음의 처리와 계속 도착하는 이벤트의 처리를 완료·재시작·지연 기준으로 비교한다. |
 | [복제와 파티셔닝](docs/ddia/distribution/replication-partitioning.md) | 복제는 사본을 늘리고 파티셔닝은 데이터를 나누며 각각 가용성·용량·운영의 다른 문제를 다룬다. |
 
 </details>
 
 <details>
-<summary>디자인 패턴 · 4개</summary>
+<summary>디자인 패턴 · 5개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
 | [Factory와 Facade](docs/design-patterns/creational/factory-and-facade.md) | 생성 결정을 모으는 Factory와 여러 협력의 사용 절차를 단순화하는 Facade를 구분한다. |
 | [SOLID와 변경 이유](docs/design-patterns/principles/solid.md) | 설계 원칙은 변경과 대체의 비용을 줄이는 판단 기준이며 규칙 이름보다 실제 의존 관계를 본다. |
 | [Strategy](docs/design-patterns/behavioral/strategy.md) | 서로 바꿀 수 있는 행동을 같은 계약의 여러 구현으로 분리한다. |
+| [디자인 패턴의 적용 조건과 YAGNI](docs/design-patterns/tradeoffs/pattern-selection-and-yagni.md) | 패턴은 실제로 바뀌는 지점을 분리할 때 쓰고 예상만 있는 확장성의 비용을 함께 계산한다. |
 | [포트·어댑터와 의존 방향](docs/design-patterns/structural/hexagonal-ports-adapters.md) | 핵심 업무와 외부 기술의 접점을 계약으로 나누어 실행·테스트 환경을 바꿀 수 있게 한다. |
 
 </details>

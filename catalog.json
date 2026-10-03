@@ -229,6 +229,16 @@
     "summary": "부하가 늘 때 처리량·지연 분포·오류·대기열을 함께 보아 병목을 찾는다.",
     "title": "지연·처리량·포화"
   },
+  "docs/cloud/network/network-path-and-egress.md": {
+    "content_sha": "b24f5c5d05c50baa2de6d5ac2759f77b8fb7597a",
+    "summary": "연결 문제는 DNS·라우팅·접근 제어·서버 대기 상태를 경로 순서대로 확인한다.",
+    "title": "클라우드 연결 경로와 아웃바운드 통신"
+  },
+  "docs/cloud/resources/compute-and-storage-boundaries.md": {
+    "content_sha": "6a4180a174da23fea56fc8d6859f661a354c6c63",
+    "summary": "애플리케이션의 실행 자원과 데이터 보관 자원을 나누고 접근 방식에 맞는 스토리지를 선택한다.",
+    "title": "컴퓨팅과 블록·파일·객체 스토리지"
+  },
   "docs/cloud/virtualization/cloud-service-models.md": {
     "content_sha": "f82d364397aa8b402e3534612032218cb88a0b55",
     "summary": "온디맨드 자원 사용과 IaaS·PaaS·SaaS별 관리 책임의 차이를 설명한다.",
@@ -454,10 +464,20 @@
     "summary": "복제는 사본을 늘리고 파티셔닝은 데이터를 나누며 각각 가용성·용량·운영의 다른 문제를 다룬다.",
     "title": "복제와 파티셔닝"
   },
+  "docs/ddia/models/relational-document-graph-models.md": {
+    "content_sha": "029e636d090ea5784fa43c2ccb99f9bf83727859",
+    "summary": "모델 선택은 데이터 모양뿐 아니라 함께 읽고 갱신하는 방식과 관계 탐색으로 결정한다.",
+    "title": "관계형·문서·그래프 데이터 모델"
+  },
   "docs/ddia/processing/batch-and-stream.md": {
     "content_sha": "19593f629b253ab681006c06533048702f0ffcc2",
     "summary": "유한한 입력 묶음의 처리와 계속 도착하는 이벤트의 처리를 완료·재시작·지연 기준으로 비교한다.",
     "title": "배치와 스트림 처리"
+  },
+  "docs/ddia/storage/lsm-and-compaction.md": {
+    "content_sha": "951cea8ceec94c0e612deb9a50426a49bd568617",
+    "summary": "LSM은 쓰기를 메모리에 모아 정렬 파일로 내보내고 병합하면서 읽기·쓰기 비용을 조절한다.",
+    "title": "LSM 트리와 컴팩션"
   },
   "docs/design-patterns/behavioral/strategy.md": {
     "content_sha": "ec14a15f0d5148e06a1196fab816c74ecc29b780",
@@ -479,6 +499,11 @@
     "summary": "핵심 업무와 외부 기술의 접점을 계약으로 나누어 실행·테스트 환경을 바꿀 수 있게 한다.",
     "title": "포트·어댑터와 의존 방향"
   },
+  "docs/design-patterns/tradeoffs/pattern-selection-and-yagni.md": {
+    "content_sha": "bbe6697fd24501ab81411e540b5660ee64c21df4",
+    "summary": "패턴은 실제로 바뀌는 지점을 분리할 때 쓰고 예상만 있는 확장성의 비용을 함께 계산한다.",
+    "title": "디자인 패턴의 적용 조건과 YAGNI"
+  },
   "docs/git/conflicts/conflict-and-recovery.md": {
     "content_sha": "211224218f48a090273b6389981ac0b44999abd0",
     "summary": "충돌한 양쪽의 의도를 읽어 통합하고 되돌리기 전에 현재 변경을 보존한다.",
@@ -494,6 +519,11 @@
     "summary": "merge는 이력을 합치는 커밋을 만들 수 있고 rebase는 커밋을 새 기반에 다시 적용한다.",
     "title": "merge와 rebase"
   },
+  "docs/git/recovery/restore-reset-revert.md": {
+    "content_sha": "81886069e07a0d8274505cec03ea1aef7aa29688",
+    "summary": "복구 명령은 파일·스테이징·브랜치 이력 중 무엇을 되돌릴지 먼저 정해 선택한다.",
+    "title": "Git restore·reset·revert 선택"
+  },
   "docs/github-actions/cd/deployment-oidc-and-rollback.md": {
     "content_sha": "cea7b392e348b308225dea2d3c86fd5a0aac48e6",
     "summary": "검증한 산출물을 제한된 권한으로 배포하고 실제 상태 확인 뒤 실패를 복구한다.",
@@ -503,6 +533,11 @@
     "content_sha": "4a0634d547b0a10246a25632cd1325846690bf5b",
     "summary": "재사용 가능한 의존성 캐시와 실행 결과를 전달하는 아티팩트를 목적별로 구분한다.",
     "title": "CI 캐시와 아티팩트"
+  },
+  "docs/github-actions/jobs/matrix-and-job-dependencies.md": {
+    "content_sha": "4e399bf963418016ef90627fe69643d219818c7f",
+    "summary": "이벤트가 워크플로를 시작하고 matrix와 needs가 잡의 실행 조합과 순서를 정한다.",
+    "title": "GitHub Actions 이벤트·잡·행렬"
   },
   "docs/github-actions/workflows/events-jobs-steps.md": {
     "content_sha": "1a46a1656d085a2d10b4a4e9115312705b13f2d3",
@@ -588,6 +623,36 @@
     "content_sha": "c588efde37d59dfcd7ff525dc28909017dda5220",
     "summary": "스트림은 데이터 저장소가 아니라 원소를 필터링·변환·집계하는 계산 흐름이다.",
     "title": "스트림 파이프라인"
+  },
+  "docs/javascript/async/event-loop-and-microtasks.md": {
+    "content_sha": "157611d3b5e2c66aac1d785e2cfb6cb4e7f4ffe5",
+    "summary": "현재 동기 실행이 끝난 뒤 Promise 등의 마이크로태스크를 처리하고 다음 태스크로 진행한다.",
+    "title": "이벤트 루프와 마이크로태스크"
+  },
+  "docs/javascript/async/promise-and-await.md": {
+    "content_sha": "9bc736f97d7b8cef718b06fdb319269c2f6510a8",
+    "summary": "Promise는 나중의 완료 결과를 표현하고 await는 해당 함수의 후속 실행을 완료 뒤로 이어 준다.",
+    "title": "Promise와 async·await"
+  },
+  "docs/javascript/closures/captured-environment.md": {
+    "content_sha": "8ac2d8b211191781d51c28efdf324cf10fdb2171",
+    "summary": "함수는 자신이 만들어진 렉시컬 환경을 참조해 바깥 함수가 종료된 뒤에도 상태를 사용할 수 있다.",
+    "title": "클로저와 상태 보존"
+  },
+  "docs/javascript/language/lexical-scope-and-tdz.md": {
+    "content_sha": "dc657d2ad9e8ddba069af1946b8dc710d46af2f7",
+    "summary": "이름을 찾는 범위는 코드가 선언된 위치로 결정되며 let·const는 초기화 전 접근을 허용하지 않는다.",
+    "title": "렉시컬 스코프와 TDZ"
+  },
+  "docs/javascript/language/types-and-coercion.md": {
+    "content_sha": "69e0f5543c648e5dc621afa626ae3b7b7ba0f824",
+    "summary": "변수의 값 타입은 실행 중 달라질 수 있으며 자동 형 변환과 명시적 변환을 구별해야 한다.",
+    "title": "JavaScript 타입과 형 변환"
+  },
+  "docs/javascript/objects/prototype-lookup.md": {
+    "content_sha": "47f8b34f8cf060a972a3c26a88b029d26c330139",
+    "summary": "객체에 없는 속성은 프로토타입 연결을 따라 찾으며 자기 속성은 상속된 속성을 가릴 수 있다.",
+    "title": "프로토타입과 속성 탐색"
   },
   "docs/jpa/context/flush-and-commit.md": {
     "content_sha": "aa2b6564be97637eccebb46f2a231336e926859a",
@@ -704,6 +769,11 @@
     "summary": "실제 필터·정렬·조인 조건과 데이터 분포를 기준으로 인덱스의 효과를 검증한다.",
     "title": "실행 계획과 복합 인덱스"
   },
+  "docs/mysql/sql/schema-types-and-defaults.md": {
+    "content_sha": "57f4285b3b8a0e04d4a18abb32e9d233c6e1ead9",
+    "summary": "테이블은 값의 표현뿐 아니라 누락·중복·범위에 대한 계약을 함께 정의한다.",
+    "title": "MySQL 스키마의 타입·제약·기본값"
+  },
   "docs/network/dns/name-resolution.md": {
     "content_sha": "995c07927485af53b6d9771d29b137bd5724e825",
     "summary": "리졸버는 캐시와 계층적 권한 서버를 이용해 이름에 해당하는 레코드를 찾는다.",
@@ -799,6 +869,31 @@
     "summary": "한정된 버퍼에서 비어 있는 칸과 준비된 항목을 조정한다.",
     "title": "생산자–소비자"
   },
+  "docs/react/hooks/effects-and-cleanup.md": {
+    "content_sha": "7a7a1efba4c660f4091a383ee5b7f65e07acb860",
+    "summary": "Effect는 커밋된 화면을 외부 시스템과 동기화하고 의존성 변경·종료 때 이전 작업을 정리한다.",
+    "title": "useEffect와 cleanup"
+  },
+  "docs/react/rendering/render-and-commit.md": {
+    "content_sha": "89cc64ce83f96494693f87c400a332ebc864e3c7",
+    "summary": "렌더는 현재 props·state로 다음 UI를 계산하고 커밋은 필요한 DOM 변경을 적용한다.",
+    "title": "React의 렌더와 커밋"
+  },
+  "docs/react/routing/routes-and-url-state.md": {
+    "content_sha": "99a7294e296bc6924268c6862cf2a7a2eb4dd1d2",
+    "summary": "라우터는 URL을 화면에 연결하고 파라미터·쿼리·중첩 경로를 탐색 가능한 상태로 다룬다.",
+    "title": "React Router와 URL 상태"
+  },
+  "docs/react/routing/shared-state-and-reducer.md": {
+    "content_sha": "6f35036580a419c4e440d89464fa511a92abb6dc",
+    "summary": "여러 화면 조각이 같은 값을 필요로 하면 공통 소유자로 상태를 올리고 변경 규칙을 reducer로 모은다.",
+    "title": "공유 상태와 reducer"
+  },
+  "docs/react/state/snapshot-and-updaters.md": {
+    "content_sha": "0106bf4124c55f4e3422820c73e801782bf56e19",
+    "summary": "한 렌더의 state 값은 고정된 스냅샷이며 이전 상태 기반 변경은 updater 함수로 이어 붙인다.",
+    "title": "React state 스냅샷과 updater"
+  },
   "docs/redis/cache/cache-aside-and-stampede.md": {
     "content_sha": "6ffc7e246b431b9eb49f1973ea60915ddafc239a",
     "summary": "캐시 미스 시 원본을 읽고 채우되 만료 순간 요청이 몰리는 경합과 오래된 값을 관리한다.",
@@ -808,6 +903,11 @@
     "content_sha": "9a71247735ea4c92b24bcfc380479d5f5f76db7c",
     "summary": "Redis 안의 검사·차감을 원자적으로 묶어도 뒤이은 DB 저장·메시지 발행까지 한 번에 확정되지는 않는다.",
     "title": "Redis 원자 연산과 저장소 간 불일치"
+  },
+  "docs/redis/persistence/rdb-aof-and-recovery.md": {
+    "content_sha": "d79bbf70e8a3429c38bbe623c0d922e8b641ba48",
+    "summary": "RDB는 시점의 스냅샷을, AOF는 쓰기 명령 기록을 사용해 재시작 후 데이터를 복구한다.",
+    "title": "Redis RDB·AOF와 복구"
   },
   "docs/redis/replication/replication-and-failover.md": {
     "content_sha": "a6dd58a935c51b2e172baeab961ff32dffcee66a",
@@ -828,6 +928,11 @@
     "content_sha": "5516dcefcb7f363ca0bb1cfcbb8353aab5fb9d0c",
     "summary": "오류 응답을 공통 구조로 표현하고 업무 오류를 기계가 구분할 수 있게 한다.",
     "title": "Problem Details 오류 계약"
+  },
+  "docs/rest-api/http/methods-status-and-retry-contract.md": {
+    "content_sha": "a6a1843c649e57ce9086c578be0a510bc5de6b82",
+    "summary": "메서드는 작업의 의미를, 상태 코드는 처리 결과를 표현하며 둘을 함께 설계해야 한다.",
+    "title": "HTTP 메서드·상태 코드와 재시도 계약"
   },
   "docs/rest-api/idempotency/idempotency-key.md": {
     "content_sha": "072fa38c516c7871d5cff31260bd84111a96a1f9",
@@ -938,5 +1043,30 @@
     "content_sha": "b9b800b784b846ccfda38ced4d312225a0929061",
     "summary": "작은 규칙의 빠른 검증과 실제 경계 연동·사용자 요구 검증을 목적별로 나눈다.",
     "title": "단위·통합·인수 테스트"
+  },
+  "docs/vue/components/props-and-emits.md": {
+    "content_sha": "6548ca5d235bef25e4e8fce248e0eee1acca78be",
+    "summary": "부모는 props로 값을 전달하고 자식은 이벤트로 변경 의도를 올려 상태의 소유자를 유지한다.",
+    "title": "Vue 컴포넌트의 props와 emit"
+  },
+  "docs/vue/composition/composables-and-cleanup.md": {
+    "content_sha": "365aeffd23b13f36c146816b2497672d39d11685",
+    "summary": "상태와 생명주기 작업을 함수로 묶어 재사용하고 컴포넌트 종료 때 외부 자원을 정리한다.",
+    "title": "Composable과 생명주기 정리"
+  },
+  "docs/vue/reactivity/ref-and-computed.md": {
+    "content_sha": "eedfdd94763c8cc449772885a952ea55c0642f60",
+    "summary": "반응형 상태를 읽은 계산과 화면을 추적해 상태 변경 시 필요한 결과를 갱신한다.",
+    "title": "Vue의 ref와 computed"
+  },
+  "docs/vue/state/pinia-shared-state.md": {
+    "content_sha": "5113228d8b6f67c585d92ee6511c41c37fbbd73f",
+    "summary": "여러 컴포넌트가 필요한 상태를 store에 모으고 상태·파생 값·변경 동작의 역할을 나눈다.",
+    "title": "Pinia와 공유 상태"
+  },
+  "docs/vue/state/router-params-and-navigation.md": {
+    "content_sha": "d6309b76c2833826ec7907f512a0a7319de768ed",
+    "summary": "URL을 화면 상태와 연결하고 같은 화면의 파라미터 변경도 새로운 탐색으로 처리한다.",
+    "title": "Vue Router의 경로와 파라미터"
   }
 }

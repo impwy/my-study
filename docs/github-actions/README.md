@@ -10,7 +10,9 @@
 
 ## 이벤트·잡
 
-아직 정리된 문서가 없습니다.
+| 문서 | 한 줄 요약 |
+| --- | --- |
+| [GitHub Actions 이벤트·잡·행렬](jobs/matrix-and-job-dependencies.md) | 이벤트가 워크플로를 시작하고 matrix와 needs가 잡의 실행 조합과 순서를 정한다. |
 
 ## 테스트·빌드
 
