@@ -2,8 +2,6 @@
 
 짧은 요약과 원문 링크로 남기는 기술 학습 기록.
 
-[첫 문서: 이진 탐색](docs/algorithms/search/binary-search.md) · [기록 방법](CONTRIBUTING.md) · [학습 경로](LEARNING_PATH.md)
-
 ## 분류
 
 | 카테고리 | 문서 | 소분류 |
