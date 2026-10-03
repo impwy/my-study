@@ -1,0 +1,34 @@
+# NIO의 Buffer와 Channel
+
+> 채널을 통해 데이터를 옮기고 버퍼의 position·limit 상태로 읽기·쓰기를 관리한다.
+
+- Buffer의 상태 전환이 중요하다.
+- flip은 기록한 범위를 읽도록 바꾼다.
+- NIO가 항상 비동기·비블로킹인 것은 아니다.
+
+<details>
+<summary>설명과 예제 펼치기</summary>
+
+## 설명
+
+버퍼에 데이터를 채우면 position이 전진한다. flip은 limit를 현재 position으로 두고 position을 시작으로 돌려 읽을 준비를 한다. clear는 다음 쓰기를 위한 상태 재설정이며 데이터를 안전하게 지우는 연산이 아니다. Channel도 모든 타입이 같은 I/O·블로킹 모델을 갖지는 않는다. 부분 읽기·쓰기와 남은 데이터를 처리해야 한다.
+
+## 예제
+
+버퍼에 8바이트를 채운 뒤 flip하면 limit는 8이 된다. 채널 쓰기가 8바이트 전체를 한 번에 소비한다고 가정하지 말고 remaining을 확인한다.
+
+## 주의점
+
+clear 전에 아직 처리할 데이터가 남았으면 덮어쓸 수 있다. Selector로 다루는 채널과 파일 채널의 조건을 구분한다.
+
+## 복습 질문
+
+flip 없이 채운 버퍼를 읽으면 position과 limit가 어떻게 잘못 쓰일 수 있는가?
+
+자료 구분: **기존 자료** — Java 강의와 자료구조 노트의 언어·API 개념. **공식 자료 보완** — Java 21 명세·자원 및 참조 계약.
+
+</details>
+
+## 참고 자료
+
+- [Java SE 21 · API 문서](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/module-summary.html) — 사용한 타입의 계약·예외·시간 비용 설명을 확인한다.

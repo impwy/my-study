@@ -1,0 +1,295 @@
+[
+  {
+    "slug": "computer-architecture",
+    "title": "컴퓨터 구조",
+    "sections": {
+      "representation": "데이터 표현",
+      "cpu": "CPU·명령어",
+      "memory": "메모리·캐시",
+      "io": "입출력"
+    }
+  },
+  {
+    "slug": "operating-systems",
+    "title": "운영체제",
+    "sections": {
+      "processes": "프로세스·스레드",
+      "scheduling": "스케줄링",
+      "synchronization": "동기화·교착상태",
+      "memory": "가상 메모리"
+    }
+  },
+  {
+    "slug": "network",
+    "title": "네트워크",
+    "sections": {
+      "tcp-ip": "TCP/IP",
+      "transport": "TCP·UDP",
+      "dns": "DNS",
+      "http-tls": "HTTP·TLS"
+    }
+  },
+  {
+    "slug": "database",
+    "title": "데이터베이스",
+    "sections": {
+      "relational": "관계형 모델",
+      "sql": "SQL",
+      "indexes": "인덱스",
+      "transactions": "트랜잭션·격리 수준"
+    }
+  },
+  {
+    "slug": "data-structures",
+    "title": "자료구조",
+    "sections": {
+      "linear": "배열·연결 리스트",
+      "stack-queue": "스택·큐",
+      "hash": "해시",
+      "trees": "트리·힙",
+      "graphs": "그래프"
+    }
+  },
+  {
+    "slug": "algorithms",
+    "title": "알고리즘",
+    "sections": {
+      "complexity": "복잡도",
+      "search": "탐색",
+      "sorting": "정렬",
+      "graphs": "그래프 탐색",
+      "optimization": "그리디·동적 계획법"
+    }
+  },
+  {
+    "slug": "java",
+    "title": "Java",
+    "sections": {
+      "language": "언어·타입",
+      "oop": "객체지향",
+      "collections": "컬렉션·제네릭",
+      "exceptions": "예외",
+      "streams": "스트림",
+      "jvm": "JVM·GC"
+    }
+  },
+  {
+    "slug": "java-concurrency",
+    "title": "Java 병렬 프로그래밍",
+    "sections": {
+      "safety": "스레드 안전성",
+      "memory-model": "가시성·원자성",
+      "locks": "락",
+      "executors": "Executor·Future",
+      "collections": "동시성 컬렉션"
+    }
+  },
+  {
+    "slug": "linux",
+    "title": "Linux",
+    "sections": {
+      "files": "파일·권한",
+      "processes": "프로세스",
+      "shell": "셸",
+      "network": "네트워크 명령어",
+      "operations": "서비스·로그"
+    }
+  },
+  {
+    "slug": "cloud",
+    "title": "클라우드",
+    "sections": {
+      "virtualization": "가상화",
+      "resources": "컴퓨팅·스토리지",
+      "network": "네트워크",
+      "availability": "확장성·가용성"
+    }
+  },
+  {
+    "slug": "security",
+    "title": "컴퓨터 보안",
+    "sections": {
+      "crypto": "암호·해시",
+      "identity": "인증·인가",
+      "web": "웹 취약점",
+      "access": "접근 제어"
+    }
+  },
+  {
+    "slug": "mysql",
+    "title": "MySQL",
+    "sections": {
+      "sql": "스키마·SQL",
+      "plans": "실행 계획",
+      "innodb": "InnoDB·인덱스",
+      "concurrency": "MVCC·락"
+    }
+  },
+  {
+    "slug": "redis",
+    "title": "Redis",
+    "sections": {
+      "types": "자료형",
+      "cache": "캐시·TTL",
+      "persistence": "영속성",
+      "replication": "복제",
+      "failures": "장애 대응"
+    }
+  },
+  {
+    "slug": "kafka",
+    "title": "Kafka",
+    "sections": {
+      "topics": "토픽·파티션",
+      "producers": "프로듀서",
+      "consumers": "컨슈머·오프셋",
+      "delivery": "전달 보장"
+    }
+  },
+  {
+    "slug": "spring",
+    "title": "Spring",
+    "sections": {
+      "di": "IoC·DI",
+      "lifecycle": "빈 생명주기",
+      "aop": "AOP",
+      "mvc": "MVC",
+      "transactions": "트랜잭션"
+    }
+  },
+  {
+    "slug": "spring-boot",
+    "title": "Spring Boot",
+    "sections": {
+      "autoconfiguration": "자동 설정",
+      "configuration": "설정·프로파일",
+      "web": "웹 애플리케이션",
+      "actuator": "Actuator"
+    }
+  },
+  {
+    "slug": "jpa",
+    "title": "JPA",
+    "sections": {
+      "mapping": "엔티티 매핑",
+      "context": "영속성 컨텍스트",
+      "relationships": "연관관계",
+      "queries": "조회·N+1",
+      "locks": "락"
+    }
+  },
+  {
+    "slug": "rest-api",
+    "title": "REST API",
+    "sections": {
+      "resources": "리소스 설계",
+      "http": "메서드·상태 코드",
+      "idempotency": "멱등성",
+      "contracts": "페이지네이션·오류"
+    }
+  },
+  {
+    "slug": "javascript",
+    "title": "JavaScript",
+    "sections": {
+      "language": "타입·스코프",
+      "closures": "클로저",
+      "objects": "프로토타입",
+      "async": "비동기·이벤트 루프"
+    }
+  },
+  {
+    "slug": "vue",
+    "title": "Vue.js",
+    "sections": {
+      "reactivity": "반응성",
+      "components": "컴포넌트",
+      "composition": "Composition API",
+      "state": "라우팅·상태 관리"
+    }
+  },
+  {
+    "slug": "react",
+    "title": "React",
+    "sections": {
+      "rendering": "렌더링",
+      "state": "props·state",
+      "hooks": "Hooks",
+      "routing": "상태 관리·라우팅"
+    }
+  },
+  {
+    "slug": "aws",
+    "title": "AWS",
+    "sections": {
+      "iam": "IAM",
+      "vpc": "VPC",
+      "ec2": "EC2",
+      "s3": "S3",
+      "rds": "RDS",
+      "operations": "로드밸런싱·모니터링"
+    }
+  },
+  {
+    "slug": "git",
+    "title": "Git",
+    "sections": {
+      "history": "커밋·브랜치",
+      "integration": "merge·rebase",
+      "conflicts": "충돌 해결",
+      "recovery": "복구"
+    }
+  },
+  {
+    "slug": "github-actions",
+    "title": "GitHub Actions",
+    "sections": {
+      "workflows": "워크플로",
+      "jobs": "이벤트·잡",
+      "ci": "테스트·빌드",
+      "cd": "배포"
+    }
+  },
+  {
+    "slug": "ddd",
+    "title": "DDD",
+    "sections": {
+      "model": "도메인 모델",
+      "contexts": "바운디드 컨텍스트",
+      "identity": "엔티티·값 객체",
+      "aggregates": "애그리거트·이벤트"
+    }
+  },
+  {
+    "slug": "tdd",
+    "title": "TDD",
+    "sections": {
+      "cycle": "Red–Green–Refactor",
+      "design": "테스트 설계",
+      "doubles": "테스트 대역",
+      "levels": "단위·통합 테스트"
+    }
+  },
+  {
+    "slug": "ddia",
+    "title": "데이터 중심 애플리케이션",
+    "sections": {
+      "models": "데이터 모델",
+      "storage": "저장 엔진",
+      "distribution": "복제·파티셔닝",
+      "consistency": "일관성",
+      "processing": "배치·스트림 처리"
+    }
+  },
+  {
+    "slug": "design-patterns",
+    "title": "디자인 패턴",
+    "sections": {
+      "principles": "설계 원칙",
+      "creational": "생성 패턴",
+      "structural": "구조 패턴",
+      "behavioral": "행동 패턴",
+      "tradeoffs": "적용 조건·트레이드오프"
+    }
+  }
+]

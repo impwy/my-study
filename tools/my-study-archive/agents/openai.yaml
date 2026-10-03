@@ -1,0 +1,6 @@
+interface:
+  display_name: "My Study Archive"
+  short_description: "기술 학습을 짧은 초안으로 기록하고 정리 요청 시 GitHub에 게시"
+  default_prompt: "$my-study-archive로 이번 학습 내용을 검증하고 정리해줘."
+policy:
+  allow_implicit_invocation: true
