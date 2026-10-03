@@ -13,19 +13,30 @@
 
 삽입은 마지막에 값을 넣고 부모와 비교하며 올라간다. 루트 삭제는 마지막 값을 루트로 옮기고 우선순위가 높은 자식과 비교하며 내려간다. 완전 트리라 높이는 로그 규모다. 우선순위 큐는 이 규칙을 사용하는 ADT이며 힙은 대표적인 구현이다.
 
-## 예제
+## Java 예제
 
-Java PriorityQueue의 기본은 작은 값부터 나오는 순서다. [4,1,3]을 넣으면 poll은 1을 반환하지만 내부 반복자가 1,3,4 순서를 보장하지 않는다.
+```java
+import java.util.*;
+
+static void demo() {
+    PriorityQueue<Integer> heap = new PriorityQueue<>();
+    heap.add(4);
+    heap.add(1);
+    heap.add(3);
+    heap.add(2);
+    while (!heap.isEmpty()) System.out.println(heap.remove()); // 1,2,3,4
+} // iterator 순회에는 정렬 순서 계약이 없다.
+```
 
 ## 주의점
 
 Comparator에서 a−b를 반환하면 정수 오버플로가 날 수 있다. 큐 안에 있는 객체의 우선순위 필드를 바꾸면 힙 순서가 자동 복구되지 않는다.
 
-## 복습 질문
+## 꼬리질문
 
-힙의 모든 부모가 자식보다 작아도 배열 전체가 오름차순이 아닌 이유는?
-
-자료 구분: **기존 자료** — 자료구조 노트와 대학 강의의 표현·연산. **공식 자료 보완** — 비용의 전제·균형 조건·표준 API.
+1. 힙의 모든 부모가 자식보다 작아도 배열 전체가 오름차순이 아닌 이유는?
+2. remove를 반복한 결과는 정렬되어 있는데 iterator는 왜 그 순서를 보장하지 않을까?
+3. 최댓값을 먼저 꺼내려면 비교자를 어떻게 바꿔야 할까?
 
 함께 복습: [큐와 원형 큐](../stack-queue/queue.md) · [다익스트라](../../algorithms/graphs/dijkstra.md)
 
@@ -34,4 +45,3 @@ Comparator에서 a−b를 반환하면 정수 오버플로가 날 수 있다. �
 ## 참고 자료
 
 - [Princeton · Priority Queues](https://algs4.cs.princeton.edu/24pq/) — 힙의 배열 표현과 삽입·삭제 과정을 확인한다.
-- [홍정모 연구소](https://honglab.co.kr/) — 기존 학습 노트의 원 강의 출처. 강의의 설명과 실습 맥락을 더 확인한다.

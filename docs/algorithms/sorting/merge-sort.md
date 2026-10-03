@@ -13,23 +13,35 @@
 
 나누기만으로 정렬되는 것이 아니라 병합 단계가 순서를 만든다. 두 구간의 맨 앞 중 작은 값을 결과에 넣고 그 구간의 포인터만 이동한다. 한 단계에서 전체 원소를 훑고 단계 수가 log n이므로 n log n 비용이 된다. 재귀 대신 작은 구간부터 합치는 bottom-up 방식도 있다.
 
-## 예제
+## Java 예제
 
-[1,4]와 [2,3]을 합치면 1 → 2 → 3 → 4 순서로 뽑는다. 한쪽이 끝나면 나머지 원소를 그대로 복사한다.
+```java
+import java.util.Arrays;
+
+static int[] sort(int[] a) {
+    if (a.length < 2) return a.clone();
+    int m = a.length / 2;
+    int[] l = sort(Arrays.copyOfRange(a, 0, m)), r = sort(Arrays.copyOfRange(a, m, a.length));
+    int[] out = new int[a.length];
+    int i = 0, j = 0;
+    for (int k = 0; k < out.length; k++)
+        out[k] = j == r.length || (i < l.length && l[i] <= r[j]) ? l[i++] : r[j++];
+    return out;
+}
+```
 
 ## 주의점
 
 일반 배열 병합은 보조 배열을 사용한다. 연결 리스트 구현이나 특수 in-place 구현의 공간 비용과 혼동하지 않는다.
 
-## 복습 질문
+## 꼬리질문
 
-정렬되지 않은 두 구간에도 같은 병합 절차를 쓰면 왜 실패할까?
-
-자료 구분: **기존 자료** — 알고리즘·자료구조 노트와 대학 강의의 원리·예제. **공식 자료 보완** — 복잡도 전제·경계 조건·Java 계약.
+1. 정렬되지 않은 두 구간에도 같은 병합 절차를 쓰면 왜 실패할까?
+2. 병합 비교에서 <=를 쓰면 왼쪽과 오른쪽의 같은 키 중 무엇이 먼저 나올까?
+3. 이 구현이 생성하는 임시 배열과 재귀 스택의 최대 동시 공간을 어떻게 구분할까?
 
 </details>
 
 ## 참고 자료
 
 - [Princeton · Mergesort](https://algs4.cs.princeton.edu/22mergesort/) — 분할·병합 과정과 보조 배열 비용을 확인한다.
-- [홍정모 연구소](https://honglab.co.kr/) — 기존 학습 노트의 원 강의 출처. 강의의 설명과 실습 맥락을 더 확인한다.

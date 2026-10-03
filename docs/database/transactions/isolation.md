@@ -13,19 +13,43 @@
 
 격리 수준은 읽기 현상과 직렬 실행에 가까운 정도를 조절한다. 낮은 수준은 더 많은 중간·최신 변경을 볼 수 있고 높은 수준은 락·검증·중단 비용이 생길 수 있다. 같은 데이터를 읽은 뒤 각자 판단하는 업무는 읽기 일관성만으로 충분하지 않을 수 있다. 엔진의 스냅샷·락 규칙을 확인한다.
 
-## 예제
+## Java 예제
 
-두 요청이 재고 1을 읽고 각각 판매 가능하다고 판단한다. 조건부 UPDATE나 락·버전 검증 없이 별도 저장하면 제한을 어길 수 있다.
+전용 실습 연결을 가정한다. REPEATABLE READ의 구체적 동작은 DB별로 다르다.
+
+```java
+import java.sql.*;
+
+static int readTwice(Connection c) throws SQLException {
+    c.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
+    c.setAutoCommit(false);
+    try (Statement s = c.createStatement()) {
+        try (ResultSet r = s.executeQuery("SELECT balance FROM accounts WHERE id=1")) {
+            r.next();
+            System.out.println(r.getInt(1));
+        }
+        try (ResultSet r = s.executeQuery("SELECT balance FROM accounts WHERE id=1")) {
+            r.next();
+            int value = r.getInt(1);
+            c.commit();
+            return value;
+        }
+    } catch (SQLException e) {
+        c.rollback();
+        throw e;
+    }
+}
+```
 
 ## 주의점
 
 격리 수준만 높이면 모든 동시성 문제가 자동 해결된다고 주장하지 않는다. 실패 시 전체 트랜잭션 재시도가 필요한 경우도 있다.
 
-## 복습 질문
+## 꼬리질문
 
-반복 읽기가 같다는 사실만으로 서로 다른 행의 업무 불변식이 지켜질까?
-
-자료 구분: **기존 자료** — DB 강의와 저장 구조 복습 메모의 개념. **공식 자료 보완** — SQL·인덱스·버전 읽기의 제품별 조건.
+1. 반복 읽기가 같다는 사실만으로 서로 다른 행의 업무 불변식이 지켜질까?
+2. 두 SELECT 사이 다른 연결이 같은 행을 갱신하면 선택한 DB의 격리 수준에서는 무엇을 보게 될까?
+3. 각각 다른 행을 수정하는 두 트랜잭션이 공통 업무 규칙을 깨는 write skew는 어떻게 막을까?
 
 </details>
 

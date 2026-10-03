@@ -13,19 +13,27 @@
 
 패키지는 같은 이름의 타입 충돌과 접근 범위를 관리한다. 라이브러리는 재사용할 클래스·자원을 배포하며 JAR로 묶을 수 있다. Java 모듈 시스템에서는 module-info로 필요한 모듈과 외부에 공개하는 패키지를 선언한다. 클래스패스 사용과 모듈패스 사용은 같은 규칙으로 모두 동작하지 않으므로 실행·빌드 설정을 구분한다.
 
-## 예제
+## Java 예제
 
-모듈 A가 B의 공개 패키지 타입을 사용하려면 필요한 읽기 관계와 B의 exports를 확인한다. 리플렉션은 opens 등 별도의 접근 조건이 관련될 수 있다.
+```java
+static void inspect(Class<?> type) {
+    Module module = type.getModule();
+    String pkg = type.getPackageName();
+    System.out.println(module.getName());
+    System.out.println(module.isExported(pkg));
+    System.out.println(module.isOpen(pkg));
+} // inspect(String.class): java.base의 java.lang 접근 정책 확인
+```
 
 ## 주의점
 
 코드 폴더 이름만으로 런타임 모듈 경계가 생기지 않는다. 모듈 시스템과 업무의 DDD 모듈을 구분한다.
 
-## 복습 질문
+## 꼬리질문
 
-exports와 리플렉션을 위한 opens의 목적이 다른 이유는?
-
-자료 구분: **기존 자료** — Java 강의와 자료구조 노트의 언어·API 개념. **공식 자료 보완** — Java 21 명세·자원 및 참조 계약.
+1. exports와 리플렉션을 위한 opens의 목적이 다른 이유는?
+2. exports된 패키지에 public 클래스가 있다고 private 필드 리플렉션까지 허용될까?
+3. 클래스패스의 unnamed module과 이름 있는 module의 접근 경계는 어떻게 다를까?
 
 </details>
 

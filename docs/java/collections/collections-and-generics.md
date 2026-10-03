@@ -13,19 +13,32 @@
 
 ArrayList는 배열 기반이라 인덱스 접근이 빠르고 중간 삭제에는 이동이 필요하다. HashMap은 해시와 동등성으로 키를 찾으며 정렬 순서를 보장하지 않는다. TreeMap은 키 순서를 유지한다. `List<Dog>`는 `List<Animal>`의 하위 타입이 아니다. 그렇다면 다른 Animal을 넣어 Dog 목록의 계약을 깨뜨릴 수 있기 때문이다. 읽기나 쓰기 목적에 따라 와일드카드의 범위를 정한다.
 
-## 예제
+## Java 예제
 
-순서 있는 결과는 `List<String>`, 방문 여부는 `Set<Integer>`, 단어 빈도는 `Map<String,Integer>`로 표현한다. 중복을 제거하면서 정렬 순서도 필요하면 TreeSet을 검토한다.
+```java
+import java.util.*;
+
+static double sum(List<? extends Number> values) {
+    double total = 0;
+    for (Number value : values) total += value.doubleValue();
+    return total;
+}
+
+static void copy(List<? extends Number> from, List<? super Number> to) {
+    to.addAll(from);
+}
+// sum(List.of(1,2)) == 3; 읽는 쪽은 extends, 쓰는 쪽은 super
+```
 
 ## 주의점
 
 equals가 같다고 판단한 두 객체는 같은 hashCode를 가져야 한다. 키의 동등성 관련 필드를 저장 후 바꾸면 해시 탐색이 깨질 수 있다.
 
-## 복습 질문
+## 꼬리질문
 
-HashMap과 TreeMap 중 어떤 요구사항이 선택을 가르는가?
-
-자료 구분: **기존 자료** — Java 강의와 자료구조 노트의 언어·API 개념. **공식 자료 보완** — Java 21 명세·자원 및 참조 계약.
+1. HashMap과 TreeMap 중 어떤 요구사항이 선택을 가르는가?
+2. List<Integer>를 List<Number> 변수에 바로 대입할 수 없는 이유는 무엇일까?
+3. extends Number인 리스트에 임의의 Integer를 추가하면 어떤 타입 계약을 위반할 수 있을까?
 
 </details>
 

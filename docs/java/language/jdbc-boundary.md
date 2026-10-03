@@ -13,19 +13,35 @@
 
 JDBC Connection으로 Statement·PreparedStatement를 만들고 ResultSet을 읽는다. autoCommit이 켜져 있으면 문장별 확정 동작을 확인해야 하며 여러 변경을 묶을 때는 적절한 트랜잭션 설정과 rollback 처리가 필요하다. 연결·명령·결과 자원을 제때 닫고 예외 원인을 보존한다. Spring·JPA를 사용해도 아래의 연결 점유·트랜잭션 비용은 사라지지 않는다.
 
-## 예제
+## Java 예제
 
-값은 `statement.setString(1, name)`처럼 바인딩한다. 같은 업무의 여러 변경이 모두 성공해야 하면 같은 연결의 명확한 트랜잭션 경계로 묶는다.
+users 테이블과 설정된 DataSource를 받는 예제다. 연결 문자열·비밀번호를 코드에 넣지 않는다.
+
+```java
+import java.sql.*;
+
+import javax.sql.DataSource;
+
+static String name(DataSource pool, long id) throws SQLException {
+    try (Connection c = pool.getConnection();
+            PreparedStatement p = c.prepareStatement("SELECT name FROM users WHERE id = ?")) {
+        p.setLong(1, id);
+        try (ResultSet r = p.executeQuery()) {
+            return r.next() ? r.getString(1) : null;
+        }
+    }
+}
+```
 
 ## 주의점
 
 값 바인딩이 임의로 만든 SQL 식별자까지 보호하지 않는다. 풀 최대 연결 수는 DB 한도·응답 시간·다른 인스턴스와 함께 계산한다.
 
-## 복습 질문
+## 꼬리질문
 
-연결을 오래 반환하지 않으면 CPU가 낮아도 요청이 왜 기다릴 수 있는가?
-
-자료 구분: **기존 자료** — Java 강의와 자료구조 노트의 언어·API 개념. **공식 자료 보완** — Java 21 명세·자원 및 참조 계약.
+1. 연결을 오래 반환하지 않으면 CPU가 낮아도 요청이 왜 기다릴 수 있는가?
+2. try-with-resources가 닫는 Connection은 커넥션 풀에서 어떤 의미를 가질까?
+3. DB 질의가 끝나도 외부 API 호출 동안 연결을 계속 보유하면 풀 대기 시간은 어떻게 변할까?
 
 </details>
 

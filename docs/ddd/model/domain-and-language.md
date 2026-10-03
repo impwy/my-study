@@ -13,19 +13,33 @@
 
 업무 전문가와 개발자가 같은 단어를 다른 뜻으로 쓰면 구현의 불일치가 생긴다. 주문·발급·사용·취소의 의미와 가능한 상태 전이를 대화·테스트·코드에서 일관되게 사용한다. 모델은 실제 업무의 모든 세부를 복제하는 대신 문제 해결에 필요한 개념과 규칙을 선택한다. 단순 CRUD 영역에 모든 패턴을 적용하기보다 복잡한 핵심 규칙에 집중한다.
 
-## 예제
+## Java 예제
 
-쿠폰 발급과 쿠폰 사용을 같은 “처리”로 합치지 않고 각각의 조건·결과·실패 이유를 표현한다. use()는 이미 사용된 상태의 재사용을 거부한다.
+```java
+enum SubscriptionState {
+    ACTIVE,
+    CANCELLED
+}
+
+static class Subscription {
+    SubscriptionState state = SubscriptionState.ACTIVE;
+
+    void cancel() {
+        if (state != SubscriptionState.ACTIVE) throw new IllegalStateException("이미 취소됨");
+        state = SubscriptionState.CANCELLED;
+    }
+}
+```
 
 ## 주의점
 
 DDD는 프레임워크나 폴더 이름으로 완성되지 않는다. 모델과 용어는 새 업무 이해에 따라 계속 조정한다.
 
-## 복습 질문
+## 꼬리질문
 
-같은 “회원”이라는 단어의 의미가 팀마다 다르면 어떤 구현 문제가 생기는가?
-
-자료 구분: **기존 자료** — DDD 강의·도메인 모델·실제 학습 글의 용어·규칙. **공식 자료 보완** — 원저자의 개념 정의와 경계 조건.
+1. 같은 “회원”이라는 단어의 의미가 팀마다 다르면 어떤 구현 문제가 생기는가?
+2. cancel이라는 업무 용어를 모델 메서드로 표현하면 단순 상태 setter보다 무엇을 드러낼까?
+3. 기획·운영·개발이 ACTIVE를 다르게 해석하면 상태 전이와 테스트에 어떤 문제가 생길까?
 
 </details>
 

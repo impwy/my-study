@@ -13,23 +13,46 @@
 
 음수 사이클이 없는 최단 단순 경로에는 최대 V−1개의 간선이 있다. 매 회차 모든 간선을 완화하면 그보다 긴 후보 경로까지 점차 반영한다. V−1회 이후에도 개선되면 반복해서 비용을 낮출 수 있는 사이클이 있다는 증거다. 무한대 거리의 정점에서 완화하지 않는다.
 
-## 예제
+## Java 예제
 
-A→B=4,B→C=−2이면 C의 거리는 2로 갱신된다. 환율을 −log(rate)로 바꾸면 곱셈 사이클을 합의 음수 사이클 문제로 모델링할 수 있다.
+경로 합이 long 범위 안인 입력을 가정한다.
+
+```java
+import java.util.*;
+
+record Edge(int from, int to, int weight) {}
+
+static long[] shortest(int n, List<Edge> edges, int start) {
+    long[] d = new long[n];
+    Arrays.fill(d, Long.MAX_VALUE);
+    d[start] = 0;
+    for (int pass = 0; pass < n; pass++) {
+        boolean changed = false;
+        for (Edge e : edges)
+            if (d[e.from()] != Long.MAX_VALUE && d[e.from()] + e.weight() < d[e.to()]) {
+                d[e.to()] = d[e.from()] + e.weight();
+                changed = true;
+                if (pass == n - 1)
+                    throw new IllegalArgumentException("reachable negative cycle");
+            }
+        if (!changed) break;
+    }
+    return d;
+}
+```
 
 ## 주의점
 
 환율 예제의 수학 모델을 실제 무위험 수익 보장으로 해석하지 않는다. 도달 불가능한 사이클 탐지는 별도 시작점 설정이 필요하다.
 
-## 복습 질문
+## 꼬리질문
 
-왜 V−1회 뒤의 개선이 음수 사이클의 단서가 될까?
-
-자료 구분: **기존 자료** — 알고리즘·자료구조 노트와 대학 강의의 원리·예제. **공식 자료 보완** — 복잡도 전제·경계 조건·Java 계약.
+1. 왜 V−1회 뒤의 개선이 음수 사이클의 단서가 될까?
+2. 도달할 수 없는 정점의 거리에서 간선 비용을 더하지 않는 이유는 무엇일까?
+3. 시작점에서 도달할 수 없는 음수 사이클도 이 코드가 찾아낼까?
 
 </details>
 
 ## 참고 자료
 
 - [Princeton · Shortest Paths](https://algs4.cs.princeton.edu/44sp/) — 가중치 조건에 따른 최단 경로 알고리즘을 비교한다.
-- [홍정모 연구소](https://honglab.co.kr/) — 기존 학습 노트의 원 강의 출처. 강의의 설명과 실습 맥락을 더 확인한다.

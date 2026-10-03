@@ -13,19 +13,37 @@
 
 빈 칸·채워진 칸을 나타내는 세마포어와 버퍼 구조를 보호하는 mutex를 조합할 수 있다. 생산자는 빈 칸을 확보하고 넣은 뒤 항목 수를 알린다. 소비자는 반대로 처리한다. 대기 중 다른 실행이 상태를 바꿀 수 있으므로 조건 대기는 보통 while 검사로 감싼다.
 
-## 예제
+## Java 예제
 
-용량 2 버퍼가 꽉 찼다면 생산자는 소비자가 꺼낼 때까지 기다린다. 빈 버퍼에서는 소비자가 기다린다.
+```java
+import java.util.concurrent.*;
+
+static void demo() throws InterruptedException {
+    BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(1);
+    Thread producer =
+            new Thread(
+                    () -> {
+                        try {
+                            queue.put(42);
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                        }
+                    });
+    producer.start();
+    System.out.println(queue.take());
+    producer.join();
+}
+```
 
 ## 주의점
 
 버퍼 락을 잡은 채 공간 확보를 기다리면 다른 작업도 못 움직일 수 있다. 대기와 락 획득 순서를 검토한다.
 
-## 복습 질문
+## 꼬리질문
 
-notify를 받았다는 사실만으로 항목이 남아 있다고 믿으면 왜 위험할까?
-
-자료 구분: **기존 자료** — 대학 운영체제 강의와 기존 복습 메모의 원리. **공식 자료 보완** — 동기화·메모리·장치 조건.
+1. notify를 받았다는 사실만으로 항목이 남아 있다고 믿으면 왜 위험할까?
+2. 용량이 1인 큐에 생산자가 두 번째 항목을 넣으려 하면 언제 진행할 수 있을까?
+3. 소비자를 종료할 때 단순히 큐를 비우는 것 외에 어떤 종료 신호가 필요할까?
 
 </details>
 

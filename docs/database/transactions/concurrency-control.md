@@ -13,19 +13,42 @@
 
 충돌하는 연산의 순서가 어떤 직렬 실행과 같은지 분석하면 직렬 가능성을 판단할 수 있다. 2단계 락 규약은 락을 늘리는 단계가 끝난 뒤에는 새 락을 얻지 않는 규칙으로 충돌 직렬 가능성을 제공한다. 커밋까지 어떤 락을 유지하는지에 따라 연쇄 롤백과 회복 특성이 달라진다.
 
-## 예제
+## Java 예제
 
-A가 X를 읽는 동안 B가 X를 바꾸지 못하게 공유·배타 락의 충돌을 사용한다. 서로 다른 행의 락을 반대 순서로 획득하면 교착이 가능하다.
+전용 연결과 FOR UPDATE를 지원하는 DB를 가정한다.
+
+```java
+import java.sql.*;
+
+static void decrement(Connection c, long id) throws SQLException {
+    c.setAutoCommit(false);
+    try (PreparedStatement lock =
+                    c.prepareStatement("SELECT stock FROM products WHERE id=? FOR UPDATE");
+            PreparedStatement update =
+                    c.prepareStatement("UPDATE products SET stock=stock-1 WHERE id=?")) {
+        lock.setLong(1, id);
+        try (ResultSet r = lock.executeQuery()) {
+            if (!r.next() || r.getInt(1) <= 0) throw new SQLException("sold out");
+        }
+        update.setLong(1, id);
+        update.executeUpdate();
+        c.commit();
+    } catch (SQLException e) {
+        c.rollback();
+        throw e;
+    }
+}
+```
 
 ## 주의점
 
 2PL과 두 단계 커밋(2PC)은 다른 개념이다. 락이 있어도 대기·타임아웃·교착 복구 정책이 필요하다.
 
-## 복습 질문
+## 꼬리질문
 
-직렬 가능한 실행이 항상 회복 가능한 실행인 것은 아닐 수 있는 이유는?
-
-자료 구분: **기존 자료** — DB 강의와 저장 구조 복습 메모의 개념. **공식 자료 보완** — SQL·인덱스·버전 읽기의 제품별 조건.
+1. 직렬 가능한 실행이 항상 회복 가능한 실행인 것은 아닐 수 있는 이유는?
+2. FOR UPDATE로 잠근 뒤 트랜잭션을 끝내기 전에 다른 요청이 같은 행을 수정하려 하면 어떻게 될까?
+3. 여러 상품을 서로 다른 순서로 잠그면 어떤 교착과 재시도 정책이 필요할까?
 
 </details>
 

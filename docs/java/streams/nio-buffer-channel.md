@@ -13,19 +13,29 @@
 
 버퍼에 데이터를 채우면 position이 전진한다. flip은 limit를 현재 position으로 두고 position을 시작으로 돌려 읽을 준비를 한다. clear는 다음 쓰기를 위한 상태 재설정이며 데이터를 안전하게 지우는 연산이 아니다. Channel도 모든 타입이 같은 I/O·블로킹 모델을 갖지는 않는다. 부분 읽기·쓰기와 남은 데이터를 처리해야 한다.
 
-## 예제
+## Java 예제
 
-버퍼에 8바이트를 채운 뒤 flip하면 limit는 8이 된다. 채널 쓰기가 8바이트 전체를 한 번에 소비한다고 가정하지 말고 remaining을 확인한다.
+```java
+import java.nio.ByteBuffer;
+
+static void demo() {
+    ByteBuffer buffer = ByteBuffer.allocate(8);
+    buffer.putInt(42); // position=4, limit=8
+    buffer.flip(); // position=0, limit=4
+    System.out.println(buffer.getInt()); // 42
+    buffer.clear(); // 읽을 내용 삭제가 아니라 인덱스 초기화
+}
+```
 
 ## 주의점
 
 clear 전에 아직 처리할 데이터가 남았으면 덮어쓸 수 있다. Selector로 다루는 채널과 파일 채널의 조건을 구분한다.
 
-## 복습 질문
+## 꼬리질문
 
-flip 없이 채운 버퍼를 읽으면 position과 limit가 어떻게 잘못 쓰일 수 있는가?
-
-자료 구분: **기존 자료** — Java 강의와 자료구조 노트의 언어·API 개념. **공식 자료 보완** — Java 21 명세·자원 및 참조 계약.
+1. flip 없이 채운 버퍼를 읽으면 position과 limit가 어떻게 잘못 쓰일 수 있는가?
+2. flip과 clear는 position·limit를 각각 어떻게 바꿀까?
+3. Channel.write가 일부만 썼다면 남은 바이트를 어떻게 반복해서 보내야 할까?
 
 </details>
 

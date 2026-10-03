@@ -13,19 +13,47 @@
 
 양방향 관계는 두 객체의 참조와 하나의 DB 외래 키로 표현될 수 있다. 일반적인 양방향 일대다·다대일 매핑에서는 외래 키를 가진 다대일 쪽이 주인이다. 반대편 컬렉션만 변경하면 DB 관계에 반영되지 않을 수 있다. 주인 쪽 외래 키 관계를 설정하면서 반대편 컬렉션도 함께 맞추어 같은 트랜잭션의 객체 그래프를 일관되게 만든다.
 
-## 예제
+## Java 예제
 
-`orderLine.changeOrder(order)`에서 line.order를 설정하고 order.lines에도 추가한다. 실제 편의 메서드에는 기존 관계 제거·중복 방지도 고려한다.
+Jakarta Persistence. ID는 별도로 부여하며 add는 양쪽 자바 참조를 일관되게 유지한다.
+
+```java
+import jakarta.persistence.*;
+
+import java.util.*;
+
+@Entity
+static class Purchase {
+    @Id Long id;
+
+    @OneToMany(mappedBy = "purchase")
+    List<Line> lines = new ArrayList<>();
+
+    void add(Line line) {
+        lines.add(line);
+        line.purchase = this;
+    }
+}
+
+@Entity
+static class Line {
+    @Id Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "purchase_id")
+    Purchase purchase;
+}
+```
 
 ## 주의점
 
 cascade는 작업 전파이고 fetch는 로딩 전략이다. orphanRemoval은 부모에서 제거된 자식의 삭제 의미로 공유 객체에는 신중히 사용한다.
 
-## 복습 질문
+## 꼬리질문
 
-부모의 컬렉션에만 자식을 추가했는데 외래 키가 설정되지 않는 이유는?
-
-자료 구분: **기존 자료** — JPA 가이드·워크북·강의의 매핑·조회 개념. **공식 자료 보완** — Hibernate 6.6과 Spring의 정확한 동작 경계.
+1. 부모의 컬렉션에만 자식을 추가했는데 외래 키가 설정되지 않는 이유는?
+2. purchase.lines만 수정하고 line.purchase를 설정하지 않으면 외래키 변경이 왜 누락될까?
+3. 연관관계 주인과 애그리거트의 업무상 소유자가 같은 개념이라고 볼 수 있을까?
 
 </details>
 

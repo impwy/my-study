@@ -13,19 +13,41 @@
 
 복합 인덱스 `(user_id, created_at)`는 먼저 user_id로 묶고 그 안에서 created_at 순서를 갖는다. 선두 조건과 범위 조건이 어떤 부분을 좁히는지 생각한다. 조건에 인덱스가 있어도 선택도가 낮거나 함수를 적용하거나 비용이 더 크면 계획은 달라질 수 있다. 실행 계획의 추정과 실제 소요 시간·행 수를 함께 관찰한다.
 
-## 예제
+## Java 예제
 
-사용자의 최근 주문 조회 `WHERE user_id = ? ORDER BY created_at DESC`에 맞는 복합 인덱스를 검토한다. 운영과 비슷한 분포에서 후보를 비교한다.
+MySQL JDBC 연결과 orders 스키마가 필요하다. key·rows는 계획의 추정 정보다.
+
+```java
+import java.sql.*;
+
+static void explain(Connection c, long tenant) throws SQLException {
+    try (PreparedStatement p =
+            c.prepareStatement(
+                    "EXPLAIN SELECT id FROM orders WHERE tenant_id=? ORDER BY created_at,id"
+                        + " LIMIT 20")) {
+        p.setLong(1, tenant);
+        try (ResultSet r = p.executeQuery()) {
+            while (r.next())
+                System.out.println(
+                        r.getString("key")
+                                + ":"
+                                + r.getLong("rows")
+                                + ":"
+                                + r.getString("Extra"));
+        }
+    }
+}
+```
 
 ## 주의점
 
 인덱스만 추가해 모든 느린 쿼리를 해결하지 않는다. SELECT *·대량 결과·N+1·커넥션 대기도 별도 원인이 될 수 있다.
 
-## 복습 질문
+## 꼬리질문
 
-두 컬럼 순서를 바꾸면 어떤 질의의 사용 가능 범위가 달라지는가?
-
-자료 구분: **기존 자료** — JPA·DB·조회 최적화 자료의 원리. **공식 자료 보완** — MySQL 8.4 InnoDB 동작.
+1. 두 컬럼 순서를 바꾸면 어떤 질의의 사용 가능 범위가 달라지는가?
+2. 인덱스가 (tenant_id, created_at, id)이면 조건과 정렬을 어떤 순서로 활용할 수 있을까?
+3. EXPLAIN의 추정 rows가 작아도 실제로 느리다면 어떤 실행 측정과 데이터 분포를 확인할까?
 
 </details>
 

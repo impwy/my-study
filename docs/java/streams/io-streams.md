@@ -13,19 +13,31 @@
 
 파일·소켓에서 바이트를 읽고 필요하면 지정한 문자셋으로 문자로 변환한다. 문자와 바이트의 일대일 대응을 가정하면 다중 바이트 문자를 깨뜨릴 수 있다. 버퍼는 시스템 호출 횟수를 줄이는 데 도움을 주지만 flush와 close의 의미가 다르다. read는 요청한 길이보다 적게 읽거나 EOF를 반환할 수 있으므로 남은 범위와 종료 조건을 관리한다.
 
-## 예제
+## Java 예제
 
-텍스트 파일은 `Files.newBufferedReader(path, StandardCharsets.UTF_8)`처럼 인코딩을 명시한다. 바이너리 이미지에는 문자 Reader를 사용하지 않는다.
+```java
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+
+static String decode(byte[] data) throws IOException {
+    try (var reader =
+            new BufferedReader(
+                    new InputStreamReader(
+                            new ByteArrayInputStream(data), StandardCharsets.UTF_8))) {
+        return reader.readLine();
+    }
+} // decode("안녕".getBytes(StandardCharsets.UTF_8)) → "안녕"
+```
 
 ## 주의점
 
 flush가 파일의 장애 내구성까지 보장한다고 일반화하지 않는다. 자원은 try-with-resources로 사용 범위에 맞게 닫는다.
 
-## 복습 질문
+## 꼬리질문
 
-한글 파일을 잘못된 문자셋으로 읽으면 바이트는 남아 있어도 글자가 깨지는 이유는?
-
-자료 구분: **기존 자료** — Java 강의와 자료구조 노트의 언어·API 개념. **공식 자료 보완** — Java 21 명세·자원 및 참조 계약.
+1. 한글 파일을 잘못된 문자셋으로 읽으면 바이트는 남아 있어도 글자가 깨지는 이유는?
+2. InputStream과 Reader는 각각 어떤 단위로 입력을 해석할까?
+3. 다른 문자셋으로 잘못 디코딩한 문자열을 다시 저장하면 원본 바이트를 항상 복구할 수 있을까?
 
 </details>
 

@@ -13,19 +13,33 @@
 
 파일을 수정하면 작업 트리가 바뀌고 add로 변경을 인덱스에 준비한다. 이후 commit은 그 인덱스의 내용을 기록한다. add 뒤 같은 파일을 더 수정하면 준비된 내용과 현재 파일이 다를 수 있다. 브랜치는 파일 복제본 폴더가 아니라 커밋을 가리키는 참조이며 새 커밋으로 이동한다. HEAD는 현재 체크아웃의 위치를 나타낸다.
 
-## 예제
+## Java 예제
 
-`git diff`로 작업 트리의 미준비 변경을, `git diff --staged`로 다음 커밋 내용을 확인한다. 작성한 파일 전부가 자동으로 커밋되는 것은 아니다.
+Git 저장소에서 실행하는 Java ProcessBuilder 예제이며 조회 명령만 사용한다.
+
+```java
+static void inspect() throws Exception {
+    for (String[] args :
+            new String[][] {
+                {"diff", "--stat"}, {"diff", "--cached", "--stat"}, {"log", "-1", "--oneline"}
+            }) {
+        var command = new java.util.ArrayList<String>();
+        command.add("git");
+        command.addAll(java.util.List.of(args));
+        new ProcessBuilder(command).inheritIO().start().waitFor();
+    }
+}
+```
 
 ## 주의점
 
 학습 자료의 개발·배포 명령을 근거로 정리한 기본 개념이다. 사용자의 모든 Git 사용 이력을 조사한 것으로 해석하지 않는다.
 
-## 복습 질문
+## 꼬리질문
 
-add한 뒤 같은 파일을 수정하면 commit에는 어떤 버전이 들어가는가?
-
-자료 구분: **기존 자료** — 개발·배포 자료의 Git 명령 사용 맥락. **공식 자료 보완** — Pro Git의 상태·병합·복구 설명.
+1. add한 뒤 같은 파일을 수정하면 commit에는 어떤 버전이 들어가는가?
+2. 첫 diff와 --cached diff는 각각 어떤 두 영역을 비교할까?
+3. add 후 파일을 다시 수정하면 한 파일이 두 diff에 동시에 보일 수 있는 이유는 무엇일까?
 
 </details>
 

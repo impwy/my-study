@@ -13,19 +13,30 @@
 
 tmux는 서버 프로세스가 유지되는 동안 터미널 세션을 보존하며 분리했다가 다시 붙을 수 있게 한다. session 안에 window와 pane을 나누어 작업·로그를 볼 수 있다. SSH 연결이 끊겨도 tmux 안의 작업을 계속 둘 수 있지만 서버 재부팅·프로세스 종료에 대한 영속 실행 관리를 대신하지 않는다. 운영 서비스는 서비스 관리자와 재시작·로그 정책을 검토한다.
 
-## 예제
+## Java 예제
 
-`tmux new -s study`로 시작하고 detach한 뒤 `tmux attach -t study`로 돌아온다. 작업 완료 여부는 창 존재가 아니라 로그와 종료 상태로 확인한다.
+작업 로그를 읽는 Java 예제다. tmux 실행·세션 관리는 별도의 셸 도구가 맡는다.
+
+```java
+import java.nio.file.*;
+import java.util.stream.Stream;
+
+static long errorCount(Path log) throws java.io.IOException {
+    try (Stream<String> lines = Files.lines(log)) {
+        return lines.filter(line -> line.contains("ERROR")).count();
+    }
+}
+```
 
 ## 주의점
 
 운영 작업을 남겨 둔 tmux에 중요한 비밀이 보이지 않게 한다. kill-session은 작업을 종료할 수 있으므로 detach와 구분한다.
 
-## 복습 질문
+## 꼬리질문
 
-SSH 재접속이 가능한 것과 서버 재부팅 후 작업 복원이 가능한 것은 왜 다른가?
-
-자료 구분: **기존 자료** — 운영체제 강의와 SSH·셸·tmux 메모의 원리. **공식 자료 보완** — 매뉴얼의 실행 모드·반환값·권한 규칙.
+1. SSH 재접속이 가능한 것과 서버 재부팅 후 작업 복원이 가능한 것은 왜 다른가?
+2. tmux 세션이 연결 종료를 견뎌도 로그 파일과 종료 코드를 따로 남겨야 하는 이유는 무엇일까?
+3. 서버 재부팅 뒤에도 작업을 복원하려면 tmux 외에 어떤 서비스 관리·체크포인트 정책이 필요할까?
 
 </details>
 

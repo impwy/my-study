@@ -13,19 +13,31 @@
 
 인증 후 얻은 사용자 식별자를 바탕으로 역할과 자원 소유권·상태를 검사한다. 클라이언트가 보내는 userId만 믿으면 다른 사용자의 주문을 조회·수정하는 문제가 생길 수 있다. 역할 기반 검사로 관리자 기능을 제한하더라도 개별 객체의 소유권 검사는 따로 필요하다. 세션과 토큰은 탈취·유출·수명 관리의 대상이며 HTTPS만으로 이 문제를 해결하지 않는다.
 
-## 예제
+## Java 예제
 
-로그인한 사용자가 `/orders/42`를 조회할 때 서버는 42번 주문이 그 사용자에게 허용되는지 검사한다. URL을 바꾸는 것만으로 다른 주문이 노출되어서는 안 된다.
+Principal은 서버가 검증한 인증 정보에서 생성한다고 가정한다. 요청 본문의 사용자 ID를 그대로 신뢰하지 않는다.
+
+```java
+record Principal(long userId) {}
+
+record Order(long id, long ownerId) {}
+
+static Order authorize(Principal user, Order order) {
+    if (user == null) throw new SecurityException("authentication required");
+    if (order.ownerId() != user.userId()) throw new SecurityException("forbidden");
+    return order;
+}
+```
 
 ## 주의점
 
 CORS 허용은 인증·인가가 아니다. 클라이언트에서 버튼을 숨겨도 서버의 권한 검사는 필요하다.
 
-## 복습 질문
+## 꼬리질문
 
-정상 토큰을 가진 사용자가 남의 주문 ID를 보내면 어떤 검사가 남아 있는가?
-
-자료 구분: **기존 자료** — 대학 보안 강의의 개념. **공식 자료 보완** — 현행 방어 지침·약한 역사적 알고리즘의 적용 제한.
+1. 정상 토큰을 가진 사용자가 남의 주문 ID를 보내면 어떤 검사가 남아 있는가?
+2. 토큰 서명 검증이 통과해도 order.ownerId를 확인해야 하는 이유는 무엇일까?
+3. 관리자·위임·다중 테넌트 요구가 추가되면 인가 조건을 어느 경계에서 일관되게 검사할까?
 
 </details>
 

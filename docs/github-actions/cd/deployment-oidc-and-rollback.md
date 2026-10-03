@@ -13,19 +13,34 @@
 
 테스트·빌드 뒤 어느 커밋의 산출물을 배포하는지 고정한다. 클라우드 인증은 저장한 장기 키 대신 OIDC 기반 역할을 검토하며 저장소·브랜치·환경 등 신뢰 조건을 제한한다. 배포 명령 성공 뒤 readiness·대표 요청·오류 지표를 확인한다. 실패 시 어떤 이전 버전으로 돌아가며 DB 변경이 호환되는지까지 계획한다.
 
-## 예제
+## Java 예제
 
-main의 보호된 환경에만 배포 역할을 허용한다. 배포 concurrency로 이전·현재 배포가 동시에 운영을 바꾸지 않게 조정한다.
+Java 21 이상. 배포 후 상태 점검 예제이며 OIDC 신뢰·동시 배포 제한·롤백은 워크플로와 배포 시스템에서 구성한다.
+
+```java
+import java.net.URI;
+import java.net.http.*;
+import java.time.Duration;
+
+static void readiness(URI endpoint) throws Exception {
+    try (HttpClient client = HttpClient.newHttpClient()) {
+        var request =
+                HttpRequest.newBuilder(endpoint).timeout(Duration.ofSeconds(5)).GET().build();
+        int status = client.send(request, HttpResponse.BodyHandlers.discarding()).statusCode();
+        if (status != 200) throw new IllegalStateException("readiness=" + status);
+    }
+}
+```
 
 ## 주의점
 
 컨테이너 이미지만 되돌려도 호환되지 않는 DB 마이그레이션은 되돌아가지 않는다. OIDC를 쓴다고 모든 브랜치를 신뢰해도 되는 것은 아니다.
 
-## 복습 질문
+## 꼬리질문
 
-애플리케이션 롤백 전에 DB 스키마 호환성을 확인해야 하는 이유는?
-
-자료 구분: **기존 자료** — CI/CD 가이드와 배포 기록의 흐름. **공식 자료 보완** — 공식 워크플로·인증·권한 조건.
+1. 애플리케이션 롤백 전에 DB 스키마 호환성을 확인해야 하는 이유는?
+2. 배포 명령이 성공해도 readiness 확인이 실패하면 어떤 상태로 배포를 판단해야 할까?
+3. 이 한 번의 점검 외에 버전 확인·대표 요청·오류 지표와 롤백 조건은 어떻게 추가할까?
 
 함께 복습: [워크플로·이벤트·잡·스텝](../workflows/events-jobs-steps.md) · [Actuator 상태와 메트릭](../../spring-boot/actuator/health-and-metrics.md)
 

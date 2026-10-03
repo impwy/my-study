@@ -13,19 +13,45 @@
 
 주문 DB를 커밋한 뒤 이벤트를 발행하기 전에 종료되면 주문만 남을 수 있다. outbox는 같은 DB 트랜잭션에 업무 변경과 보낼 이벤트를 기록하고 별도 전달기가 읽어 발행하게 한다. 발행 뒤 완료 표시 전에 장애가 나면 중복 발행이 가능하므로 소비자도 멱등성을 가진다. 대사는 저장소 간 현재 상태를 비교하지만 처리 중인 이벤트를 즉시 실패라고 판단해서는 안 된다.
 
-## 예제
+## Java 예제
 
-주문과 outbox 행을 함께 커밋하고 전달기가 Kafka로 발행한다. 이벤트 ID로 소비 중복을 방어하고 전달 상태·실패를 추적한다.
+전용 JDBC 연결과 outbox 스키마를 가정한다. outbox는 전송 의도를 저장하며 실제 발행·대사 작업은 별도로 필요하다.
+
+```java
+import java.sql.*;
+
+static void create(Connection c, long orderId, String eventId) throws SQLException {
+    c.setAutoCommit(false);
+    try {
+        try (PreparedStatement p = c.prepareStatement("INSERT INTO orders(id) VALUES (?)")) {
+            p.setLong(1, orderId);
+            p.executeUpdate();
+        }
+        try (PreparedStatement p =
+                c.prepareStatement(
+                        "INSERT INTO outbox(event_id,aggregate_id,status) VALUES"
+                            + " (?,?,'NEW')")) {
+            p.setString(1, eventId);
+            p.setLong(2, orderId);
+            p.executeUpdate();
+        }
+        c.commit();
+    } catch (SQLException e) {
+        c.rollback();
+        throw e;
+    }
+}
+```
 
 ## 주의점
 
 outbox만으로 모든 외부 효과가 정확히 한 번 실행되는 것은 아니다. 대사 때 단순 수치 차이를 무조건 덮어쓰면 진행 중 요청을 망가뜨릴 수 있다.
 
-## 복습 질문
+## 꼬리질문
 
-이벤트 발행 성공 뒤 완료 표시 전에 장애가 나면 어떤 중복을 처리해야 하는가?
-
-자료 구분: **기존 자료** — DB·Kafka·배치·정합성 노트의 공통 원리. **공식 자료 보완** — 제품별 전달·복구 조건; DDIA 책 독서 완료를 뜻하지 않음.
+1. 이벤트 발행 성공 뒤 완료 표시 전에 장애가 나면 어떤 중복을 처리해야 하는가?
+2. 주문과 outbox를 같은 트랜잭션에 넣으면 어느 두 상태의 불일치를 줄일까?
+3. relay가 발행 후 상태 갱신 전에 죽으면 중복 전달을 컨슈머가 어떤 식별자로 처리해야 할까?
 
 </details>
 

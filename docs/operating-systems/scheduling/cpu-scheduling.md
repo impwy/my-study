@@ -13,19 +13,34 @@
 
 FCFS는 도착 순서, SJF는 짧은 CPU burst 우선, Round Robin은 시간 조각을 번갈아 준다. 짧은 작업 우선은 평균 대기를 줄일 수 있지만 길이를 미리 알기 어렵고 긴 작업이 기다릴 수 있다. 너무 짧은 quantum은 교환 비용을, 너무 긴 quantum은 응답 지연을 키운다.
 
-## 예제
+## Java 예제
 
-10초 작업 뒤에 1초 작업 둘이 도착하면 FCFS에서 짧은 작업도 오래 기다릴 수 있다. 선점 방식은 중간에 CPU를 나누어 준다.
+CPU 버스트가 알려져 있고 문맥 교환 비용이 없는 스케줄링 모형이다.
+
+```java
+import java.util.*;
+
+static double averageWait(int[] bursts) { // 도착 시각 모두 0인 비선점 SJF
+    int[] sorted = bursts.clone();
+    Arrays.sort(sorted);
+    long elapsed = 0, waits = 0;
+    for (int burst : sorted) {
+        waits += elapsed;
+        elapsed += burst;
+    }
+    return sorted.length == 0 ? 0 : (double) waits / sorted.length;
+} // {6,2,4} → 대기 0,2,6 → 평균 8/3
+```
 
 ## 주의점
 
 대기 시간과 전체 완료까지의 반환 시간을 혼동하지 않는다. 실제 CPU burst를 완벽히 아는 가정과 실행 가능한 정책을 구분한다.
 
-## 복습 질문
+## 꼬리질문
 
-응답 시간을 줄이는 정책이 처리량에서도 항상 최선일까?
-
-자료 구분: **기존 자료** — 대학 운영체제 강의와 기존 복습 메모의 원리. **공식 자료 보완** — 동기화·메모리·장치 조건.
+1. 응답 시간을 줄이는 정책이 처리량에서도 항상 최선일까?
+2. 작업이 같은 시각에 도착할 때 짧은 작업부터 처리하면 평균 대기 시간이 왜 줄어들까?
+3. 긴 작업이 기다리는 동안 짧은 작업이 계속 들어오면 어떤 기아 방지 정책이 필요할까?
 
 </details>
 

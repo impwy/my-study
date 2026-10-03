@@ -13,23 +13,39 @@
 
 일반 트리의 null 자식 링크에 중위 순회의 predecessor 또는 successor를 연결한다. 순회는 실제 오른쪽 자식이 있으면 그 서브트리의 가장 왼쪽으로 가고, 없으면 successor 스레드를 따른다. 이 연결은 스레드 실행을 뜻하지 않으며 순회를 위한 추가 정보다.
 
-## 예제
+## Java 예제
 
-중위 순서가 1,2,3이면 1의 비어 있는 오른쪽 링크가 다음 방문 2를 가리킬 수 있다. 이를 실제 자식으로 재귀 순회하면 잘못된 경로를 따른다.
+오른쪽 스레드만 둔 표현의 후속 노드 탐색이다. left는 실제 자식 링크다.
+
+```java
+static class Node {
+    int key;
+    Node left, right;
+    boolean rightThread;
+}
+
+static Node leftmost(Node n) {
+    while (n != null && n.left != null) n = n.left;
+    return n;
+}
+
+static Node next(Node n) {
+    return n.rightThread ? n.right : leftmost(n.right);
+} // 오른쪽 스레드가 있으면 right는 자식 대신 중위 후속 노드
+```
 
 ## 주의점
 
 플래그 없이 자식 링크와 혼용하면 사이클처럼 끝나지 않을 수 있다. 스레드의 수와 방향은 구현마다 다르다.
 
-## 복습 질문
+## 꼬리질문
 
-스레드 링크를 자식 링크로 잘못 읽으면 어떤 문제가 생길까?
-
-자료 구분: **기존 자료** — 자료구조 노트와 대학 강의의 표현·연산. **공식 자료 보완** — 비용의 전제·균형 조건·표준 API.
+1. 스레드 링크를 자식 링크로 잘못 읽으면 어떤 문제가 생길까?
+2. 오른쪽 자식이 있을 때 후속 노드가 그 서브트리의 가장 왼쪽 노드인 이유는 무엇일까?
+3. 스레드 여부 플래그 없이 일반 재귀 순회를 적용하면 어떤 순환이 생길 수 있을까?
 
 </details>
 
 ## 참고 자료
 
 - [Princeton · Binary Search Trees](https://algs4.cs.princeton.edu/32bst/) — 순서 불변식과 삭제의 세 가지 경우를 확인한다.
-- [홍정모 연구소](https://honglab.co.kr/) — 기존 학습 노트의 원 강의 출처. 강의의 설명과 실습 맥락을 더 확인한다.

@@ -13,19 +13,46 @@
 
 상위 타입 변수가 하위 객체를 가리킬 수 있다. 호출할 메서드 시그니처는 컴파일 시 확인하고, 재정의된 인스턴스 메서드의 구현은 실행 시 객체를 기준으로 선택한다. 오버로딩은 매개변수 목록이 다른 메서드를 만드는 것으로 컴파일 시 선택 규칙을 따른다. 필드 접근과 static 메서드에는 같은 동적 디스패치 규칙이 적용되지 않는다.
 
-## 예제
+## Java 예제
 
-`Animal animal = new Dog(); animal.sound();`는 Dog가 재정의한 sound를 실행한다. Animal에 없는 Dog 전용 메서드는 그 변수로 바로 호출할 수 없다.
+```java
+static class Animal {
+    String sound() {
+        return "animal";
+    }
+}
+
+static class Dog extends Animal {
+    @Override
+    String sound() {
+        return "dog";
+    }
+}
+
+static String pick(Animal a) {
+    return "Animal overload";
+}
+
+static String pick(Dog d) {
+    return "Dog overload";
+}
+
+static void demo() {
+    Animal a = new Dog();
+    System.out.println(a.sound()); // dog
+    System.out.println(pick(a)); // Animal overload
+}
+```
 
 ## 주의점
 
 상위 타입의 계약을 깨는 하위 타입은 코드 재사용이 되어도 안전한 대체가 아니다. 다운캐스팅이 반복되면 역할 분리를 검토한다.
 
-## 복습 질문
+## 꼬리질문
 
-오버로딩된 메서드 선택과 오버라이딩된 메서드 선택은 언제 결정되는가?
-
-자료 구분: **기존 자료** — Java 강의와 자료구조 노트의 언어·API 개념. **공식 자료 보완** — Java 21 명세·자원 및 참조 계약.
+1. 오버로딩된 메서드 선택과 오버라이딩된 메서드 선택은 언제 결정되는가?
+2. 같은 변수 a를 사용해도 sound와 pick의 선택 시점은 왜 다를까?
+3. 하위 타입이 상위 타입의 계약을 깨면 다형성을 사용하는 호출자에게 어떤 문제가 생길까?
 
 </details>
 

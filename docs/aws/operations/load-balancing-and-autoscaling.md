@@ -13,19 +13,40 @@
 
 로드밸런서는 대상 상태를 확인하고 규칙에 따라 트래픽을 전달한다. Auto Scaling은 정한 지표·정책으로 인스턴스 수를 조정한다. 새 인스턴스가 앱 초기화·캐시 준비·연결 확보를 마치기 전에는 바로 전체 용량을 제공하지 못한다. 앱 서버를 늘려도 공유 DB의 락·연결 수·외부 API 제한이 병목이면 효과가 제한된다.
 
-## 예제
+## Java 예제
 
-CPU 기준 확장과 함께 p95·오류·큐·DB 연결을 관찰한다. 종료되는 인스턴스는 진행 중 요청을 마칠 시간과 트래픽 제외 절차가 필요하다.
+AWS SDK for Java 2.x autoscaling 모듈. 인스턴스 수와 로드밸런서 대상의 health는 따로 확인한다.
+
+```java
+import software.amazon.awssdk.services.autoscaling.AutoScalingClient;
+import software.amazon.awssdk.services.autoscaling.model.DescribeAutoScalingGroupsRequest;
+
+static void capacity(AutoScalingClient asg, String name) {
+    var result =
+            asg.describeAutoScalingGroups(
+                    DescribeAutoScalingGroupsRequest.builder()
+                            .autoScalingGroupNames(name)
+                            .build());
+    result.autoScalingGroups()
+            .forEach(
+                    g ->
+                            System.out.println(
+                                    "desired="
+                                            + g.desiredCapacity()
+                                            + ", instances="
+                                            + g.instances().size()));
+}
+```
 
 ## 주의점
 
 한 인스턴스의 로컬 세션·파일에 의존하면 분산과 교체가 어려워진다. 평균 지표만으로 특정 핫 파티션의 포화를 놓칠 수 있다.
 
-## 복습 질문
+## 꼬리질문
 
-서버 수가 두 배가 되어도 처리량이 그대로일 때 어떤 공유 자원을 확인할까?
-
-자료 구분: **기존 자료** — AWS 강의의 자원·운영 개념. **공식 자료 보완** — 현재 공식 문서의 서비스별 책임·구성 조건.
+1. 서버 수가 두 배가 되어도 처리량이 그대로일 때 어떤 공유 자원을 확인할까?
+2. desired와 현재 인스턴스 수가 같아도 모두 요청을 처리할 준비가 된 것은 왜 아닐까?
+3. 오토스케일이 시작되는 동안 부하를 견디려면 준비 시간·큐·거부 정책을 어떻게 함께 설계할까?
 
 </details>
 
@@ -33,3 +54,4 @@ CPU 기준 확장과 함께 p95·오류·큐·DB 연결을 관찰한다. 종료�
 
 - [AWS · Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html) — 가용성·보안·성능·운영의 설계 기준을 확인한다.
 - [AWS · EC2 User Guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html) — AMI·인스턴스·스토리지·네트워크 수명을 확인한다.
+- [Java API 사용 안내](https://docs.aws.amazon.com/java/api/latest/software/amazon/awssdk/services/autoscaling/AutoScalingClient.html) — 그룹 용량·인스턴스 상태를 조회하는 Java API를 확인한다.

@@ -13,22 +13,51 @@
 
 AMI에는 인스턴스를 시작하는 OS·소프트웨어 구성과 저장 매핑 정보가 있다. 인스턴스가 실행되는 동안의 컴퓨팅 수명과 EBS 볼륨의 수명은 설정에 따라 달라진다. instance store는 인스턴스와 연결된 임시 저장소다. 중단·종료·장애에서 데이터가 어떻게 남는지 따로 확인하고 필요한 백업을 만든다.
 
-## 예제
+## Java 예제
 
-테스트 인스턴스를 종료하기 전에 EBS의 DeleteOnTermination 설정과 스냅샷을 확인한다. 애플리케이션 파일이 있다고 재시작·종료 후 모두 유지된다고 믿지 않는다.
+AWS SDK for Java 2.x ec2 모듈과 구성된 클라이언트가 필요하다. 아래에서 조회하는 EBS 매핑을 가정한다.
+
+```java
+import software.amazon.awssdk.services.ec2.Ec2Client;
+import software.amazon.awssdk.services.ec2.model.DescribeInstancesRequest;
+
+static void inspect(Ec2Client ec2, String id) {
+    var response =
+            ec2.describeInstances(DescribeInstancesRequest.builder().instanceIds(id).build());
+    response.reservations()
+            .forEach(
+                    r ->
+                            r.instances()
+                                    .forEach(
+                                            i -> {
+                                                System.out.println(i.imageId());
+                                                i.blockDeviceMappings()
+                                                        .forEach(
+                                                                b -> {
+                                                                    if (b.ebs() != null)
+                                                                        System.out.println(
+                                                                                b.deviceName()
+                                                                                        + ":"
+                                                                                        + b.ebs()
+                                                                                                .volumeId());
+                                                                });
+                                            }));
+}
+```
 
 ## 주의점
 
 인스턴스 중단과 종료는 다르다. 실행 중지 후에도 남는 저장 자원의 수명과 요금 정책은 따로 확인한다.
 
-## 복습 질문
+## 꼬리질문
 
-컴퓨팅 인스턴스를 교체해도 데이터를 유지하려면 어떤 저장 조건이 필요한가?
-
-자료 구분: **기존 자료** — AWS 강의의 자원·운영 개념. **공식 자료 보완** — 현재 공식 문서의 서비스별 책임·구성 조건.
+1. 컴퓨팅 인스턴스를 교체해도 데이터를 유지하려면 어떤 저장 조건이 필요한가?
+2. AMI ID와 EBS 볼륨 ID는 각각 어떤 자원을 식별할까?
+3. 인스턴스를 종료한 뒤 볼륨을 유지하려면 DeleteOnTermination과 백업에서 무엇을 확인할까?
 
 </details>
 
 ## 참고 자료
 
 - [AWS · EC2 User Guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html) — AMI·인스턴스·스토리지·네트워크 수명을 확인한다.
+- [Java API 사용 안내](https://docs.aws.amazon.com/java/api/latest/software/amazon/awssdk/services/ec2/Ec2Client.html) — 인스턴스·블록 장치 매핑 조회에 쓰는 SDK API를 확인한다.

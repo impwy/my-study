@@ -13,19 +13,27 @@
 
 컬렉션에서 스트림을 만들고 filter·map 같은 중간 연산을 연결한 뒤 collect·reduce 같은 최종 연산으로 결과를 얻는다. 중간 연산 선언만으로 모든 원소가 처리되는 것은 아니다. 최종 연산과 단축 평가에 따라 실제 처리 범위가 달라진다. 같은 스트림을 최종 연산 뒤 다시 사용하는 것은 지원되지 않는다. 반복문보다 항상 빠르다는 기준으로 선택하지 않는다.
 
-## 예제
+## Java 예제
 
-`names.stream().filter(n -> n.length() > 2).map(String::toUpperCase).toList()`는 조건을 만족하는 이름의 대문자 목록을 만든다. 원본 이름 목록을 직접 수정하는 작업은 아니다.
+```java
+import java.util.List;
+
+static void demo() {
+    var stream = List.of(1, 2, 3).stream().filter(x -> x > 1).map(x -> x * 10);
+    System.out.println(stream.toList()); // [20,30]: 최종 연산 때 평가
+    // stream.count()를 이어서 호출하면 이미 사용한 스트림이므로 실패
+}
+```
 
 ## 주의점
 
 parallelStream이 공유 ArrayList를 안전하게 만들어 주지 않는다. 병렬 처리의 비용·순서·블로킹 작업을 따로 고려한다.
 
-## 복습 질문
+## 꼬리질문
 
-filter와 map만 연결하고 최종 연산을 하지 않으면 왜 결과가 없는가?
-
-자료 구분: **기존 자료** — Java 강의와 자료구조 노트의 언어·API 개념. **공식 자료 보완** — Java 21 명세·자원 및 참조 계약.
+1. filter와 map만 연결하고 최종 연산을 하지 않으면 왜 결과가 없는가?
+2. filter와 map의 순서를 바꾸면 결과와 처리 비용은 항상 같을까?
+3. 공유 가변 상태를 수정하는 map을 parallel stream에서 실행하면 어떤 위험이 있을까?
 
 </details>
 

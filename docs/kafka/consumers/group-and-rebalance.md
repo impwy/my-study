@@ -13,19 +13,40 @@
 
 subscribe를 사용한 그룹 소비에서는 코디네이션으로 파티션이 할당된다. 멤버가 추가·제거되거나 구독 파티션이 달라지면 할당이 바뀔 수 있다. 멤버가 파티션 수보다 많으면 일부는 유휴 상태다. 리밸런스에서 넘겨주는 파티션의 미완료 작업·오프셋을 어떻게 처리할지 정해야 한다. static membership과 cooperative 방식은 이동·중단 비용을 줄이는 선택지이며 버전·설정 조건을 확인한다.
 
-## 예제
+## Java 예제
 
-파티션 3개에 같은 그룹 컨슈머 5개를 두어도 다섯 개가 모두 서로 다른 파티션을 동시에 읽지는 못한다. 그룹을 둘로 나누면 각각 로그를 독립 소비한다.
+Kafka clients와 구성된 consumer가 필요하다. 콜백 로깅만 보여 주며 실제 오프셋·진행 중 작업 처리는 별도로 구현한다.
+
+```java
+import org.apache.kafka.clients.consumer.*;
+import org.apache.kafka.common.TopicPartition;
+
+import java.util.*;
+
+static void subscribe(KafkaConsumer<String, String> consumer) {
+    consumer.subscribe(
+            List.of("orders"),
+            new ConsumerRebalanceListener() {
+                public void onPartitionsRevoked(Collection<TopicPartition> p) {
+                    System.out.println("revoked=" + p);
+                }
+
+                public void onPartitionsAssigned(Collection<TopicPartition> p) {
+                    System.out.println("assigned=" + p);
+                }
+            });
+}
+```
 
 ## 주의점
 
 다중 작업 스레드 사용이 KafkaConsumer 객체의 스레드 안전성을 뜻하지 않는다. 파티션별 처리 순서와 커밋 위치를 별도로 관리한다.
 
-## 복습 질문
+## 꼬리질문
 
-컨슈머 수를 계속 늘려도 처리량이 증가하지 않는 파티션 조건은?
-
-자료 구분: **기존 자료** — Kafka 강의와 이벤트 처리 노트의 흐름. **공식 자료 보완** — Kafka 4.1 설정·복제·커밋 보장 범위.
+1. 컨슈머 수를 계속 늘려도 처리량이 증가하지 않는 파티션 조건은?
+2. 파티션 3개인 그룹에 컨슈머 5개가 있으면 동시에 담당할 수 있는 컨슈머 수는 얼마일까?
+3. 파티션을 잃을 때 진행 중 작업과 커밋을 처리하지 않으면 어떤 중복·순서 문제가 생길까?
 
 </details>
 

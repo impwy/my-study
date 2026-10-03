@@ -13,19 +13,31 @@
 
 행을 저장하는 클러스터드 인덱스와 별도로 보조 인덱스를 둔다. 보조 인덱스의 레코드는 클러스터드 키를 포함하므로 필요한 컬럼이 보조 인덱스에 없으면 클러스터드 인덱스로 추가 접근할 수 있다. 커버링 인덱스는 해당 조회에 필요한 값을 인덱스에서 얻는 경우다. 기본 키가 없을 때의 키 선택은 InnoDB 규칙에 따른다.
 
-## 예제
+## Java 예제
 
-이메일 보조 인덱스에서 사용자 ID를 찾은 뒤 본문 필드를 읽으려면 행 접근이 추가될 수 있다. ID·이메일만 필요하면 커버링 여부를 확인한다.
+```java
+import java.sql.*;
+
+static void plan(Connection c, String email) throws SQLException {
+    try (PreparedStatement p =
+            c.prepareStatement("EXPLAIN SELECT id FROM users WHERE email=?")) {
+        p.setString(1, email);
+        try (ResultSet r = p.executeQuery()) {
+            while (r.next()) System.out.println(r.getString("Extra"));
+        }
+    }
+} // InnoDB: PK(id), 보조 인덱스(email)를 가정; id는 보조 인덱스에 포함
+```
 
 ## 주의점
 
 클러스터드 인덱스를 “물리 디스크에 항상 완벽히 연속 저장”이라고 해석하지 않는다. 넓은 기본 키는 여러 보조 인덱스 크기에 영향을 준다.
 
-## 복습 질문
+## 꼬리질문
 
-보조 인덱스에서 큰 기본 키를 포함하면 공간 비용이 왜 반복되는가?
-
-자료 구분: **기존 자료** — JPA·DB·조회 최적화 자료의 원리. **공식 자료 보완** — MySQL 8.4 InnoDB 동작.
+1. 보조 인덱스에서 큰 기본 키를 포함하면 공간 비용이 왜 반복되는가?
+2. email 인덱스에서 id만 반환하는 조회와 name까지 반환하는 조회의 추가 접근은 어떻게 다를까?
+3. 기본키를 긴 문자열로 바꾸면 각 보조 인덱스의 공간 비용에 어떤 영향이 있을까?
 
 </details>
 

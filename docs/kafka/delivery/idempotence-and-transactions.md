@@ -13,19 +13,35 @@
 
 레코드를 보낸 뒤 응답이 유실되면 재시도 중복이 생길 수 있다. 멱등 프로듀서는 해당 프로듀서 세션의 전송을 식별해 로그 중복을 제한한다. consume-process-produce를 Kafka 트랜잭션으로 묶고 적절한 격리 소비를 사용하면 Kafka 범위의 정확히 한 번 처리 의미를 구성할 수 있다. 컨슈머의 외부 DB INSERT나 결제 호출은 자동으로 이 트랜잭션에 포함되지 않는다.
 
-## 예제
+## Java 예제
 
-DB 저장 뒤 커밋 전에 장애가 나면 같은 이벤트를 다시 읽을 수 있다. 이벤트 ID UNIQUE와 동일 DB 트랜잭션으로 처리 기록·업무 변경을 묶어 중복 효과를 제한한다.
+Kafka clients. transactional.id·서버·serializer를 설정한 producer를 받으며 initTransactions는 초기화 때 한 번 호출한다. 치명적 오류는 producer를 닫는 별도 정책이 필요하다.
+
+```java
+import org.apache.kafka.clients.producer.*;
+
+static void publish(KafkaProducer<String, String> producer) {
+    producer.initTransactions();
+    producer.beginTransaction();
+    try {
+        producer.send(new ProducerRecord<>("orders", "42", "created"));
+        producer.commitTransaction();
+    } catch (RuntimeException e) {
+        producer.abortTransaction();
+        throw e;
+    }
+}
+```
 
 ## 주의점
 
 자동 커밋 여부만으로 at-most-once·at-least-once를 단정하지 않는다. 실제 처리 완료와 커밋의 순서가 핵심이다.
 
-## 복습 질문
+## 꼬리질문
 
-멱등 프로듀서를 사용해도 컨슈머 결제가 두 번 실행될 수 있는 이유는?
-
-자료 구분: **기존 자료** — Kafka 강의와 이벤트 처리 노트의 흐름. **공식 자료 보완** — Kafka 4.1 설정·복제·커밋 보장 범위.
+1. 멱등 프로듀서를 사용해도 컨슈머 결제가 두 번 실행될 수 있는 이유는?
+2. 컨슈머가 read_uncommitted이면 이 트랜잭션에서 중단한 레코드도 볼 수 있을까?
+3. Kafka 트랜잭션과 컨슈머 처리 중 외부 DB·결제 효과를 같은 원자 경계로 볼 수 없는 이유는 무엇일까?
 
 함께 복습: [컨슈머 오프셋과 커밋](../consumers/offset-and-commit.md) · [멱등 키와 요청 재시도](../../rest-api/idempotency/idempotency-key.md)
 

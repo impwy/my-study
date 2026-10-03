@@ -13,19 +13,35 @@
 
 FROM과 JOIN으로 대상 관계를 만들고 WHERE로 행을 제한한 뒤 GROUP BY로 묶는다. LEFT JOIN은 오른쪽 매칭이 없어도 왼쪽 행을 남긴다. 오른쪽 조건을 WHERE에 두면 NULL 행을 제거해 외부 조인의 의도와 달라질 수 있다. ORDER BY가 없으면 반환 순서를 보장하지 않는다.
 
-## 예제
+## Java 예제
 
-회원과 주문을 LEFT JOIN해 주문 없는 회원을 포함한다. 주문 수를 세면 COUNT(*)와 COUNT(order_id)가 NULL 확장 행에서 다른 결과를 줄 수 있다.
+users·orders 스키마가 있는 JDBC 연결을 받는다.
+
+```java
+import java.sql.*;
+
+static void totals(Connection c, String status) throws SQLException {
+    String sql =
+            "SELECT u.id, COUNT(o.id) FROM users u LEFT JOIN orders o "
+                    + "ON o.user_id=u.id AND o.status=? GROUP BY u.id";
+    try (PreparedStatement p = c.prepareStatement(sql)) {
+        p.setString(1, status);
+        try (ResultSet r = p.executeQuery()) {
+            while (r.next()) System.out.println(r.getLong(1) + ":" + r.getLong(2));
+        }
+    }
+}
+```
 
 ## 주의점
 
 “조회가 예전에 이 순서였다”를 정렬 계약으로 삼지 않는다. JOIN 뒤 행이 늘어난 이유를 키의 카디널리티로 점검한다.
 
-## 복습 질문
+## 꼬리질문
 
-LEFT JOIN의 오른쪽 필터를 ON과 WHERE에 둘 때 왜 결과가 달라질까?
-
-자료 구분: **기존 자료** — DB 강의와 저장 구조 복습 메모의 개념. **공식 자료 보완** — SQL·인덱스·버전 읽기의 제품별 조건.
+1. LEFT JOIN의 오른쪽 필터를 ON과 WHERE에 둘 때 왜 결과가 달라질까?
+2. 주문 없는 사용자의 COUNT(o.id)와 COUNT(*)는 각각 얼마일까?
+3. status 조건을 WHERE로 옮기면 LEFT JOIN의 어떤 행이 제거될까?
 
 </details>
 

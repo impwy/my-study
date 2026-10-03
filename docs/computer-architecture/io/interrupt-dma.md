@@ -13,19 +13,29 @@
 
 프로그램 입출력은 CPU가 장치와 직접 상호작용한다. 인터럽트 방식은 완료·요청을 신호로 알려 CPU가 다른 일을 할 수 있게 한다. DMA는 제어기가 메모리와 장치 사이의 블록 이동을 맡는다. CPU는 초기 설정과 완료 처리에 참여하며 버스·메모리 대역폭은 여전히 공유된다.
 
-## 예제
+## Java 예제
 
-디스크 읽기를 요청한 뒤 CPU가 다른 작업을 수행하고 완료 인터럽트에서 결과를 처리할 수 있다.
+설정 → 다른 작업 → 완료 통지 순서의 모형이다. CompletableFuture가 DMA나 하드웨어 인터럽트를 구현한다는 뜻은 아니다.
+
+```java
+import java.util.concurrent.CompletableFuture;
+
+static void model() {
+    var transfer = CompletableFuture.supplyAsync(() -> new byte[] {1, 2, 3});
+    System.out.println("CPU: 다른 작업");
+    transfer.thenAccept(data -> System.out.println("완료 통지: " + data.length)).join();
+}
+```
 
 ## 주의점
 
 인터럽트는 데이터 전체를 전달하는 방식과 동일하지 않다. DMA라고 CPU 비용·메모리 경합이 모두 0이 되는 것은 아니다.
 
-## 복습 질문
+## 꼬리질문
 
-DMA가 있어도 CPU가 설정과 완료 처리를 맡는 이유는?
-
-자료 구분: **기존 자료** — 대학 컴퓨터구조 강의의 개념. **공식 자료 보완** — 추상 모델의 적용 범위와 용어.
+1. DMA가 있어도 CPU가 설정과 완료 처리를 맡는 이유는?
+2. 전송을 맡긴 뒤 CPU가 다른 일을 할 수 있다는 것과 전송 비용이 0이라는 것은 왜 다를까?
+3. 완료 통지 전에 버퍼를 재사용하면 어떤 소유권 문제가 생길까?
 
 </details>
 

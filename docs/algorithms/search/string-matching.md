@@ -13,23 +13,33 @@
 
 KMP는 일치했던 prefix와 suffix의 관계를 미리 계산해 텍스트 위치를 불필요하게 되돌리지 않는다. Boyer–Moore는 뒤에서 비교하고 불일치 문자·일치 접미부로 이동량을 정한다. Rabin–Karp는 구간 해시를 빠르게 갱신하되 충돌 가능성을 처리한다.
 
-## 예제
+## Java 예제
 
-ABAB 패턴의 앞 AB가 반복된다는 정보를 이용하면 불일치 뒤 처음부터 모든 문자를 다시 비교하지 않아도 된다.
+아래는 기준이 되는 순진한 탐색이다. KMP·해시 기반 탐색과 비교할 때 사용한다.
+
+```java
+static int firstMatch(String text, String pattern) {
+    for (int i = 0; i <= text.length() - pattern.length(); i++) {
+        int j = 0;
+        while (j < pattern.length() && text.charAt(i + j) == pattern.charAt(j)) j++;
+        if (j == pattern.length()) return i;
+    }
+    return -1;
+} // firstMatch("ABABAC", "ABAC") == 2
+```
 
 ## 주의점
 
 문자 인코딩과 길이의 단위를 정한다. Java char 인덱스가 모든 유니코드 문자의 수와 같은 것은 아니다.
 
-## 복습 질문
+## 꼬리질문
 
-해시가 같은 두 구간을 문자열 비교 없이 일치라고 결론 내리면 어떤 문제가 있을까?
-
-자료 구분: **기존 자료** — 알고리즘·자료구조 노트와 대학 강의의 원리·예제. **공식 자료 보완** — 복잡도 전제·경계 조건·Java 계약.
+1. 해시가 같은 두 구간을 문자열 비교 없이 일치라고 결론 내리면 어떤 문제가 있을까?
+2. 예제에서 실패한 접두사를 재사용하면 어떤 문자 비교를 줄일 수 있을까?
+3. Java char 기준 위치와 사람이 세는 글자 위치가 달라질 수 있는 입력은 무엇일까?
 
 </details>
 
 ## 참고 자료
 
 - [Princeton · Substring Search](https://algs4.cs.princeton.edu/53substring/) — 브루트 포스·KMP·Boyer–Moore·Rabin–Karp를 비교한다.
-- [홍정모 연구소](https://honglab.co.kr/) — 기존 학습 노트의 원 강의 출처. 강의의 설명과 실습 맥락을 더 확인한다.

@@ -13,19 +13,28 @@
 
 fork 이후 부모와 자식은 각자의 실행 흐름으로 돌아간다. 실제 메모리 복사는 copy-on-write 등의 구현으로 최적화될 수 있지만 변수 변경이 보통 서로의 주소 공간을 직접 수정하는 것은 아니다. 열린 파일 기술자는 복사되어 같은 열린 파일 설명을 참조할 수 있다. exec가 성공하면 새 프로그램으로 교체되므로 기존 호출 다음으로 정상 반환하지 않는다.
 
-## 예제
+## Java 예제
 
-셸은 자식에서 exec로 명령을 실행하고 부모는 적절히 wait한다. 원래 일지의 “부모에서 PID 0” 메모는 반대로 수정했다.
+Java의 자식 프로세스 API다. 내부 생성 방식은 구현에 따라 다르며 POSIX fork 호출 자체를 직접 노출하지 않는다.
+
+```java
+static void demo() throws Exception {
+    Process child = new ProcessBuilder("/bin/echo", "hello").inheritIO().start();
+    System.out.println("parent=" + ProcessHandle.current().pid() + ", child=" + child.pid());
+    int exit = child.waitFor();
+    System.out.println(exit);
+}
+```
 
 ## 주의점
 
 fork 실패는 -1이다. 다중 스레드 프로세스에서 fork 이후 exec 전 실행 가능한 동작에는 제약이 있으므로 별도로 확인한다.
 
-## 복습 질문
+## 꼬리질문
 
-fork의 반환값으로 부모와 자식의 실행 분기를 어떻게 나누는가?
-
-자료 구분: **기존 자료** — 운영체제 강의와 SSH·셸·tmux 메모의 원리. **공식 자료 보완** — 매뉴얼의 실행 모드·반환값·권한 규칙.
+1. fork의 반환값으로 부모와 자식의 실행 분기를 어떻게 나누는가?
+2. 자식 프로세스의 종료를 기다리는 것과 같은 프로세스의 스레드를 join하는 것은 무엇이 다를까?
+3. exec가 성공한 뒤 기존 프로그램 코드로 돌아오지 않는 이유는 무엇일까?
 
 함께 복습: [프로세스와 스레드](../../operating-systems/processes/process-thread.md) · [프로세스 상태와 문맥 교환](../../operating-systems/processes/context-switch.md)
 

@@ -13,19 +13,34 @@
 
 GET은 안전한 조회 의미를 갖고 PUT·DELETE는 멱등 메서드다. 멱등성은 같은 요청을 여러 번 수행했을 때 의도된 서버 효과가 한 번과 같다는 뜻이며 응답 코드가 매번 같아야 한다는 뜻은 아니다. 400은 잘못된 요청, 401은 인증이 필요하거나 유효하지 않은 경우, 403은 접근 거부, 404는 찾을 수 없음, 409는 현재 상태와 충돌하는 경우에 고려한다.
 
-## 예제
+## Java 예제
 
-처음 DELETE가 204이고 같은 자원에 다시 DELETE가 404여도 최종 자원이 없는 상태는 같을 수 있다. 검증 오류와 서버 내부 실패를 모두 200으로 감추지 않는다.
+Java 21 이상. 전달한 HTTP(S) 주소로 요청을 보낸다.
+
+```java
+import java.net.URI;
+import java.net.http.*;
+import java.time.Duration;
+
+static int getStatus(URI resource) throws Exception {
+    try (HttpClient client =
+            HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(2)).build()) {
+        var request =
+                HttpRequest.newBuilder(resource).timeout(Duration.ofSeconds(3)).GET().build();
+        return client.send(request, HttpResponse.BodyHandlers.discarding()).statusCode();
+    }
+}
+```
 
 ## 주의점
 
 업무상 읽기 요청을 GET으로 만들고 조회할 때마다 과금을 수행하면 safe 계약을 깨뜨릴 수 있다. 로그 등 부수적 기록과 의도된 업무 효과를 구분한다.
 
-## 복습 질문
+## 꼬리질문
 
-멱등 메서드의 두 응답이 다르더라도 멱등성을 만족할 수 있는 이유는?
-
-자료 구분: **기존 자료** — 네트워크 강의·워크북·웹 요청 학습 글의 흐름. **공식 자료 보완** — RFC의 정확한 보장 범위·브라우저 조건.
+1. 멱등 메서드의 두 응답이 다르더라도 멱등성을 만족할 수 있는 이유는?
+2. GET의 멱등성은 응답 본문이나 상태 코드가 매번 같다는 뜻일까?
+3. POST 요청이 타임아웃이면 무조건 재시도하기 전에 어떤 업무 계약을 확인해야 할까?
 
 </details>
 

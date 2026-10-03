@@ -13,19 +13,32 @@
 
 개념 모델의 개체·관계를 DB의 테이블·키로 옮긴다. 기본키는 후보키 중 선택한 식별자이고 외래키는 다른 행의 키를 참조한다. 릴레이션 이론의 집합과 SQL의 중복 행·NULL 규칙을 구분한다. 업무상 유일한 값은 별도 UNIQUE 제약으로 표현할 수 있다.
 
-## 예제
+## Java 예제
 
-주문 order_id는 주문을 식별하고 member_id는 회원을 참조한다. 한 회원은 여러 주문을 갖더라도 주문 ID는 중복되지 않는다.
+키의 유일성과 업무 속성의 유일성을 비교하는 메모리 모형이다.
+
+```java
+import java.util.*;
+
+record User(long id, String email) {}
+
+static void demo() {
+    List<User> users = List.of(new User(1, "a@example.org"), new User(2, "a@example.org"));
+    long distinctIds = users.stream().map(User::id).distinct().count();
+    long distinctEmails = users.stream().map(User::email).distinct().count();
+    System.out.println(distinctIds + "," + distinctEmails); // 2,1
+}
+```
 
 ## 주의점
 
 외래키가 있다고 조회가 항상 빠른 것은 아니다. 제약·참조 방향·인덱스의 역할을 따로 본다.
 
-## 복습 질문
+## 꼬리질문
 
-기본키만 있으면 업무상 중복 가입을 막을 수 있을까?
-
-자료 구분: **기존 자료** — DB 강의와 저장 구조 복습 메모의 개념. **공식 자료 보완** — SQL·인덱스·버전 읽기의 제품별 조건.
+1. 기본키만 있으면 업무상 중복 가입을 막을 수 있을까?
+2. 서로 다른 기본키를 가진 두 행이 같은 이메일을 가질 때 어떤 제약이 추가로 필요할까?
+3. 외래키가 존재하는 것과 업무상 유효한 상태 전이가 보장되는 것은 어떻게 다를까?
 
 </details>
 

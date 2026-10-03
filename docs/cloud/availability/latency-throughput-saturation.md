@@ -13,19 +13,30 @@
 
 처리량은 단위 시간에 완료한 작업 수이고 지연은 한 작업에 걸린 시간이다. p95는 관측값의 약 95%가 그 이하인 경계를 나타낸다. 한 자원이 포화되면 요청을 더 넣어도 완료량이 비례해서 늘지 않고 큐·지연·오류가 증가할 수 있다. CPU·DB 연결·락·외부 API 같은 후보의 사용률과 대기 시간을 함께 관찰한다.
 
-## 예제
+## Java 예제
 
-부하 도구가 초당 5,000건을 계획했다고 서버가 모두 처리한 것은 아니다. 누락 요청·타임아웃·최종 DB 수량을 확인하고 동일 조건의 비교만 한다.
+작은 표본의 nearest-rank 계산이다. 운영 메트릭의 집계·히스토그램 오차와 표본 수를 따로 확인한다.
+
+```java
+import java.util.Arrays;
+
+static long nearestRankP99(long[] millis) {
+    if (millis.length == 0) throw new IllegalArgumentException();
+    long[] sorted = millis.clone();
+    Arrays.sort(sorted);
+    return sorted[(int) Math.ceil(sorted.length * 0.99) - 1];
+}
+```
 
 ## 주의점
 
 응답을 큐 적재 직후 반환하면 API 지연은 줄어도 업무 완료 지연은 남는다. 오류를 제외한 빠른 요청만으로 성능을 평가하지 않는다.
 
-## 복습 질문
+## 꼬리질문
 
-API p99가 줄었는데 최종 저장 완료는 늦어지는 구조를 어떻게 설명할까?
-
-자료 구분: **기존 자료** — 클라우드 강의·부하 실험 가이드·Kubernetes 학습 글의 개념. **공식 자료 보완** — 정의·운영 조건·측정 해석.
+1. API p99가 줄었는데 최종 저장 완료는 늦어지는 구조를 어떻게 설명할까?
+2. 평균이 낮아도 p99가 높다면 어떤 사용자 경험이 숨겨질 수 있을까?
+3. 비동기 처리에서 API 응답 시간만 측정하면 큐 대기와 최종 완료 지연을 어떻게 놓칠까?
 
 함께 복습: [백프레셔와 요청 제한](backpressure-and-rate-limit.md) · [JDBC 연결과 트랜잭션](../../java/language/jdbc-boundary.md)
 

@@ -13,19 +13,32 @@
 
 Servlet 기반 요청은 Tomcat의 수신 처리와 필터·서블릿 흐름을 거쳐 DispatcherServlet으로 전달된다. Spring MVC는 핸들러를 찾고 입력 처리·메서드 실행·결과 변환을 조정한다. Boot의 내장 Tomcat도 서블릿 컨테이너 역할을 한다. 외부 server.xml, 웹 앱 web.xml, Spring XML·@Configuration은 서로 다른 대상을 설정하므로 실제 읽는 설정과 실행 방식을 확인한다.
 
-## 예제
+## Java 예제
 
-외부 Tomcat에 WAR를 넣는 환경과 Boot JAR의 내장 서버 포트를 설정하는 환경은 같은 server.xml 편집을 요구하지 않는다.
+Spring Boot 3.x의 Tomcat 웹 애플리케이션 설정 클래스 안에 두는 예제다. 처리량은 스레드 수만으로 결정되지 않는다.
+
+```java
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
+import org.springframework.context.annotation.Bean;
+
+@Bean
+WebServerFactoryCustomizer<TomcatServletWebServerFactory> tomcat() {
+    return factory ->
+            factory.addConnectorCustomizers(
+                    connector -> connector.setProperty("maxThreads", "100"));
+}
+```
 
 ## 주의점
 
 이 흐름은 Spring MVC 기준이다. WebFlux의 실행 모델을 같은 설명으로 일반화하지 않는다. 설정 파일을 생성했다는 사실만으로 앱에 로드되지는 않는다.
 
-## 복습 질문
+## 꼬리질문
 
-Tomcat의 Connector 설정과 Spring Bean 설정은 각각 어떤 동작을 바꾸는가?
-
-자료 구분: **기존 자료** — Boot·Tomcat·설정 학습 자료의 흐름. **공식 자료 보완** — 자동 구성·설정·상태 노출 조건.
+1. Tomcat의 Connector 설정과 Spring Bean 설정은 각각 어떤 동작을 바꾸는가?
+2. Tomcat 처리 스레드를 100개로 설정해도 DB 커넥션 풀이 10개면 어느 곳에서 대기가 생길까?
+3. Servlet 필터와 Spring MVC 인터셉터는 요청 처리 흐름의 어느 위치에 있을까?
 
 </details>
 

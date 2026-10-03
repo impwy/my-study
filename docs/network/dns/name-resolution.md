@@ -13,19 +13,26 @@
 
 클라이언트는 보통 재귀 리졸버에 이름 해석을 요청한다. 리졸버는 캐시가 없으면 루트·최상위 도메인·권한 서버 정보를 따라 필요한 레코드를 찾는다. 권한 서버는 자신의 영역에 대한 답을 제공하며, 리졸버는 TTL을 기준으로 결과를 재사용한다. DNS 변경이 모든 클라이언트에 동시에 보이지 않는 이유에는 이 캐시 수명이 있다.
 
-## 예제
+## Java 예제
 
-주소 변경 뒤 일부 사용자는 새 A 레코드를 받고 일부는 이전 캐시를 쓸 수 있다. 먼저 질의한 리졸버와 TTL, 실제 권한 응답을 나누어 확인한다.
+```java
+import java.net.*;
+
+static void resolve(String hostname) throws UnknownHostException {
+    for (InetAddress address : InetAddress.getAllByName(hostname))
+        System.out.println(address.getHostAddress());
+}
+```
 
 ## 주의점
 
 DNS가 성공해도 서비스 포트·TLS·HTTP가 정상이라는 뜻은 아니다. CNAME은 HTTP 리다이렉트가 아니라 이름 별칭이다.
 
-## 복습 질문
+## 꼬리질문
 
-권한 서버의 레코드를 바꾸었는데 기존 주소로 접속하는 사용자가 남는 이유는?
-
-자료 구분: **기존 자료** — 네트워크 강의·워크북·웹 요청 학습 글의 흐름. **공식 자료 보완** — RFC의 정확한 보장 범위·브라우저 조건.
+1. 권한 서버의 레코드를 바꾸었는데 기존 주소로 접속하는 사용자가 남는 이유는?
+2. getAllByName이 여러 주소를 돌려주면 호출자가 어떤 연결 선택을 해야 할까?
+3. DNS TTL 외에도 JVM·OS·리졸버 캐시가 주소 변경 반영 시간에 어떤 영향을 줄까?
 
 </details>
 

@@ -13,19 +13,41 @@
 
 애그리거트는 관련 객체를 묶고 루트를 통해 불변식을 지키는 일관성 경계다. 주문 상태와 주문 항목을 어디까지 함께 변경해야 하는지 먼저 정한다. 도메인 이벤트는 OrderPlaced처럼 이미 발생한 사실을 표현한다. 다른 경계가 이벤트를 반영하는 과정은 즉시 같은 트랜잭션이 아닐 수 있으므로 지연·중복·실패에 대한 정책이 필요하다.
 
-## 예제
+## Java 예제
 
-주문 루트가 항목을 추가할 때 수량·상태 규칙을 검사한다. 주문 생성 이벤트는 다른 경계의 후속 작업에 필요한 사실만 전달한다.
+애그리거트 상태 전이와 도메인 이벤트의 메모리 예제다. 저장·발행 원자성은 별도 설계한다.
+
+```java
+import java.util.*;
+
+record Confirmed(long orderId) {}
+
+static class Order {
+    final long id;
+    boolean confirmed;
+    final List<String> items = new ArrayList<>();
+
+    Order(long id) {
+        this.id = id;
+    }
+
+    Confirmed confirm() {
+        if (confirmed || items.isEmpty()) throw new IllegalStateException();
+        confirmed = true;
+        return new Confirmed(id);
+    }
+}
+```
 
 ## 주의점
 
 DB 외래 키로 연결된 모든 행을 하나의 거대한 애그리거트로 만들지 않는다. 이벤트를 발행했다는 사실만으로 신뢰성 있는 전달이 완성되지 않는다.
 
-## 복습 질문
+## 꼬리질문
 
-같은 트랜잭션에서 꼭 지켜야 할 규칙은 애그리거트 경계에 어떤 영향을 주는가?
-
-자료 구분: **기존 자료** — DDD 강의·도메인 모델·실제 학습 글의 용어·규칙. **공식 자료 보완** — 원저자의 개념 정의와 경계 조건.
+1. 같은 트랜잭션에서 꼭 지켜야 할 규칙은 애그리거트 경계에 어떤 영향을 주는가?
+2. 품목이 없는 주문을 확정할 수 없다는 규칙은 왜 Order 루트에서 검사할까?
+3. Confirmed를 생성한 것과 외부 메시지 전달이 보장된 것은 왜 다른 상태일까?
 
 함께 복습: [바운디드 컨텍스트](../contexts/bounded-context.md) · [엔티티와 값 객체](../identity/entity-value-object.md)
 

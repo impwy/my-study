@@ -13,19 +13,37 @@
 
 해시는 키를 버킷에 배치하며 충돌·버킷 확장 정책이 필요하다. 키 순서가 없으므로 범위 조회에 일반적인 순서 인덱스와 같은 이점을 기대하지 않는다. 비트맵은 값별 행 집합을 비트로 표현해 조건을 합칠 수 있지만 갱신 패턴과 카디널리티·제품 구현을 고려한다. 제품이 지원하는 실제 인덱스 종류와 일반 이론을 구분한다.
 
-## 예제
+## Java 예제
 
-정확한 키 한 건 검색과 날짜 범위 조회는 다른 접근 패턴이다. 조건을 합쳐 분석하는 읽기와 자주 바뀌는 OLTP의 인덱스 선택을 비교한다.
+bitmap 조건 결합의 모형이다. 실제 DB 인덱스 저장 형식과 락 구현을 대신하지 않는다.
+
+```java
+import java.util.*;
+
+static BitSet both(BitSet active, BitSet paid) {
+    BitSet result = (BitSet) active.clone();
+    result.and(paid);
+    return result;
+}
+
+static void demo() {
+    BitSet active = new BitSet(), paid = new BitSet();
+    active.set(1);
+    active.set(3);
+    paid.set(3);
+    System.out.println(both(active, paid)); // {3}
+}
+```
 
 ## 주의점
 
 모든 DB에 모든 인덱스 종류가 있다고 쓰지 않는다. MySQL InnoDB의 일반 보조 인덱스를 해시 인덱스로 설명하지 않는다.
 
-## 복습 질문
+## 꼬리질문
 
-해시로 키를 빨리 찾더라도 정렬된 범위 조회가 어려운 이유는?
-
-자료 구분: **기존 자료** — DB 강의와 저장 구조 복습 메모의 개념. **공식 자료 보완** — SQL·인덱스·버전 읽기의 제품별 조건.
+1. 해시로 키를 빨리 찾더라도 정렬된 범위 조회가 어려운 이유는?
+2. 행 위치를 비트로 표현하면 AND 연산이 어떤 SQL 조건 조합에 대응할까?
+3. 조회 조건의 값 종류가 매우 많거나 갱신이 빈번하면 bitmap 표현에 어떤 비용이 생길까?
 
 </details>
 

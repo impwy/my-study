@@ -13,19 +13,41 @@
 
 A가 자원 X를 갖고 Y를, B가 Y를 갖고 X를 기다리면 둘 다 진행할 수 없다. 예방은 필요 조건 하나를 없애고 회피는 안전한 자원 할당인지 검사한다. 은행가 알고리즘의 안전 상태는 모든 작업이 완료될 수 있는 순서가 있다는 뜻이다. 불안전 상태가 즉시 교착이라는 뜻은 아니다.
 
-## 예제
+## Java 예제
 
-계좌 두 개를 잠글 때 모든 작업이 계좌 ID 오름차순으로 획득하면 반대 순서 경합을 막을 수 있다.
+서로 다른 고유 ID를 가진 두 계정과 유효한 금액을 가정한다. 락 순서에 초점을 둔 예제다.
+
+```java
+static class Account {
+    final long id;
+    int balance;
+
+    Account(long id, int balance) {
+        this.id = id;
+        this.balance = balance;
+    }
+}
+
+static void transfer(Account a, Account b, int amount) {
+    Account first = a.id < b.id ? a : b, second = a.id < b.id ? b : a;
+    synchronized (first) {
+        synchronized (second) {
+            a.balance -= amount;
+            b.balance += amount;
+        }
+    }
+}
+```
 
 ## 주의점
 
 타임아웃은 기다림을 제한하지만 이미 진행한 작업의 정합성과 재시도 정책까지 해결하지 않는다. 기아·라이브락과 교착을 구분한다.
 
-## 복습 질문
+## 꼬리질문
 
-안전 순서가 없다는 사실과 실제 교착이 발생했다는 사실은 어떻게 다를까?
-
-자료 구분: **기존 자료** — 대학 운영체제 강의와 기존 복습 메모의 원리. **공식 자료 보완** — 동기화·메모리·장치 조건.
+1. 안전 순서가 없다는 사실과 실제 교착이 발생했다는 사실은 어떻게 다를까?
+2. A→B와 B→A 이체가 동시에 시작해도 같은 락 순서를 따르면 어떤 조건이 깨질까?
+3. 다른 코드 경로가 반대 순서로 락을 잡으면 이 규칙만으로 교착을 막을 수 있을까?
 
 </details>
 

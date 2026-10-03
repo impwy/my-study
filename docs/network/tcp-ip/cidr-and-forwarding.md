@@ -13,19 +13,36 @@
 
 IPv4 주소는 접두어 길이와 함께 네트워크 범위를 나타낸다. 라우터·호스트는 목적지 주소와 일치하는 후보 중 더 구체적인 접두어를 선택한다. 기본 경로는 더 구체적인 일치가 없을 때 사용한다. 서브넷 경계·게이트웨이·반환 경로까지 맞아야 양방향 연결이 된다. 고전적인 클래스 구분과 현재의 CIDR 표기를 혼동하지 않는다.
 
-## 예제
+## Java 예제
 
-`192.0.2.0/24` 범위와 기본 경로가 함께 있으면 해당 범위의 목적지는 더 구체적인 /24 경로를 선택한다.
+prefix가 0–32인 유효한 IPv4 경로를 가정한다.
+
+```java
+record Route(int network, int prefix, String hop) {}
+
+static boolean matches(int address, Route r) {
+    int mask = r.prefix() == 0 ? 0 : -1 << (32 - r.prefix());
+    return (address & mask) == (r.network() & mask);
+}
+
+static String lookup(int address, java.util.List<Route> routes) {
+    return routes.stream()
+            .filter(r -> matches(address, r))
+            .max(java.util.Comparator.comparingInt(Route::prefix))
+            .orElseThrow()
+            .hop();
+}
+```
 
 ## 주의점
 
 주소 범위의 총 개수를 언제나 사용 가능한 호스트 수로 계산하지 않는다. IPv6·특수 접두어·클라우드 예약 주소는 각 규칙을 따른다.
 
-## 복습 질문
+## 꼬리질문
 
-기본 경로가 있는데 더 구체적인 잘못된 경로 때문에 연결이 실패할 수 있는 이유는?
-
-자료 구분: **기존 자료** — 네트워크 강의·워크북·웹 요청 학습 글의 흐름. **공식 자료 보완** — RFC의 정확한 보장 범위·브라우저 조건.
+1. 기본 경로가 있는데 더 구체적인 잘못된 경로 때문에 연결이 실패할 수 있는 이유는?
+2. 같은 주소가 /16과 /24 경로에 모두 일치하면 어떤 경로를 선택할까?
+3. /0 마스크를 따로 처리하지 않으면 Java의 32비트 shift 규칙 때문에 어떤 값이 될까?
 
 </details>
 

@@ -13,19 +13,36 @@
 
 주문은 금액이나 상태가 달라도 같은 주문 ID를 가진 대상을 추적한다. 주소·금액처럼 값이 같으면 동일하게 취급할 수 있는 개념은 값 객체로 표현할 수 있다. 생성 시 검증하고 의미 있는 연산을 제공하면 규칙을 모은다. Java record의 참조 필드는 final이지만 그 필드가 가리키는 List의 내용까지 자동으로 불변이 되는 것은 아니다.
 
-## 예제
+## Java 예제
 
-Money는 금액·통화를 함께 검증하고 더하기에서 통화 일치를 검사한다. 가변 List를 받는 값 객체는 방어적 복사와 반환 정책을 정한다.
+```java
+record Address(String city, String street) {}
+
+static class Person {
+    final long id;
+    Address address;
+
+    Person(long id, Address address) {
+        this.id = id;
+        this.address = address;
+    }
+
+    void move(Address next) {
+        address = java.util.Objects.requireNonNull(next);
+    }
+}
+// new Address("서울","길1").equals(new Address("서울","길1")) == true
+```
 
 ## 주의점
 
 값 객체를 단순 데이터 묶음으로 만들고 검증을 모든 호출자에 흩뿌리지 않는다. 식별 필요는 해당 도메인의 의미에 따라 결정한다.
 
-## 복습 질문
+## 꼬리질문
 
-주소가 바뀐 사람과 값이 바뀐 주소 객체의 동일성을 어떻게 다르게 판단하는가?
-
-자료 구분: **기존 자료** — DDD 강의·도메인 모델·실제 학습 글의 용어·규칙. **공식 자료 보완** — 원저자의 개념 정의와 경계 조건.
+1. 주소가 바뀐 사람과 값이 바뀐 주소 객체의 동일성을 어떻게 다르게 판단하는가?
+2. Person의 주소가 바뀌어도 같은 사람인 반면 Address는 어떤 기준으로 같은 값일까?
+3. 값 객체에 가변 리스트를 포함하면 불변성을 지키기 위해 어떤 방어적 복사가 필요할까?
 
 </details>
 

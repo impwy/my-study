@@ -13,19 +13,35 @@
 
 CloudWatch의 메트릭·로그·알람은 자원 사용과 앱의 지연·오류 등 운영 상태를 관찰하게 한다. CloudTrail은 AWS 계정의 API 활동을 추적하는 데 쓰인다. CPU 급증을 찾는 질문과 누가 정책을 변경했는지 찾는 질문은 서로 다른 관측 자료를 요구한다. 로그에는 요청·이벤트 식별자를 두어 여러 서비스의 흐름을 연결하되 개인 정보와 비밀 값은 제한한다.
 
-## 예제
+## Java 예제
 
-오류율 상승은 앱 로그·DB 연결·배포 시점으로 좁히고, 보안 그룹 변경은 API 감사 이력에서 확인한다. 알람에는 조치 방법과 담당 범위를 연결한다.
+AWS SDK for Java 2.x cloudtrail 모듈. 조회 범위·보존 기간·리전과 기록 설정을 확인한다.
+
+```java
+import software.amazon.awssdk.services.cloudtrail.CloudTrailClient;
+import software.amazon.awssdk.services.cloudtrail.model.*;
+
+static void changes(CloudTrailClient trail) {
+    var filter =
+            LookupAttribute.builder()
+                    .attributeKey(LookupAttributeKey.EVENT_NAME)
+                    .attributeValue("PutRolePolicy")
+                    .build();
+    trail.lookupEventsPaginator(LookupEventsRequest.builder().lookupAttributes(filter).build())
+            .events()
+            .forEach(e -> System.out.println(e.eventTime() + ":" + e.username()));
+}
+```
 
 ## 주의점
 
 메트릭 수집이 없던 과거를 항상 복원할 수는 없다. 알람 임계값·보존 기간·권한을 운영 요구에 맞춘다.
 
-## 복습 질문
+## 꼬리질문
 
-서비스가 느려진 원인과 누가 접근 정책을 바꿨는지에 같은 로그만 쓰기 어려운 이유는?
-
-자료 구분: **기존 자료** — AWS 강의의 자원·운영 개념. **공식 자료 보완** — 현재 공식 문서의 서비스별 책임·구성 조건.
+1. 서비스가 느려진 원인과 누가 접근 정책을 바꿨는지에 같은 로그만 쓰기 어려운 이유는?
+2. 권한 변경 감사와 API 지연 모니터링은 각각 어떤 질문에 답할까?
+3. 이 이벤트 조회만으로 데이터 이벤트·모든 리전의 전체 감사가 완료되지 않는 이유는 무엇일까?
 
 </details>
 
@@ -33,3 +49,4 @@ CloudWatch의 메트릭·로그·알람은 자원 사용과 앱의 지연·오�
 
 - [AWS · CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html) — 메트릭·로그·알람의 목적과 수집 방식을 확인한다.
 - [AWS · CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html) — API 활동 감사와 기록 범위를 확인한다.
+- [Java API 사용 안내](https://docs.aws.amazon.com/java/api/latest/software/amazon/awssdk/services/cloudtrail/CloudTrailClient.html) — 이벤트 필터와 페이지 순회를 사용하는 감사 조회 API를 확인한다.

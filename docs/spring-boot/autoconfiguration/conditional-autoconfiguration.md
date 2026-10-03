@@ -13,19 +13,37 @@
 
 Boot는 필요한 라이브러리의 존재와 빈·설정 값 등을 보고 구성을 활성화한다. 사용자가 특정 빈을 제공하면 해당 기본 빈 구성은 물러나는 경우가 많다. 따라서 starter를 추가했는데 원하는 기능이 켜지지 않으면 단순히 “자동”이라고 추측하지 말고 조건·사용자 빈·프로파일을 확인한다. @SpringBootApplication은 구성·컴포넌트 검색·자동 설정과 연결된다.
 
-## 예제
+## Java 예제
 
-DataSource 라이브러리와 연결 설정이 있을 때 자동 구성이 동작할 수 있다. 사용자가 DataSource 빈을 정의했다면 기본 생성 조건이 달라진다.
+Spring Boot의 조건부 빈 예제다. 실제 자동 설정 클래스 등록 전체를 구현하지 않는다.
+
+```java
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.context.annotation.*;
+
+interface Greeting {
+    String text();
+}
+
+@Configuration
+static class Defaults {
+    @Bean
+    @ConditionalOnMissingBean(Greeting.class)
+    Greeting greeting() {
+        return () -> "default";
+    }
+}
+```
 
 ## 주의점
 
 모든 자동 설정이 같은 조건을 쓰는 것은 아니다. 라이브러리 추가만으로 보안·연결·업무 설정까지 완성되었다고 보지 않는다.
 
-## 복습 질문
+## 꼬리질문
 
-같은 starter를 넣은 두 프로젝트의 빈 구성이 달라질 수 있는 이유는?
-
-자료 구분: **기존 자료** — Boot·Tomcat·설정 학습 자료의 흐름. **공식 자료 보완** — 자동 구성·설정·상태 노출 조건.
+1. 같은 starter를 넣은 두 프로젝트의 빈 구성이 달라질 수 있는 이유는?
+2. 사용자 Greeting 빈이 등록되어 있으면 기본 빈 조건은 어떻게 평가될까?
+3. 이 설정을 starter의 자동 설정으로 배포하려면 클래스패스 조건·등록 방식·평가 순서를 왜 더 확인해야 할까?
 
 </details>
 

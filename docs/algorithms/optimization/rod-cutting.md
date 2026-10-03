@@ -13,23 +13,33 @@
 
 길이 n의 수익은 price[cut]+dp[n−cut] 중 최댓값이다. 길이 0의 수익은 0으로 둔다. 같은 남은 길이를 여러 번 계산하므로 DP로 재사용한다. 작은 길이부터 표를 채우면 기본 시간은 O(n²)이다.
 
-## 예제
+## Java 예제
 
-길이 1 가격 2, 길이 2 가격 5, 길이 3 가격 6이면 길이 3을 1+2로 잘라 수익 7을 얻는다.
+```java
+static int revenue(int[] price, int n) { // price[i]: 길이 i 가격, price[0]=0
+    int[] dp = new int[n + 1];
+    for (int len = 1; len <= n; len++) {
+        int best = Integer.MIN_VALUE;
+        for (int first = 1; first <= len; first++)
+            best = Math.max(best, price[first] + dp[len - first]);
+        dp[len] = best;
+    }
+    return dp[n];
+}
+```
 
 ## 주의점
 
 절단 비용이 있으면 점화식에 포함해야 한다. 최대 수익만 저장하면 실제 절단 방법을 바로 복원하지 못한다.
 
-## 복습 질문
+## 꼬리질문
 
-처음 자르는 길이를 모두 비교해야 하는 이유는?
-
-자료 구분: **기존 자료** — 알고리즘·자료구조 노트와 대학 강의의 원리·예제. **공식 자료 보완** — 복잡도 전제·경계 조건·Java 계약.
+1. 처음 자르는 길이를 모두 비교해야 하는 이유는?
+2. 길이 1·2·3의 가격이 1·5·6이면 길이 3의 최대 수익은 얼마일까?
+3. 절단마다 비용이 발생하면 자르지 않는 경우와 자르는 경우의 점화식을 어떻게 구분할까?
 
 </details>
 
 ## 참고 자료
 
 - [MIT OCW · Introduction to Algorithms](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/) — 동적 계획법 강의에서 상태·점화식·부분 문제 순서를 복습한다.
-- [홍정모 연구소](https://honglab.co.kr/) — 기존 학습 노트의 원 강의 출처. 강의의 설명과 실습 맥락을 더 확인한다.

@@ -13,19 +13,35 @@
 
 애플리케이션이 100바이트를 두 번 보내도 수신자는 200바이트를 한 번에 읽거나 더 작은 조각으로 읽을 수 있다. TCP 세그먼트 경계는 응용 메시지 경계가 아니다. 수신 코드는 아직 부족한 바이트를 기다리고, 이미 받은 버퍼에서 여러 메시지를 꺼낼 수 있어야 한다. 길이 기반 프레이밍은 헤더를 먼저 읽고 허용한 범위 안의 본문 길이를 확인하는 방식이다.
 
-## 예제
+## Java 예제
 
-`[4바이트 길이][본문]` 형태라면 길이 헤더와 본문이 나뉘어 도착해도 누적해서 읽는다. 한 read 결과를 무조건 JSON 하나로 파싱하지 않는다.
+```java
+import java.io.*;
+
+static byte[] readFrame(DataInputStream in) throws IOException {
+    int length = in.readInt(); // 송신 측도 4바이트 길이 접두어 사용
+    if (length < 0 || length > 1024 * 1024) throw new IOException("invalid length");
+    byte[] message = new byte[length];
+    in.readFully(message);
+    return message;
+}
+
+static void writeFrame(DataOutputStream out, byte[] message) throws IOException {
+    out.writeInt(message.length);
+    out.write(message);
+    out.flush();
+}
+```
 
 ## 주의점
 
 연결 성공은 상대의 업무 처리 성공을 뜻하지 않는다. 타임아웃·정상 종료·재시도 시 중복 업무 효과는 응용 프로토콜에서 다룬다.
 
-## 복습 질문
+## 꼬리질문
 
-두 번 보낸 메시지가 한 번의 read로 들어와도 왜 TCP 오류가 아닌가?
-
-자료 구분: **기존 자료** — 네트워크 강의·워크북·웹 요청 학습 글의 흐름. **공식 자료 보완** — RFC의 정확한 보장 범위·브라우저 조건.
+1. 두 번 보낸 메시지가 한 번의 read로 들어와도 왜 TCP 오류가 아닌가?
+2. readFully를 한 번의 read로 바꾸면 일부만 도착한 메시지를 어떻게 잘못 처리할까?
+3. 길이 제한 없이 원격 입력대로 배열을 할당하면 어떤 자원 고갈이 가능할까?
 
 함께 복습: [TCP와 UDP 선택](tcp-and-udp.md) · [HTTP 메서드와 상태 코드](../http-tls/http-semantics.md)
 

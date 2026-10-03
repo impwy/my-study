@@ -13,19 +13,37 @@
 
 클라이언트는 서버의 호스트 키를 확인하고 사용자 인증을 수행한다. 공개키 인증에서는 서버에 공개키를 등록하고 클라이언트가 개인키 소유를 증명한다. 접속 설정은 별칭·호스트·사용자·포트·키 위치로 나눌 수 있다. 연결 실패는 네트워크·sshd·방화벽, 인증 실패는 계정·키·권한, 로그인 후 실패는 셸·환경을 구분해 확인한다.
 
-## 예제
+## Java 예제
 
-`ssh -p 2222 user@host`는 SSH 포트를 지정한다. 서버 신원이 바뀌었다는 경고는 원인을 확인한 뒤 처리한다.
+SSH 클라이언트와 사전에 검증한 known_hosts·사용자 인증이 필요하다.
+
+```java
+static int remoteVersion(String destination) throws Exception {
+    if (!destination.matches("[A-Za-z0-9_.]+@[A-Za-z0-9.-]+"))
+        throw new IllegalArgumentException();
+    Process p =
+            new ProcessBuilder(
+                            "ssh",
+                            "-o",
+                            "StrictHostKeyChecking=yes",
+                            destination,
+                            "uname",
+                            "-a")
+                    .inheritIO()
+                    .start();
+    return p.waitFor();
+}
+```
 
 ## 주의점
 
 호스트 키 경고를 검증 없이 지우거나 모든 호스트 확인을 끄지 않는다. 공개키와 개인키의 용도를 혼동하지 않는다.
 
-## 복습 질문
+## 꼬리질문
 
-서버 호스트 키와 사용자 공개키는 무엇을 서로 다르게 증명하는가?
-
-자료 구분: **기존 자료** — 운영체제 강의와 SSH·셸·tmux 메모의 원리. **공식 자료 보완** — 매뉴얼의 실행 모드·반환값·권한 규칙.
+1. 서버 호스트 키와 사용자 공개키는 무엇을 서로 다르게 증명하는가?
+2. 호스트 키 검증을 끄면 사용자 인증이 성공해도 어떤 상대 위장 위험이 남을까?
+3. SSH 에이전트·개인키·authorized_keys는 각각 어디에서 어떤 역할을 할까?
 
 </details>
 

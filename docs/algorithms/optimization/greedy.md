@@ -13,23 +13,38 @@
 
 탐욕 선택은 이미 한 선택을 되돌리지 않는 방식이다. 활동 선택에서는 종료가 가장 빠른 활동을 먼저 골라도 최적해 하나를 유지할 수 있다는 근거가 있다. 하지만 0/1 배낭을 가치/무게 비율 순으로 고르면 남은 공간 때문에 더 좋은 조합을 놓칠 수 있다.
 
-## 예제
+## Java 예제
 
-서로 겹치지 않는 활동 수를 최대화할 때는 일찍 끝나는 활동을 선택해 이후 시간 공간을 남긴다.
+```java
+import java.util.*;
+
+record Meeting(int start, int end) {}
+
+static int maximumMeetings(List<Meeting> input) {
+    var meetings = new ArrayList<>(input);
+    meetings.sort(Comparator.comparingInt(Meeting::end));
+    int end = Integer.MIN_VALUE, count = 0;
+    for (Meeting m : meetings)
+        if (m.start() >= end) {
+            end = m.end();
+            count++;
+        }
+    return count;
+}
+```
 
 ## 주의점
 
 분할 가능한 배낭의 비율 규칙을 0/1 배낭에 그대로 옮기지 않는다. 예제 몇 개 통과는 최적성 증명이 아니다.
 
-## 복습 질문
+## 꼬리질문
 
-그리디 선택을 다른 선택으로 교환해도 최적해가 유지되는지 어떻게 설명할까?
-
-자료 구분: **기존 자료** — 알고리즘·자료구조 노트와 대학 강의의 원리·예제. **공식 자료 보완** — 복잡도 전제·경계 조건·Java 계약.
+1. 그리디 선택을 다른 선택으로 교환해도 최적해가 유지되는지 어떻게 설명할까?
+2. 가장 짧은 회의보다 가장 일찍 끝나는 회의를 고르는 이유는 무엇일까?
+3. 회의마다 보상이 다르면 개수 최대화의 그리디가 보상 최대화에도 통할까?
 
 </details>
 
 ## 참고 자료
 
 - [MIT OCW · Introduction to Algorithms](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/) — 동적 계획법 강의에서 상태·점화식·부분 문제 순서를 복습한다.
-- [홍정모 연구소](https://honglab.co.kr/) — 기존 학습 노트의 원 강의 출처. 강의의 설명과 실습 맥락을 더 확인한다.

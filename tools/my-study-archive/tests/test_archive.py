@@ -15,7 +15,36 @@ a=importlib.util.module_from_spec(SPEC);SPEC.loader.exec_module(a)
 CATEGORIES=[{'slug':'java-concurrency','title':'Java 병렬 프로그래밍','sections':{'memory-model':'가시성·원자성'}}]
 TOPIC='java-concurrency/memory-model/volatile'
 PATH='docs/'+TOPIC+'.md'
-NOTE='# volatile\n\n> 가시성과 복합 연산의 원자성을 구분한다.\n\n- 증가 연산은 별도 보호한다.\n\n<details>\n<summary>설명</summary>\n\nvolatile count++는 원자적이지 않다.\n\n</details>\n\n## 참고 자료\n\n- [JLS](https://docs.oracle.com/javase/specs/jls/se21/html/jls-17.html) — 보장 범위를 확인한다.\n'
+NOTE='''# volatile
+
+> 가시성과 복합 연산의 원자성을 구분한다.
+
+- 증가 연산은 별도 보호한다.
+
+<details>
+<summary>설명</summary>
+
+volatile count++는 원자적이지 않다.
+
+## Java 예제
+
+```java
+volatile int count;
+void increment() { count++; }
+```
+
+## 꼬리질문
+
+1. count++가 왜 복합 연산인가?
+2. 두 스레드가 같은 값을 읽으면 어떤 증가를 잃는가?
+3. 두 변수 사이 불변식을 보호하려면 어떤 경계가 필요한가?
+
+</details>
+
+## 참고 자료
+
+- [JLS](https://docs.oracle.com/javase/specs/jls/se21/html/jls-17.html) — 보장 범위를 확인한다.
+'''
 
 class FakeGitHub:
     def __init__(self):
@@ -75,6 +104,7 @@ class ArchiveTests(unittest.TestCase):
         result=self.publish();self.assertEqual(result['status'],'published');self.assertEqual(self.remote.posted_commits,1)
         self.assertFalse(selected.exists());self.assertTrue(other.exists());self.assertEqual(self.remote.files[PATH],NOTE)
         self.assertIn('volatile',self.remote.files['README.md']);self.assertIn('가시성',self.remote.files['docs/java-concurrency/README.md']);self.assertEqual(self.remote.files['user-note.txt'],'사용자가 작성한 파일\n')
+        self.assertNotIn('CONTRIBUTING.md',self.remote.files['README.md']);self.assertNotIn('LEARNING_PATH.md',self.remote.files['README.md'])
     def test_same_topic_same_content_does_not_commit(self):
         self.draft();self.publish();count=self.remote.posted_commits
         self.draft(base=a.blob_sha(NOTE));result=self.publish();self.assertEqual(result['status'],'unchanged');self.assertEqual(count,self.remote.posted_commits)
@@ -118,5 +148,10 @@ class ArchiveTests(unittest.TestCase):
     def test_rejects_private_paths_and_wrong_category(self):
         with self.assertRaises(a.ArchiveError):a.note_meta(PATH,NOTE.replace('count++','/Users/private/secret'))
         with self.assertRaises(a.ArchiveError):a.topic_path('../../escape',CATEGORIES)
+    def test_old_format_is_not_published_and_draft_is_preserved(self):
+        old=NOTE.replace('## 꼬리질문','## 복습 질문')
+        path=self.draft(content=old)
+        with self.assertRaises(a.ArchiveError):self.publish()
+        self.assertTrue(path.exists());self.assertEqual(self.remote.posted_commits,0)
 
 if __name__=='__main__':unittest.main()

@@ -13,23 +13,33 @@
 
 큐는 도착 순서대로 일을 처리하거나 BFS의 다음 방문을 관리한다. 원형 큐는 앞에서 꺼낸 빈 공간을 다시 이용하므로 매번 배열을 당기지 않는다. front와 rear만 같으면 빈 상태인지 꽉 찬 상태인지 모호할 수 있다. 원소 수를 별도로 저장하거나 한 칸을 비워 두는 규칙으로 해결한다.
 
-## 예제
+## Java 예제
 
-용량 4의 다음 인덱스는 (i+1)%4다. 3 다음에는 0으로 돌아간다. 요세푸스 문제는 k−1명을 뒤로 옮기고 다음 한 명을 제거하는 반복으로 볼 수 있다.
+```java
+import java.util.*;
+
+static void demo() {
+    Queue<String> q = new ArrayDeque<>();
+    q.offer("first");
+    q.offer("second");
+    System.out.println(q.poll()); // first
+    System.out.println(q.poll()); // second
+    System.out.println(q.poll()); // null
+}
+```
 
 ## 주의점
 
 인덱스 이동 공식만 맞아도 큐가 완성되는 것은 아니다. 삽입 전 용량과 삭제 전 비어 있음 검사가 필요하다.
 
-## 복습 질문
+## 꼬리질문
 
-front==rear만으로 빈 큐와 가득 찬 큐를 어떻게 구분할까?
-
-자료 구분: **기존 자료** — 자료구조 노트와 대학 강의의 표현·연산. **공식 자료 보완** — 비용의 전제·균형 조건·표준 API.
+1. front==rear만으로 빈 큐와 가득 찬 큐를 어떻게 구분할까?
+2. 빈 큐에서 poll과 remove의 계약은 어떻게 다를까?
+3. 원형 배열 큐에서 size를 따로 유지하면 어떤 두 상태를 구별할 수 있을까?
 
 </details>
 
 ## 참고 자료
 
 - [Princeton · Stacks and Queues](https://algs4.cs.princeton.edu/13stacks/) — 추상 자료형과 배열·연결 구현의 차이를 확인한다.
-- [홍정모 연구소](https://honglab.co.kr/) — 기존 학습 노트의 원 강의 출처. 강의의 설명과 실습 맥락을 더 확인한다.

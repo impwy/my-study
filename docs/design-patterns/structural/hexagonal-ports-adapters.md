@@ -13,19 +13,35 @@
 
 웹 Controller는 업무를 호출하는 입력 어댑터가 될 수 있고 JPA 저장소·외부 API 클라이언트는 출력 어댑터가 될 수 있다. 핵심이 필요로 하는 저장·결제 계약을 정의하고 외부 구현을 연결한다. 런타임에서 업무가 저장소를 호출해도 코드 의존은 핵심 계약 쪽을 향하도록 설계할 수 있다. 계층 이름보다 실제 import와 생성·호출을 본다.
 
-## 예제
+## Java 예제
 
-OrderService는 저장 포트를 사용하고 JPA 어댑터가 구현한다. 테스트는 같은 포트의 메모리 구현으로 업무 규칙을 실행한다.
+```java
+interface OrdersPort {
+    String find(long id);
+} // 애플리케이션이 정의한 포트
+
+record FindOrder(OrdersPort orders) {
+    String execute(long id) {
+        return orders.find(id);
+    }
+}
+
+record MemoryAdapter(java.util.Map<Long, String> data) implements OrdersPort {
+    public String find(long id) {
+        return data.get(id);
+    }
+}
+```
 
 ## 주의점
 
 Hexagonal Architecture는 GoF 패턴 목록의 한 항목으로 분류되는 것은 아니다. 작은 CRUD에는 분리 비용이 이익보다 클 수 있다.
 
-## 복습 질문
+## 꼬리질문
 
-런타임 호출은 바깥으로 향해도 소스 의존은 안쪽으로 향할 수 있는 이유는?
-
-자료 구분: **기존 자료** — 설계·헥사고날·패턴 노트의 역할 구분. **공식 자료 보완** — 원저자 예제와 패턴 적용 범위.
+1. 런타임 호출은 바깥으로 향해도 소스 의존은 안쪽으로 향할 수 있는 이유는?
+2. 어댑터가 안쪽 포트를 구현하면 소스 의존 방향은 어떤 쪽을 향할까?
+3. DB 어댑터를 HTTP 어댑터로 바꿀 때 애플리케이션이 외부 예외 타입을 알고 있다면 어떤 경계가 새고 있을까?
 
 </details>
 

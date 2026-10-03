@@ -13,19 +13,34 @@
 
 낙관적 락은 읽기 동안 배타 락을 유지하지 않고 갱신할 때 버전 조건으로 충돌을 검출한다. 비관적 락은 DB가 제공하는 락을 획득해 경합을 조정한다. 재고 1개를 두 요청이 차감하는 상황에서 검사와 변경을 올바른 경계로 묶어야 한다. 충돌 빈도·트랜잭션 길이·DB 동작에 따라 방식을 고르고 unique·check 제약도 최종 방어로 둔다.
 
-## 예제
+## Java 예제
 
-동시에 같은 버전의 재고를 읽으면 한 갱신은 성공하고 다른 갱신은 낙관적 충돌을 받을 수 있다. 재시도는 최신 상태에서 수량 조건을 다시 검사해야 한다.
+Jakarta Persistence와 활성 트랜잭션이 필요하다. 두 락 방식을 한꺼번에 사용해야 한다는 뜻은 아니다.
+
+```java
+import jakarta.persistence.*;
+
+@Entity
+static class Inventory {
+    @Id Long id;
+    @Version Long version;
+    int stock;
+}
+
+static Inventory lock(EntityManager em, long id) {
+    return em.find(Inventory.class, id, LockModeType.PESSIMISTIC_WRITE);
+} // 활성 트랜잭션 안에서 호출; @Version은 낙관적 충돌 검출에 사용
+```
 
 ## 주의점
 
 이미 실행한 외부 결제까지 무조건 반복하지 않는다. 락 없는 일반 SELECT가 항상 비관적 락 요청을 기다린다고 단정하지 않는다.
 
-## 복습 질문
+## 꼬리질문
 
-낙관적 락 오류가 났을 때 수정된 객체를 그대로 저장만 다시 하면 왜 부족한가?
-
-자료 구분: **기존 자료** — JPA 가이드·워크북·강의의 매핑·조회 개념. **공식 자료 보완** — Hibernate 6.6과 Spring의 정확한 동작 경계.
+1. 낙관적 락 오류가 났을 때 수정된 객체를 그대로 저장만 다시 하면 왜 부족한가?
+2. 동일 version을 읽은 두 트랜잭션이 갱신할 때 낙관적 락은 어느 변경을 거절할까?
+3. 충돌 뒤에는 새 트랜잭션으로 최신 상태를 읽고 업무 조건까지 다시 판단해야 하는 이유는 무엇일까?
 
 </details>
 

@@ -13,19 +13,45 @@
 
 목록 한 번을 읽고 각 원소의 연관 객체를 접근할 때 추가 쿼리가 반복되면 N+1이 된다. 지연 로딩은 불필요한 조회를 줄이지만 접근 방식에 따라 반복 조회가 생긴다. 필요한 연관을 한 번에 가져오는 fetch join, 필요한 필드만 선택하는 DTO 조회, 배치 조회 등을 비교한다. 단일 쿼리도 너무 큰 곱집합을 만들면 비용이 커진다.
 
-## 예제
+## Java 예제
 
-주문 20개와 각각의 사용자를 표시하는 화면에서 주문 쿼리 뒤 사용자 조회가 반복되는지 SQL 로그로 확인한다. to-one fetch join과 필요한 DTO 필드를 검토한다.
+Jakarta Persistence. 실제 쿼리 수·결과 행 수는 구현체와 실행 계획으로 확인한다.
+
+```java
+import jakarta.persistence.*;
+
+import java.util.*;
+
+@Entity
+static class Purchase {
+    @Id Long id;
+
+    @OneToMany(mappedBy = "purchase")
+    List<Line> lines = new ArrayList<>();
+}
+
+@Entity
+static class Line {
+    @Id Long id;
+    @ManyToOne Purchase purchase;
+}
+
+static List<Purchase> fetch(EntityManager em) {
+    return em.createQuery(
+                    "select distinct p from Purchase p left join fetch p.lines", Purchase.class)
+            .getResultList();
+}
+```
 
 ## 주의점
 
 EAGER는 모든 N+1을 해결하지 않는다. 컬렉션 fetch join에 limit를 단순 적용하면 페이지 의미가 깨지거나 메모리 페이징이 발생할 수 있다.
 
-## 복습 질문
+## 꼬리질문
 
-쿼리 수를 줄인 뒤에도 응답이 더 느려질 수 있는 데이터 형태는?
-
-자료 구분: **기존 자료** — JPA 가이드·워크북·강의의 매핑·조회 개념. **공식 자료 보완** — Hibernate 6.6과 Spring의 정확한 동작 경계.
+1. 쿼리 수를 줄인 뒤에도 응답이 더 느려질 수 있는 데이터 형태는?
+2. 일반 조회 후 각 purchase.lines를 접근할 때 어떤 추가 질의가 N번 실행될 수 있을까?
+3. 컬렉션 fetch join에 페이지네이션을 추가하면 행 증폭과 제한 처리에서 어떤 문제가 생길까?
 
 함께 복습: [실행 계획과 복합 인덱스](../../mysql/plans/explain-and-composite-index.md) · [페이지네이션과 안정적인 정렬](../../rest-api/contracts/pagination.md)
 

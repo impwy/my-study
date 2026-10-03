@@ -13,19 +13,40 @@
 
 PCB 등에 현재 실행 상태를 저장하면 잠시 멈춘 작업을 이어서 실행할 수 있다. CPU를 빼앗긴 실행 작업은 준비 상태로, I/O 결과를 기다리는 작업은 대기 상태로 갈 수 있다. 교환 자체의 저장·복원 외에도 캐시·TLB 등의 효과가 실제 성능에 영향을 준다.
 
-## 예제
+## Java 예제
 
-A가 디스크 응답을 기다리면 운영체제는 B에게 CPU를 줄 수 있다. A의 I/O가 끝나도 바로 실행되는 것이 아니라 준비 상태로 돌아올 수 있다.
+대기 → 실행 가능 → 실행 흐름을 관찰하는 예제다. 문맥 교환 시점을 직접 제어하지 않는다.
+
+```java
+import java.util.concurrent.*;
+
+static void demo() throws Exception {
+    var signal = new CountDownLatch(1);
+    Thread t =
+            new Thread(
+                    () -> {
+                        try {
+                            signal.await();
+                            System.out.println("재개");
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                        }
+                    });
+    t.start();
+    signal.countDown();
+    t.join();
+}
+```
 
 ## 주의점
 
 커널 모드로 진입하는 모든 시스템 호출이 다른 작업으로의 문맥 교환인 것은 아니다. 모드 전환과 작업 교환을 구분한다.
 
-## 복습 질문
+## 꼬리질문
 
-I/O 완료가 즉시 실행 재개를 뜻하지 않는 이유는?
-
-자료 구분: **기존 자료** — 대학 운영체제 강의와 기존 복습 메모의 원리. **공식 자료 보완** — 동기화·메모리·장치 조건.
+1. I/O 완료가 즉시 실행 재개를 뜻하지 않는 이유는?
+2. countDown 호출 직후 대기 스레드가 반드시 CPU에서 실행 중이라고 말할 수 있을까?
+3. 자바 스레드 상태 변화와 운영체제의 실제 문맥 교환 횟수는 왜 일대일 대응하지 않을까?
 
 </details>
 

@@ -13,19 +13,34 @@
 
 테이블의 heap에는 페이지와 튜플 형태로 행 버전이 저장된다. ctid는 블록 번호와 튜플 위치를 나타내지만 업데이트·이동으로 바뀔 수 있다. MVCC는 각 트랜잭션에서 보이는 버전을 판단한다. 갱신이 항상 같은 페이지 안에서 이루어지거나 commit 직후 이전 버전이 즉시 지워지는 것은 아니다. 아직 다른 트랜잭션이 필요로 하는 버전은 유지해야 한다.
 
-## 예제
+## Java 예제
 
-업무 참조에는 기본 키를 쓰고 ctid를 장기 식별자로 저장하지 않는다. 오래 열린 트랜잭션이 정리·테이블 크기에 미치는 영향을 관찰한다.
+PostgreSQL과 users 테이블의 JDBC 연결이 필요하다.
+
+```java
+import java.sql.*;
+
+static void inspect(Connection c, long id) throws SQLException {
+    try (PreparedStatement p =
+            c.prepareStatement("SELECT id, ctid::text, xmin::text FROM users WHERE id=?")) {
+        p.setLong(1, id);
+        try (ResultSet r = p.executeQuery()) {
+            while (r.next())
+                System.out.println(r.getLong(1) + ":" + r.getString(2) + ":" + r.getString(3));
+        }
+    }
+}
+```
 
 ## 주의점
 
 기존 일지의 “항상 같은 페이지 갱신”과 “트랜잭션 후 바로 정리” 설명을 조건부 동작으로 수정했다. 기본 페이지 크기와 인덱스 구현은 구성·제품 문서로 확인한다.
 
-## 복습 질문
+## 꼬리질문
 
-같은 논리 행의 ctid가 바뀌어도 업무 식별자가 유지되어야 하는 이유는?
-
-자료 구분: **기존 자료** — DB 강의와 저장 구조 복습 메모의 개념. **공식 자료 보완** — SQL·인덱스·버전 읽기의 제품별 조건.
+1. 같은 논리 행의 ctid가 바뀌어도 업무 식별자가 유지되어야 하는 이유는?
+2. 같은 id 행을 UPDATE한 뒤 다시 조회하면 ctid가 바뀔 수 있는 이유는 무엇일까?
+3. xmin이나 ctid를 영구 업무 식별자로 저장하면 VACUUM·갱신에서 어떤 문제가 생길까?
 
 </details>
 

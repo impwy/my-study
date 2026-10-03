@@ -13,19 +13,37 @@
 
 poll로 레코드를 가져오면 읽기 위치는 앞서갈 수 있지만 업무가 완료되었다는 뜻은 아니다. 오프셋 10까지 처리했다면 재개 위치 11을 커밋한다. DB 처리 후 커밋 전에 장애가 나면 재처리되어 중복 가능성이 남는다. 비동기 작업에서 뒤 레코드가 먼저 끝났다고 높은 위치를 커밋하면 앞의 미완료 레코드를 영구히 건너뛸 수 있다.
 
-## 예제
+## Java 예제
 
-10·11·12를 받았고 10과 12만 완료했다면 연속 완료 경계는 10이다. 13을 커밋하면 11을 놓칠 수 있다.
+Kafka clients. 해당 파티션을 담당하며 이전 레코드가 모두 처리됐다고 가정한다. 자동 커밋은 끄고 consumer 호출은 담당 스레드에서 수행한다.
+
+```java
+import org.apache.kafka.clients.consumer.*;
+import org.apache.kafka.common.TopicPartition;
+
+import java.util.Map;
+
+static void commitProcessed(
+        KafkaConsumer<String, String> consumer,
+        String topic,
+        int partition,
+        long lastProcessed) {
+    consumer.commitSync(
+            Map.of(
+                    new TopicPartition(topic, partition),
+                    new OffsetAndMetadata(lastProcessed + 1)));
+} // 10,11,12가 모두 성공하면 다음 읽기 위치 13을 커밋
+```
 
 ## 주의점
 
 auto.offset.reset은 모든 시작 위치를 매번 덮어쓰는 설정이 아니다. 유효한 커밋이 없거나 범위를 벗어난 경우의 정책으로 이해한다.
 
-## 복습 질문
+## 꼬리질문
 
-12가 끝났어도 11이 끝나지 않았을 때 커밋 위치를 어떻게 결정해야 하는가?
-
-자료 구분: **기존 자료** — Kafka 강의와 이벤트 처리 노트의 흐름. **공식 자료 보완** — Kafka 4.1 설정·복제·커밋 보장 범위.
+1. 12가 끝났어도 11이 끝나지 않았을 때 커밋 위치를 어떻게 결정해야 하는가?
+2. 11이 실패하고 12만 완료된 상태에서 13을 커밋하면 재시작 후 무엇을 놓칠까?
+3. 업무 저장 성공 뒤 커밋 전에 종료되면 재처리에 필요한 멱등성은 어디에서 보장해야 할까?
 
 함께 복습: [재시도·DLT·재처리](retry-dlt-and-replay.md) · [컨슈머 그룹과 리밸런스](group-and-rebalance.md)
 

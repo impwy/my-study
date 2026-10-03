@@ -13,19 +13,36 @@
 
 offset 방식은 몇 행을 건너뛰고 읽는지 나타내며 임의 페이지 접근에 편하다. 깊은 페이지와 동시 삽입·삭제에서는 비용·중복·누락을 고려한다. cursor 방식은 마지막 정렬 키 이후를 읽고 안정적인 순서와 복합 키가 필요하다. 사용자가 다음 페이지를 받는 동안 데이터가 바뀌었을 때 허용할 의미를 API 계약으로 정한다.
 
-## 예제
+## Java 예제
 
-created_at DESC, id DESC로 정렬하고 마지막 두 값을 cursor 조건에 사용하면 같은 시각의 행을 명확히 구분할 수 있다. 실제 조회 조건과 인덱스도 맞춘다.
+튜플 비교를 지원하는 MySQL·PostgreSQL의 JDBC 예제이며 비어 있지 않은 커서·NULL 아닌 정렬 키를 가정한다.
+
+```java
+import java.sql.*;
+
+static void next(Connection c, Timestamp time, long id) throws SQLException {
+    try (PreparedStatement p =
+            c.prepareStatement(
+                    "SELECT id,created_at FROM orders WHERE (created_at,id) > (?,?) ORDER BY"
+                        + " created_at,id LIMIT 20")) {
+        p.setTimestamp(1, time);
+        p.setLong(2, id);
+        try (ResultSet r = p.executeQuery()) {
+            while (r.next()) System.out.println(r.getLong(1));
+        }
+    }
+}
+```
 
 ## 주의점
 
 페이지네이션에 컬렉션 fetch join을 무심코 결합하지 않는다. cursor가 있다고 동일 시점의 완전한 스냅샷이 자동 보장되지는 않는다.
 
-## 복습 질문
+## 꼬리질문
 
-created_at만 정렬할 때 같은 시각의 여러 행이 페이지 경계에서 문제가 되는 이유는?
-
-자료 구분: **기존 자료** — 네트워크 워크북과 API 학습 자료의 설계 원리. **공식 자료 보완** — 논문·RFC·조회 계약.
+1. created_at만 정렬할 때 같은 시각의 여러 행이 페이지 경계에서 문제가 되는 이유는?
+2. 같은 created_at을 가진 여러 행을 id로 함께 정렬하면 커서 경계의 어떤 누락을 막을까?
+3. 조회 중 정렬 키가 수정되면 커서 페이지네이션에서도 어떤 중복·누락이 가능할까?
 
 </details>
 

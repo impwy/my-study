@@ -13,19 +13,38 @@
 
 파일 시스템은 이름 공간과 메타데이터로 파일을 찾고 데이터 블록을 관리한다. 메모리 캐시·버퍼를 사용하면 반복 접근 비용을 줄이지만 애플리케이션 쓰기 완료와 저장 장치의 내구성 확정은 같은 시점이라고 보장되지 않는다. 장애 뒤 일관성을 유지하는 저널·로그 등의 역할을 구분한다. 저장 매체가 HDD인지 SSD인지에 따라 스케줄링의 물리적 비용도 달라진다.
 
-## 예제
+## Java 예제
 
-같은 파일을 여러 번 읽을 때 OS 캐시로 실제 디스크 접근이 줄 수 있다. 파일 이름 삭제와 이미 열린 파일의 수명은 다른 조건으로 관리될 수 있다.
+지정한 실습 파일을 덮어쓴다. 실제 내구성은 파일 시스템·장치 조건과 메타데이터 처리까지 확인한다.
+
+```java
+import java.nio.*;
+import java.nio.channels.*;
+import java.nio.file.*;
+
+static void save(Path path, byte[] data) throws java.io.IOException {
+    try (FileChannel c =
+            FileChannel.open(
+                    path,
+                    StandardOpenOption.CREATE,
+                    StandardOpenOption.WRITE,
+                    StandardOpenOption.TRUNCATE_EXISTING)) {
+        ByteBuffer b = ByteBuffer.wrap(data);
+        while (b.hasRemaining()) c.write(b);
+        c.force(true);
+    }
+}
+```
 
 ## 주의점
 
 메모리 버퍼를 비웠다는 사실만으로 전원 장애에도 데이터가 남는다고 단정하지 않는다. 제품·파일 시스템·API의 동기화 계약을 확인한다.
 
-## 복습 질문
+## 꼬리질문
 
-파일 쓰기 함수가 반환했는데 장애 후 일부 데이터가 없을 수 있는 이유는?
-
-자료 구분: **기존 자료** — 대학 운영체제 강의와 기존 복습 메모의 원리. **공식 자료 보완** — 동기화·메모리·장치 조건.
+1. 파일 쓰기 함수가 반환했는데 장애 후 일부 데이터가 없을 수 있는 이유는?
+2. write 반환과 force 완료는 데이터가 어느 계층까지 전달되었다는 의미가 다를까?
+3. 새 파일 생성이나 rename의 장애 내구성에는 파일 내용 외에 어떤 디렉터리 메타데이터도 고려해야 할까?
 
 </details>
 

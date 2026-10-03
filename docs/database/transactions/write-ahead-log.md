@@ -13,19 +13,38 @@
 
 메모리 버퍼의 데이터와 디스크 데이터는 시점이 다를 수 있다. 장애 뒤 완료된 변경을 다시 적용하거나 미완료 변경을 제거하려면 로그가 필요하다. 구체적인 로그 형식과 알고리즘은 제품에 따라 다르다. 체크포인트는 어느 지점부터 복구를 시작해야 하는지에 관한 정보를 남긴다.
 
-## 예제
+## Java 예제
 
-데이터 페이지가 아직 기록되지 않아도 커밋 로그가 보존되어 있으면 복구 과정이 변경을 재적용할 수 있다.
+로그 선행 영속화 순서의 예제다. force의 보장은 저장 장치·파일 시스템 조건까지 확인한다.
+
+```java
+import java.nio.*;
+import java.nio.channels.*;
+import java.nio.file.*;
+
+static void appendAndForce(Path wal, byte[] record) throws java.io.IOException {
+    try (FileChannel channel =
+            FileChannel.open(
+                    wal,
+                    StandardOpenOption.CREATE,
+                    StandardOpenOption.WRITE,
+                    StandardOpenOption.APPEND)) {
+        ByteBuffer buffer = ByteBuffer.wrap(record);
+        while (buffer.hasRemaining()) channel.write(buffer);
+        channel.force(true); // 데이터 페이지 쓰기보다 먼저 로그의 영속화 요청
+    }
+}
+```
 
 ## 주의점
 
 “먼저 기록”에는 운영체제 버퍼·장치 캐시 등 실제 내구성 경계가 포함된다. 백업과 트랜잭션 로그의 목적을 구분한다.
 
-## 복습 질문
+## 꼬리질문
 
-메모리의 데이터만 믿고 커밋 성공을 알리면 어떤 장애에 취약할까?
-
-자료 구분: **기존 자료** — DB 강의와 저장 구조 복습 메모의 개념. **공식 자료 보완** — SQL·인덱스·버전 읽기의 제품별 조건.
+1. 메모리의 데이터만 믿고 커밋 성공을 알리면 어떤 장애에 취약할까?
+2. 로그보다 데이터 페이지를 먼저 영속화하면 장애 복구에 어떤 기록이 빠질 수 있을까?
+3. 이 예제가 실제 WAL이 되려면 레코드 경계·체크섬·LSN·복구 절차 중 무엇이 더 필요할까?
 
 </details>
 

@@ -13,19 +13,33 @@
 
 여러 스레드가 HashMap을 동시에 수정하는 대신 ConcurrentHashMap의 계약을 이용한다. 그러나 containsKey를 호출한 뒤 put하는 코드는 그 사이에 다른 스레드가 개입할 수 있다. 필요한 의미가 “없을 때만 넣기”라면 putIfAbsent를 선택한다. 반복자는 대체로 약한 일관성으로 변경을 허용하며, 전체 상태가 한 시점의 사진이라는 보장은 별개다.
 
-## 예제
+## Java 예제
 
-캐시 초기화에 `map.putIfAbsent(key, value)`를 사용하면 기존 값이 있을 때 덮어쓰지 않는다. 느린 외부 조회를 compute 안에서 길게 수행할지는 별도 검토한다.
+```java
+import java.util.concurrent.ConcurrentHashMap;
+
+static class Counts {
+    final ConcurrentHashMap<String, Integer> values = new ConcurrentHashMap<>();
+
+    void increment(String key) {
+        values.merge(key, 1, Integer::sum);
+    }
+
+    int get(String key) {
+        return values.getOrDefault(key, 0);
+    }
+}
+```
 
 ## 주의점
 
 Map에 저장한 값 객체가 가변이면 Map의 안전성이 값 내부 수정까지 보호하지 않는다. 여러 키에 걸친 불변식에는 별도 조정이 필요하다.
 
-## 복습 질문
+## 꼬리질문
 
-ConcurrentHashMap의 get과 put을 각각 호출해 카운터를 올리면 왜 여전히 증가를 잃는가?
-
-자료 구분: **기존 자료** — 스레드·동기화 강의와 동시성 노트의 원리. **공식 자료 보완** — JMM·표준 동시성 API의 보장 범위.
+1. ConcurrentHashMap의 get과 put을 각각 호출해 카운터를 올리면 왜 여전히 증가를 잃는가?
+2. get 후 put 대신 merge를 쓰면 같은 키의 증가에서 어떤 경쟁을 막을까?
+3. 두 키 사이의 잔액 이체는 각각의 merge가 원자적이어도 왜 별도 경계가 필요할까?
 
 </details>
 

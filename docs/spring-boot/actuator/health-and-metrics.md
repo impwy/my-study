@@ -13,19 +13,31 @@
 
 health는 구성된 상태 지표를 모아 응답하며 “업무가 모두 정상”이라는 완전한 증명은 아니다. liveness는 프로세스가 회복 불가능한 상태인지, readiness는 지금 트래픽을 받아도 되는지를 판단하는 데 사용한다. 요청 지연·오류·JVM·커넥션 풀 메트릭을 함께 보면 느려진 구간을 좁힐 수 있다. 필요한 엔드포인트만 노출하고 접근을 제어한다.
 
-## 예제
+## Java 예제
 
-배포 후 readiness가 준비되기 전에 로드밸런서가 요청을 보내면 초기 오류가 늘 수 있다. health 성공만 보지 말고 대표 요청과 오류·지연도 확인한다.
+Spring Boot Actuator가 필요하다. 예제의 고정 상태 대신 실제 가벼운 내부 상태를 검사하고 health group을 구성한다.
+
+```java
+import org.springframework.boot.actuate.health.*;
+import org.springframework.stereotype.Component;
+
+@Component("catalog")
+static class CatalogHealth implements HealthIndicator {
+    public Health health() {
+        return Health.up().withDetail("catalogLoaded", true).build();
+    }
+}
+```
 
 ## 주의점
 
 외부 DB의 일시 장애를 liveness 실패로 연결해 모든 인스턴스가 재시작하게 만들지 않는다. 세부 상태·환경 설정을 무차별 공개하지 않는다.
 
-## 복습 질문
+## 꼬리질문
 
-readiness와 liveness를 같은 조건으로 만들면 어떤 장애 악순환이 가능한가?
-
-자료 구분: **기존 자료** — Boot·Tomcat·설정 학습 자료의 흐름. **공식 자료 보완** — 자동 구성·설정·상태 노출 조건.
+1. readiness와 liveness를 같은 조건으로 만들면 어떤 장애 악순환이 가능한가?
+2. 이 indicator가 UP이어도 서비스의 모든 요청이 정상이라고 결론 낼 수 있을까?
+3. 외부 DB 장애를 liveness에 넣으면 재시작이 반복될 수 있는데 readiness와 어떻게 나눌까?
 
 </details>
 

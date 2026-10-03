@@ -13,23 +13,39 @@
 
 Kahn 방식은 아직 남아 있는 선행 간선이 없는 정점을 선택한다. 해당 정점의 간선을 제거하면서 이웃의 진입 차수를 줄인다. 모든 정점을 처리하지 못했다면 순환 의존성이 남아 있다. DFS 방식은 종료 순서를 뒤집어 얻되 사이클을 별도로 탐지한다.
 
-## 예제
+## Java 예제
 
-A→C,B→C이면 A,B,C와 B,A,C가 모두 가능한 순서다. C는 A와 B가 끝나기 전에는 선택할 수 없다.
+```java
+import java.util.*;
+
+static List<Integer> order(List<List<Integer>> g) {
+    int[] degree = new int[g.size()];
+    for (var nexts : g) for (int v : nexts) degree[v]++;
+    Queue<Integer> q = new ArrayDeque<>();
+    for (int v = 0; v < degree.length; v++) if (degree[v] == 0) q.add(v);
+    List<Integer> out = new ArrayList<>();
+    while (!q.isEmpty()) {
+        int v = q.remove();
+        out.add(v);
+        for (int n : g.get(v)) if (--degree[n] == 0) q.add(n);
+    }
+    if (out.size() != g.size()) throw new IllegalArgumentException("cycle");
+    return out;
+}
+```
 
 ## 주의점
 
 일반 정렬처럼 유일한 답이 있는 것이 아니다. DFS 역후위 순서만 구하고 사이클 검사를 빼지 않는다.
 
-## 복습 질문
+## 꼬리질문
 
-처리한 정점 수가 V보다 적으면 왜 사이클을 의심할 수 있을까?
-
-자료 구분: **기존 자료** — 알고리즘·자료구조 노트와 대학 강의의 원리·예제. **공식 자료 보완** — 복잡도 전제·경계 조건·Java 계약.
+1. 처리한 정점 수가 V보다 적으면 왜 사이클을 의심할 수 있을까?
+2. 진입 차수가 0인 정점이 동시에 둘이면 위상 순서는 유일할까?
+3. 순환 의존성이 있는 빌드 작업을 이 코드로 검사하면 어디에서 실패할까?
 
 </details>
 
 ## 참고 자료
 
 - [Princeton · Directed Graphs](https://algs4.cs.princeton.edu/42digraph/) — 위상 순서·사이클·강한 연결 요소를 비교한다.
-- [홍정모 연구소](https://honglab.co.kr/) — 기존 학습 노트의 원 강의 출처. 강의의 설명과 실습 맥락을 더 확인한다.

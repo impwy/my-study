@@ -13,19 +13,29 @@
 
 한 사실이 여러 행에 반복되면 일부만 바뀌거나 다른 사실을 지울 때 함께 사라질 수 있다. 2NF는 부분 종속, 3NF는 특정 이행 종속을 다루고 BCNF는 모든 비자명한 함수적 종속의 결정자가 슈퍼키인지 확인한다. 손실 없는 분해와 종속성 보존을 검토해야 한다.
 
-## 예제
+## Java 예제
 
-고객별 행마다 등급의 할인율을 반복하지 않고 고객→등급, 등급→할인율 테이블로 나누면 한 곳에서 정책을 바꿀 수 있다.
+```java
+import java.util.*;
+
+record Department(long id, String name) {}
+
+record Employee(long id, long departmentId) {}
+
+static String departmentName(Employee e, Map<Long, Department> departments) {
+    return departments.get(e.departmentId()).name();
+} // 부서 이름을 직원마다 복제하지 않고 departmentId로 연결
+```
 
 ## 주의점
 
 정규화는 무조건 테이블을 많이 만드는 작업이 아니다. 역정규화한다면 복제된 값이 언제·어떻게 동기화되는지 정의한다.
 
-## 복습 질문
+## 꼬리질문
 
-중복 필드를 제거해도 업무 규칙을 보존하려면 무엇을 확인해야 할까?
-
-자료 구분: **기존 자료** — DB 강의와 저장 구조 복습 메모의 개념. **공식 자료 보완** — SQL·인덱스·버전 읽기의 제품별 조건.
+1. 중복 필드를 제거해도 업무 규칙을 보존하려면 무엇을 확인해야 할까?
+2. 부서 이름을 직원 행마다 저장하면 이름 변경 시 어떤 갱신 이상이 생길까?
+3. 모든 중복을 제거하면 조회 조인 비용도 줄어드는지, 어느 지점에서 절충이 필요할까?
 
 </details>
 

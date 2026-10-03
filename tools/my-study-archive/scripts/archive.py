@@ -67,6 +67,14 @@ def note_meta(path,content):
         raise ArchiveError(f'{path}: 접기 영역과 참고 자료가 필요합니다.')
     if content.count('<details>')!=1 or content.count('</details>')!=1 or content.index('</details>')<content.index('<details>'):
         raise ArchiveError(f'{path}: 접기 영역은 한 개여야 합니다.')
+    details=content.split('<details>',1)[1].split('</details>',1)[0]
+    if not re.search(r'(?ms)^```java\s*\n\S.*?^```\s*$',details):
+        raise ArchiveError(f'{path}: 접기 영역에 Java 코드 예제가 필요합니다.')
+    questions=re.search(r'(?ms)^## 꼬리질문\s*\n(.*?)(?=^## |</details>|\Z)',outside_code)
+    if not questions or re.findall(r'^(\d+)\. .+',questions.group(1),re.M)!=['1','2','3']:
+        raise ArchiveError(f'{path}: 꼬리질문은 1·2·3번으로 세 개 작성합니다.')
+    if re.search(r'^자료\s*구분\s*:|honglab\.co\.kr',content,re.M|re.I):
+        raise ArchiveError(f'{path}: 제외한 자료 구분 줄·출처가 있습니다.')
     if len(re.findall(r'^- ',content.split('<details>',1)[0],re.M))>3:
         raise ArchiveError(f'{path}: 핵심 사항은 최대 3개입니다.')
     if content.index('## 참고 자료')<content.index('</details>'):
@@ -91,8 +99,8 @@ def table(entries,base):
 def catalog_files(entries,categories):
     outputs={}
     intro='# my-study\n\n짧은 요약과 원문 링크로 남기는 기술 학습 기록.\n\n'
-    root=intro+'[첫 문서: 이진 탐색](docs/algorithms/search/binary-search.md) · [기록 방법](CONTRIBUTING.md) · [학습 경로](LEARNING_PATH.md)\n\n## 분류\n\n| 카테고리 | 문서 | 소분류 |\n| --- | ---: | --- |\n'
-    docs=intro+'[기록 방법](../CONTRIBUTING.md)\n\n## 분류\n\n| 카테고리 | 문서 |\n| --- | ---: |\n'
+    root=intro+'## 분류\n\n| 카테고리 | 문서 | 소분류 |\n| --- | ---: | --- |\n'
+    docs=intro+'## 분류\n\n| 카테고리 | 문서 |\n| --- | ---: |\n'
     for category in categories:
         slug=category['slug']
         group={p:e for p,e in entries.items() if p.startswith(f'docs/{slug}/')}
@@ -103,7 +111,6 @@ def catalog_files(entries,categories):
             selected={p:e for p,e in group.items() if p.startswith(f'docs/{slug}/{section}/')}
             body+=f'## {title}\n\n'+table(selected,f'docs/{slug}')+'\n'
         outputs[f'docs/{slug}/README.md']=body
-    root+='\n## 기록 형식\n\n한 문장 요약 · 핵심 3개 이하 · 접어 둔 설명 · 참고 링크.\n\n학습 대화는 로컬 초안으로 모으고, **정리·아카이빙 요청 때** GitHub에 반영합니다. 같은 주제는 기존 문서를 보완합니다.\n'
     root+='\n## 문서 목록\n\n'
     for category in categories:
         group={p:e for p,e in entries.items() if p.startswith(f"docs/{category['slug']}/")}

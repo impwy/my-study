@@ -13,19 +13,33 @@
 
 컨슈머는 poll로 받은 레코드를 처리하고 오프셋을 관리한다. 최대 poll 간격보다 오래 업무 처리를 하면 멤버가 진행하지 못한다고 판단되어 파티션을 잃을 수 있다. 한번에 받는 레코드 수를 줄이거나 업무 시간을 제한하고 필요하면 작업을 분리하되 순서·완료 위치를 관리한다. classic 그룹과 새 consumer 프로토콜은 heartbeat·세션 설정의 소유와 조정 방식이 다를 수 있다.
 
-## 예제
+## Java 예제
 
-느린 외부 API를 500개 레코드마다 순차 호출하면 다음 poll까지 너무 오래 걸릴 수 있다. max.poll.records와 업무 타임아웃·재시도량을 함께 본다.
+Kafka clients. 그룹 프로토콜별 heartbeat·session 설정 위치와 별개로 poll 간격을 관리한다.
+
+```java
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+
+import java.util.Properties;
+
+static Properties timeouts() {
+    Properties p = new Properties();
+    p.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 50);
+    p.put(ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG, 120000);
+    p.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
+    return p;
+}
+```
 
 ## 주의점
 
 타임아웃만 크게 늘리면 장애 감지가 늦어질 수 있다. 브로커 측 그룹 설정과 클라이언트 설정이 모두 같은 방식이라고 가정하지 않는다.
 
-## 복습 질문
+## 꼬리질문
 
-레코드 수가 작아도 처리 지연으로 리밸런스가 생길 수 있는 이유는?
-
-자료 구분: **기존 자료** — Kafka 강의와 이벤트 처리 노트의 흐름. **공식 자료 보완** — Kafka 4.1 설정·복제·커밋 보장 범위.
+1. 레코드 수가 작아도 처리 지연으로 리밸런스가 생길 수 있는 이유는?
+2. 50개 처리의 최악 시간이 3초씩이면 max.poll.interval 120초를 넘길 수 있을까?
+3. 개수 제한을 줄여도 한 레코드가 무한히 기다리면 어떤 외부 호출 제한·처리 정책이 필요할까?
 
 </details>
 

@@ -13,19 +13,32 @@
 
 캐시는 lockfile·OS·도구 버전 등으로 키를 정해 의존성 다운로드를 줄일 수 있다. 아티팩트는 테스트 보고서·패키지·이미지 관련 결과를 잡·실행 사이에 전달하거나 보관한다. 캐시 적중 여부가 테스트 성공의 근거가 되어서는 안 되고 오래된 산출물이 검증을 우회하지 않아야 한다. 빌드는 명시된 의존성과 코드로 결과를 만들 수 있어야 한다.
 
-## 예제
+## Java 예제
 
-Gradle 의존성은 적절한 캐시를, 실패한 테스트의 결과 파일은 artifact 업로드를 사용한다. 성공·실패 조건과 보존 기간을 정한다.
+캐시 키 입력을 계산한다. 복원 실패 시에도 정상 빌드되어야 하며 캐시는 완성된 산출물을 대신하지 않는다.
+
+```java
+import java.nio.file.*;
+import java.security.MessageDigest;
+import java.util.HexFormat;
+
+static String cacheInputHash(Path dependencyFile) throws Exception {
+    return HexFormat.of()
+            .formatHex(
+                    MessageDigest.getInstance("SHA-256")
+                            .digest(Files.readAllBytes(dependencyFile)));
+} // 의존성 정의 파일의 변경을 캐시 키에 반영할 때 사용
+```
 
 ## 주의점
 
 비밀 값을 캐시·아티팩트·로그에 넣지 않는다. 외부 PR이 쓰기 권한이나 신뢰하는 배포 경로를 얻지 않게 한다.
 
-## 복습 질문
+## 꼬리질문
 
-캐시가 삭제되었을 때 실패하는 빌드가 재현 가능한 빌드라고 보기 어려운 이유는?
-
-자료 구분: **기존 자료** — CI/CD 가이드와 배포 기록의 흐름. **공식 자료 보완** — 공식 워크플로·인증·권한 조건.
+1. 캐시가 삭제되었을 때 실패하는 빌드가 재현 가능한 빌드라고 보기 어려운 이유는?
+2. 의존성 파일 해시 외에 OS·JDK 버전이 캐시 키에 필요한 경우는 무엇일까?
+3. 캐시와 배포용 artifact를 같은 용도로 취급하면 보존·재현성에서 어떤 차이를 놓칠까?
 
 </details>
 

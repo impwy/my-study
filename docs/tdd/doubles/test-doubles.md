@@ -13,19 +13,39 @@
 
 시간·결제 서버·저장소를 매 테스트에서 실제로 사용할 수 없으면 대역으로 환경을 통제한다. stub은 성공·실패 응답을 준비하고 fake는 메모리 저장소처럼 간소화된 동작을 제공한다. mock은 정해진 호출 계약을 검증하는 데 쓰며 spy는 호출 정보를 관찰하는 용도로 구분할 수 있다. 대역이 실제 구현과 계약을 공유하는지 통합·계약 테스트로 확인한다.
 
-## 예제
+## Java 예제
 
-결제 실패 시 주문이 확정되지 않는 테스트에는 실패를 반환하는 대역을 쓴다. 실제 결제 API 형식·인증·타임아웃은 별도의 연동 테스트에서 확인한다.
+```java
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+interface Store {
+    String find(long id);
+}
+
+record Greeting(Store store) {
+    String text(long id) {
+        return "Hello " + store.find(id);
+    }
+}
+
+@Test
+void greets() {
+    Store stub = id -> "Kim";
+    assertEquals("Hello Kim", new Greeting(stub).text(1));
+}
+```
 
 ## 주의점
 
 모든 내부 호출 횟수를 고정하면 구현 변경에 쉽게 깨진다. fake DB가 실제 DB의 제약·격리를 완전히 재현한다고 가정하지 않는다.
 
-## 복습 질문
+## 꼬리질문
 
-단위 테스트의 fake 저장소가 통과해도 실제 DB 테스트가 필요한 이유는?
-
-자료 구분: **기존 자료** — TDD·프로젝트 테스트 학습 노트의 접근. **공식 자료 보완** — 대역 정의·실행 경계·테스트 계약.
+1. 단위 테스트의 fake 저장소가 통과해도 실제 DB 테스트가 필요한 이유는?
+2. 이 stub이 고정된 값을 반환하는 것과 mock이 호출을 검증하는 것은 어떤 목적이 다를까?
+3. 실제 DB의 제약·SQL·트랜잭션 실패를 이 테스트가 확인할 수 없는 이유는 무엇일까?
 
 </details>
 
