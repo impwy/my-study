@@ -180,8 +180,8 @@
     "title": "셸 정렬"
   },
   "docs/aws/ec2/instance-ami-storage.md": {
-    "content_sha": "e95bb0135d748eb28a90df98d3a2f813ad2a5b82",
-    "summary": "EC2는 가상 서버를 실행하고 AMI는 시작 이미지, 볼륨은 별도의 저장 수명을 가진다.",
+    "content_sha": "318aa27ef9444257bdd25ef32b153c8bcf10d82f",
+    "summary": "EC2 인스턴스는 백엔드를 실행하는 가상 서버이고, AMI와 저장 볼륨은 시작 구성과 데이터 수명을 담당한다.",
     "title": "EC2·AMI·블록 스토리지"
   },
   "docs/aws/iam/roles-and-policies.md": {
@@ -210,13 +210,13 @@
     "title": "RDS Multi-AZ와 읽기 복제본"
   },
   "docs/aws/s3/object-storage.md": {
-    "content_sha": "966715c9c871b387e431a4f6da9a186074f85719",
-    "summary": "S3는 객체를 키로 저장하며 블록·공유 파일 저장소와 접근 모델이 다르다.",
+    "content_sha": "82714a623a970173dfdba2d8808a971483d83824",
+    "summary": "S3는 파일을 객체 키로 저장하는 서비스이며, 백엔드는 DB에 파일 식별자를 기록하고 권한에 따라 파일 접근을 제공할 수 있다.",
     "title": "S3 객체와 저장소 선택"
   },
   "docs/aws/vpc/subnets-routes-security.md": {
-    "content_sha": "44e46d651ae10c9820eb881bf8feab8a11b2ba7e",
-    "summary": "서브넷의 위치와 경로, 보안 그룹·네트워크 ACL을 구분해 연결 가능성을 판단한다.",
+    "content_sha": "5c2d6b6468d6e6baab4cd18d99d9f110d80eed1b",
+    "summary": "VPC는 서버를 배치하는 가상 네트워크이며, 서브넷·경로·보안 규칙으로 통신 가능 범위를 정한다.",
     "title": "VPC 서브넷·라우팅·보안"
   },
   "docs/cloud/availability/backpressure-and-rate-limit.md": {
@@ -525,13 +525,13 @@
     "title": "Git restore·reset·revert 선택"
   },
   "docs/github-actions/cd/deployment-oidc-and-rollback.md": {
-    "content_sha": "4c636091f7ef086fe7fb00486af584cb11cf6420",
-    "summary": "검증한 산출물을 제한된 권한으로 배포하고 실제 상태 확인 뒤 실패를 복구한다.",
+    "content_sha": "d57e007d839bf9ae04df1fcd0c264fb0d94adefe",
+    "summary": "검증한 산출물을 제한된 권한으로 실행 서버에 전달하고, 실제 서비스 상태를 확인한 뒤 실패를 복구한다.",
     "title": "배포 권한·상태 확인·롤백"
   },
   "docs/github-actions/ci/cache-and-artifacts.md": {
-    "content_sha": "c6bb0be0f33816c1e6eac0da4d0cec38cac15240",
-    "summary": "재사용 가능한 의존성 캐시와 실행 결과를 전달하는 아티팩트를 목적별로 구분한다.",
+    "content_sha": "b61e18c6bc9d10f224ddf5991ad255512fa6ae05",
+    "summary": "CI에서 소스 코드를 테스트·빌드해 산출물을 만들고, 의존성 캐시와 배포용 아티팩트는 목적에 맞게 구분한다.",
     "title": "CI 캐시와 아티팩트"
   },
   "docs/github-actions/jobs/matrix-and-job-dependencies.md": {
