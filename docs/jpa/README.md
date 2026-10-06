@@ -6,6 +6,7 @@
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
+| [JPA 상속 전략과 물리 테이블](mapping/inheritance-strategies.md) | SINGLE_TABLE·JOINED·TABLE_PER_CLASS는 상속 계층의 저장 방식이며 조회·제약·인덱스 비용으로 비교한다. |
 | [엔티티 식별자와 매핑](mapping/entity-mapping.md) | JPA 엔티티는 영속 식별자로 구분하며 필드와 테이블의 매핑 규칙을 명시한다. |
 
 ## 영속성 컨텍스트

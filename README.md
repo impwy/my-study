@@ -12,23 +12,23 @@
 | [데이터베이스](docs/database/README.md) | 11 | 관계형 모델 · SQL · 인덱스 · 트랜잭션·격리 수준 |
 | [자료구조](docs/data-structures/README.md) | 17 | 배열·연결 리스트 · 스택·큐 · 해시 · 트리·힙 · 그래프 |
 | [알고리즘](docs/algorithms/README.md) | 36 | 복잡도 · 탐색 · 정렬 · 그래프 탐색 · 그리디·동적 계획법 |
-| [Java](docs/java/README.md) | 11 | 언어·타입 · 객체지향 · 컬렉션·제네릭 · 예외 · 스트림 · JVM·GC |
-| [Java 병렬 프로그래밍](docs/java-concurrency/README.md) | 5 | 스레드 안전성 · 가시성·원자성 · 락 · Executor·Future · 동시성 컬렉션 |
+| [Java](docs/java/README.md) | 12 | 언어·타입 · 객체지향 · 컬렉션·제네릭 · 예외 · 스트림 · JVM·GC |
+| [Java 병렬 프로그래밍](docs/java-concurrency/README.md) | 6 | 스레드 안전성 · 가시성·원자성 · 락 · Executor·Future · 동시성 컬렉션 |
 | [Linux](docs/linux/README.md) | 6 | 파일·권한 · 프로세스 · 셸 · 네트워크 명령어 · 서비스·로그 |
-| [클라우드](docs/cloud/README.md) | 6 | 가상화 · 컴퓨팅·스토리지 · 네트워크 · 확장성·가용성 |
+| [클라우드](docs/cloud/README.md) | 9 | 가상화 · 컴퓨팅·스토리지 · 네트워크 · 확장성·가용성 |
 | [컴퓨터 보안](docs/security/README.md) | 6 | 암호·해시 · 인증·인가 · 웹 취약점 · 접근 제어 |
-| [MySQL](docs/mysql/README.md) | 4 | 스키마·SQL · 실행 계획 · InnoDB·인덱스 · MVCC·락 |
+| [MySQL](docs/mysql/README.md) | 5 | 스키마·SQL · 실행 계획 · InnoDB·인덱스 · MVCC·락 |
 | [Redis](docs/redis/README.md) | 5 | 자료형 · 캐시·TTL · 영속성 · 복제 · 장애 대응 |
 | [Kafka](docs/kafka/README.md) | 8 | 토픽·파티션 · 프로듀서 · 컨슈머·오프셋 · 전달 보장 |
 | [Spring](docs/spring/README.md) | 6 | IoC·DI · 빈 생명주기 · AOP · MVC · 트랜잭션 |
 | [Spring Boot](docs/spring-boot/README.md) | 4 | 자동 설정 · 설정·프로파일 · 웹 애플리케이션 · Actuator |
-| [JPA](docs/jpa/README.md) | 6 | 엔티티 매핑 · 영속성 컨텍스트 · 연관관계 · 조회·N+1 · 락 |
-| [REST API](docs/rest-api/README.md) | 5 | 리소스 설계 · 메서드·상태 코드 · 멱등성 · 페이지네이션·오류 |
+| [JPA](docs/jpa/README.md) | 7 | 엔티티 매핑 · 영속성 컨텍스트 · 연관관계 · 조회·N+1 · 락 |
+| [REST API](docs/rest-api/README.md) | 6 | 리소스 설계 · 메서드·상태 코드 · 멱등성 · 페이지네이션·오류 |
 | [JavaScript](docs/javascript/README.md) | 6 | 타입·스코프 · 클로저 · 프로토타입 · 비동기·이벤트 루프 |
 | [Vue.js](docs/vue/README.md) | 5 | 반응성 · 컴포넌트 · Composition API · 라우팅·상태 관리 |
 | [React](docs/react/README.md) | 5 | 렌더링 · props·state · Hooks · 상태 관리·라우팅 |
-| [AWS](docs/aws/README.md) | 8 | IAM · VPC · EC2 · S3 · RDS · 로드밸런싱·모니터링 |
-| [Git](docs/git/README.md) | 4 | 커밋·브랜치 · merge·rebase · 충돌 해결 · 복구 |
+| [AWS](docs/aws/README.md) | 9 | IAM · VPC · EC2 · S3 · RDS · 로드밸런싱·모니터링 |
+| [Git](docs/git/README.md) | 5 | 커밋·브랜치 · merge·rebase · 충돌 해결 · 복구 |
 | [GitHub Actions](docs/github-actions/README.md) | 4 | 워크플로 · 이벤트·잡 · 테스트·빌드 · 배포 |
 | [DDD](docs/ddd/README.md) | 4 | 도메인 모델 · 바운디드 컨텍스트 · 엔티티·값 객체 · 애그리거트·이벤트 |
 | [TDD](docs/tdd/README.md) | 4 | Red–Green–Refactor · 테스트 설계 · 테스트 대역 · 단위·통합 테스트 |
@@ -178,7 +178,7 @@
 </details>
 
 <details>
-<summary>Java · 11개</summary>
+<summary>Java · 12개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
@@ -193,15 +193,17 @@
 | [제어 흐름과 배열](docs/java/language/control-flow-and-arrays.md) | 조건·반복으로 실행 경로를 정하고 배열의 길이와 인덱스 경계를 지킨다. |
 | [컬렉션과 제네릭](docs/java/collections/collections-and-generics.md) | 컬렉션은 저장·탐색 방식으로 고르고, 제네릭으로 원소 타입의 계약을 표현한다. |
 | [패키지·라이브러리·모듈](docs/java/language/packages-and-modules.md) | 이름 공간과 배포 묶음, 모듈의 명시적 의존·공개 범위를 구분한다. |
+| [포매터·린터·정적 분석의 역할](docs/java/language/formatting-and-static-analysis.md) | 코드 형식 통일과 잠재 문제 탐지는 서로 다른 역할이며 자동 도구를 요구사항 검증과 함께 사용한다. |
 
 </details>
 
 <details>
-<summary>Java 병렬 프로그래밍 · 5개</summary>
+<summary>Java 병렬 프로그래밍 · 6개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
 | [Executor와 Future](docs/java-concurrency/executors/executor-and-future.md) | 작업 제출과 실행 스레드 관리를 분리하고 Future로 완료·실패·취소 결과를 받는다. |
+| [Virtual Thread와 WebFlux의 선택 기준](docs/java-concurrency/executors/virtual-threads.md) | Virtual Thread는 블로킹 I/O 동시 작업의 스레드 비용을 줄이고 WebFlux는 논블로킹 흐름과 백프레셔를 제공한다. |
 | [volatile의 가시성과 원자성](docs/java-concurrency/memory-model/volatile.md) | volatile은 해당 변수의 읽기·쓰기에 가시성·순서 보장을 주지만 증가 연산 전체를 원자적으로 만들지 않는다. |
 | [동시성 컬렉션의 연산 경계](docs/java-concurrency/collections/concurrent-collections.md) | 동시성 컬렉션은 명시된 개별·복합 API를 안전하게 제공하지만 호출 여러 개를 자동으로 한 작업으로 묶지 않는다. |
 | [모니터와 명시적 락](docs/java-concurrency/locks/monitor-and-lock.md) | 락은 같은 상태를 다루는 스레드들의 임계 영역 진입을 조정하고 메모리 가시성을 연결한다. |
@@ -224,16 +226,19 @@
 </details>
 
 <details>
-<summary>클라우드 · 6개</summary>
+<summary>클라우드 · 9개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
 | [Kubernetes의 Pod·Deployment·Service](docs/cloud/virtualization/kubernetes-building-blocks.md) | 컨테이너 실행 단위, 원하는 상태 유지, 접근 경로의 책임을 구분한다. |
+| [OCR 모델의 학습·추론과 신분증 정보 추출](docs/cloud/resources/ocr-model-fine-tuning.md) | OCR은 이미지의 문자를 텍스트로 변환하는 작업이며 파인튜닝은 기존 모델을 특정 데이터로 추가 학습하는 방법이다. |
+| [Observability와 LGTM·Datadog](docs/cloud/availability/observability-lgtm.md) | 메트릭·로그·트레이스를 연결해 내부 상태를 추론하고 Grafana 도구 조합과 Datadog 통합 서비스를 구분한다. |
 | [백프레셔와 요청 제한](docs/cloud/availability/backpressure-and-rate-limit.md) | 처리 가능한 속도에 맞춰 유입·대기·거절을 조정해 과부하가 시스템 전체로 번지는 것을 제한한다. |
 | [지연·처리량·포화](docs/cloud/availability/latency-throughput-saturation.md) | 부하가 늘 때 처리량·지연 분포·오류·대기열을 함께 보아 병목을 찾는다. |
 | [컴퓨팅과 블록·파일·객체 스토리지](docs/cloud/resources/compute-and-storage-boundaries.md) | 애플리케이션의 실행 자원과 데이터 보관 자원을 나누고 접근 방식에 맞는 스토리지를 선택한다. |
 | [클라우드 서비스 모델](docs/cloud/virtualization/cloud-service-models.md) | 온디맨드 자원 사용과 IaaS·PaaS·SaaS별 관리 책임의 차이를 설명한다. |
 | [클라우드 연결 경로와 아웃바운드 통신](docs/cloud/network/network-path-and-egress.md) | 연결 문제는 DNS·라우팅·접근 제어·서버 대기 상태를 경로 순서대로 확인한다. |
+| [폴백과 장애 복구의 경계](docs/cloud/availability/fallback-and-recovery.md) | 주 경로 실패 때 대체 동작을 선택하되 부하·데이터 정확성·복구 절차를 함께 검증한다. |
 
 </details>
 
@@ -252,14 +257,15 @@
 </details>
 
 <details>
-<summary>MySQL · 4개</summary>
+<summary>MySQL · 5개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
 | [InnoDB MVCC와 락](docs/mysql/concurrency/mvcc-and-locks.md) | 스냅샷 읽기와 잠금 읽기를 구분하고 격리 수준·인덱스 조건에 따른 동시 동작을 확인한다. |
 | [InnoDB 클러스터드 인덱스](docs/mysql/innodb/clustered-index.md) | InnoDB는 클러스터드 인덱스 리프에 행을 저장하고 보조 인덱스에서 행 식별 키를 이용한다. |
 | [MySQL 스키마의 타입·제약·기본값](docs/mysql/sql/schema-types-and-defaults.md) | 테이블은 값의 표현뿐 아니라 누락·중복·범위에 대한 계약을 함께 정의한다. |
-| [실행 계획과 복합 인덱스](docs/mysql/plans/explain-and-composite-index.md) | 실제 필터·정렬·조인 조건과 데이터 분포를 기준으로 인덱스의 효과를 검증한다. |
+| [MySQL과 Vitess의 역할](docs/mysql/sql/vitess-sharding.md) | MySQL이 데이터를 저장·실행하고 Vitess는 MySQL 위에서 라우팅·샤딩·운영을 지원한다. |
+| [실행 계획과 복합 인덱스](docs/mysql/plans/explain-and-composite-index.md) | 복합 인덱스는 카디널리티만으로 정렬하지 않고 필터·정렬·선두 컬럼·실제 실행 비용을 함께 검증한다. |
 
 </details>
 
@@ -283,7 +289,7 @@
 | --- | --- |
 | [Kafka 전달 보장의 범위](docs/kafka/delivery/idempotence-and-transactions.md) | 프로듀서 멱등성·Kafka 트랜잭션·컨슈머 처리 정책의 보장 범위를 외부 업무 효과와 구분한다. |
 | [poll과 컨슈머 타임아웃](docs/kafka/consumers/poll-and-timeouts.md) | 로그를 읽는 주기와 멤버 생존·처리 지연 조건을 나누어 컨슈머 정체를 진단한다. |
-| [로그·파티션·오프셋](docs/kafka/topics/log-partition-offset.md) | Kafka는 토픽의 파티션별 추가 로그에 레코드를 저장하고 오프셋으로 위치를 식별한다. |
+| [로그·파티션·오프셋](docs/kafka/topics/log-partition-offset.md) | Kafka는 파티션별 순서 있는 이벤트 로그에 레코드를 보관하고 소비자는 오프셋으로 읽기 위치를 관리한다. |
 | [복제·ISR·High Watermark](docs/kafka/topics/replication-and-high-watermark.md) | 리더와 복제본의 로그 진도를 구분하고 소비 가능한 커밋 경계와 장애 시 남는 데이터를 확인한다. |
 | [재시도·DLT·재처리](docs/kafka/consumers/retry-dlt-and-replay.md) | 실패한 이벤트의 원인·원문·처리 이력을 보존하고 안전한 재처리와 정합성 확인을 설계한다. |
 | [컨슈머 그룹과 리밸런스](docs/kafka/consumers/group-and-rebalance.md) | 그룹은 파티션 작업을 나누고 멤버·토픽 조건이 바뀌면 할당을 다시 조정한다. |
@@ -319,10 +325,11 @@
 </details>
 
 <details>
-<summary>JPA · 6개</summary>
+<summary>JPA · 7개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
+| [JPA 상속 전략과 물리 테이블](docs/jpa/mapping/inheritance-strategies.md) | SINGLE_TABLE·JOINED·TABLE_PER_CLASS는 상속 계층의 저장 방식이며 조회·제약·인덱스 비용으로 비교한다. |
 | [N+1과 조회 설계](docs/jpa/queries/n-plus-one.md) | 필요한 연관 데이터를 개별 추가 쿼리로 읽는 흐름을 관찰하고 화면·업무에 맞는 조회를 설계한다. |
 | [flush와 commit](docs/jpa/context/flush-and-commit.md) | flush는 변경을 DB에 동기화하는 과정이고 commit은 트랜잭션을 확정하는 과정이다. |
 | [낙관적 락과 비관적 락](docs/jpa/locks/optimistic-and-pessimistic.md) | 동시 변경을 버전 충돌로 감지하거나 DB 락으로 조정해 업무 불변식을 지킨다. |
@@ -333,14 +340,15 @@
 </details>
 
 <details>
-<summary>REST API · 5개</summary>
+<summary>REST API · 6개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
+| [API First와 명세의 역할](docs/rest-api/contracts/api-first.md) | 구현 전에 외부 인터페이스 계약을 합의하면 프론트와 백엔드가 같은 기대 동작을 기준으로 개발할 수 있다. |
 | [HTTP 메서드·상태 코드와 재시도 계약](docs/rest-api/http/methods-status-and-retry-contract.md) | 메서드는 작업의 의미를, 상태 코드는 처리 결과를 표현하며 둘을 함께 설계해야 한다. |
 | [Problem Details 오류 계약](docs/rest-api/contracts/problem-details.md) | 오류 응답을 공통 구조로 표현하고 업무 오류를 기계가 구분할 수 있게 한다. |
 | [REST의 제약과 리소스](docs/rest-api/resources/rest-constraints.md) | REST는 리소스에 대한 통일된 인터페이스와 여러 제약으로 분산 시스템의 상호작용을 설계하는 스타일이다. |
-| [멱등 키와 요청 재시도](docs/rest-api/idempotency/idempotency-key.md) | 응답이 유실되어 같은 업무 요청을 재시도해도 결과가 중복 생성되지 않도록 요청의 정체성을 저장한다. |
+| [멱등 키와 요청 재시도](docs/rest-api/idempotency/idempotency-key.md) | 같은 요청의 중복 효과는 멱등성으로 막고 서로 다른 요청의 자원 경쟁은 별도 동시성 제어로 보호한다. |
 | [페이지네이션과 안정적인 정렬](docs/rest-api/contracts/pagination.md) | 목록을 나눠 읽을 때 정렬·경계·변경 중 데이터의 일관성을 명확히 한다. |
 
 </details>
@@ -386,10 +394,11 @@
 </details>
 
 <details>
-<summary>AWS · 8개</summary>
+<summary>AWS · 9개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
+| [Amazon Bedrock과 교육 AI Agent](docs/aws/operations/bedrock-ai-applications.md) | Bedrock은 기반 모델을 활용하는 AWS 관리형 서비스이며 Agent는 모델·자료·도구를 연결해 작업을 수행하는 시스템이다. |
 | [CloudWatch와 CloudTrail](docs/aws/operations/monitoring-and-audit.md) | 운영 지표·로그를 통한 상태 관찰과 AWS API 활동 감사를 구분한다. |
 | [EC2·AMI·블록 스토리지](docs/aws/ec2/instance-ami-storage.md) | EC2 인스턴스는 백엔드를 실행하는 가상 서버이고, AMI와 저장 볼륨은 시작 구성과 데이터 수명을 담당한다. |
 | [IAM 역할과 정책](docs/aws/iam/roles-and-policies.md) | AWS 자원 접근은 주체·정책·조건으로 판단하고 장기 키 대신 적절한 임시 자격 증명을 사용한다. |
@@ -402,11 +411,12 @@
 </details>
 
 <details>
-<summary>Git · 4개</summary>
+<summary>Git · 5개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
 | [Git restore·reset·revert 선택](docs/git/recovery/restore-reset-revert.md) | 복구 명령은 파일·스테이징·브랜치 이력 중 무엇을 되돌릴지 먼저 정해 선택한다. |
+| [GitHub Flow와 리뷰할 변경 단위](docs/git/integration/github-flow.md) | 짧은 작업 브랜치와 PR로 변경을 검토하고 main에 통합하며 상시 develop은 팀의 별도 운영 선택이다. |
 | [merge와 rebase](docs/git/integration/merge-and-rebase.md) | merge는 이력을 합치는 커밋을 만들 수 있고 rebase는 커밋을 새 기반에 다시 적용한다. |
 | [충돌 해결과 변경 보존](docs/git/conflicts/conflict-and-recovery.md) | 충돌한 양쪽의 의도를 읽어 통합하고 되돌리기 전에 현재 변경을 보존한다. |
 | [커밋·브랜치와 세 작업 영역](docs/git/history/commit-branch-and-areas.md) | 작업 트리·인덱스·커밋을 구분하고 브랜치를 커밋을 가리키는 이름으로 이해한다. |
@@ -431,7 +441,7 @@
 | 문서 | 한 줄 요약 |
 | --- | --- |
 | [도메인 모델과 유비쿼터스 언어](docs/ddd/model/domain-and-language.md) | 업무의 개념·규칙을 팀이 함께 쓰는 언어와 모델로 표현한다. |
-| [바운디드 컨텍스트](docs/ddd/contexts/bounded-context.md) | 한 모델과 용어가 일관된 의미를 갖는 경계를 정하고 경계 사이의 번역을 설계한다. |
+| [바운디드 컨텍스트](docs/ddd/contexts/bounded-context.md) | 모델과 용어의 의미 경계, 코드·빌드 경계, 배포 경계를 구분해 업무 책임을 나눈다. |
 | [애그리거트와 도메인 이벤트](docs/ddd/aggregates/aggregate-and-events.md) | 일관성 경계의 루트를 통해 규칙을 보호하고 이미 일어난 업무 사실을 이벤트로 전달한다. |
 | [엔티티와 값 객체](docs/ddd/identity/entity-value-object.md) | 엔티티는 지속되는 정체성으로, 값 객체는 값과 의미로 구분한다. |
 
@@ -443,9 +453,9 @@
 | 문서 | 한 줄 요약 |
 | --- | --- |
 | [Red–Green–Refactor](docs/tdd/cycle/red-green-refactor.md) | 실패하는 작은 테스트로 요구를 드러내고 최소 구현 뒤 설계를 개선한다. |
-| [단위·통합·인수 테스트](docs/tdd/levels/unit-and-integration.md) | 작은 규칙의 빠른 검증과 실제 경계 연동·사용자 요구 검증을 목적별로 나눈다. |
+| [단위·통합·인수 테스트](docs/tdd/levels/unit-and-integration.md) | 작은 규칙, 실제 연동 경계, 사용자 요구를 목적별로 검증하고 테스트 범위와 대역 사용 방식을 구분한다. |
 | [테스트 대역의 목적](docs/tdd/doubles/test-doubles.md) | 느리거나 통제하기 어려운 협력자를 목적에 맞는 대역으로 바꾸고 실제 연동은 별도로 검증한다. |
-| [행동과 경계값 테스트](docs/tdd/design/behavior-and-boundaries.md) | 요구한 결과와 불변식을 검증하고 입력·상태·실패 경계를 대표하는 사례를 선택한다. |
+| [행동과 경계값 테스트](docs/tdd/design/behavior-and-boundaries.md) | AC로 받아들일 동작을 정하고 TC로 입력·행위·기대 결과를 구체화해 요구와 불변식을 검증한다. |
 
 </details>
 
@@ -455,9 +465,9 @@
 | 문서 | 한 줄 요약 |
 | --- | --- |
 | [LSM 트리와 컴팩션](docs/ddia/storage/lsm-and-compaction.md) | LSM은 쓰기를 메모리에 모아 정렬 파일로 내보내고 병합하면서 읽기·쓰기 비용을 조절한다. |
-| [Outbox와 정합성 대사](docs/ddia/consistency/outbox-and-reconciliation.md) | DB 변경과 발송할 이벤트를 함께 기록하고 비동기 전달의 중복·누락을 감지·복구한다. |
+| [Outbox와 정합성 대사](docs/ddia/consistency/outbox-and-reconciliation.md) | 원본 변경과 전송 의도를 함께 기록하고 비동기 전달의 중복·지연·누락을 감지해 복구한다. |
 | [관계형·문서·그래프 데이터 모델](docs/ddia/models/relational-document-graph-models.md) | 모델 선택은 데이터 모양뿐 아니라 함께 읽고 갱신하는 방식과 관계 탐색으로 결정한다. |
-| [배치와 스트림 처리](docs/ddia/processing/batch-and-stream.md) | 유한한 입력 묶음의 처리와 계속 도착하는 이벤트의 처리를 완료·재시작·지연 기준으로 비교한다. |
+| [배치와 스트림 처리](docs/ddia/processing/batch-and-stream.md) | 배치는 유한한 묶음을, 스트림은 지속되는 입력을 처리하며 Kafka 직접 수신과 처리 상태의 복구를 구분한다. |
 | [복제와 파티셔닝](docs/ddia/distribution/replication-partitioning.md) | 복제는 사본을 늘리고 파티셔닝은 데이터를 나누며 각각 가용성·용량·운영의 다른 문제를 다룬다. |
 
 </details>

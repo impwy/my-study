@@ -189,6 +189,11 @@
     "summary": "AWS 자원 접근은 주체·정책·조건으로 판단하고 장기 키 대신 적절한 임시 자격 증명을 사용한다.",
     "title": "IAM 역할과 정책"
   },
+  "docs/aws/operations/bedrock-ai-applications.md": {
+    "content_sha": "fcd6d388aedb6c09ff33a3bf9db29584ad33c708",
+    "summary": "Bedrock은 기반 모델을 활용하는 AWS 관리형 서비스이며 Agent는 모델·자료·도구를 연결해 작업을 수행하는 시스템이다.",
+    "title": "Amazon Bedrock과 교육 AI Agent"
+  },
   "docs/aws/operations/load-balancing-and-autoscaling.md": {
     "content_sha": "cdc30ef6b3561df4f914e4de08b5a6539d23b44b",
     "summary": "트래픽 분산과 인스턴스 수 조정을 결합하되 상태·용량·준비 시간을 함께 설계한다.",
@@ -224,10 +229,20 @@
     "summary": "처리 가능한 속도에 맞춰 유입·대기·거절을 조정해 과부하가 시스템 전체로 번지는 것을 제한한다.",
     "title": "백프레셔와 요청 제한"
   },
+  "docs/cloud/availability/fallback-and-recovery.md": {
+    "content_sha": "4973f1f8e03d55d87d9075bb5962b55e10ca629b",
+    "summary": "주 경로 실패 때 대체 동작을 선택하되 부하·데이터 정확성·복구 절차를 함께 검증한다.",
+    "title": "폴백과 장애 복구의 경계"
+  },
   "docs/cloud/availability/latency-throughput-saturation.md": {
     "content_sha": "f8a78b5e8d7582b4789590ef66ed7673927e59fb",
     "summary": "부하가 늘 때 처리량·지연 분포·오류·대기열을 함께 보아 병목을 찾는다.",
     "title": "지연·처리량·포화"
+  },
+  "docs/cloud/availability/observability-lgtm.md": {
+    "content_sha": "7db8dfba7562144a3a8958abd6f25febf3ea4dc7",
+    "summary": "메트릭·로그·트레이스를 연결해 내부 상태를 추론하고 Grafana 도구 조합과 Datadog 통합 서비스를 구분한다.",
+    "title": "Observability와 LGTM·Datadog"
   },
   "docs/cloud/network/network-path-and-egress.md": {
     "content_sha": "7741c72d04b263bb517ad51d0e708b127a03bbba",
@@ -238,6 +253,11 @@
     "content_sha": "27a55afc3fec6dc28de1d60bcf0c0da9ddb2779f",
     "summary": "애플리케이션의 실행 자원과 데이터 보관 자원을 나누고 접근 방식에 맞는 스토리지를 선택한다.",
     "title": "컴퓨팅과 블록·파일·객체 스토리지"
+  },
+  "docs/cloud/resources/ocr-model-fine-tuning.md": {
+    "content_sha": "4f74546b09c14ccc65c3f04485d5b2b1b720d7bc",
+    "summary": "OCR은 이미지의 문자를 텍스트로 변환하는 작업이며 파인튜닝은 기존 모델을 특정 데이터로 추가 학습하는 방법이다.",
+    "title": "OCR 모델의 학습·추론과 신분증 정보 추출"
   },
   "docs/cloud/virtualization/cloud-service-models.md": {
     "content_sha": "9cd34ea7eee3f99c20190d0a7ccf15974218d160",
@@ -440,8 +460,8 @@
     "title": "애그리거트와 도메인 이벤트"
   },
   "docs/ddd/contexts/bounded-context.md": {
-    "content_sha": "fa8263f4d4371835d202cc54da30e63f855adad6",
-    "summary": "한 모델과 용어가 일관된 의미를 갖는 경계를 정하고 경계 사이의 번역을 설계한다.",
+    "content_sha": "1d12e473c22500652826fdd57eb8d1449faeb9f9",
+    "summary": "모델과 용어의 의미 경계, 코드·빌드 경계, 배포 경계를 구분해 업무 책임을 나눈다.",
     "title": "바운디드 컨텍스트"
   },
   "docs/ddd/identity/entity-value-object.md": {
@@ -455,8 +475,8 @@
     "title": "도메인 모델과 유비쿼터스 언어"
   },
   "docs/ddia/consistency/outbox-and-reconciliation.md": {
-    "content_sha": "f02063c17538c74a826af108ff91225e5b961df6",
-    "summary": "DB 변경과 발송할 이벤트를 함께 기록하고 비동기 전달의 중복·누락을 감지·복구한다.",
+    "content_sha": "b6595f6161444d5da6b055300a510d44c21e0655",
+    "summary": "원본 변경과 전송 의도를 함께 기록하고 비동기 전달의 중복·지연·누락을 감지해 복구한다.",
     "title": "Outbox와 정합성 대사"
   },
   "docs/ddia/distribution/replication-partitioning.md": {
@@ -470,8 +490,8 @@
     "title": "관계형·문서·그래프 데이터 모델"
   },
   "docs/ddia/processing/batch-and-stream.md": {
-    "content_sha": "58f816229179382f96c86dae4c0b725e16be98fa",
-    "summary": "유한한 입력 묶음의 처리와 계속 도착하는 이벤트의 처리를 완료·재시작·지연 기준으로 비교한다.",
+    "content_sha": "fdce559881cf8ddcef667a73bdf69f481fab5664",
+    "summary": "배치는 유한한 묶음을, 스트림은 지속되는 입력을 처리하며 Kafka 직접 수신과 처리 상태의 복구를 구분한다.",
     "title": "배치와 스트림 처리"
   },
   "docs/ddia/storage/lsm-and-compaction.md": {
@@ -514,6 +534,11 @@
     "summary": "작업 트리·인덱스·커밋을 구분하고 브랜치를 커밋을 가리키는 이름으로 이해한다.",
     "title": "커밋·브랜치와 세 작업 영역"
   },
+  "docs/git/integration/github-flow.md": {
+    "content_sha": "789a590a1a927e1b1149215e65f9dc8758044f4e",
+    "summary": "짧은 작업 브랜치와 PR로 변경을 검토하고 main에 통합하며 상시 develop은 팀의 별도 운영 선택이다.",
+    "title": "GitHub Flow와 리뷰할 변경 단위"
+  },
   "docs/git/integration/merge-and-rebase.md": {
     "content_sha": "85e23fb856ca5b51bb99087f1a99a00218f4b314",
     "summary": "merge는 이력을 합치는 커밋을 만들 수 있고 rebase는 커밋을 새 기반에 다시 적용한다.",
@@ -554,6 +579,11 @@
     "summary": "작업 제출과 실행 스레드 관리를 분리하고 Future로 완료·실패·취소 결과를 받는다.",
     "title": "Executor와 Future"
   },
+  "docs/java-concurrency/executors/virtual-threads.md": {
+    "content_sha": "fc68216fe6a4357823395960662c0ef625f6bfb6",
+    "summary": "Virtual Thread는 블로킹 I/O 동시 작업의 스레드 비용을 줄이고 WebFlux는 논블로킹 흐름과 백프레셔를 제공한다.",
+    "title": "Virtual Thread와 WebFlux의 선택 기준"
+  },
   "docs/java-concurrency/locks/monitor-and-lock.md": {
     "content_sha": "85c8d4ca7bce1c0786902e4fa95815307de95d2b",
     "summary": "락은 같은 상태를 다루는 스레드들의 임계 영역 진입을 조정하고 메모리 가시성을 연결한다.",
@@ -588,6 +618,11 @@
     "content_sha": "a32e767ac04d205c5fef4c9089a6acf0aa4d2f7f",
     "summary": "조건·반복으로 실행 경로를 정하고 배열의 길이와 인덱스 경계를 지킨다.",
     "title": "제어 흐름과 배열"
+  },
+  "docs/java/language/formatting-and-static-analysis.md": {
+    "content_sha": "2f3c57b22337007ef7e29fb4aa4609b1c3b5b1b1",
+    "summary": "코드 형식 통일과 잠재 문제 탐지는 서로 다른 역할이며 자동 도구를 요구사항 검증과 함께 사용한다.",
+    "title": "포매터·린터·정적 분석의 역할"
   },
   "docs/java/language/jdbc-boundary.md": {
     "content_sha": "e9989c707466462ecff34a2adbfd4440eb09c22f",
@@ -674,6 +709,11 @@
     "summary": "JPA 엔티티는 영속 식별자로 구분하며 필드와 테이블의 매핑 규칙을 명시한다.",
     "title": "엔티티 식별자와 매핑"
   },
+  "docs/jpa/mapping/inheritance-strategies.md": {
+    "content_sha": "49e215693d145573e1a1836fca2b6a5c82824561",
+    "summary": "SINGLE_TABLE·JOINED·TABLE_PER_CLASS는 상속 계층의 저장 방식이며 조회·제약·인덱스 비용으로 비교한다.",
+    "title": "JPA 상속 전략과 물리 테이블"
+  },
   "docs/jpa/queries/n-plus-one.md": {
     "content_sha": "9be03845fbfe4182b5fcdbfbd35cfa85775de750",
     "summary": "필요한 연관 데이터를 개별 추가 쿼리로 읽는 흐름을 관찰하고 화면·업무에 맞는 조회를 설계한다.",
@@ -715,8 +755,8 @@
     "title": "프로듀서 배치·acks·재시도"
   },
   "docs/kafka/topics/log-partition-offset.md": {
-    "content_sha": "99f056e2f0a27eadb1d1265363391764bbce6680",
-    "summary": "Kafka는 토픽의 파티션별 추가 로그에 레코드를 저장하고 오프셋으로 위치를 식별한다.",
+    "content_sha": "ee7491f544d53abf7749c94a3a672e2af523dbdf",
+    "summary": "Kafka는 파티션별 순서 있는 이벤트 로그에 레코드를 보관하고 소비자는 오프셋으로 읽기 위치를 관리한다.",
     "title": "로그·파티션·오프셋"
   },
   "docs/kafka/topics/replication-and-high-watermark.md": {
@@ -765,14 +805,19 @@
     "title": "InnoDB 클러스터드 인덱스"
   },
   "docs/mysql/plans/explain-and-composite-index.md": {
-    "content_sha": "0ad3f1e60b741292ce54f011cd716d4b982e2d6f",
-    "summary": "실제 필터·정렬·조인 조건과 데이터 분포를 기준으로 인덱스의 효과를 검증한다.",
+    "content_sha": "eac51e39084397b79a3431466f6a99aadc861f8d",
+    "summary": "복합 인덱스는 카디널리티만으로 정렬하지 않고 필터·정렬·선두 컬럼·실제 실행 비용을 함께 검증한다.",
     "title": "실행 계획과 복합 인덱스"
   },
   "docs/mysql/sql/schema-types-and-defaults.md": {
     "content_sha": "dc278bfe8a84addf7b320fad292b655545c0509c",
     "summary": "테이블은 값의 표현뿐 아니라 누락·중복·범위에 대한 계약을 함께 정의한다.",
     "title": "MySQL 스키마의 타입·제약·기본값"
+  },
+  "docs/mysql/sql/vitess-sharding.md": {
+    "content_sha": "561e1917a63761115b92c87903920fb64987343d",
+    "summary": "MySQL이 데이터를 저장·실행하고 Vitess는 MySQL 위에서 라우팅·샤딩·운영을 지원한다.",
+    "title": "MySQL과 Vitess의 역할"
   },
   "docs/network/dns/name-resolution.md": {
     "content_sha": "4ce966829c90c4b744bc40babb4b2b16d1d5fd56",
@@ -919,6 +964,11 @@
     "summary": "필요한 조회·갱신 연산에 맞춰 자료형을 고르고 Sorted Set은 점수 순으로 멤버를 관리한다.",
     "title": "Redis 자료형과 Sorted Set"
   },
+  "docs/rest-api/contracts/api-first.md": {
+    "content_sha": "76cfcf75941b07f73d22eefcfe193096dffc157b",
+    "summary": "구현 전에 외부 인터페이스 계약을 합의하면 프론트와 백엔드가 같은 기대 동작을 기준으로 개발할 수 있다.",
+    "title": "API First와 명세의 역할"
+  },
   "docs/rest-api/contracts/pagination.md": {
     "content_sha": "e4f6d418656c0cb90611f1ea321413011912a622",
     "summary": "목록을 나눠 읽을 때 정렬·경계·변경 중 데이터의 일관성을 명확히 한다.",
@@ -935,8 +985,8 @@
     "title": "HTTP 메서드·상태 코드와 재시도 계약"
   },
   "docs/rest-api/idempotency/idempotency-key.md": {
-    "content_sha": "c08785eb89f0c3e18f90782919bef0c436bca38d",
-    "summary": "응답이 유실되어 같은 업무 요청을 재시도해도 결과가 중복 생성되지 않도록 요청의 정체성을 저장한다.",
+    "content_sha": "75cf64eebc577780d89a40784b4080d180ff5325",
+    "summary": "같은 요청의 중복 효과는 멱등성으로 막고 서로 다른 요청의 자원 경쟁은 별도 동시성 제어로 보호한다.",
     "title": "멱등 키와 요청 재시도"
   },
   "docs/rest-api/resources/rest-constraints.md": {
@@ -1030,8 +1080,8 @@
     "title": "Red–Green–Refactor"
   },
   "docs/tdd/design/behavior-and-boundaries.md": {
-    "content_sha": "023ae51c7b22c1d6c6673c968ffcbc5218cdd4e8",
-    "summary": "요구한 결과와 불변식을 검증하고 입력·상태·실패 경계를 대표하는 사례를 선택한다.",
+    "content_sha": "cd4e77dbc720795043469cd88da5775758a12644",
+    "summary": "AC로 받아들일 동작을 정하고 TC로 입력·행위·기대 결과를 구체화해 요구와 불변식을 검증한다.",
     "title": "행동과 경계값 테스트"
   },
   "docs/tdd/doubles/test-doubles.md": {
@@ -1040,8 +1090,8 @@
     "title": "테스트 대역의 목적"
   },
   "docs/tdd/levels/unit-and-integration.md": {
-    "content_sha": "b9b800b784b846ccfda38ced4d312225a0929061",
-    "summary": "작은 규칙의 빠른 검증과 실제 경계 연동·사용자 요구 검증을 목적별로 나눈다.",
+    "content_sha": "eb9831a3e82f38b536337437834af8b7ee0e2642",
+    "summary": "작은 규칙, 실제 연동 경계, 사용자 요구를 목적별로 검증하고 테스트 범위와 대역 사용 방식을 구분한다.",
     "title": "단위·통합·인수 테스트"
   },
   "docs/vue/components/props-and-emits.md": {

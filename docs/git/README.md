@@ -12,6 +12,7 @@
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
+| [GitHub Flow와 리뷰할 변경 단위](integration/github-flow.md) | 짧은 작업 브랜치와 PR로 변경을 검토하고 main에 통합하며 상시 develop은 팀의 별도 운영 선택이다. |
 | [merge와 rebase](integration/merge-and-rebase.md) | merge는 이력을 합치는 커밋을 만들 수 있고 rebase는 커밋을 새 기반에 다시 적용한다. |
 
 ## 충돌 해결

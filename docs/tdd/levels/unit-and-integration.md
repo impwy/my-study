@@ -1,60 +1,42 @@
 # 단위·통합·인수 테스트
 
-> 작은 규칙의 빠른 검증과 실제 경계 연동·사용자 요구 검증을 목적별로 나눈다.
+> 작은 규칙, 실제 연동 경계, 사용자 요구를 목적별로 검증하고 테스트 범위와 대역 사용 방식을 구분한다.
 
 - 단위 테스트는 좁은 행동을 빠르게 확인한다.
-- 통합 테스트는 실제 협력의 계약을 확인한다.
-- 인수 테스트는 사용자 관점의 요구를 확인한다.
+- 통합 테스트는 실제 협력의 계약을, 인수 테스트는 수용 기준 충족을 확인한다.
+- 클래식·목 중심의 구분은 단위·통합의 구분과 다른 축이다.
 
 <details>
-<summary>설명과 예제 펼치기</summary>
+<summary>설명과 꼬리질문 펼치기</summary>
 
 ## 설명
 
-도메인 규칙은 외부 환경 없이 빠르게 반복할 수 있다. JPA 매핑·SQL·트랜잭션·이벤트 설정은 실제 프레임워크·DB와 결합한 통합 테스트가 필요하다. 전체 사용자 흐름의 인수 테스트는 요구와 실제 결과를 연결한다. 각 단계의 테스트 수를 기계적인 비율로 정하기보다 실패 위험·실행 시간·진단 비용에 맞춘다.
+금액 계산·환불 정책·상태 전이 같은 규칙은 외부 환경 없이 검증할 수 있다. JPA 매핑·SQL·DB 제약·락·트랜잭션은 실제 프레임워크와 대상 DB를 사용하는 통합 테스트로 확인한다. 인수 테스트는 사용자 요구를 받아들일지 판단하며, E2E 테스트는 시스템 전체 경로를 실행하는 범위를 말한다. 인수 테스트가 반드시 E2E 형태인 것은 아니다.
 
-## Java 예제
+| 구분 | 주요 검증 대상 |
+| --- | --- |
+| 단위 | 작은 동작과 도메인 규칙 |
+| DB 통합 | 매핑·저장·조회·제약·동시성 |
+| API 통합 | 인증·입력 검증·응답·오류 계약 |
+| 외부 연동 | 성공·실패·타임아웃·중복 통지 |
+| E2E | 핵심 사용자 흐름의 연결 |
 
-JUnit Jupiter와 통합 테스트용 DB가 필요하다. 단위 예제는 단순 규칙이며 실제 업무 경계 테스트로 확장한다.
-
-```java
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
-import java.sql.*;
-
-static void verifyDatabase(Connection c) throws SQLException {
-    try (Statement s = c.createStatement();
-            ResultSet r = s.executeQuery("SELECT 1")) {
-        assertTrue(r.next());
-        assertEquals(1, r.getInt(1));
-    }
-} // 통합 테스트가 실습 DB 연결을 제공해 호출
-
-static void requireQuantity(int quantity) {
-    if (quantity <= 0) throw new IllegalArgumentException("quantity must be positive");
-}
-
-@Test
-void rejectsZeroQuantity() {
-    assertThrows(IllegalArgumentException.class, () -> requireQuantity(0));
-} // 외부 자원 없이 업무 입력 경계를 검사
-```
+클래식 방식은 가능한 실제 협력 객체와 상태·결과를 활용한다. 런던·목 중심 방식은 협력자를 격리하고 상호작용을 검증하는 경향이 있다. 클래식 단위 테스트가 반드시 Spring 컨텍스트나 DB를 띄워야 하는 것은 아니다. 외부 결제처럼 통제하기 어려운 경계에는 대역이 유용하지만 실제 계약은 별도로 확인해야 한다.
 
 ## 주의점
 
-테스트 트랜잭션이 자동 롤백하면 실제 커밋 후 이벤트·조회 문제를 가릴 수 있다. 확인하려는 운영 경계를 테스트 환경에서도 드러낸다.
+Spring 컨텍스트를 띄우고 DB를 목으로 바꾸면 실제 SQL과 락은 검증하지 못한다. SELECT 1 성공도 엔티티 매핑 성공을 뜻하지 않는다. 테스트 트랜잭션의 자동 롤백은 실제 커밋 후 이벤트나 조회 문제를 가릴 수 있으므로 필요한 커밋 경계를 드러낸다. 테스트 배분은 기계적인 비율보다 실패 위험·실행 시간·진단 비용으로 결정한다.
 
 ## 꼬리질문
 
-1. JPA 엔티티의 필드 검증 테스트만으로 연관관계 저장을 검증할 수 없는 이유는?
-2. SELECT 1 통과가 엔티티 매핑과 연관관계 저장 성공까지 뜻하지 않는 이유는 무엇일까?
-3. 통합 테스트에서 트랜잭션 롤백만 사용하면 실제 커밋 후 동작을 어떻게 놓칠 수 있을까?
+1. 테스트의 범위와 협력 객체를 격리하는 방식이 서로 다른 구분인 이유는?
+2. 결제 API에서 외부 PG는 대역으로 통제하고 DB는 실제로 실행하면 각각 어떤 위험을 확인할 수 있을까?
+3. 모든 테스트가 롤백된다면 커밋 후 발행·조회 문제를 검증하기 위해 무엇을 바꿔야 할까?
 
 </details>
 
 ## 참고 자료
 
-- [JUnit · User Guide](https://docs.junit.org/current/user-guide/) — 단위 테스트·픽스처·실행 구조를 확인한다.
-- [Hibernate ORM 6.6 · User Guide](https://docs.hibernate.org/orm/6.6/userguide/html_single/) — 매핑·엔티티 상태·조회·락과 실제 SQL의 관계를 확인한다.
+- [Martin Fowler · Mocks Aren’t Stubs](https://martinfowler.com/articles/mocksArentStubs.html) — 상태·행위 검증과 두 테스트 방식의 차이를 읽는다.
+- [Spring · Transaction-bound Events](https://docs.spring.io/spring-framework/reference/data-access/transaction/event.html) — 트랜잭션 단계와 이벤트 리스너 시점을 확인한다.
+- [Hibernate ORM 6.6 · User Guide](https://docs.hibernate.org/orm/6.6/userguide/html_single/) — 매핑·SQL·DB 동작을 실제 연동에서 확인할 항목을 찾는다.

@@ -36,6 +36,7 @@
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
+| [Amazon Bedrock과 교육 AI Agent](operations/bedrock-ai-applications.md) | Bedrock은 기반 모델을 활용하는 AWS 관리형 서비스이며 Agent는 모델·자료·도구를 연결해 작업을 수행하는 시스템이다. |
 | [CloudWatch와 CloudTrail](operations/monitoring-and-audit.md) | 운영 지표·로그를 통한 상태 관찰과 AWS API 활동 감사를 구분한다. |
 | [RTO·RPO와 복구 검증](operations/rto-rpo-and-backup.md) | 허용 중단 시간과 데이터 손실 범위를 정하고 백업에서 실제 복구되는지 확인한다. |
 | [로드밸런싱과 Auto Scaling](operations/load-balancing-and-autoscaling.md) | 트래픽 분산과 인스턴스 수 조정을 결합하되 상태·용량·준비 시간을 함께 설계한다. |

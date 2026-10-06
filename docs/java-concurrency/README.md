@@ -25,6 +25,7 @@
 | 문서 | 한 줄 요약 |
 | --- | --- |
 | [Executor와 Future](executors/executor-and-future.md) | 작업 제출과 실행 스레드 관리를 분리하고 Future로 완료·실패·취소 결과를 받는다. |
+| [Virtual Thread와 WebFlux의 선택 기준](executors/virtual-threads.md) | Virtual Thread는 블로킹 I/O 동시 작업의 스레드 비용을 줄이고 WebFlux는 논블로킹 흐름과 백프레셔를 제공한다. |
 
 ## 동시성 컬렉션
 

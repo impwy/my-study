@@ -6,7 +6,7 @@
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
-| [로그·파티션·오프셋](topics/log-partition-offset.md) | Kafka는 토픽의 파티션별 추가 로그에 레코드를 저장하고 오프셋으로 위치를 식별한다. |
+| [로그·파티션·오프셋](topics/log-partition-offset.md) | Kafka는 파티션별 순서 있는 이벤트 로그에 레코드를 보관하고 소비자는 오프셋으로 읽기 위치를 관리한다. |
 | [복제·ISR·High Watermark](topics/replication-and-high-watermark.md) | 리더와 복제본의 로그 진도를 구분하고 소비 가능한 커밋 경계와 장애 시 남는 데이터를 확인한다. |
 
 ## 프로듀서

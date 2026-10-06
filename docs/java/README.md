@@ -10,6 +10,7 @@
 | [기본형·참조형과 값 전달](language/value-and-reference.md) | Java는 기본형 값과 객체 참조 값을 모두 복사해서 메서드에 전달한다. |
 | [제어 흐름과 배열](language/control-flow-and-arrays.md) | 조건·반복으로 실행 경로를 정하고 배열의 길이와 인덱스 경계를 지킨다. |
 | [패키지·라이브러리·모듈](language/packages-and-modules.md) | 이름 공간과 배포 묶음, 모듈의 명시적 의존·공개 범위를 구분한다. |
+| [포매터·린터·정적 분석의 역할](language/formatting-and-static-analysis.md) | 코드 형식 통일과 잠재 문제 탐지는 서로 다른 역할이며 자동 도구를 요구사항 검증과 함께 사용한다. |
 
 ## 객체지향
 
