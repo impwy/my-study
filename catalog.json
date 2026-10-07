@@ -460,7 +460,7 @@
     "title": "애그리거트와 도메인 이벤트"
   },
   "docs/ddd/contexts/bounded-context.md": {
-    "content_sha": "1d12e473c22500652826fdd57eb8d1449faeb9f9",
+    "content_sha": "489a32551879bdb17e4eb8cadb05edbcda7adc3d",
     "summary": "모델과 용어의 의미 경계, 코드·빌드 경계, 배포 경계를 구분해 업무 책임을 나눈다.",
     "title": "바운디드 컨텍스트"
   },
@@ -1034,10 +1034,25 @@
     "summary": "클래스패스·빈·속성 조건에 맞는 기본 구성을 제공하고 사용자 구성을 존중한다.",
     "title": "Spring Boot 자동 설정"
   },
+  "docs/spring-boot/configuration/gradle-configuration.md": {
+    "content_sha": "3b0996b8f428931006ca57abb232e69e22f1475f",
+    "summary": "settings는 프로젝트 구성을, build는 플러그인·의존성·작업을 정의한다.",
+    "title": "Spring Boot 멀티모듈의 Gradle 설정 사용법"
+  },
+  "docs/spring-boot/configuration/multi-module-builds.md": {
+    "content_sha": "66896f1826bcde4ab488402977b3ebec171783a8",
+    "summary": "멀티모듈은 코드를 여러 빌드 단위로 나누고, 필요한 참조를 의존성으로 명시하는 구성이다.",
+    "title": "Spring Boot 멀티모듈과 의존성 방향"
+  },
   "docs/spring-boot/configuration/profiles-and-properties.md": {
     "content_sha": "54633f1c02fd6d33b04d5d89614d293f131ba88f",
     "summary": "환경별 설정은 코드에서 분리하고 실제 적용된 값의 우선순위를 확인한다.",
     "title": "외부 설정과 프로파일"
+  },
+  "docs/spring-boot/configuration/spring-modulith.md": {
+    "content_sha": "375d9fb6f7643787afce72a729e1339baf267ffa",
+    "summary": "Spring Modulith는 Spring Boot 앱 안의 업무 모듈과 공개 경계를 모델링하고 검증하는 도구다.",
+    "title": "Spring Modulith와 애플리케이션 모듈"
   },
   "docs/spring-boot/web/tomcat-and-servlet.md": {
     "content_sha": "a1049748dfb8dfb7f586df3df230a70dd03f45a9",
@@ -1088,6 +1103,11 @@
     "content_sha": "3470985d12b3da813f910443c3629ce2186062f5",
     "summary": "느리거나 통제하기 어려운 협력자를 목적에 맞는 대역으로 바꾸고 실제 연동은 별도로 검증한다.",
     "title": "테스트 대역의 목적"
+  },
+  "docs/tdd/levels/testcontainers.md": {
+    "content_sha": "fc73f1b019cd2b4b68d970f811879f930a7dd62b",
+    "summary": "Testcontainers는 테스트에서 실제 DB 등의 서비스를 컨테이너로 실행하고 연결 정보를 제공한다.",
+    "title": "Testcontainers와 통합 테스트 DB"
   },
   "docs/tdd/levels/unit-and-integration.md": {
     "content_sha": "eb9831a3e82f38b536337437834af8b7ee0e2642",

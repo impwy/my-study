@@ -21,7 +21,7 @@
 | [Redis](docs/redis/README.md) | 5 | 자료형 · 캐시·TTL · 영속성 · 복제 · 장애 대응 |
 | [Kafka](docs/kafka/README.md) | 8 | 토픽·파티션 · 프로듀서 · 컨슈머·오프셋 · 전달 보장 |
 | [Spring](docs/spring/README.md) | 6 | IoC·DI · 빈 생명주기 · AOP · MVC · 트랜잭션 |
-| [Spring Boot](docs/spring-boot/README.md) | 4 | 자동 설정 · 설정·프로파일 · 웹 애플리케이션 · Actuator |
+| [Spring Boot](docs/spring-boot/README.md) | 7 | 자동 설정 · 설정·프로파일 · 웹 애플리케이션 · Actuator |
 | [JPA](docs/jpa/README.md) | 7 | 엔티티 매핑 · 영속성 컨텍스트 · 연관관계 · 조회·N+1 · 락 |
 | [REST API](docs/rest-api/README.md) | 6 | 리소스 설계 · 메서드·상태 코드 · 멱등성 · 페이지네이션·오류 |
 | [JavaScript](docs/javascript/README.md) | 6 | 타입·스코프 · 클로저 · 프로토타입 · 비동기·이벤트 루프 |
@@ -31,7 +31,7 @@
 | [Git](docs/git/README.md) | 5 | 커밋·브랜치 · merge·rebase · 충돌 해결 · 복구 |
 | [GitHub Actions](docs/github-actions/README.md) | 4 | 워크플로 · 이벤트·잡 · 테스트·빌드 · 배포 |
 | [DDD](docs/ddd/README.md) | 4 | 도메인 모델 · 바운디드 컨텍스트 · 엔티티·값 객체 · 애그리거트·이벤트 |
-| [TDD](docs/tdd/README.md) | 4 | Red–Green–Refactor · 테스트 설계 · 테스트 대역 · 단위·통합 테스트 |
+| [TDD](docs/tdd/README.md) | 5 | Red–Green–Refactor · 테스트 설계 · 테스트 대역 · 단위·통합 테스트 |
 | [데이터 중심 애플리케이션](docs/ddia/README.md) | 5 | 데이터 모델 · 저장 엔진 · 복제·파티셔닝 · 일관성 · 배치·스트림 처리 |
 | [디자인 패턴](docs/design-patterns/README.md) | 5 | 설계 원칙 · 생성 패턴 · 구조 패턴 · 행동 패턴 · 적용 조건·트레이드오프 |
 
@@ -313,12 +313,15 @@
 </details>
 
 <details>
-<summary>Spring Boot · 4개</summary>
+<summary>Spring Boot · 7개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
 | [Actuator 상태와 메트릭](docs/spring-boot/actuator/health-and-metrics.md) | 서비스의 상태 확인과 성능 관측 정보를 운영에 필요한 범위로 제공한다. |
+| [Spring Boot 멀티모듈과 의존성 방향](docs/spring-boot/configuration/multi-module-builds.md) | 멀티모듈은 코드를 여러 빌드 단위로 나누고, 필요한 참조를 의존성으로 명시하는 구성이다. |
+| [Spring Boot 멀티모듈의 Gradle 설정 사용법](docs/spring-boot/configuration/gradle-configuration.md) | settings는 프로젝트 구성을, build는 플러그인·의존성·작업을 정의한다. |
 | [Spring Boot 자동 설정](docs/spring-boot/autoconfiguration/conditional-autoconfiguration.md) | 클래스패스·빈·속성 조건에 맞는 기본 구성을 제공하고 사용자 구성을 존중한다. |
+| [Spring Modulith와 애플리케이션 모듈](docs/spring-boot/configuration/spring-modulith.md) | Spring Modulith는 Spring Boot 앱 안의 업무 모듈과 공개 경계를 모델링하고 검증하는 도구다. |
 | [Tomcat과 Spring MVC의 역할](docs/spring-boot/web/tomcat-and-servlet.md) | Tomcat은 서블릿 실행 환경을 제공하고 Spring MVC는 요청을 핸들러로 연결해 응답을 조정한다. |
 | [외부 설정과 프로파일](docs/spring-boot/configuration/profiles-and-properties.md) | 환경별 설정은 코드에서 분리하고 실제 적용된 값의 우선순위를 확인한다. |
 
@@ -448,11 +451,12 @@
 </details>
 
 <details>
-<summary>TDD · 4개</summary>
+<summary>TDD · 5개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
 | [Red–Green–Refactor](docs/tdd/cycle/red-green-refactor.md) | 실패하는 작은 테스트로 요구를 드러내고 최소 구현 뒤 설계를 개선한다. |
+| [Testcontainers와 통합 테스트 DB](docs/tdd/levels/testcontainers.md) | Testcontainers는 테스트에서 실제 DB 등의 서비스를 컨테이너로 실행하고 연결 정보를 제공한다. |
 | [단위·통합·인수 테스트](docs/tdd/levels/unit-and-integration.md) | 작은 규칙, 실제 연동 경계, 사용자 요구를 목적별로 검증하고 테스트 범위와 대역 사용 방식을 구분한다. |
 | [테스트 대역의 목적](docs/tdd/doubles/test-doubles.md) | 느리거나 통제하기 어려운 협력자를 목적에 맞는 대역으로 바꾸고 실제 연동은 별도로 검증한다. |
 | [행동과 경계값 테스트](docs/tdd/design/behavior-and-boundaries.md) | AC로 받아들일 동작을 정하고 TC로 입력·행위·기대 결과를 구체화해 요구와 불변식을 검증한다. |

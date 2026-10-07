@@ -24,5 +24,6 @@
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
+| [Testcontainers와 통합 테스트 DB](levels/testcontainers.md) | Testcontainers는 테스트에서 실제 DB 등의 서비스를 컨테이너로 실행하고 연결 정보를 제공한다. |
 | [단위·통합·인수 테스트](levels/unit-and-integration.md) | 작은 규칙, 실제 연동 경계, 사용자 요구를 목적별로 검증하고 테스트 범위와 대역 사용 방식을 구분한다. |
 

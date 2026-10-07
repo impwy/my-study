@@ -21,7 +21,7 @@
 | [Redis](redis/README.md) | 5 |
 | [Kafka](kafka/README.md) | 8 |
 | [Spring](spring/README.md) | 6 |
-| [Spring Boot](spring-boot/README.md) | 4 |
+| [Spring Boot](spring-boot/README.md) | 7 |
 | [JPA](jpa/README.md) | 7 |
 | [REST API](rest-api/README.md) | 6 |
 | [JavaScript](javascript/README.md) | 6 |
@@ -31,6 +31,6 @@
 | [Git](git/README.md) | 5 |
 | [GitHub Actions](github-actions/README.md) | 4 |
 | [DDD](ddd/README.md) | 4 |
-| [TDD](tdd/README.md) | 4 |
+| [TDD](tdd/README.md) | 5 |
 | [데이터 중심 애플리케이션](ddia/README.md) | 5 |
 | [디자인 패턴](design-patterns/README.md) | 5 |

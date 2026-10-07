@@ -12,6 +12,9 @@
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
+| [Spring Boot 멀티모듈과 의존성 방향](configuration/multi-module-builds.md) | 멀티모듈은 코드를 여러 빌드 단위로 나누고, 필요한 참조를 의존성으로 명시하는 구성이다. |
+| [Spring Boot 멀티모듈의 Gradle 설정 사용법](configuration/gradle-configuration.md) | settings는 프로젝트 구성을, build는 플러그인·의존성·작업을 정의한다. |
+| [Spring Modulith와 애플리케이션 모듈](configuration/spring-modulith.md) | Spring Modulith는 Spring Boot 앱 안의 업무 모듈과 공개 경계를 모델링하고 검증하는 도구다. |
 | [외부 설정과 프로파일](configuration/profiles-and-properties.md) | 환경별 설정은 코드에서 분리하고 실제 적용된 값의 우선순위를 확인한다. |
 
 ## 웹 애플리케이션
