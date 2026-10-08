@@ -18,7 +18,7 @@
 | [클라우드](docs/cloud/README.md) | 9 | 가상화 · 컴퓨팅·스토리지 · 네트워크 · 확장성·가용성 |
 | [컴퓨터 보안](docs/security/README.md) | 6 | 암호·해시 · 인증·인가 · 웹 취약점 · 접근 제어 |
 | [MySQL](docs/mysql/README.md) | 5 | 스키마·SQL · 실행 계획 · InnoDB·인덱스 · MVCC·락 |
-| [Redis](docs/redis/README.md) | 5 | 자료형 · 캐시·TTL · 영속성 · 복제 · 장애 대응 |
+| [Redis](docs/redis/README.md) | 6 | 자료형 · 캐시·TTL · 영속성 · 복제 · 장애 대응 |
 | [Kafka](docs/kafka/README.md) | 8 | 토픽·파티션 · 프로듀서 · 컨슈머·오프셋 · 전달 보장 |
 | [Spring](docs/spring/README.md) | 6 | IoC·DI · 빈 생명주기 · AOP · MVC · 트랜잭션 |
 | [Spring Boot](docs/spring-boot/README.md) | 7 | 자동 설정 · 설정·프로파일 · 웹 애플리케이션 · Actuator |
@@ -270,15 +270,16 @@
 </details>
 
 <details>
-<summary>Redis · 5개</summary>
+<summary>Redis · 6개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
 | [Cache-aside와 캐시 스탬피드](docs/redis/cache/cache-aside-and-stampede.md) | 캐시 미스 시 원본을 읽고 채우되 만료 순간 요청이 몰리는 경합과 오래된 값을 관리한다. |
+| [Redis Hash 인코딩과 메모리 모델링](docs/redis/types/hash-encoding-and-memory-modeling.md) | Hash의 메모리 절약은 작은 객체의 인코딩과 키 오버헤드 감소에서 나오며, 묶는 크기는 TTL·조회·분산 요구로 정한다. |
 | [Redis RDB·AOF와 복구](docs/redis/persistence/rdb-aof-and-recovery.md) | RDB는 시점의 스냅샷을, AOF는 쓰기 명령 기록을 사용해 재시작 후 데이터를 복구한다. |
 | [Redis 복제와 장애 전환](docs/redis/replication/replication-and-failover.md) | 복제본은 데이터 사본을 유지하지만 비동기 복제와 장애 전환에는 지연·손실 가능성이 있다. |
 | [Redis 원자 연산과 저장소 간 불일치](docs/redis/failures/atomic-script-and-cross-store.md) | Redis 안의 검사·차감을 원자적으로 묶어도 뒤이은 DB 저장·메시지 발행까지 한 번에 확정되지는 않는다. |
-| [Redis 자료형과 Sorted Set](docs/redis/types/types-and-sorted-set.md) | 필요한 조회·갱신 연산에 맞춰 자료형을 고르고 Sorted Set은 점수 순으로 멤버를 관리한다. |
+| [Redis 자료형과 Sorted Set](docs/redis/types/types-and-sorted-set.md) | 주어진 조회 패턴과 데이터 규모에서 Redis 자료구조를 어떻게 모델링할 것인가가 설계의 출발점이다. |
 
 </details>
 

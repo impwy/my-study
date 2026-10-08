@@ -6,7 +6,8 @@
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
-| [Redis 자료형과 Sorted Set](types/types-and-sorted-set.md) | 필요한 조회·갱신 연산에 맞춰 자료형을 고르고 Sorted Set은 점수 순으로 멤버를 관리한다. |
+| [Redis Hash 인코딩과 메모리 모델링](types/hash-encoding-and-memory-modeling.md) | Hash의 메모리 절약은 작은 객체의 인코딩과 키 오버헤드 감소에서 나오며, 묶는 크기는 TTL·조회·분산 요구로 정한다. |
+| [Redis 자료형과 Sorted Set](types/types-and-sorted-set.md) | 주어진 조회 패턴과 데이터 규모에서 Redis 자료구조를 어떻게 모델링할 것인가가 설계의 출발점이다. |
 
 ## 캐시·TTL
 

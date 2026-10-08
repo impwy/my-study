@@ -959,9 +959,14 @@
     "summary": "복제본은 데이터 사본을 유지하지만 비동기 복제와 장애 전환에는 지연·손실 가능성이 있다.",
     "title": "Redis 복제와 장애 전환"
   },
+  "docs/redis/types/hash-encoding-and-memory-modeling.md": {
+    "content_sha": "67182b73027595a3ad00eb43ff41e894d48413d7",
+    "summary": "Hash의 메모리 절약은 작은 객체의 인코딩과 키 오버헤드 감소에서 나오며, 묶는 크기는 TTL·조회·분산 요구로 정한다.",
+    "title": "Redis Hash 인코딩과 메모리 모델링"
+  },
   "docs/redis/types/types-and-sorted-set.md": {
-    "content_sha": "eaebaefa2907ef56038e24eb8ffffad06ed572a0",
-    "summary": "필요한 조회·갱신 연산에 맞춰 자료형을 고르고 Sorted Set은 점수 순으로 멤버를 관리한다.",
+    "content_sha": "aac3a5cd883f7b02303a9413867ab11d5d693ea5",
+    "summary": "주어진 조회 패턴과 데이터 규모에서 Redis 자료구조를 어떻게 모델링할 것인가가 설계의 출발점이다.",
     "title": "Redis 자료형과 Sorted Set"
   },
   "docs/rest-api/contracts/api-first.md": {

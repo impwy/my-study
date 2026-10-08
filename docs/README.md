@@ -18,7 +18,7 @@
 | [클라우드](cloud/README.md) | 9 |
 | [컴퓨터 보안](security/README.md) | 6 |
 | [MySQL](mysql/README.md) | 5 |
-| [Redis](redis/README.md) | 5 |
+| [Redis](redis/README.md) | 6 |
 | [Kafka](kafka/README.md) | 8 |
 | [Spring](spring/README.md) | 6 |
 | [Spring Boot](spring-boot/README.md) | 7 |
