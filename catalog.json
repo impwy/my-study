@@ -939,6 +939,31 @@
     "summary": "한 렌더의 state 값은 고정된 스냅샷이며 이전 상태 기반 변경은 updater 함수로 이어 붙인다.",
     "title": "React state 스냅샷과 updater"
   },
+  "docs/react/testing/async-ui-completion.md": {
+    "content_sha": "d1f97ae088a2e14a6dbd0af723f0da39e4c34f16",
+    "summary": "요청이 핸들러에 도착한 시점과 사용자 흐름의 완료를 구분하고, 이번 동작으로 바뀐 화면을 확인한 뒤 테스트를 끝낸다.",
+    "title": "비동기 UI 테스트의 완료 조건"
+  },
+  "docs/react/testing/global-store-and-timer-isolation.md": {
+    "content_sha": "ba8a516d05c985a6388f85101645b20a87962ee4",
+    "summary": "컴포넌트를 제거해도 모듈 전역 스토어와 타이머는 남을 수 있으므로 각 자원의 초기 상태와 종료 방법을 함께 관리한다.",
+    "title": "전역 스토어·타이머의 테스트 격리"
+  },
+  "docs/react/testing/msw-handler-and-fixture-isolation.md": {
+    "content_sha": "77cf93c65d07756d61ef22eb98a6b055b546fa39",
+    "summary": "MSW 핸들러 초기화와 앱 자원 정리를 구분하고 테스트가 만든 DOM·쿼리·스토어·모킹 데이터를 각 수명에 맞게 종료한다.",
+    "title": "MSW 핸들러와 테스트 자원의 격리"
+  },
+  "docs/react/testing/query-cancellation-and-lifecycle.md": {
+    "content_sha": "544278de7d34cd89708ccc14bde2a57de4188f95",
+    "summary": "TanStack Query의 취소 신호를 실제 요청까지 전달해야 쿼리 취소와 네트워크 중단을 연결할 수 있다.",
+    "title": "Query 취소와 네트워크 요청의 수명"
+  },
+  "docs/react/testing/test-order-and-reproducibility.md": {
+    "content_sha": "1661d1993b27aa300b81fe1663273dff20fbeb2d",
+    "summary": "순서를 바꿀 때 깨지는 테스트는 seed로 재현을 고정하고 선행 테스트와 공유 상태를 좁혀 원인을 찾는다.",
+    "title": "테스트 순서 의존과 seed 재현"
+  },
   "docs/redis/cache/cache-aside-and-stampede.md": {
     "content_sha": "6ffc7e246b431b9eb49f1973ea60915ddafc239a",
     "summary": "캐시 미스 시 원본을 읽고 채우되 만료 순간 요청이 몰리는 경합과 오래된 값을 관리한다.",

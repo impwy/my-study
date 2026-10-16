@@ -26,7 +26,7 @@
 | [REST API](rest-api/README.md) | 6 |
 | [JavaScript](javascript/README.md) | 6 |
 | [Vue.js](vue/README.md) | 5 |
-| [React](react/README.md) | 5 |
+| [React](react/README.md) | 10 |
 | [AWS](aws/README.md) | 9 |
 | [Git](git/README.md) | 5 |
 | [GitHub Actions](github-actions/README.md) | 4 |

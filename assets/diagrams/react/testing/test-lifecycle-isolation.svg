@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="408" viewBox="0 0 960 408" role="img" aria-labelledby="title desc">
+  <title id="title">테스트 자원별 정리 책임</title>
+  <desc id="desc">React 트리, QueryClient, 전역 스토어와 타이머, MSW 핸들러는 서로 다른 수명을 갖는다. 한 자원을 초기화해도 나머지가 자동으로 정리되지는 않는다.</desc>
+  <rect width="960" height="408" rx="14" fill="#fff"/>
+  <g font-family="system-ui, -apple-system, Apple SD Gothic Neo, sans-serif" fill="#0f172a">
+    <text x="32" y="44" font-size="26" font-weight="600">하나의 cleanup으로 모든 자원이 사라지지는 않는다</text>
+    <text x="32" y="77" font-size="17" fill="#475569">각 상자는 별도 정리 책임 · 아래 배치는 훅의 고정 실행 순서를 뜻하지 않는다</text>
+    <g stroke-width="1.6"><rect x="32" y="104" width="432" height="112" rx="10" fill="#eff6ff" stroke="#2563eb"/><rect x="496" y="104" width="432" height="112" rx="10" fill="#f0fdf4" stroke="#15803d"/><rect x="32" y="240" width="432" height="112" rx="10" fill="#fffbeb" stroke="#b45309"/><rect x="496" y="240" width="432" height="112" rx="10" fill="#faf5ff" stroke="#7e22ce"/></g>
+    <g font-size="21" font-weight="600"><text x="56" y="141">React 트리</text><text x="520" y="141">QueryClient</text><text x="56" y="277">전역 스토어 · 타이머</text><text x="520" y="277">MSW 핸들러 · 모킹 데이터</text></g>
+    <g font-size="18"><text x="56" y="176">cleanup → 언마운트 · Effect 정리</text><text x="520" y="176">새 인스턴스 · 조회 취소 · 캐시 제거</text><text x="56" y="311">초기 상태 복원 · 예약 콜백 취소</text><text x="520" y="311">resetHandlers · 모킹 DB 별도 초기화</text></g>
+    <text x="32" y="387" font-size="17" fill="#475569">먼저 계약한 사용자 흐름을 확인하고, 남는 자원은 소유한 코드의 종료 방법으로 정리한다.</text>
+  </g>
+</svg>

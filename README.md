@@ -26,7 +26,7 @@
 | [REST API](docs/rest-api/README.md) | 6 | 리소스 설계 · 메서드·상태 코드 · 멱등성 · 페이지네이션·오류 |
 | [JavaScript](docs/javascript/README.md) | 6 | 타입·스코프 · 클로저 · 프로토타입 · 비동기·이벤트 루프 |
 | [Vue.js](docs/vue/README.md) | 5 | 반응성 · 컴포넌트 · Composition API · 라우팅·상태 관리 |
-| [React](docs/react/README.md) | 5 | 렌더링 · props·state · Hooks · 상태 관리·라우팅 |
+| [React](docs/react/README.md) | 10 | 렌더링 · props·state · Hooks · 상태 관리·라우팅 · 테스트 |
 | [AWS](docs/aws/README.md) | 9 | IAM · VPC · EC2 · S3 · RDS · 로드밸런싱·모니터링 |
 | [Git](docs/git/README.md) | 5 | 커밋·브랜치 · merge·rebase · 충돌 해결 · 복구 |
 | [GitHub Actions](docs/github-actions/README.md) | 4 | 워크플로 · 이벤트·잡 · 테스트·빌드 · 배포 |
@@ -385,15 +385,20 @@
 </details>
 
 <details>
-<summary>React · 5개</summary>
+<summary>React · 10개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
+| [MSW 핸들러와 테스트 자원의 격리](docs/react/testing/msw-handler-and-fixture-isolation.md) | MSW 핸들러 초기화와 앱 자원 정리를 구분하고 테스트가 만든 DOM·쿼리·스토어·모킹 데이터를 각 수명에 맞게 종료한다. |
+| [Query 취소와 네트워크 요청의 수명](docs/react/testing/query-cancellation-and-lifecycle.md) | TanStack Query의 취소 신호를 실제 요청까지 전달해야 쿼리 취소와 네트워크 중단을 연결할 수 있다. |
 | [React Router와 URL 상태](docs/react/routing/routes-and-url-state.md) | 라우터는 URL을 화면에 연결하고 파라미터·쿼리·중첩 경로를 탐색 가능한 상태로 다룬다. |
 | [React state 스냅샷과 updater](docs/react/state/snapshot-and-updaters.md) | 한 렌더의 state 값은 고정된 스냅샷이며 이전 상태 기반 변경은 updater 함수로 이어 붙인다. |
 | [React의 렌더와 커밋](docs/react/rendering/render-and-commit.md) | 렌더는 현재 props·state로 다음 UI를 계산하고 커밋은 필요한 DOM 변경을 적용한다. |
 | [useEffect와 cleanup](docs/react/hooks/effects-and-cleanup.md) | Effect는 커밋된 화면을 외부 시스템과 동기화하고 의존성 변경·종료 때 이전 작업을 정리한다. |
 | [공유 상태와 reducer](docs/react/routing/shared-state-and-reducer.md) | 여러 화면 조각이 같은 값을 필요로 하면 공통 소유자로 상태를 올리고 변경 규칙을 reducer로 모은다. |
+| [비동기 UI 테스트의 완료 조건](docs/react/testing/async-ui-completion.md) | 요청이 핸들러에 도착한 시점과 사용자 흐름의 완료를 구분하고, 이번 동작으로 바뀐 화면을 확인한 뒤 테스트를 끝낸다. |
+| [전역 스토어·타이머의 테스트 격리](docs/react/testing/global-store-and-timer-isolation.md) | 컴포넌트를 제거해도 모듈 전역 스토어와 타이머는 남을 수 있으므로 각 자원의 초기 상태와 종료 방법을 함께 관리한다. |
+| [테스트 순서 의존과 seed 재현](docs/react/testing/test-order-and-reproducibility.md) | 순서를 바꿀 때 깨지는 테스트는 seed로 재현을 고정하고 선행 테스트와 공유 상태를 좁혀 원인을 찾는다. |
 
 </details>
 

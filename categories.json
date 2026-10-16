@@ -215,7 +215,8 @@
       "rendering": "렌더링",
       "state": "props·state",
       "hooks": "Hooks",
-      "routing": "상태 관리·라우팅"
+      "routing": "상태 관리·라우팅",
+      "testing": "테스트"
     }
   },
   {
