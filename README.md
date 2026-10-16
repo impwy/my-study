@@ -8,7 +8,7 @@
 | --- | ---: | --- |
 | [컴퓨터 구조](docs/computer-architecture/README.md) | 9 | 데이터 표현 · CPU·명령어 · 메모리·캐시 · 입출력 |
 | [운영체제](docs/operating-systems/README.md) | 9 | 프로세스·스레드 · 스케줄링 · 동기화·교착상태 · 가상 메모리 |
-| [네트워크](docs/network/README.md) | 10 | TCP/IP · TCP·UDP · DNS · HTTP·TLS |
+| [네트워크](docs/network/README.md) | 11 | TCP/IP · TCP·UDP · DNS · HTTP·TLS |
 | [데이터베이스](docs/database/README.md) | 11 | 관계형 모델 · SQL · 인덱스 · 트랜잭션·격리 수준 |
 | [자료구조](docs/data-structures/README.md) | 17 | 배열·연결 리스트 · 스택·큐 · 해시 · 트리·힙 · 그래프 |
 | [알고리즘](docs/algorithms/README.md) | 36 | 복잡도 · 탐색 · 정렬 · 그래프 탐색 · 그리디·동적 계획법 |
@@ -18,9 +18,9 @@
 | [클라우드](docs/cloud/README.md) | 9 | 가상화 · 컴퓨팅·스토리지 · 네트워크 · 확장성·가용성 |
 | [컴퓨터 보안](docs/security/README.md) | 6 | 암호·해시 · 인증·인가 · 웹 취약점 · 접근 제어 |
 | [MySQL](docs/mysql/README.md) | 5 | 스키마·SQL · 실행 계획 · InnoDB·인덱스 · MVCC·락 |
-| [Redis](docs/redis/README.md) | 6 | 자료형 · 캐시·TTL · 영속성 · 복제 · 장애 대응 |
+| [Redis](docs/redis/README.md) | 7 | 자료형 · 캐시·TTL · 영속성 · 복제 · 장애 대응 |
 | [Kafka](docs/kafka/README.md) | 8 | 토픽·파티션 · 프로듀서 · 컨슈머·오프셋 · 전달 보장 |
-| [Spring](docs/spring/README.md) | 6 | IoC·DI · 빈 생명주기 · AOP · MVC · 트랜잭션 |
+| [Spring](docs/spring/README.md) | 7 | IoC·DI · 빈 생명주기 · AOP · MVC · 트랜잭션 |
 | [Spring Boot](docs/spring-boot/README.md) | 7 | 자동 설정 · 설정·프로파일 · 웹 애플리케이션 · Actuator |
 | [JPA](docs/jpa/README.md) | 7 | 엔티티 매핑 · 영속성 컨텍스트 · 연관관계 · 조회·N+1 · 락 |
 | [REST API](docs/rest-api/README.md) | 6 | 리소스 설계 · 메서드·상태 코드 · 멱등성 · 페이지네이션·오류 |
@@ -32,7 +32,7 @@
 | [GitHub Actions](docs/github-actions/README.md) | 4 | 워크플로 · 이벤트·잡 · 테스트·빌드 · 배포 |
 | [DDD](docs/ddd/README.md) | 4 | 도메인 모델 · 바운디드 컨텍스트 · 엔티티·값 객체 · 애그리거트·이벤트 |
 | [TDD](docs/tdd/README.md) | 5 | Red–Green–Refactor · 테스트 설계 · 테스트 대역 · 단위·통합 테스트 |
-| [데이터 중심 애플리케이션](docs/ddia/README.md) | 5 | 데이터 모델 · 저장 엔진 · 복제·파티셔닝 · 일관성 · 배치·스트림 처리 |
+| [데이터 중심 애플리케이션](docs/ddia/README.md) | 6 | 데이터 모델 · 저장 엔진 · 복제·파티셔닝 · 일관성 · 배치·스트림 처리 |
 | [디자인 패턴](docs/design-patterns/README.md) | 5 | 설계 원칙 · 생성 패턴 · 구조 패턴 · 행동 패턴 · 적용 조건·트레이드오프 |
 
 ## 문서 목록
@@ -72,7 +72,7 @@
 </details>
 
 <details>
-<summary>네트워크 · 10개</summary>
+<summary>네트워크 · 11개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
@@ -84,6 +84,7 @@
 | [TCP/IP 계층과 라우팅](docs/network/tcp-ip/layers-and-routing.md) | 주소·경로·전송·응용 규약의 책임을 나누어 데이터가 상대 애플리케이션까지 가는 흐름을 설명한다. |
 | [TCP와 UDP 선택](docs/network/transport/tcp-and-udp.md) | TCP의 연결·바이트 스트림과 UDP의 데이터그램을 요구하는 지연·신뢰성·경계 조건으로 비교한다. |
 | [TLS와 HTTPS](docs/network/http-tls/tls-handshake.md) | TLS는 상대 인증·키 합의로 만든 보안 채널에 HTTP를 실어 전송 중 데이터를 보호한다. |
+| [WebSocket과 STOMP의 역할](docs/network/http-tls/websocket-and-stomp.md) | WebSocket은 양방향 연결과 전송을, STOMP는 그 위에서 사용하는 명령·구독·목적지를 정의한다. |
 | [링크 계층과 오류 검출](docs/network/tcp-ip/ethernet-and-error-control.md) | 같은 링크의 프레임 전달·매체 접근·오류 검출을 종단 간 전송 보장과 구분한다. |
 | [흐름 제어와 혼잡 제어](docs/network/transport/flow-and-congestion-control.md) | 수신자가 받을 수 있는 양과 네트워크가 감당할 수 있는 양을 각각 고려해 전송을 조절한다. |
 
@@ -270,12 +271,13 @@
 </details>
 
 <details>
-<summary>Redis · 6개</summary>
+<summary>Redis · 7개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
 | [Cache-aside와 캐시 스탬피드](docs/redis/cache/cache-aside-and-stampede.md) | 캐시 미스 시 원본을 읽고 채우되 만료 순간 요청이 몰리는 경합과 오래된 값을 관리한다. |
 | [Redis Hash 인코딩과 메모리 모델링](docs/redis/types/hash-encoding-and-memory-modeling.md) | Hash의 메모리 절약은 작은 객체의 인코딩과 키 오버헤드 감소에서 나오며, 묶는 크기는 TTL·조회·분산 요구로 정한다. |
+| [Redis Pub/Sub의 전달 보장과 채팅 연동](docs/redis/failures/pub-sub-delivery-semantics.md) | Redis Pub/Sub은 현재 구독자에게 메시지를 전달하며, 놓친 메시지를 보관하거나 재전송하지 않는다. |
 | [Redis RDB·AOF와 복구](docs/redis/persistence/rdb-aof-and-recovery.md) | RDB는 시점의 스냅샷을, AOF는 쓰기 명령 기록을 사용해 재시작 후 데이터를 복구한다. |
 | [Redis 복제와 장애 전환](docs/redis/replication/replication-and-failover.md) | 복제본은 데이터 사본을 유지하지만 비동기 복제와 장애 전환에는 지연·손실 가능성이 있다. |
 | [Redis 원자 연산과 저장소 간 불일치](docs/redis/failures/atomic-script-and-cross-store.md) | Redis 안의 검사·차감을 원자적으로 묶어도 뒤이은 DB 저장·메시지 발행까지 한 번에 확정되지는 않는다. |
@@ -300,13 +302,14 @@
 </details>
 
 <details>
-<summary>Spring · 6개</summary>
+<summary>Spring · 7개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
 | [AOP 프록시와 자기 호출](docs/spring/aop/proxy-boundary.md) | Spring의 기본 프록시 방식에서는 프록시를 통과하는 호출에 부가 기능이 적용된다. |
 | [IoC와 의존성 주입](docs/spring/di/ioc-and-di.md) | 객체의 생성·연결을 컨테이너에 맡기고 필요한 협력 객체를 외부에서 받는다. |
 | [Spring MVC 요청 처리](docs/spring/mvc/request-flow.md) | DispatcherServlet은 요청을 적절한 핸들러에 연결하고 입력·결과 변환과 오류 처리를 조정한다. |
+| [Spring STOMP 메시지 라우팅과 SimpleBroker](docs/spring/mvc/stomp-message-routing.md) | 연결 주소·업무 목적지·구독 목적지를 구분하고, Spring의 설정이 메시지를 처리기와 브로커로 나누는 과정을 추적한다. |
 | [Spring 트랜잭션 경계](docs/spring/transactions/transaction-boundary.md) | 하나의 업무에서 함께 성공해야 하는 DB 변경을 명확한 트랜잭션 경계로 묶는다. |
 | [빈 생명주기와 싱글턴](docs/spring/lifecycle/bean-lifecycle.md) | 컨테이너는 빈의 생성·주입·초기화·종료를 관리하며 기본 싱글턴은 컨테이너 안에서 공유된다. |
 | [트랜잭션 이벤트와 전달 실패](docs/spring/transactions/transaction-events.md) | 이벤트 리스너의 실행 시점과 실행 스레드, 이벤트의 내구성을 각각 설계한다. |
@@ -470,7 +473,7 @@
 </details>
 
 <details>
-<summary>데이터 중심 애플리케이션 · 5개</summary>
+<summary>데이터 중심 애플리케이션 · 6개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
@@ -479,6 +482,7 @@
 | [관계형·문서·그래프 데이터 모델](docs/ddia/models/relational-document-graph-models.md) | 모델 선택은 데이터 모양뿐 아니라 함께 읽고 갱신하는 방식과 관계 탐색으로 결정한다. |
 | [배치와 스트림 처리](docs/ddia/processing/batch-and-stream.md) | 배치는 유한한 묶음을, 스트림은 지속되는 입력을 처리하며 Kafka 직접 수신과 처리 상태의 복구를 구분한다. |
 | [복제와 파티셔닝](docs/ddia/distribution/replication-partitioning.md) | 복제는 사본을 늘리고 파티셔닝은 데이터를 나누며 각각 가용성·용량·운영의 다른 문제를 다룬다. |
+| [채팅의 브로커 선택과 메시지 전달](docs/ddia/processing/chat-message-brokers.md) | 참여자 수·서버 수·메시지 보관·순서 요구를 나누어 SimpleBroker, Redis Pub/Sub, RabbitMQ, Kafka를 비교한다. |
 
 </details>
 

@@ -8,7 +8,7 @@
 | --- | ---: |
 | [컴퓨터 구조](computer-architecture/README.md) | 9 |
 | [운영체제](operating-systems/README.md) | 9 |
-| [네트워크](network/README.md) | 10 |
+| [네트워크](network/README.md) | 11 |
 | [데이터베이스](database/README.md) | 11 |
 | [자료구조](data-structures/README.md) | 17 |
 | [알고리즘](algorithms/README.md) | 36 |
@@ -18,9 +18,9 @@
 | [클라우드](cloud/README.md) | 9 |
 | [컴퓨터 보안](security/README.md) | 6 |
 | [MySQL](mysql/README.md) | 5 |
-| [Redis](redis/README.md) | 6 |
+| [Redis](redis/README.md) | 7 |
 | [Kafka](kafka/README.md) | 8 |
-| [Spring](spring/README.md) | 6 |
+| [Spring](spring/README.md) | 7 |
 | [Spring Boot](spring-boot/README.md) | 7 |
 | [JPA](jpa/README.md) | 7 |
 | [REST API](rest-api/README.md) | 6 |
@@ -32,5 +32,5 @@
 | [GitHub Actions](github-actions/README.md) | 4 |
 | [DDD](ddd/README.md) | 4 |
 | [TDD](tdd/README.md) | 5 |
-| [데이터 중심 애플리케이션](ddia/README.md) | 5 |
+| [데이터 중심 애플리케이션](ddia/README.md) | 6 |
 | [디자인 패턴](design-patterns/README.md) | 5 |

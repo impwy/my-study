@@ -31,4 +31,5 @@
 | 문서 | 한 줄 요약 |
 | --- | --- |
 | [배치와 스트림 처리](processing/batch-and-stream.md) | 배치는 유한한 묶음을, 스트림은 지속되는 입력을 처리하며 Kafka 직접 수신과 처리 상태의 복구를 구분한다. |
+| [채팅의 브로커 선택과 메시지 전달](processing/chat-message-brokers.md) | 참여자 수·서버 수·메시지 보관·순서 요구를 나누어 SimpleBroker, Redis Pub/Sub, RabbitMQ, Kafka를 비교한다. |
 

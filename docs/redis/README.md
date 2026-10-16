@@ -31,5 +31,6 @@
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
+| [Redis Pub/Sub의 전달 보장과 채팅 연동](failures/pub-sub-delivery-semantics.md) | Redis Pub/Sub은 현재 구독자에게 메시지를 전달하며, 놓친 메시지를 보관하거나 재전송하지 않는다. |
 | [Redis 원자 연산과 저장소 간 불일치](failures/atomic-script-and-cross-store.md) | Redis 안의 검사·차감을 원자적으로 묶어도 뒤이은 DB 저장·메시지 발행까지 한 번에 확정되지는 않는다. |
 

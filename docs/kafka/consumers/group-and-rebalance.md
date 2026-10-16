@@ -2,7 +2,7 @@
 
 > 그룹은 파티션 작업을 나누고 멤버·토픽 조건이 바뀌면 할당을 다시 조정한다.
 
-- 한 그룹의 파티션은 한 멤버에 할당된다.
+- 전통적인 컨슈머 그룹에서는 파티션 하나를 한 멤버가 담당한다.
 - 그룹이 다르면 독립적으로 소비한다.
 - 리밸런스 중 처리·커밋 경계를 관리한다.
 
@@ -13,9 +13,15 @@
 
 subscribe를 사용한 그룹 소비에서는 코디네이션으로 파티션이 할당된다. 멤버가 추가·제거되거나 구독 파티션이 달라지면 할당이 바뀔 수 있다. 멤버가 파티션 수보다 많으면 일부는 유휴 상태다. 리밸런스에서 넘겨주는 파티션의 미완료 작업·오프셋을 어떻게 처리할지 정해야 한다. static membership과 cooperative 방식은 이동·중단 비용을 줄이는 선택지이며 버전·설정 조건을 확인한다.
 
+## 채팅 서버에 적용하기
+
+채팅 서버 A·B가 같은 토픽을 같은 그룹으로 소비하면 파티션을 나눠 맡는다. 모든 메시지를 두 서버에 각각 복제하는 구성이 아니다. A가 받은 메시지의 수신자가 B에 연결되어 있다면 B로 전달하는 별도 라우팅이 필요하다.
+
+서버마다 독립된 그룹을 두면 각 그룹이 전체 스트림을 읽고 자신에게 연결된 사용자에게 전달하는 설계가 가능하다. 그만큼 중복 소비·네트워크 비용과 그룹 생명주기 관리가 늘어난다. 또는 공유 처리 계층이 연결 서버를 찾아 라우팅할 수 있다. 같은 브로커를 바라본다는 사실만으로 WebSocket 구독자 전달이 완성되지는 않는다. 전체 선택지는 [채팅 브로커 비교](../../ddia/processing/chat-message-brokers.md)를 참고한다.
+
 ## Java 예제
 
-Kafka clients와 구성된 consumer가 필요하다. 콜백 로깅만 보여 주며 실제 오프셋·진행 중 작업 처리는 별도로 구현한다.
+Kafka clients와 구성된 consumer가 필요하다. 메서드는 클래스 안에 둔다. 콜백 로깅만 보여 주며 실제 오프셋·진행 중 작업 처리는 별도로 구현한다.
 
 ```java
 import org.apache.kafka.clients.consumer.*;
@@ -40,13 +46,13 @@ static void subscribe(KafkaConsumer<String, String> consumer) {
 
 ## 주의점
 
-다중 작업 스레드 사용이 KafkaConsumer 객체의 스레드 안전성을 뜻하지 않는다. 파티션별 처리 순서와 커밋 위치를 별도로 관리한다.
+다중 작업 스레드 사용이 KafkaConsumer 객체의 스레드 안전성을 뜻하지 않는다. 파티션별 처리 순서와 커밋 위치를 별도로 관리한다. 이 문서는 KafkaConsumer의 그룹 소비를 다루며 ShareConsumer의 레코드 공유 모델과 구분한다.
 
 ## 꼬리질문
 
 1. 컨슈머 수를 계속 늘려도 처리량이 증가하지 않는 파티션 조건은?
-2. 파티션 3개인 그룹에 컨슈머 5개가 있으면 동시에 담당할 수 있는 컨슈머 수는 얼마일까?
-3. 파티션을 잃을 때 진행 중 작업과 커밋을 처리하지 않으면 어떤 중복·순서 문제가 생길까?
+2. 파티션 3개인 그룹에 컨슈머 5개가 있을 때 최대 몇 명이 담당하며, 같은 그룹의 채팅 서버 모두가 메시지를 받는가?
+3. 서버별 그룹으로 전체 전달을 구현하거나 리밸런스로 파티션을 넘길 때 비용·미완료 작업·커밋을 어떻게 관리할까?
 
 </details>
 
@@ -54,3 +60,4 @@ static void subscribe(KafkaConsumer<String, String> consumer) {
 
 - [Kafka 4.1 · Consumer Configs](https://kafka.apache.org/41/configuration/consumer-configs/) — 그룹 프로토콜·poll·커밋·타임아웃 옵션을 확인한다.
 - [Apache Kafka 4.1 · Design](https://kafka.apache.org/41/design/design/) — 로그·복제·전달 보장의 적용 범위를 확인한다.
+- [Kafka 4.2 · KafkaConsumer](https://kafka.apache.org/42/javadoc/org/apache/kafka/clients/consumer/KafkaConsumer.html) — 전통적인 컨슈머 그룹의 파티션 할당과 소비자 사용 조건을 확인한다.

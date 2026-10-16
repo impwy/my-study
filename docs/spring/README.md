@@ -25,6 +25,7 @@
 | 문서 | 한 줄 요약 |
 | --- | --- |
 | [Spring MVC 요청 처리](mvc/request-flow.md) | DispatcherServlet은 요청을 적절한 핸들러에 연결하고 입력·결과 변환과 오류 처리를 조정한다. |
+| [Spring STOMP 메시지 라우팅과 SimpleBroker](mvc/stomp-message-routing.md) | 연결 주소·업무 목적지·구독 목적지를 구분하고, Spring의 설정이 메시지를 처리기와 브로커로 나누는 과정을 추적한다. |
 
 ## 트랜잭션
 
