@@ -8,7 +8,7 @@
 | --- | ---: |
 | [컴퓨터 구조](computer-architecture/README.md) | 9 |
 | [운영체제](operating-systems/README.md) | 9 |
-| [네트워크](network/README.md) | 11 |
+| [네트워크](network/README.md) | 15 |
 | [데이터베이스](database/README.md) | 11 |
 | [자료구조](data-structures/README.md) | 17 |
 | [알고리즘](algorithms/README.md) | 36 |

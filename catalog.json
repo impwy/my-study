@@ -864,10 +864,30 @@
     "summary": "주소·경로·전송·응용 규약의 책임을 나누어 데이터가 상대 애플리케이션까지 가는 흐름을 설명한다.",
     "title": "TCP/IP 계층과 라우팅"
   },
+  "docs/network/transport/ai-call-voice-pipeline.md": {
+    "content_sha": "85457da9d25d74d543e3ff8d8dc41b341c0224e1",
+    "summary": "전화 상담은 통화 음성을 서버로 연결한 뒤 STT → LLM → TTS로 처리하거나, 음성을 직접 이해하고 응답하는 speech-to-speech 방식으로 구성한다.",
+    "title": "AI 전화 상담의 음성 파이프라인: STT·TTS와 speech-to-speech"
+  },
   "docs/network/transport/flow-and-congestion-control.md": {
     "content_sha": "22291a980a3c3cea1626f519ed6fbbad415f0919",
     "summary": "수신자가 받을 수 있는 양과 네트워크가 감당할 수 있는 양을 각각 고려해 전송을 조절한다.",
     "title": "흐름 제어와 혼잡 제어"
+  },
+  "docs/network/transport/rtp.md": {
+    "content_sha": "843a2ce141e7ca54685f1b1e1a8bf22ce815a390",
+    "summary": "RTP는 음성·영상 패킷에 순서 번호와 타임스탬프 등을 붙여 수신 측의 실시간 재생을 돕지만, 전달 성공이나 지연을 보장하지 않는다.",
+    "title": "RTP: 실시간 음성의 순서와 재생 시점을 전달하기"
+  },
+  "docs/network/transport/sip.md": {
+    "content_sha": "02e890d5f6e4b970938133686cc8609479f01932",
+    "summary": "SIP는 누구와 어떤 조건으로 통화할지 제어하는 시그널링 프로토콜이며, 실제 음성은 별도의 미디어 경로로 흐른다.",
+    "title": "SIP: 통화의 시작·변경·종료를 제어하는 신호"
+  },
+  "docs/network/transport/srtp.md": {
+    "content_sha": "e74068dd942462f029f6f13f5a1b83f7d9e248c8",
+    "summary": "SRTP는 RTP 미디어에 기밀성·메시지 인증·재전송 공격 방지 기능을 제공하며, 통화 제어 신호의 TLS 보호와는 적용 구간이 다르다.",
+    "title": "SRTP: 실시간 통화 미디어 보호하기"
   },
   "docs/network/transport/tcp-and-udp.md": {
     "content_sha": "e00a3eccf26489deefb60d1dff165f0c3eb6533e",

@@ -8,7 +8,7 @@
 | --- | ---: | --- |
 | [컴퓨터 구조](docs/computer-architecture/README.md) | 9 | 데이터 표현 · CPU·명령어 · 메모리·캐시 · 입출력 |
 | [운영체제](docs/operating-systems/README.md) | 9 | 프로세스·스레드 · 스케줄링 · 동기화·교착상태 · 가상 메모리 |
-| [네트워크](docs/network/README.md) | 11 | TCP/IP · TCP·UDP · DNS · HTTP·TLS |
+| [네트워크](docs/network/README.md) | 15 | TCP/IP · TCP·UDP · DNS · HTTP·TLS |
 | [데이터베이스](docs/database/README.md) | 11 | 관계형 모델 · SQL · 인덱스 · 트랜잭션·격리 수준 |
 | [자료구조](docs/data-structures/README.md) | 17 | 배열·연결 리스트 · 스택·큐 · 해시 · 트리·힙 · 그래프 |
 | [알고리즘](docs/algorithms/README.md) | 36 | 복잡도 · 탐색 · 정렬 · 그래프 탐색 · 그리디·동적 계획법 |
@@ -72,14 +72,18 @@
 </details>
 
 <details>
-<summary>네트워크 · 11개</summary>
+<summary>네트워크 · 15개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
+| [AI 전화 상담의 음성 파이프라인: STT·TTS와 speech-to-speech](docs/network/transport/ai-call-voice-pipeline.md) | 전화 상담은 통화 음성을 서버로 연결한 뒤 STT → LLM → TTS로 처리하거나, 음성을 직접 이해하고 응답하는 speech-to-speech 방식으로 구성한다. |
 | [CIDR와 경로 선택](docs/network/tcp-ip/cidr-and-forwarding.md) | 주소의 네트워크 접두어와 라우팅 테이블의 가장 긴 일치로 다음 홉을 결정한다. |
 | [CORS와 브라우저 출처](docs/network/http-tls/cors.md) | CORS는 다른 출처의 응답을 웹 페이지에 공유할 수 있는지 정하며 서버 인증·인가와 별개다. |
 | [DNS 이름 해석](docs/network/dns/name-resolution.md) | 리졸버는 캐시와 계층적 권한 서버를 이용해 이름에 해당하는 레코드를 찾는다. |
 | [HTTP 메서드와 상태 코드](docs/network/http-tls/http-semantics.md) | HTTP의 메서드·상태 코드는 요청 의도와 결과를 전달하는 공통 계약이다. |
+| [RTP: 실시간 음성의 순서와 재생 시점을 전달하기](docs/network/transport/rtp.md) | RTP는 음성·영상 패킷에 순서 번호와 타임스탬프 등을 붙여 수신 측의 실시간 재생을 돕지만, 전달 성공이나 지연을 보장하지 않는다. |
+| [SIP: 통화의 시작·변경·종료를 제어하는 신호](docs/network/transport/sip.md) | SIP는 누구와 어떤 조건으로 통화할지 제어하는 시그널링 프로토콜이며, 실제 음성은 별도의 미디어 경로로 흐른다. |
+| [SRTP: 실시간 통화 미디어 보호하기](docs/network/transport/srtp.md) | SRTP는 RTP 미디어에 기밀성·메시지 인증·재전송 공격 방지 기능을 제공하며, 통화 제어 신호의 TLS 보호와는 적용 구간이 다르다. |
 | [SSE와 WebSocket 및 STOMP의 역할](docs/network/http-tls/websocket-and-stomp.md) | SSE는 HTTP 응답으로 서버 이벤트를 전달하고, WebSocket은 양방향 메시지를 교환하며, STOMP는 메시지의 명령·구독·목적지를 정의한다. |
 | [TCP 바이트 스트림과 메시지 경계](docs/network/transport/tcp-byte-stream.md) | TCP는 순서 있는 바이트 스트림을 제공하므로 응용 메시지의 경계는 애플리케이션이 정해야 한다. |
 | [TCP/IP 계층과 라우팅](docs/network/tcp-ip/layers-and-routing.md) | 주소·경로·전송·응용 규약의 책임을 나누어 데이터가 상대 애플리케이션까지 가는 흐름을 설명한다. |
