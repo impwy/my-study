@@ -24,8 +24,11 @@
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
+| [SSE 응답의 UTF-8 인코딩과 브라우저 표시](mvc/sse-response-encoding.md) | 개발자도구에서는 한글이 정상인데 직접 연 화면에서 깨진다면 실제 응답 헤더와 문서 디코딩을 함께 확인한다. |
+| [SSE의 조각 묶기와 전체 답변 전송](mvc/sse-stream-buffering.md) | Flux에서 언제 값을 내보내고 send를 호출하는지에 따라 조각별 전송과 전체 답변 전송이 결정된다. |
 | [Spring MVC 요청 처리](mvc/request-flow.md) | DispatcherServlet은 요청을 적절한 핸들러에 연결하고 입력·결과 변환과 오류 처리를 조정한다. |
 | [Spring STOMP 메시지 라우팅과 SimpleBroker](mvc/stomp-message-routing.md) | 연결 주소·업무 목적지·구독 목적지를 구분하고, Spring의 설정이 메시지를 처리기와 브로커로 나누는 과정을 추적한다. |
+| [SseEmitter 미디어 타입 인자와 빈 JSON](mvc/sse-emitter-media-type.md) | 미디어 타입을 전달한 메서드에 따라 이벤트 빌더를 데이터로 직렬화할 수도, 빌더 안의 ChatChunk를 직렬화할 수도 있다. |
 
 ## 트랜잭션
 

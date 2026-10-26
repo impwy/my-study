@@ -30,6 +30,6 @@
 | --- | --- |
 | [CORS와 브라우저 출처](http-tls/cors.md) | CORS는 다른 출처의 응답을 웹 페이지에 공유할 수 있는지 정하며 서버 인증·인가와 별개다. |
 | [HTTP 메서드와 상태 코드](http-tls/http-semantics.md) | HTTP의 메서드·상태 코드는 요청 의도와 결과를 전달하는 공통 계약이다. |
+| [SSE와 WebSocket 및 STOMP의 역할](http-tls/websocket-and-stomp.md) | SSE는 HTTP 응답으로 서버 이벤트를 전달하고, WebSocket은 양방향 메시지를 교환하며, STOMP는 메시지의 명령·구독·목적지를 정의한다. |
 | [TLS와 HTTPS](http-tls/tls-handshake.md) | TLS는 상대 인증·키 합의로 만든 보안 채널에 HTTP를 실어 전송 중 데이터를 보호한다. |
-| [WebSocket과 STOMP의 역할](http-tls/websocket-and-stomp.md) | WebSocket은 양방향 연결과 전송을, STOMP는 그 위에서 사용하는 명령·구독·목적지를 정의한다. |
 

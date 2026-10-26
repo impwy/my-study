@@ -20,7 +20,7 @@
 | [MySQL](docs/mysql/README.md) | 5 | 스키마·SQL · 실행 계획 · InnoDB·인덱스 · MVCC·락 |
 | [Redis](docs/redis/README.md) | 7 | 자료형 · 캐시·TTL · 영속성 · 복제 · 장애 대응 |
 | [Kafka](docs/kafka/README.md) | 8 | 토픽·파티션 · 프로듀서 · 컨슈머·오프셋 · 전달 보장 |
-| [Spring](docs/spring/README.md) | 7 | IoC·DI · 빈 생명주기 · AOP · MVC · 트랜잭션 |
+| [Spring](docs/spring/README.md) | 10 | IoC·DI · 빈 생명주기 · AOP · MVC · 트랜잭션 |
 | [Spring Boot](docs/spring-boot/README.md) | 7 | 자동 설정 · 설정·프로파일 · 웹 애플리케이션 · Actuator |
 | [JPA](docs/jpa/README.md) | 7 | 엔티티 매핑 · 영속성 컨텍스트 · 연관관계 · 조회·N+1 · 락 |
 | [REST API](docs/rest-api/README.md) | 6 | 리소스 설계 · 메서드·상태 코드 · 멱등성 · 페이지네이션·오류 |
@@ -80,11 +80,11 @@
 | [CORS와 브라우저 출처](docs/network/http-tls/cors.md) | CORS는 다른 출처의 응답을 웹 페이지에 공유할 수 있는지 정하며 서버 인증·인가와 별개다. |
 | [DNS 이름 해석](docs/network/dns/name-resolution.md) | 리졸버는 캐시와 계층적 권한 서버를 이용해 이름에 해당하는 레코드를 찾는다. |
 | [HTTP 메서드와 상태 코드](docs/network/http-tls/http-semantics.md) | HTTP의 메서드·상태 코드는 요청 의도와 결과를 전달하는 공통 계약이다. |
+| [SSE와 WebSocket 및 STOMP의 역할](docs/network/http-tls/websocket-and-stomp.md) | SSE는 HTTP 응답으로 서버 이벤트를 전달하고, WebSocket은 양방향 메시지를 교환하며, STOMP는 메시지의 명령·구독·목적지를 정의한다. |
 | [TCP 바이트 스트림과 메시지 경계](docs/network/transport/tcp-byte-stream.md) | TCP는 순서 있는 바이트 스트림을 제공하므로 응용 메시지의 경계는 애플리케이션이 정해야 한다. |
 | [TCP/IP 계층과 라우팅](docs/network/tcp-ip/layers-and-routing.md) | 주소·경로·전송·응용 규약의 책임을 나누어 데이터가 상대 애플리케이션까지 가는 흐름을 설명한다. |
 | [TCP와 UDP 선택](docs/network/transport/tcp-and-udp.md) | TCP의 연결·바이트 스트림과 UDP의 데이터그램을 요구하는 지연·신뢰성·경계 조건으로 비교한다. |
 | [TLS와 HTTPS](docs/network/http-tls/tls-handshake.md) | TLS는 상대 인증·키 합의로 만든 보안 채널에 HTTP를 실어 전송 중 데이터를 보호한다. |
-| [WebSocket과 STOMP의 역할](docs/network/http-tls/websocket-and-stomp.md) | WebSocket은 양방향 연결과 전송을, STOMP는 그 위에서 사용하는 명령·구독·목적지를 정의한다. |
 | [링크 계층과 오류 검출](docs/network/tcp-ip/ethernet-and-error-control.md) | 같은 링크의 프레임 전달·매체 접근·오류 검출을 종단 간 전송 보장과 구분한다. |
 | [흐름 제어와 혼잡 제어](docs/network/transport/flow-and-congestion-control.md) | 수신자가 받을 수 있는 양과 네트워크가 감당할 수 있는 양을 각각 고려해 전송을 조절한다. |
 
@@ -302,15 +302,18 @@
 </details>
 
 <details>
-<summary>Spring · 7개</summary>
+<summary>Spring · 10개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
 | [AOP 프록시와 자기 호출](docs/spring/aop/proxy-boundary.md) | Spring의 기본 프록시 방식에서는 프록시를 통과하는 호출에 부가 기능이 적용된다. |
 | [IoC와 의존성 주입](docs/spring/di/ioc-and-di.md) | 객체의 생성·연결을 컨테이너에 맡기고 필요한 협력 객체를 외부에서 받는다. |
+| [SSE 응답의 UTF-8 인코딩과 브라우저 표시](docs/spring/mvc/sse-response-encoding.md) | 개발자도구에서는 한글이 정상인데 직접 연 화면에서 깨진다면 실제 응답 헤더와 문서 디코딩을 함께 확인한다. |
+| [SSE의 조각 묶기와 전체 답변 전송](docs/spring/mvc/sse-stream-buffering.md) | Flux에서 언제 값을 내보내고 send를 호출하는지에 따라 조각별 전송과 전체 답변 전송이 결정된다. |
 | [Spring MVC 요청 처리](docs/spring/mvc/request-flow.md) | DispatcherServlet은 요청을 적절한 핸들러에 연결하고 입력·결과 변환과 오류 처리를 조정한다. |
 | [Spring STOMP 메시지 라우팅과 SimpleBroker](docs/spring/mvc/stomp-message-routing.md) | 연결 주소·업무 목적지·구독 목적지를 구분하고, Spring의 설정이 메시지를 처리기와 브로커로 나누는 과정을 추적한다. |
 | [Spring 트랜잭션 경계](docs/spring/transactions/transaction-boundary.md) | 하나의 업무에서 함께 성공해야 하는 DB 변경을 명확한 트랜잭션 경계로 묶는다. |
+| [SseEmitter 미디어 타입 인자와 빈 JSON](docs/spring/mvc/sse-emitter-media-type.md) | 미디어 타입을 전달한 메서드에 따라 이벤트 빌더를 데이터로 직렬화할 수도, 빌더 안의 ChatChunk를 직렬화할 수도 있다. |
 | [빈 생명주기와 싱글턴](docs/spring/lifecycle/bean-lifecycle.md) | 컨테이너는 빈의 생성·주입·초기화·종료를 관리하며 기본 싱글턴은 컨테이너 안에서 공유된다. |
 | [트랜잭션 이벤트와 전달 실패](docs/spring/transactions/transaction-events.md) | 이벤트 리스너의 실행 시점과 실행 스레드, 이벤트의 내구성을 각각 설계한다. |
 

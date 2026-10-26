@@ -20,7 +20,7 @@
 | [MySQL](mysql/README.md) | 5 |
 | [Redis](redis/README.md) | 7 |
 | [Kafka](kafka/README.md) | 8 |
-| [Spring](spring/README.md) | 7 |
+| [Spring](spring/README.md) | 10 |
 | [Spring Boot](spring-boot/README.md) | 7 |
 | [JPA](jpa/README.md) | 7 |
 | [REST API](rest-api/README.md) | 6 |
