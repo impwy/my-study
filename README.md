@@ -15,7 +15,7 @@
 | [Java](docs/java/README.md) | 12 | 언어·타입 · 객체지향 · 컬렉션·제네릭 · 예외 · 스트림 · JVM·GC |
 | [Java 병렬 프로그래밍](docs/java-concurrency/README.md) | 6 | 스레드 안전성 · 가시성·원자성 · 락 · Executor·Future · 동시성 컬렉션 |
 | [Linux](docs/linux/README.md) | 6 | 파일·권한 · 프로세스 · 셸 · 네트워크 명령어 · 서비스·로그 |
-| [클라우드](docs/cloud/README.md) | 9 | 가상화 · 컴퓨팅·스토리지 · 네트워크 · 확장성·가용성 |
+| [클라우드](docs/cloud/README.md) | 10 | 가상화 · 컴퓨팅·스토리지 · 네트워크 · 확장성·가용성 |
 | [컴퓨터 보안](docs/security/README.md) | 6 | 암호·해시 · 인증·인가 · 웹 취약점 · 접근 제어 |
 | [MySQL](docs/mysql/README.md) | 5 | 스키마·SQL · 실행 계획 · InnoDB·인덱스 · MVCC·락 |
 | [Redis](docs/redis/README.md) | 7 | 자료형 · 캐시·TTL · 영속성 · 복제 · 장애 대응 |
@@ -23,7 +23,7 @@
 | [Spring](docs/spring/README.md) | 10 | IoC·DI · 빈 생명주기 · AOP · MVC · 트랜잭션 |
 | [Spring Boot](docs/spring-boot/README.md) | 7 | 자동 설정 · 설정·프로파일 · 웹 애플리케이션 · Actuator |
 | [JPA](docs/jpa/README.md) | 7 | 엔티티 매핑 · 영속성 컨텍스트 · 연관관계 · 조회·N+1 · 락 |
-| [REST API](docs/rest-api/README.md) | 6 | 리소스 설계 · 메서드·상태 코드 · 멱등성 · 페이지네이션·오류 |
+| [REST API](docs/rest-api/README.md) | 7 | 리소스 설계 · 메서드·상태 코드 · 멱등성 · 페이지네이션·오류 |
 | [JavaScript](docs/javascript/README.md) | 6 | 타입·스코프 · 클로저 · 프로토타입 · 비동기·이벤트 루프 |
 | [Vue.js](docs/vue/README.md) | 5 | 반응성 · 컴포넌트 · Composition API · 라우팅·상태 관리 |
 | [React](docs/react/README.md) | 10 | 렌더링 · props·state · Hooks · 상태 관리·라우팅 · 테스트 |
@@ -32,7 +32,7 @@
 | [GitHub Actions](docs/github-actions/README.md) | 4 | 워크플로 · 이벤트·잡 · 테스트·빌드 · 배포 |
 | [DDD](docs/ddd/README.md) | 4 | 도메인 모델 · 바운디드 컨텍스트 · 엔티티·값 객체 · 애그리거트·이벤트 |
 | [TDD](docs/tdd/README.md) | 5 | Red–Green–Refactor · 테스트 설계 · 테스트 대역 · 단위·통합 테스트 |
-| [데이터 중심 애플리케이션](docs/ddia/README.md) | 6 | 데이터 모델 · 저장 엔진 · 복제·파티셔닝 · 일관성 · 배치·스트림 처리 |
+| [데이터 중심 애플리케이션](docs/ddia/README.md) | 7 | 데이터 모델 · 저장 엔진 · 복제·파티셔닝 · 일관성 · 배치·스트림 처리 |
 | [디자인 패턴](docs/design-patterns/README.md) | 5 | 설계 원칙 · 생성 패턴 · 구조 패턴 · 행동 패턴 · 적용 조건·트레이드오프 |
 
 ## 문서 목록
@@ -231,10 +231,11 @@
 </details>
 
 <details>
-<summary>클라우드 · 9개</summary>
+<summary>클라우드 · 10개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
+| [Kubernetes 롤링 업데이트와 무중단 배포의 조건](docs/cloud/availability/kubernetes-rolling-update.md) | 새 Pod를 교체하는 순서, 신·구 버전의 호환성, 실제 업무 복구를 함께 설계해야 배포 중 서비스 연속성을 유지할 수 있다. |
 | [Kubernetes의 Pod·Deployment·Service](docs/cloud/virtualization/kubernetes-building-blocks.md) | 컨테이너 실행 단위, 원하는 상태 유지, 접근 경로의 책임을 구분한다. |
 | [OCR 모델의 학습·추론과 신분증 정보 추출](docs/cloud/resources/ocr-model-fine-tuning.md) | OCR은 이미지의 문자를 텍스트로 변환하는 작업이며 파인튜닝은 기존 모델을 특정 데이터로 추가 학습하는 방법이다. |
 | [Observability와 LGTM·Datadog](docs/cloud/availability/observability-lgtm.md) | 메트릭·로그·트레이스를 연결해 내부 상태를 추론하고 Grafana 도구 조합과 Datadog 통합 서비스를 구분한다. |
@@ -354,7 +355,7 @@
 </details>
 
 <details>
-<summary>REST API · 6개</summary>
+<summary>REST API · 7개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
@@ -362,6 +363,7 @@
 | [HTTP 메서드·상태 코드와 재시도 계약](docs/rest-api/http/methods-status-and-retry-contract.md) | 메서드는 작업의 의미를, 상태 코드는 처리 결과를 표현하며 둘을 함께 설계해야 한다. |
 | [Problem Details 오류 계약](docs/rest-api/contracts/problem-details.md) | 오류 응답을 공통 구조로 표현하고 업무 오류를 기계가 구분할 수 있게 한다. |
 | [REST의 제약과 리소스](docs/rest-api/resources/rest-constraints.md) | REST는 리소스에 대한 통일된 인터페이스와 여러 제약으로 분산 시스템의 상호작용을 설계하는 스타일이다. |
+| [롤링 배포의 API 호환성과 WebSocket 복구](docs/rest-api/contracts/rolling-deployment-compatibility.md) | 신·구 클라이언트와 서버가 공존하는 동안 계약을 유지하고, 연결이 끊겨도 저장된 상태로 업무를 복구한다. |
 | [멱등 키와 요청 재시도](docs/rest-api/idempotency/idempotency-key.md) | 같은 요청의 중복 효과는 멱등성으로 막고 서로 다른 요청의 자원 경쟁은 별도 동시성 제어로 보호한다. |
 | [페이지네이션과 안정적인 정렬](docs/rest-api/contracts/pagination.md) | 목록을 나눠 읽을 때 정렬·경계·변경 중 데이터의 일관성을 명확히 한다. |
 
@@ -480,10 +482,11 @@
 </details>
 
 <details>
-<summary>데이터 중심 애플리케이션 · 6개</summary>
+<summary>데이터 중심 애플리케이션 · 7개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
+| [Expand–Migrate–Contract와 데이터 호환성](docs/ddia/models/expand-migrate-contract.md) | 구조 확장, 데이터 이관, 구 구조 제거를 서로 다른 단계로 나눠 신·구 애플리케이션의 공존과 롤백 가능성을 유지한다. |
 | [LSM 트리와 컴팩션](docs/ddia/storage/lsm-and-compaction.md) | LSM은 쓰기를 메모리에 모아 정렬 파일로 내보내고 병합하면서 읽기·쓰기 비용을 조절한다. |
 | [Outbox와 정합성 대사](docs/ddia/consistency/outbox-and-reconciliation.md) | 원본 변경과 전송 의도를 함께 기록하고 비동기 전달의 중복·지연·누락을 감지해 복구한다. |
 | [관계형·문서·그래프 데이터 모델](docs/ddia/models/relational-document-graph-models.md) | 모델 선택은 데이터 모양뿐 아니라 함께 읽고 갱신하는 방식과 관계 탐색으로 결정한다. |

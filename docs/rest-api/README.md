@@ -26,5 +26,6 @@
 | --- | --- |
 | [API First와 명세의 역할](contracts/api-first.md) | 구현 전에 외부 인터페이스 계약을 합의하면 프론트와 백엔드가 같은 기대 동작을 기준으로 개발할 수 있다. |
 | [Problem Details 오류 계약](contracts/problem-details.md) | 오류 응답을 공통 구조로 표현하고 업무 오류를 기계가 구분할 수 있게 한다. |
+| [롤링 배포의 API 호환성과 WebSocket 복구](contracts/rolling-deployment-compatibility.md) | 신·구 클라이언트와 서버가 공존하는 동안 계약을 유지하고, 연결이 끊겨도 저장된 상태로 업무를 복구한다. |
 | [페이지네이션과 안정적인 정렬](contracts/pagination.md) | 목록을 나눠 읽을 때 정렬·경계·변경 중 데이터의 일관성을 명확히 한다. |
 

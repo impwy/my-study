@@ -26,6 +26,7 @@
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
+| [Kubernetes 롤링 업데이트와 무중단 배포의 조건](availability/kubernetes-rolling-update.md) | 새 Pod를 교체하는 순서, 신·구 버전의 호환성, 실제 업무 복구를 함께 설계해야 배포 중 서비스 연속성을 유지할 수 있다. |
 | [Observability와 LGTM·Datadog](availability/observability-lgtm.md) | 메트릭·로그·트레이스를 연결해 내부 상태를 추론하고 Grafana 도구 조합과 Datadog 통합 서비스를 구분한다. |
 | [백프레셔와 요청 제한](availability/backpressure-and-rate-limit.md) | 처리 가능한 속도에 맞춰 유입·대기·거절을 조정해 과부하가 시스템 전체로 번지는 것을 제한한다. |
 | [지연·처리량·포화](availability/latency-throughput-saturation.md) | 부하가 늘 때 처리량·지연 분포·오류·대기열을 함께 보아 병목을 찾는다. |

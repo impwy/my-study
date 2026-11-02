@@ -6,6 +6,7 @@
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
+| [Expand–Migrate–Contract와 데이터 호환성](models/expand-migrate-contract.md) | 구조 확장, 데이터 이관, 구 구조 제거를 서로 다른 단계로 나눠 신·구 애플리케이션의 공존과 롤백 가능성을 유지한다. |
 | [관계형·문서·그래프 데이터 모델](models/relational-document-graph-models.md) | 모델 선택은 데이터 모양뿐 아니라 함께 읽고 갱신하는 방식과 관계 탐색으로 결정한다. |
 
 ## 저장 엔진

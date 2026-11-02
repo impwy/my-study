@@ -234,6 +234,11 @@
     "summary": "주 경로 실패 때 대체 동작을 선택하되 부하·데이터 정확성·복구 절차를 함께 검증한다.",
     "title": "폴백과 장애 복구의 경계"
   },
+  "docs/cloud/availability/kubernetes-rolling-update.md": {
+    "content_sha": "6e98372a780df95e650019be9ecfd5edf9e71288",
+    "summary": "새 Pod를 교체하는 순서, 신·구 버전의 호환성, 실제 업무 복구를 함께 설계해야 배포 중 서비스 연속성을 유지할 수 있다.",
+    "title": "Kubernetes 롤링 업데이트와 무중단 배포의 조건"
+  },
   "docs/cloud/availability/latency-throughput-saturation.md": {
     "content_sha": "f8a78b5e8d7582b4789590ef66ed7673927e59fb",
     "summary": "부하가 늘 때 처리량·지연 분포·오류·대기열을 함께 보아 병목을 찾는다.",
@@ -483,6 +488,11 @@
     "content_sha": "2cc434a4bc068dcf7760158f296361c0a37dab75",
     "summary": "복제는 사본을 늘리고 파티셔닝은 데이터를 나누며 각각 가용성·용량·운영의 다른 문제를 다룬다.",
     "title": "복제와 파티셔닝"
+  },
+  "docs/ddia/models/expand-migrate-contract.md": {
+    "content_sha": "730bb76ada792f8bff683cff7bc3752da62187ba",
+    "summary": "구조 확장, 데이터 이관, 구 구조 제거를 서로 다른 단계로 나눠 신·구 애플리케이션의 공존과 롤백 가능성을 유지한다.",
+    "title": "Expand–Migrate–Contract와 데이터 호환성"
   },
   "docs/ddia/models/relational-document-graph-models.md": {
     "content_sha": "22826dc36a3e12a268941ba44c86510bed80ccf3",
@@ -1043,6 +1053,11 @@
     "content_sha": "5516dcefcb7f363ca0bb1cfcbb8353aab5fb9d0c",
     "summary": "오류 응답을 공통 구조로 표현하고 업무 오류를 기계가 구분할 수 있게 한다.",
     "title": "Problem Details 오류 계약"
+  },
+  "docs/rest-api/contracts/rolling-deployment-compatibility.md": {
+    "content_sha": "10e38eed0f3c2bc4b585669f1f9b54a4f3ac11f4",
+    "summary": "신·구 클라이언트와 서버가 공존하는 동안 계약을 유지하고, 연결이 끊겨도 저장된 상태로 업무를 복구한다.",
+    "title": "롤링 배포의 API 호환성과 WebSocket 복구"
   },
   "docs/rest-api/http/methods-status-and-retry-contract.md": {
     "content_sha": "93a0b3b14bbee5dbe97c5071393a61893e31b19e",

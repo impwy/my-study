@@ -15,7 +15,7 @@
 | [Java](java/README.md) | 12 |
 | [Java 병렬 프로그래밍](java-concurrency/README.md) | 6 |
 | [Linux](linux/README.md) | 6 |
-| [클라우드](cloud/README.md) | 9 |
+| [클라우드](cloud/README.md) | 10 |
 | [컴퓨터 보안](security/README.md) | 6 |
 | [MySQL](mysql/README.md) | 5 |
 | [Redis](redis/README.md) | 7 |
@@ -23,7 +23,7 @@
 | [Spring](spring/README.md) | 10 |
 | [Spring Boot](spring-boot/README.md) | 7 |
 | [JPA](jpa/README.md) | 7 |
-| [REST API](rest-api/README.md) | 6 |
+| [REST API](rest-api/README.md) | 7 |
 | [JavaScript](javascript/README.md) | 6 |
 | [Vue.js](vue/README.md) | 5 |
 | [React](react/README.md) | 10 |
@@ -32,5 +32,5 @@
 | [GitHub Actions](github-actions/README.md) | 4 |
 | [DDD](ddd/README.md) | 4 |
 | [TDD](tdd/README.md) | 5 |
-| [데이터 중심 애플리케이션](ddia/README.md) | 6 |
+| [데이터 중심 애플리케이션](ddia/README.md) | 7 |
 | [디자인 패턴](design-patterns/README.md) | 5 |
