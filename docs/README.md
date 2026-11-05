@@ -8,14 +8,14 @@
 | --- | ---: |
 | [컴퓨터 구조](computer-architecture/README.md) | 9 |
 | [운영체제](operating-systems/README.md) | 9 |
-| [네트워크](network/README.md) | 15 |
+| [네트워크](network/README.md) | 16 |
 | [데이터베이스](database/README.md) | 11 |
 | [자료구조](data-structures/README.md) | 17 |
 | [알고리즘](algorithms/README.md) | 36 |
 | [Java](java/README.md) | 12 |
 | [Java 병렬 프로그래밍](java-concurrency/README.md) | 6 |
 | [Linux](linux/README.md) | 6 |
-| [클라우드](cloud/README.md) | 10 |
+| [클라우드](cloud/README.md) | 11 |
 | [컴퓨터 보안](security/README.md) | 6 |
 | [MySQL](mysql/README.md) | 5 |
 | [Redis](redis/README.md) | 7 |

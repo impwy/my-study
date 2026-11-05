@@ -8,14 +8,14 @@
 | --- | ---: | --- |
 | [컴퓨터 구조](docs/computer-architecture/README.md) | 9 | 데이터 표현 · CPU·명령어 · 메모리·캐시 · 입출력 |
 | [운영체제](docs/operating-systems/README.md) | 9 | 프로세스·스레드 · 스케줄링 · 동기화·교착상태 · 가상 메모리 |
-| [네트워크](docs/network/README.md) | 15 | TCP/IP · TCP·UDP · DNS · HTTP·TLS |
+| [네트워크](docs/network/README.md) | 16 | TCP/IP · TCP·UDP · DNS · HTTP·TLS |
 | [데이터베이스](docs/database/README.md) | 11 | 관계형 모델 · SQL · 인덱스 · 트랜잭션·격리 수준 |
 | [자료구조](docs/data-structures/README.md) | 17 | 배열·연결 리스트 · 스택·큐 · 해시 · 트리·힙 · 그래프 |
 | [알고리즘](docs/algorithms/README.md) | 36 | 복잡도 · 탐색 · 정렬 · 그래프 탐색 · 그리디·동적 계획법 |
 | [Java](docs/java/README.md) | 12 | 언어·타입 · 객체지향 · 컬렉션·제네릭 · 예외 · 스트림 · JVM·GC |
 | [Java 병렬 프로그래밍](docs/java-concurrency/README.md) | 6 | 스레드 안전성 · 가시성·원자성 · 락 · Executor·Future · 동시성 컬렉션 |
 | [Linux](docs/linux/README.md) | 6 | 파일·권한 · 프로세스 · 셸 · 네트워크 명령어 · 서비스·로그 |
-| [클라우드](docs/cloud/README.md) | 10 | 가상화 · 컴퓨팅·스토리지 · 네트워크 · 확장성·가용성 |
+| [클라우드](docs/cloud/README.md) | 11 | 가상화 · 컴퓨팅·스토리지 · 네트워크 · 확장성·가용성 |
 | [컴퓨터 보안](docs/security/README.md) | 6 | 암호·해시 · 인증·인가 · 웹 취약점 · 접근 제어 |
 | [MySQL](docs/mysql/README.md) | 5 | 스키마·SQL · 실행 계획 · InnoDB·인덱스 · MVCC·락 |
 | [Redis](docs/redis/README.md) | 7 | 자료형 · 캐시·TTL · 영속성 · 복제 · 장애 대응 |
@@ -72,7 +72,7 @@
 </details>
 
 <details>
-<summary>네트워크 · 15개</summary>
+<summary>네트워크 · 16개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
@@ -89,6 +89,7 @@
 | [TCP/IP 계층과 라우팅](docs/network/tcp-ip/layers-and-routing.md) | 주소·경로·전송·응용 규약의 책임을 나누어 데이터가 상대 애플리케이션까지 가는 흐름을 설명한다. |
 | [TCP와 UDP 선택](docs/network/transport/tcp-and-udp.md) | TCP의 연결·바이트 스트림과 UDP의 데이터그램을 요구하는 지연·신뢰성·경계 조건으로 비교한다. |
 | [TLS와 HTTPS](docs/network/http-tls/tls-handshake.md) | TLS는 상대 인증·키 합의로 만든 보안 채널에 HTTP를 실어 전송 중 데이터를 보호한다. |
+| [WebRTC 음성대화의 연결과 턴 처리](docs/network/transport/webrtc-voice-turns.md) | WebRTC 연결을 유지하는 것과 사용자의 새 발화를 확정하고 이전 답변을 안전하게 중단하는 것은 서로 다른 책임이다. |
 | [링크 계층과 오류 검출](docs/network/tcp-ip/ethernet-and-error-control.md) | 같은 링크의 프레임 전달·매체 접근·오류 검출을 종단 간 전송 보장과 구분한다. |
 | [흐름 제어와 혼잡 제어](docs/network/transport/flow-and-congestion-control.md) | 수신자가 받을 수 있는 양과 네트워크가 감당할 수 있는 양을 각각 고려해 전송을 조절한다. |
 
@@ -231,7 +232,7 @@
 </details>
 
 <details>
-<summary>클라우드 · 10개</summary>
+<summary>클라우드 · 11개</summary>
 
 | 문서 | 한 줄 요약 |
 | --- | --- |
@@ -240,6 +241,7 @@
 | [OCR 모델의 학습·추론과 신분증 정보 추출](docs/cloud/resources/ocr-model-fine-tuning.md) | OCR은 이미지의 문자를 텍스트로 변환하는 작업이며 파인튜닝은 기존 모델을 특정 데이터로 추가 학습하는 방법이다. |
 | [Observability와 LGTM·Datadog](docs/cloud/availability/observability-lgtm.md) | 메트릭·로그·트레이스를 연결해 내부 상태를 추론하고 Grafana 도구 조합과 Datadog 통합 서비스를 구분한다. |
 | [백프레셔와 요청 제한](docs/cloud/availability/backpressure-and-rate-limit.md) | 처리 가능한 속도에 맞춰 유입·대기·거절을 조정해 과부하가 시스템 전체로 번지는 것을 제한한다. |
+| [음성 모델 개선의 코드·추론 옵션·프롬프트 구분](docs/cloud/resources/voice-model-options-and-prompts.md) | 음성대화 개선은 프로그램 흐름, 인식 옵션, 모델 입력 지침을 바꾸는 작업일 수 있으며 반드시 모델 가중치를 학습하는 것은 아니다. |
 | [지연·처리량·포화](docs/cloud/availability/latency-throughput-saturation.md) | 부하가 늘 때 처리량·지연 분포·오류·대기열을 함께 보아 병목을 찾는다. |
 | [컴퓨팅과 블록·파일·객체 스토리지](docs/cloud/resources/compute-and-storage-boundaries.md) | 애플리케이션의 실행 자원과 데이터 보관 자원을 나누고 접근 방식에 맞는 스토리지를 선택한다. |
 | [클라우드 서비스 모델](docs/cloud/virtualization/cloud-service-models.md) | 온디맨드 자원 사용과 IaaS·PaaS·SaaS별 관리 책임의 차이를 설명한다. |
